@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>多據點 SASE 現代化轉型</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+  (function () {
+    try {
+      if (localStorage.getItem('nsk-poc-theme') === 'light') document.documentElement.classList.add('light');
+      if (localStorage.getItem('nsk-poc-lang') === 'en') document.documentElement.setAttribute('lang', 'en');
+    } catch (e) {}
+  })();
+</script>
+<style id="tw-inline">*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:Inter,Noto Sans TC,system-ui,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:JetBrains Mono,ui-monospace,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.visible{visibility:visible}.static{position:static}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.bottom-4{bottom:1rem}.left-1{left:.25rem}.left-1\/2{left:50%}.top-0{top:0}.isolate{isolation:isolate}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mr-1{margin-right:.25rem}.mr-1\.5{margin-right:.375rem}.mt-0{margin-top:0}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-1\.5{margin-top:.375rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.table{display:table}.grid{display:grid}.hidden{display:none}.h-0{height:0}.h-11{height:2.75rem}.h-14{height:3.5rem}.h-2{height:.5rem}.h-2\.5{height:.625rem}.h-3{height:.75rem}.h-3\.5{height:.875rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-7{height:1.75rem}.h-8{height:2rem}.h-\[22px\]{height:22px}.h-\[34px\]{height:34px}.h-auto{height:auto}.min-h-screen{min-height:100vh}.w-11{width:2.75rem}.w-2{width:.5rem}.w-2\.5{width:.625rem}.w-3{width:.75rem}.w-3\.5{width:.875rem}.w-4{width:1rem}.w-40{width:10rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-7{width:1.75rem}.w-8{width:2rem}.w-\[22px\]{width:22px}.w-\[34px\]{width:34px}.w-full{width:100%}.min-w-0{min-width:0}.min-w-\[760px\]{min-width:760px}.min-w-\[860px\]{min-width:860px}.max-w-3xl{max-width:48rem}.max-w-7xl{max-width:80rem}.shrink-0{flex-shrink:0}.grow{flex-grow:1}.-translate-x-1{--tw-translate-x:-0.25rem}.-translate-x-1,.-translate-x-1\/2{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-x-1\/2{--tw-translate-x:-50%}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scroll-mt-16{scroll-margin-top:4rem}.list-disc{list-style-type:disc}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.place-items-center{place-items:center}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-x-5{-moz-column-gap:1.25rem;column-gap:1.25rem}.gap-x-6{-moz-column-gap:1.5rem;column-gap:1.5rem}.gap-y-2{row-gap:.5rem}.gap-y-3{row-gap:.75rem}.space-y-1>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.25rem*var(--tw-space-y-reverse))}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}.space-y-2\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.625rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.625rem*var(--tw-space-y-reverse))}.divide-y>:not([hidden])~:not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px*(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px*var(--tw-divide-y-reverse))}.divide-slate-800>:not([hidden])~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(30 41 59/var(--tw-divide-opacity,1))}.divide-slate-800\/80>:not([hidden])~:not([hidden]){border-color:rgba(30,41,59,.8)}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-sm{border-radius:.125rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-t-\[3px\]{border-top-width:3px}.border-dashed{border-style:dashed}.border-amber-500{--tw-border-opacity:1;border-color:rgb(245 158 11/var(--tw-border-opacity,1))}.border-amber-500\/40{border-color:rgba(245,158,11,.4)}.border-blue-500{--tw-border-opacity:1;border-color:rgb(59 130 246/var(--tw-border-opacity,1))}.border-blue-500\/40{border-color:rgba(59,130,246,.4)}.border-emerald-500{--tw-border-opacity:1;border-color:rgb(16 185 129/var(--tw-border-opacity,1))}.border-emerald-500\/40{border-color:rgba(16,185,129,.4)}.border-slate-600{--tw-border-opacity:1;border-color:rgb(71 85 105/var(--tw-border-opacity,1))}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85/var(--tw-border-opacity,1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59/var(--tw-border-opacity,1))}.border-slate-800\/70{border-color:rgba(30,41,59,.7)}.bg-amber-500{--tw-bg-opacity:1;background-color:rgb(245 158 11/var(--tw-bg-opacity,1))}.bg-amber-500\/10{background-color:rgba(245,158,11,.1)}.bg-amber-500\/15{background-color:rgba(245,158,11,.15)}.bg-blue-500{--tw-bg-opacity:1;background-color:rgb(59 130 246/var(--tw-bg-opacity,1))}.bg-blue-500\/10{background-color:rgba(59,130,246,.1)}.bg-blue-500\/15{background-color:rgba(59,130,246,.15)}.bg-emerald-400{--tw-bg-opacity:1;background-color:rgb(52 211 153/var(--tw-bg-opacity,1))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129/var(--tw-bg-opacity,1))}.bg-emerald-500\/10{background-color:rgba(16,185,129,.1)}.bg-emerald-500\/15{background-color:rgba(16,185,129,.15)}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.bg-slate-800\/60{background-color:rgba(30,41,59,.6)}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42/var(--tw-bg-opacity,1))}.bg-slate-900\/90{background-color:rgba(15,23,42,.9)}.bg-slate-950{--tw-bg-opacity:1;background-color:rgb(2 6 23/var(--tw-bg-opacity,1))}.bg-slate-950\/50{background-color:rgba(2,6,23,.5)}.bg-slate-950\/75{background-color:rgba(2,6,23,.75)}.bg-violet-500{--tw-bg-opacity:1;background-color:rgb(139 92 246/var(--tw-bg-opacity,1))}.bg-violet-500\/15{background-color:rgba(139,92,246,.15)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}.from-emerald-400{--tw-gradient-from:#34d399 var(--tw-gradient-from-position);--tw-gradient-to:rgba(52,211,153,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.to-blue-400{--tw-gradient-to:#60a5fa var(--tw-gradient-to-position)}.p-3{padding:.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-0{padding-top:0;padding-bottom:0}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pb-28{padding-bottom:7rem}.pl-4{padding-left:1rem}.pt-8{padding-top:2rem}.text-left{text-align:left}.align-middle{vertical-align:middle}.font-mono{font-family:JetBrains Mono,ui-monospace,monospace}.font-sans{font-family:Inter,Noto Sans TC,system-ui,sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\[11px\]{font-size:11px}.text-\[13px\]{font-size:13px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-.025em}.tracking-wider{letter-spacing:.05em}.tracking-widest{letter-spacing:.1em}.text-amber-300{--tw-text-opacity:1;color:rgb(252 211 77/var(--tw-text-opacity,1))}.text-blue-300{--tw-text-opacity:1;color:rgb(147 197 253/var(--tw-text-opacity,1))}.text-cyan-300{--tw-text-opacity:1;color:rgb(103 232 249/var(--tw-text-opacity,1))}.text-cyan-300\/90{color:rgba(103,232,249,.9)}.text-emerald-300{--tw-text-opacity:1;color:rgb(110 231 183/var(--tw-text-opacity,1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153/var(--tw-text-opacity,1))}.text-red-300{--tw-text-opacity:1;color:rgb(252 165 165/var(--tw-text-opacity,1))}.text-rose-300{--tw-text-opacity:1;color:rgb(253 164 175/var(--tw-text-opacity,1))}.text-slate-100{--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240/var(--tw-text-opacity,1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105/var(--tw-text-opacity,1))}.text-slate-950{--tw-text-opacity:1;color:rgb(2 6 23/var(--tw-text-opacity,1))}.text-violet-300{--tw-text-opacity:1;color:rgb(196 181 253/var(--tw-text-opacity,1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.blur{--tw-blur:blur(8px)}.blur,.drop-shadow{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.drop-shadow{--tw-drop-shadow:drop-shadow(0 1px 2px rgba(0,0,0,.1)) drop-shadow(0 1px 1px rgba(0,0,0,.06))}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px)}.backdrop-blur,.backdrop-filter{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.hover\:bg-slate-800:hover{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.hover\:text-slate-100:hover{--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}@media (min-width:640px){.sm\:left-auto{left:auto}.sm\:right-4{right:1rem}.sm\:translate-x-0{--tw-translate-x:0px;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.sm\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.sm\:flex-row{flex-direction:row}.sm\:justify-between{justify-content:space-between}.sm\:p-4{padding:1rem}.sm\:p-6{padding:1.5rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:py-14{padding-top:3.5rem;padding-bottom:3.5rem}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-lg{font-size:1.125rem;line-height:1.75rem}}@media (min-width:768px){.md\:flex{display:flex}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}}@media (min-width:1024px){.lg\:col-span-2{grid-column:span 2/span 2}.lg\:col-span-3{grid-column:span 3/span 3}.lg\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.lg\:grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.lg\:text-5xl{font-size:3rem;line-height:1}}</style>
+<style>
+  :root { --accent: 52 211 153; }
+  html { scroll-behavior: smooth; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(96,165,250,.10), transparent 60%),
+      #060a13;
+    color: #e2e8f0;
+    transition: background-color .3s ease, color .3s ease;
+  }
+  html[lang="en"] .zh { display: none !important; }
+  html:not([lang="en"]) .en { display: none !important; }
+  .grid-bg {
+    background-image: linear-gradient(rgba(148,163,184,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .card { background: rgba(15,23,42,.65); border: 1px solid rgba(51,65,85,.6); backdrop-filter: blur(8px); }
+  .accent-text { color: rgb(var(--accent)); transition: color .4s ease; }
+  .accent-bg { background: rgb(var(--accent) / .12); border-color: rgb(var(--accent) / .4); transition: all .4s ease; }
+  .hero-grad { background-image: linear-gradient(90deg, #6ee7b7, #bae6fd, #93c5fd); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  .seg { display: inline-flex; flex-wrap: wrap; border: 1px solid #334155; border-radius: .6rem; overflow: hidden; background: rgba(15,23,42,.8); }
+  .seg button { padding: .45rem .85rem; font-size: .8rem; color: #cbd5e1; transition: all .25s ease; white-space: nowrap; display: inline-flex; align-items: center; gap: .4rem; }
+  .seg button + button { border-left: 1px solid #334155; }
+  .seg button:hover { background: rgba(51,65,85,.5); }
+  .seg button[aria-pressed="true"] { background: rgb(var(--bc, 52 211 153)); color: #020617; font-weight: 600; }
+  .seg .dot { width: 8px; height: 8px; border-radius: 9999px; background: rgb(var(--bc)); }
+  .seg button[aria-pressed="true"] .dot { background: #020617; }
+  .seg.tb button { padding: .4rem .75rem; }
+  .seg.tb button[aria-pressed="true"] { background: #22d3ee; color: #020617; }
+
+  /* ---------- topology ---------- */
+  .tp text { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
+  .tp .zone { fill: rgba(15,23,42,.35); stroke: rgba(100,116,139,.55); stroke-dasharray: 6 6; }
+  .tp .zone-t { fill: #94a3b8; font-size: 12px; font-weight: 600; letter-spacing: .06em; }
+  .tp .wire { fill: none; stroke: rgba(100,116,139,.55); stroke-width: 1.5; }
+  .tp .ghost { fill: none; stroke: rgba(100,116,139,.28); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; stroke-linejoin: round; }
+  .tp .flow { fill: none; stroke: rgb(var(--fc)); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 11 9; animation: dash 1.1s linear infinite; filter: drop-shadow(0 0 5px rgb(var(--fc) / .6)); }
+  .tp .flow.static { animation: none; stroke-dasharray: 6 6; stroke-width: 2.5; }
+  @keyframes dash { to { stroke-dashoffset: -20; } }
+  .tp .pk { fill: #fff; filter: drop-shadow(0 0 6px rgb(var(--fc))); }
+  .tp .fz { opacity: 0; transition: opacity .35s ease; }
+  .tp .fz.show { opacity: 1; }
+
+  .tp .node { cursor: pointer; transition: opacity .35s ease; }
+  .tp .node .base { fill: #0b1222; }
+  .tp .node .tint { fill: rgb(var(--c) / .06); stroke: rgb(var(--c) / .55); stroke-width: 1.5; transition: all .3s ease; }
+  .tp .node .ico { color: rgb(var(--c)); }
+  .tp .node .t1 { fill: #f1f5f9; font-size: 14px; font-weight: 700; }
+  .tp .node .t2 { fill: #94a3b8; font-size: 11px; }
+  .tp .node.sm .t1 { font-size: 12px; font-weight: 600; }
+  .tp .node:hover .tint { stroke: rgb(var(--c)); }
+  .tp .node.sel .tint { stroke: rgb(var(--c)); stroke-width: 3; filter: drop-shadow(0 0 10px rgb(var(--c) / .8)); fill: rgb(var(--c) / .14); }
+  .tp .node.dim > :not(.base) { opacity: .3; }
+  .tp .warn { transition: opacity .35s ease; }
+  .tp .xmark circle { fill: #7f1d1d; stroke: #f87171; stroke-width: 2; }
+  .tp .xmark path { stroke: #fecaca; stroke-width: 2.5; stroke-linecap: round; }
+
+  .fade-in { animation: fadeIn .45s ease both; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .pulse-dot { position: relative; }
+  .pulse-dot::after { content: ''; position: absolute; inset: 0; border-radius: 9999px; background: inherit; animation: ping 1.8s infinite; }
+  @keyframes ping { 0% { opacity: .7; transform: scale(1); } 100% { opacity: 0; transform: scale(2.2); } }
+  ::-webkit-scrollbar { height: 8px; width: 8px; }
+  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 8px; }
+  .print-only { display: none; }
+
+  /* =================== LIGHT =================== */
+  html.light body {
+    background: radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(96,165,250,.12), transparent 60%), #f1f5f9;
+    color: #0f172a;
+  }
+  html.light .grid-bg { background-image: linear-gradient(rgba(15,23,42,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,.05) 1px, transparent 1px); }
+  html.light .card { background: rgba(255,255,255,.9); border-color: #e2e8f0; box-shadow: 0 1px 2px rgba(15,23,42,.04); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #059669, #0284c7, #2563eb); }
+  html.light .accent-text { color: color-mix(in srgb, rgb(var(--accent)) 62%, #000); }
+  html.light .text-slate-100 { color: #0f172a; }
+  html.light .text-slate-200 { color: #1e293b; }
+  html.light .text-slate-300 { color: #334155; }
+  html.light .text-slate-400 { color: #475569; }
+  html.light .text-slate-500 { color: #64748b; }
+  html.light .text-slate-600 { color: #94a3b8; }
+  html.light .text-cyan-300, html.light .text-cyan-300\/90 { color: #0e7490; }
+  html.light .text-blue-300 { color: #1d4ed8; }
+  html.light .text-amber-300 { color: #b45309; }
+  html.light .text-red-300, html.light .text-rose-300 { color: #b91c1c; }
+  html.light .text-emerald-300 { color: #047857; }
+  html.light .text-emerald-400 { color: #059669; }
+  html.light .text-violet-300 { color: #6d28d9; }
+  html.light .hover\:text-slate-100:hover { color: #0f172a; }
+  html.light .bg-slate-950\/75 { background: rgba(255,255,255,.82); }
+  html.light .bg-slate-950\/70, html.light .bg-slate-950\/50 { background: #f8fafc; }
+  html.light .bg-slate-900 { background: #ffffff; }
+  html.light .bg-slate-900\/90 { background: #f1f5f9; }
+  html.light .bg-slate-800, html.light .bg-slate-800\/60 { background: #e2e8f0; }
+  html.light .hover\:bg-slate-800:hover { background: #e2e8f0; }
+  html.light .border-slate-600, html.light .border-slate-700 { border-color: #cbd5e1; }
+  html.light .border-slate-800, html.light .border-slate-800\/70 { border-color: #e2e8f0; }
+  html.light .divide-slate-800\/80 > :not([hidden]) ~ :not([hidden]) { border-color: #e2e8f0; }
+  html.light .seg { border-color: #cbd5e1; background: #fff; }
+  html.light .seg button { color: #334155; }
+  html.light .seg button + button { border-left-color: #cbd5e1; }
+  html.light .seg button:hover { background: #f1f5f9; }
+  html.light .seg button[aria-pressed="true"] { color: #020617; }
+  html.light .tp .zone { fill: rgba(255,255,255,.6); stroke: #94a3b8; }
+  html.light .tp .zone-t { fill: #475569; }
+  html.light .tp .wire { stroke: #94a3b8; }
+  html.light .tp .ghost { stroke: rgba(100,116,139,.45); }
+  html.light .tp .pk { fill: rgb(var(--fc)); stroke: #fff; stroke-width: 1.5; }
+  html.light .tp .node .base { fill: #ffffff; }
+  html.light .tp .node .t1 { fill: #0f172a; }
+  html.light .tp .node .t2 { fill: #475569; }
+  html.light .tp .node .ico { color: color-mix(in srgb, rgb(var(--c)) 70%, #000); }
+  html.light ::-webkit-scrollbar-thumb { background: #cbd5e1; }
+
+  /* =================== PRINT =================== */
+  @page { size: A4 landscape; margin: 10mm; }
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    html, body { background: #fff !important; }
+    body { zoom: .62; }
+    .no-print, nav, #toolbar { display: none !important; }
+    .print-only { display: block !important; }
+    .card { backdrop-filter: none !important; break-inside: avoid; box-shadow: none !important; }
+    .overflow-x-auto { overflow: visible !important; }
+    .min-w-\[860px\], .min-w-\[760px\] { min-width: 0 !important; }
+    section { padding-top: 0 !important; padding-bottom: 0 !important; border-top: 0 !important; }
+    #topology, .print-break { break-before: page; }
+    #tp { width: 82% !important; margin: 0 auto; display: block; }
+    .tp .flow { animation: none !important; filter: none !important; }
+    .tp .pk { display: none; }
+    .fade-in { animation: none !important; }
+    header { padding-top: 0 !important; }
+    footer > div { padding-bottom: 0 !important; }
+  }
+</style>
+</head>
+<body class="font-sans antialiased min-h-screen">
+
+<!-- ============ NAV ============ -->
+<nav class="sticky top-0 z-40 border-b border-slate-800/70 bg-slate-950/75 backdrop-blur">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+    <a href="index.html" class="flex items-center gap-2 min-w-0" title="Use Case Hub">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-400 to-blue-400 grid place-items-center shrink-0">
+        <i data-lucide="shield-check" class="w-4 h-4 text-slate-950"></i>
+      </div>
+      <span class="font-semibold text-sm truncate"><span class="zh">多據點 SASE 轉型</span><span class="en">Multi-Site SASE</span></span>
+    </a>
+    <div class="hidden md:flex items-center gap-1 text-xs text-slate-400">
+      <a href="index.html" class="no-print px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100 inline-flex items-center gap-1"><i data-lucide="layout-grid" class="w-3.5 h-3.5"></i><span class="zh">Use Case 首頁</span><span class="en">Use Case Hub</span></a>
+      <a href="#topology" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">互動架構圖</span><span class="en">Topology</span></a>
+      <a href="#compare" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">架構對比</span><span class="en">Comparison</span></a>
+      <a href="#value" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">提案亮點</span><span class="en">Highlights</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HEADER ============ -->
+<header class="grid-bg border-b border-slate-800/70">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+    <div class="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-widest text-cyan-300/90 mb-4">
+      <i data-lucide="radio-tower" class="w-3.5 h-3.5"></i> Netskope One · Borderless SD-WAN · SSE
+    </div>
+    <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+      <span class="zh"><span class="hero-grad">多據點 SASE 現代化轉型</span></span>
+      <span class="en"><span class="hero-grad">Multi-Site SASE Modernization</span></span>
+    </h1>
+    <p class="mt-3 text-base sm:text-lg text-slate-400 max-w-3xl">
+      <span class="zh">以 Netskope BWAN 實現極簡網路與全面防護</span>
+      <span class="en">Simpler networking and full protection with Netskope BWAN</span>
+    </p>
+    <p class="mt-2 text-sm text-slate-500 max-w-3xl">
+      <span class="zh">把各分支防火牆與 HQ 防火牆統一置換為 Netskope Borderless WAN Gateway。Internet 與 SaaS 流量就近送往 Netskope 雲端做資安檢查，分點到 HQ 內部系統走 BWAN 加密 Overlay，不再回繞總部、也不必逐點維護 VPN。</span>
+      <span class="en">Replace every branch firewall and the HQ firewall with Netskope Borderless WAN gateways. Internet and SaaS traffic goes to the nearest Netskope cloud POP for inspection, and branch-to-HQ traffic rides the encrypted BWAN overlay, with no hairpinning through HQ and no per-site VPNs to maintain.</span>
+    </p>
+    <div class="mt-6 flex flex-wrap gap-2">
+      <span class="inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300"><span class="pulse-dot w-2 h-2 rounded-full bg-emerald-400"></span> Direct-to-Cloud SSE</span>
+      <span class="inline-flex items-center gap-2 rounded-full border border-blue-500/40 bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-300"><i data-lucide="git-fork" class="w-3.5 h-3.5"></i> Hub &amp; Spoke Overlay</span>
+      <span class="inline-flex items-center gap-2 rounded-full border border-amber-500/40 bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-300"><i data-lucide="handshake" class="w-3.5 h-3.5"></i> Third-party Egress: HQ IP / Dedicated IP</span>
+      <span class="inline-flex items-center gap-2 rounded-full border border-slate-600 bg-slate-800/60 px-3 py-1 text-xs font-medium text-slate-300"><i data-lucide="box" class="w-3.5 h-3.5"></i> ZTP · Single Console</span>
+    </div>
+    <div class="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <div class="card rounded-xl p-4">
+        <div class="text-[11px] uppercase tracking-wider text-slate-500"><span class="zh">Internet / SaaS</span><span class="en">Internet / SaaS</span></div>
+        <div class="mt-1 font-mono text-lg font-semibold text-emerald-300">Direct-to-Cloud</div>
+        <div class="text-xs text-slate-400"><span class="zh">不再回繞 HQ</span><span class="en">No HQ hairpin</span></div>
+      </div>
+      <div class="card rounded-xl p-4">
+        <div class="text-[11px] uppercase tracking-wider text-slate-500"><span class="zh">HQ 內部系統</span><span class="en">HQ Systems</span></div>
+        <div class="mt-1 font-mono text-lg font-semibold text-blue-300">Secure Overlay</div>
+        <div class="text-xs text-slate-400"><span class="zh">自動建立 · 智慧選路</span><span class="en">Auto-built · path-aware</span></div>
+      </div>
+      <div class="card rounded-xl p-4">
+        <div class="text-[11px] uppercase tracking-wider text-slate-500"><span class="zh">第三方系統白名單</span><span class="en">Third-party Allowlist</span></div>
+        <div class="mt-1 font-mono text-lg font-semibold text-amber-300"><span class="zh">固定出口 IP</span><span class="en">Fixed Egress IP</span></div>
+        <div class="text-xs text-slate-400"><span class="zh">HQ 代理或專屬出口</span><span class="en">Via HQ or dedicated IP</span></div>
+      </div>
+      <div class="card rounded-xl p-4">
+        <div class="text-[11px] uppercase tracking-wider text-slate-500"><span class="zh">分點本地</span><span class="en">On-Site</span></div>
+        <div class="mt-1 font-mono text-lg font-semibold text-red-300"><span class="zh">Zone 隔離</span><span class="en">Zone Isolation</span></div>
+        <div class="text-xs text-slate-400"><span class="zh">IoT 不可橫向移動</span><span class="en">IoT cannot move laterally</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6">
+
+<!-- ============ TOPOLOGY ============ -->
+<section id="topology" class="py-12 scroll-mt-16">
+  <div class="mb-5">
+    <div class="text-xs font-mono uppercase tracking-widest accent-text">01 · Interactive Topology</div>
+    <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">互動式架構圖</span><span class="en">Interactive Topology</span></h2>
+    <p class="mt-1 text-sm text-slate-400 no-print">
+      <span class="zh">切換現況與目標架構、選擇流量路徑觀察流向；點圖上任一節點可查看該設備的能力說明。</span>
+      <span class="en">Switch between today's and the target architecture, pick a traffic path, and click any node to see what it does.</span>
+    </p>
+    <p id="printState" class="print-only mt-1 text-sm text-slate-500"></p>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-x-6 gap-y-3 no-print">
+    <div class="flex items-center gap-3">
+      <span class="text-sm text-slate-400"><span class="zh">架構</span><span class="en">Architecture</span></span>
+      <div class="seg" id="segArch">
+        <button data-arch="legacy" aria-pressed="false" style="--bc:251 113 133"><i data-lucide="triangle-alert" class="w-3.5 h-3.5"></i><span class="zh">現況（傳統 FW）</span><span class="en">Today (Legacy FW)</span></button>
+        <button data-arch="target" aria-pressed="true" style="--bc:52 211 153"><i data-lucide="sparkles" class="w-3.5 h-3.5"></i><span class="zh">目標（BWAN + SASE）</span><span class="en">Target (BWAN + SASE)</span></button>
+      </div>
+    </div>
+  </div>
+  <div id="filterRow" class="mt-3 flex flex-wrap items-center gap-x-6 gap-y-3 no-print">
+    <div class="flex items-center gap-3">
+      <span class="text-sm text-slate-400"><span class="zh">流量路徑</span><span class="en">Traffic</span></span>
+      <div class="seg" id="segFlow"></div>
+    </div>
+    <div id="govOpt" class="flex items-center gap-3">
+      <span class="text-sm text-slate-400"><span class="zh">第三方出口</span><span class="en">Third-party egress</span></span>
+      <div class="seg" id="segGov">
+        <button data-gov="A" aria-pressed="true" style="--bc:251 191 36"><span class="zh">方案 A：HQ 固定 IP</span><span class="en">Option A: HQ fixed IP</span></button>
+        <button data-gov="B" aria-pressed="false" style="--bc:251 191 36"><span class="zh">方案 B：專屬出口 IP</span><span class="en">Option B: Dedicated IP</span></button>
+      </div>
+    </div>
+    <div id="c4Opt" class="flex items-center gap-3">
+      <span class="text-sm text-slate-400"><span class="zh">分點 #4 第三方出口</span><span class="en">Site #4 third-party egress</span></span>
+      <div class="seg" id="segC4">
+        <button data-c4="deip" aria-pressed="true" style="--bc:251 191 36"><span class="zh">DEIP（建議）</span><span class="en">DEIP (recommended)</span></button>
+        <button data-c4="shared" aria-pressed="false" style="--bc:251 191 36"><span class="zh">共用 POP IP</span><span class="en">Shared POP IP</span></button>
+        <button data-c4="npa" aria-pressed="false" style="--bc:251 191 36"><span class="zh">NPA 備案（經 HQ）</span><span class="en">NPA fallback (via HQ)</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4 card rounded-2xl grid-bg overflow-x-auto">
+    <div class="min-w-[860px] p-3 sm:p-4">
+      <svg id="tp" class="tp w-full h-auto" viewBox="0 0 1300 760" role="img" aria-label="Topology"></svg>
+    </div>
+  </div>
+  <div id="legend" class="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-xs text-slate-400"></div>
+
+  <div class="mt-4 grid lg:grid-cols-5 gap-4">
+    <div id="flowPanel" class="lg:col-span-3 card rounded-2xl p-5 sm:p-6"></div>
+    <div id="nodePanel" class="lg:col-span-2 card rounded-2xl p-5 sm:p-6"></div>
+  </div>
+</section>
+
+<!-- ============ COMPARE ============ -->
+<section id="compare" class="py-12 border-t border-slate-800/70 scroll-mt-16 print-break">
+  <div class="mb-6">
+    <div class="text-xs font-mono uppercase tracking-widest text-cyan-300">02 · Before &amp; After</div>
+    <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">架構邏輯對比</span><span class="en">Architecture Comparison</span></h2>
+  </div>
+  <div class="card rounded-2xl overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm min-w-[760px]">
+        <thead class="bg-slate-900/90 text-[11px] uppercase tracking-wider text-slate-400">
+          <tr>
+            <th class="text-left font-semibold px-5 py-3 w-40"><span class="zh">項目</span><span class="en">Area</span></th>
+            <th class="text-left font-semibold px-5 py-3"><span class="zh">傳統架構（現況痛點）</span><span class="en">Legacy (today's pain)</span></th>
+            <th class="text-left font-semibold px-5 py-3"><span class="zh">BWAN + Netskope SASE（目標架構）</span><span class="en">BWAN + Netskope SASE (target)</span></th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-800/80 text-slate-300">
+          <tr>
+            <td class="px-5 py-4 font-medium text-slate-100"><span class="zh">網路邊界</span><span class="en">Network edge</span></td>
+            <td class="px-5 py-4"><div class="flex gap-2"><i data-lucide="circle-x" class="w-4 h-4 text-rose-300 mt-0.5 shrink-0"></i><span><span class="zh">各點各自維護硬體防火牆，需逐台設定 VPN 與路由</span><span class="en">Each site runs its own firewall; VPNs and routes configured box by box</span></span></div></td>
+            <td class="px-5 py-4"><div class="flex gap-2"><i data-lucide="circle-check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i><span><span class="zh">全點由 Netskope 單一主控台集中雲端管控</span><span class="en">All sites managed centrally from one Netskope console</span></span></div></td>
+          </tr>
+          <tr>
+            <td class="px-5 py-4 font-medium text-slate-100"><span class="zh">Internet / 雲端流量</span><span class="en">Internet / cloud</span></td>
+            <td class="px-5 py-4"><div class="flex gap-2"><i data-lucide="circle-x" class="w-4 h-4 text-rose-300 mt-0.5 shrink-0"></i><span><span class="zh">全數回繞 HQ 出口，或各點直出但缺乏統一資安防護</span><span class="en">Everything hairpins through HQ, or sites break out locally without consistent security</span></span></div></td>
+            <td class="px-5 py-4"><div class="flex gap-2"><i data-lucide="circle-check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i><span><span class="zh">Direct-to-Cloud：各分點與 HQ 直連 Netskope NewEdge 做 SSE 檢查（RTP / SWG / CASB / DLP）</span><span class="en">Direct-to-cloud: every site and HQ connects to Netskope NewEdge for SSE (RTP / SWG / CASB / DLP)</span></span></div></td>
+          </tr>
+          <tr>
+            <td class="px-5 py-4 font-medium text-slate-100"><span class="zh">HQ 內部系統存取</span><span class="en">HQ system access</span></td>
+            <td class="px-5 py-4"><div class="flex gap-2"><i data-lucide="circle-x" class="w-4 h-4 text-rose-300 mt-0.5 shrink-0"></i><span><span class="zh">各分點手動維護點對點 IPsec VPN，維運負擔重、擴充不易</span><span class="en">Manual point-to-point IPsec VPNs per site; heavy to run and hard to scale</span></span></div></td>
+            <td class="px-5 py-4"><div class="flex gap-2"><i data-lucide="circle-check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i><span><span class="zh">分點 BWAN（Spoke）與 HQ BWAN（Hub）自動建立加密 Overlay，智慧選路</span><span class="en">Site BWAN (spoke) and HQ BWAN (hub) build the encrypted overlay automatically, with path-aware routing</span></span></div></td>
+          </tr>
+          <tr>
+            <td class="px-5 py-4 font-medium text-slate-100"><span class="zh">管理維運</span><span class="en">Operations</span></td>
+            <td class="px-5 py-4"><div class="flex gap-2"><i data-lucide="circle-x" class="w-4 h-4 text-rose-300 mt-0.5 shrink-0"></i><span><span class="zh">設備異質且分散，日誌分散難追蹤</span><span class="en">Mixed, scattered devices; logs spread everywhere</span></span></div></td>
+            <td class="px-5 py-4"><div class="flex gap-2"><i data-lucide="circle-check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i><span><span class="zh">SD-WAN 與 SSE 政策整合，全網流量與威脅一處可見</span><span class="en">SD-WAN and SSE policy in one place, with network-wide traffic and threat visibility</span></span></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VALUE ============ -->
+<section id="value" class="py-12 border-t border-slate-800/70 scroll-mt-16 print-break">
+  <div class="mb-6">
+    <div class="text-xs font-mono uppercase tracking-widest text-cyan-300">03 · Proposal Highlights</div>
+    <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">提案四大亮點</span><span class="en">Four Proposal Highlights</span></h2>
+  </div>
+  <div class="grid sm:grid-cols-2 gap-4">
+    <article class="card rounded-2xl p-6">
+      <div class="flex items-center gap-3"><div class="w-11 h-11 rounded-xl bg-emerald-500/15 text-emerald-300 grid place-items-center"><i data-lucide="piggy-bank" class="w-5 h-5"></i></div><h3 class="text-lg font-semibold"><span class="zh">架構簡化、降低 TCO</span><span class="en">Simpler architecture, lower TCO</span></h3></div>
+      <p class="mt-3 text-sm text-slate-300 leading-relaxed"><span class="zh">不再為每個分點採購、升級與維保獨立防火牆。BWAN 以零接觸部署（ZTP）上線，全點使用標準化設定，由雲端統一交付。</span><span class="en">No more buying, upgrading and maintaining a firewall per site. BWAN comes online with zero-touch provisioning (ZTP) and every site gets a standard config delivered from the cloud.</span></p>
+    </article>
+    <article class="card rounded-2xl p-6">
+      <div class="flex items-center gap-3"><div class="w-11 h-11 rounded-xl bg-blue-500/15 text-blue-300 grid place-items-center"><i data-lucide="server-cog" class="w-5 h-5"></i></div><h3 class="text-lg font-semibold"><span class="zh">HQ Hub 高可用</span><span class="en">HQ hub high availability</span></h3></div>
+      <p class="mt-3 text-sm text-slate-300 leading-relaxed"><span class="zh">HQ 建議規劃雙 BWAN（主備或雙活）搭配雙 ISP 線路，確保數十到上百個分點存取內部系統不中斷。</span><span class="en">Plan dual BWAN gateways at HQ (active/standby or active/active) on two ISPs so dozens to hundreds of sites keep reaching internal systems.</span></p>
+    </article>
+    <article class="card rounded-2xl p-6">
+      <div class="flex items-center gap-3"><div class="w-11 h-11 rounded-xl bg-amber-500/15 text-amber-300 grid place-items-center"><i data-lucide="signal" class="w-5 h-5"></i></div><h3 class="text-lg font-semibold"><span class="zh">多線路彈性（固網 + 4G / 5G）</span><span class="en">Multi-WAN (fixed + 4G / 5G)</span></h3></div>
+      <p class="mt-3 text-sm text-slate-300 leading-relaxed"><span class="zh">分點拉固網不便或需要備援時，可採固網加 4G / 5G SIM 混合線路，主線路異常自動切換。實際切換時間依線路與設定而定，建議於 PoC 實測。</span><span class="en">Where fixed lines are hard to get or backup is needed, mix fixed broadband with 4G / 5G SIMs and fail over automatically. Actual failover time depends on links and config; measure it in the PoC.</span></p>
+    </article>
+    <article class="card rounded-2xl p-6">
+      <div class="flex items-center gap-3"><div class="w-11 h-11 rounded-xl bg-violet-500/15 text-violet-300 grid place-items-center"><i data-lucide="smartphone" class="w-5 h-5"></i></div><h3 class="text-lg font-semibold"><span class="zh">端到端零信任延伸</span><span class="en">Zero trust beyond the site</span></h3></div>
+      <p class="mt-3 text-sm text-slate-300 leading-relaxed"><span class="zh">現階段由辦公室設備經 BWAN 上雲；未來外勤人員的手機或筆電安裝 Netskope Client，即可套用同一套資安政策並存取 HQ 系統。</span><span class="en">Today office devices reach the cloud through BWAN; later, field staff install the Netskope Client on phones or laptops and get the same policies and HQ access.</span></p>
+    </article>
+  </div>
+</section>
+</main>
+
+<footer class="border-t border-slate-800/70 mt-4">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-28 text-xs text-slate-500 flex flex-col sm:flex-row gap-2 sm:justify-between">
+    <span>Netskope BWAN + SASE · Multi-Site Proposal</span>
+    <span><span class="zh">架構與流量為示意；實際功能依授權、型號與設定而定。</span><span class="en">Architecture and flows are illustrative; actual capabilities depend on license, model and configuration.</span></span>
+  </div>
+</footer>
+
+<!-- ============ TOOLBAR ============ -->
+<div id="toolbar" class="fixed bottom-4 left-1/2 -translate-x-1/2 sm:left-auto sm:right-4 sm:translate-x-0 z-50 card rounded-xl px-2 py-2 flex items-center gap-2 shadow-2xl">
+  <a href="index.html" class="h-[34px] w-[34px] grid place-items-center rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800" title="Use Case Hub"><i data-lucide="layout-grid" class="w-4 h-4"></i></a>
+  <div class="seg tb" id="segLang" role="group" aria-label="Language">
+    <button data-lang="zh" aria-pressed="true">中文</button>
+    <button data-lang="en" aria-pressed="false">EN</button>
+  </div>
+  <div class="seg tb" id="segTheme" role="group" aria-label="Theme">
+    <button data-theme="dark" aria-pressed="true" title="Dark"><i data-lucide="moon" class="w-3.5 h-3.5"></i><span class="zh">深</span><span class="en">Dark</span></button>
+    <button data-theme="light" aria-pressed="false" title="Light"><i data-lucide="sun" class="w-3.5 h-3.5"></i><span class="zh">淺</span><span class="en">Light</span></button>
+  </div>
+  <button id="btnPdf" class="h-[34px] px-3 inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800 text-[13px] font-medium"><i data-lucide="file-down" class="w-4 h-4"></i> PDF</button>
+</div>
+
+<script id="icon-shim">/* Inlined Lucide icons (ISC License, lucide.dev) — no CDN needed */
+window.lucide = (function () {
+  const ICONS = {"shield-check":[["path",{"d":"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"}],["path",{"d":"m9 12 2 2 4-4"}]],"layout-grid":[["rect",{"width":"7","height":"7","x":"3","y":"3","rx":"1"}],["rect",{"width":"7","height":"7","x":"14","y":"3","rx":"1"}],["rect",{"width":"7","height":"7","x":"14","y":"14","rx":"1"}],["rect",{"width":"7","height":"7","x":"3","y":"14","rx":"1"}]],"radio-tower":[["path",{"d":"M4.9 16.1C1 12.2 1 5.8 4.9 1.9"}],["path",{"d":"M7.8 4.7a6.14 6.14 0 0 0-.8 7.5"}],["circle",{"cx":"12","cy":"9","r":"2"}],["path",{"d":"M16.2 4.8c2 2 2.26 5.11.8 7.47"}],["path",{"d":"M19.1 1.9a9.96 9.96 0 0 1 0 14.1"}],["path",{"d":"M9.5 18h5"}],["path",{"d":"m8 22 4-11 4 11"}]],"git-fork":[["circle",{"cx":"12","cy":"18","r":"3"}],["circle",{"cx":"6","cy":"6","r":"3"}],["circle",{"cx":"18","cy":"6","r":"3"}],["path",{"d":"M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"}],["path",{"d":"M12 12v3"}]],"handshake":[["path",{"d":"m11 17 2 2a1 1 0 1 0 3-3"}],["path",{"d":"m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"}],["path",{"d":"m21 3 1 11h-2"}],["path",{"d":"M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"}],["path",{"d":"M3 4h8"}]],"box":[["path",{"d":"M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"}],["path",{"d":"m3.3 7 8.7 5 8.7-5"}],["path",{"d":"M12 22V12"}]],"triangle-alert":[["path",{"d":"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"}],["path",{"d":"M12 9v4"}],["path",{"d":"M12 17h.01"}]],"sparkles":[["path",{"d":"M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"}],["path",{"d":"M20 2v4"}],["path",{"d":"M22 4h-4"}],["circle",{"cx":"4","cy":"20","r":"2"}]],"circle-x":[["circle",{"cx":"12","cy":"12","r":"10"}],["path",{"d":"m15 9-6 6"}],["path",{"d":"m9 9 6 6"}]],"circle-check":[["circle",{"cx":"12","cy":"12","r":"10"}],["path",{"d":"m16 9-5.5 5.5L8 12"}]],"piggy-bank":[["path",{"d":"M11 17h3v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3a3.16 3.16 0 0 0 2-2h1a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-1a5 5 0 0 0-2-4V3a4 4 0 0 0-3.2 1.6l-.3.4H11a6 6 0 0 0-6 6v1a5 5 0 0 0 2 4v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1z"}],["path",{"d":"M16 10h.01"}],["path",{"d":"M2 8v1a2 2 0 0 0 2 2h1"}]],"server-cog":[["path",{"d":"m10.852 14.772-.383.923"}],["path",{"d":"M13.148 14.772a3 3 0 1 0-2.296-5.544l-.383-.923"}],["path",{"d":"m13.148 9.228.383-.923"}],["path",{"d":"m13.53 15.696-.382-.924a3 3 0 1 1-2.296-5.544"}],["path",{"d":"m14.772 10.852.923-.383"}],["path",{"d":"m14.772 13.148.923.383"}],["path",{"d":"M4.5 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-.5"}],["path",{"d":"M4.5 14H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-.5"}],["path",{"d":"M6 18h.01"}],["path",{"d":"M6 6h.01"}],["path",{"d":"m9.228 10.852-.923-.383"}],["path",{"d":"m9.228 13.148-.923.383"}]],"signal":[["path",{"d":"M2 20h.01"}],["path",{"d":"M7 20v-4"}],["path",{"d":"M12 20v-8"}],["path",{"d":"M17 20V8"}],["path",{"d":"M22 4v16"}]],"smartphone":[["rect",{"width":"14","height":"20","x":"5","y":"2","rx":"2","ry":"2"}],["path",{"d":"M12 18h.01"}]],"moon":[["path",{"d":"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"}]],"sun":[["circle",{"cx":"12","cy":"12","r":"4"}],["path",{"d":"M12 2v2"}],["path",{"d":"M12 20v2"}],["path",{"d":"m4.93 4.93 1.41 1.41"}],["path",{"d":"m17.66 17.66 1.41 1.41"}],["path",{"d":"M2 12h2"}],["path",{"d":"M20 12h2"}],["path",{"d":"m6.34 17.66-1.41 1.41"}],["path",{"d":"m19.07 4.93-1.41 1.41"}]],"file-down":[["path",{"d":"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"}],["path",{"d":"M14 2v5a1 1 0 0 0 1 1h5"}],["path",{"d":"M12 18v-6"}],["path",{"d":"m9 15 3 3 3-3"}]],"cloud":[["path",{"d":"M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"}]],"chevron-right":[["path",{"d":"m9 18 6-6-6-6"}]],"check":[["path",{"d":"M20 6 9 17l-5-5"}]],"key":[["path",{"d":"m2 21 9.6-9.6"}],["path",{"d":"m7.5 15.5 2.3 2.3a1 1 0 0 1 0 1.4l-2.1 2.1a1 1 0 0 1-1.4 0L4 19"}],["circle",{"cx":"15.5","cy":"7.5","r":"5.5"}]],"target":[["circle",{"cx":"12","cy":"12","r":"10"}],["circle",{"cx":"12","cy":"12","r":"6"}],["circle",{"cx":"12","cy":"12","r":"2"}]],"globe":[["circle",{"cx":"12","cy":"12","r":"10"}],["path",{"d":"M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"}],["path",{"d":"M2 12h20"}]],"brick-wall":[["rect",{"width":"18","height":"18","x":"3","y":"3","rx":"2"}],["path",{"d":"M12 9v6"}],["path",{"d":"M16 15v6"}],["path",{"d":"M16 3v6"}],["path",{"d":"M3 15h18"}],["path",{"d":"M3 9h18"}],["path",{"d":"M8 15v6"}],["path",{"d":"M8 3v6"}]],"server":[["rect",{"width":"20","height":"8","x":"2","y":"2","rx":"2","ry":"2"}],["rect",{"width":"20","height":"8","x":"2","y":"14","rx":"2","ry":"2"}],["line",{"x1":"6","x2":"6.01","y1":"6","y2":"6"}],["line",{"x1":"6","x2":"6.01","y1":"18","y2":"18"}]],"app-window":[["rect",{"x":"2","y":"4","width":"20","height":"16","rx":"2"}],["path",{"d":"M10 4v4"}],["path",{"d":"M2 8h20"}],["path",{"d":"M6 4v4"}]],"router":[["rect",{"width":"20","height":"8","x":"2","y":"14","rx":"2"}],["path",{"d":"M6.01 18H6"}],["path",{"d":"M10.01 18H10"}],["path",{"d":"M15 10v4"}],["path",{"d":"M17.84 7.17a4 4 0 0 0-5.66 0"}],["path",{"d":"M20.66 4.34a8 8 0 0 0-11.31 0"}]],"network":[["rect",{"x":"16","y":"16","width":"6","height":"6","rx":"1"}],["rect",{"x":"2","y":"16","width":"6","height":"6","rx":"1"}],["rect",{"x":"9","y":"2","width":"6","height":"6","rx":"1"}],["path",{"d":"M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"}],["path",{"d":"M12 12V8"}]],"cpu":[["path",{"d":"M12 20v2"}],["path",{"d":"M12 2v2"}],["path",{"d":"M17 20v2"}],["path",{"d":"M17 2v2"}],["path",{"d":"M2 12h2"}],["path",{"d":"M2 17h2"}],["path",{"d":"M2 7h2"}],["path",{"d":"M20 12h2"}],["path",{"d":"M20 17h2"}],["path",{"d":"M20 7h2"}],["path",{"d":"M7 20v2"}],["path",{"d":"M7 2v2"}],["rect",{"x":"4","y":"4","width":"16","height":"16","rx":"2"}],["rect",{"x":"8","y":"8","width":"8","height":"8","rx":"1"}]],"monitor":[["rect",{"width":"20","height":"14","x":"2","y":"3","rx":"2"}],["line",{"x1":"8","x2":"16","y1":"21","y2":"21"}],["line",{"x1":"12","x2":"12","y1":"17","y2":"21"}]],"wifi":[["path",{"d":"M12 20h.01"}],["path",{"d":"M2 8.82a15 15 0 0 1 20 0"}],["path",{"d":"M5 12.859a10 10 0 0 1 14 0"}],["path",{"d":"M8.5 16.429a5 5 0 0 1 7 0"}]],"laptop":[["path",{"d":"M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"}],["path",{"d":"M20.054 15.987H3.946"}]],"printer":[["path",{"d":"M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"}],["path",{"d":"M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"}],["rect",{"x":"6","y":"14","width":"12","height":"8","rx":"1"}]],"building-2":[["path",{"d":"M10 12h4"}],["path",{"d":"M10 8h4"}],["path",{"d":"M14 21v-3a2 2 0 0 0-4 0v3"}],["path",{"d":"M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"}],["path",{"d":"M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"}]],"key-round":[["path",{"d":"M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"}],["circle",{"cx":"16.5","cy":"7.5","r":".5","fill":"currentColor"}]],"badge-check":[["path",{"d":"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"}],["path",{"d":"m16 9-5.5 5.5L8 12"}]],"cloud-off":[["path",{"d":"M10.94 5.274A7 7 0 0 1 15.71 10h1.79a4.5 4.5 0 0 1 4.222 6.057"}],["path",{"d":"M18.796 18.81A4.5 4.5 0 0 1 17.5 19H9A7 7 0 0 1 5.79 5.78"}],["path",{"d":"m2 2 20 20"}]],"phone":[["path",{"d":"M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"}]]};
+  const NS = 'http://www.w3.org/2000/svg';
+  function createIcons() {
+    document.querySelectorAll('i[data-lucide]').forEach(function (el) {
+      const name = el.getAttribute('data-lucide');
+      const node = ICONS[name];
+      if (!node) return;
+      const svg = document.createElementNS(NS, 'svg');
+      const base = { xmlns: NS, width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' };
+      Object.keys(base).forEach(function (k) { svg.setAttribute(k, base[k]); });
+      svg.setAttribute('class', ('lucide lucide-' + name + ' ' + (el.getAttribute('class') || '')).trim());
+      node.forEach(function (child) {
+        const c = document.createElementNS(NS, child[0]);
+        Object.keys(child[1]).forEach(function (k) { if (k !== 'key') c.setAttribute(k, child[1][k]); });
+        svg.appendChild(c);
+      });
+      el.replaceWith(svg);
+    });
+  }
+  return { createIcons: createIcons };
+})();
+</script>
+<script>
+/* ===================== I18N ===================== */
+let lang = document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'zh';
+const L = (zh, en) => ({ zh, en });
+const tr = (x) => (x && typeof x === 'object' && 'zh' in x) ? x[lang] : x;
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+/* ===================== STATE ===================== */
+let arch = 'target', flow = 'all', gov = 'A', sel = 'site1', c4 = 'deip';
+
+/* ===================== GEOMETRY ===================== */
+const SITES = [
+  { n: 1, cx: 170, lane: 385, hx: 940,  ex: 470 },
+  { n: 2, cx: 480, lane: 395, hx: 975,  ex: 530 },
+  { n: 3, cx: 790, lane: 405, hx: 1010, ex: 650 }
+];
+const COL = { internet: '52 211 153', hq: '96 165 250', gov: '251 191 36', local: '248 113 113', legacy: '251 113 133', npa: '244 114 182' };
+
+const FLOWS = {
+  all: { color: '52 211 153', label: L('所有流量總覽', 'All traffic') },
+  internet: { color: COL.internet, label: L('Internet / SaaS', 'Internet / SaaS') },
+  hq: { color: COL.hq, label: L('HQ 核心系統', 'HQ systems') },
+  gov: { color: COL.gov, label: L('第三方系統', 'Third-party systems') },
+  local: { color: COL.local, label: L('分點本地隔離', 'On-site isolation') },
+  client: { color: COL.npa, label: L('分點 #4（Client）', 'Site #4 (Client)') }
+};
+
+function paths() {
+  const P = [];
+  SITES.forEach(s => {
+    const toHQ = `M${s.cx} 420 V${s.lane} H${s.hx} V360`;
+    P.push({ f: 'internet', d: `M${s.cx} 420 V300 H${s.ex} V195 H560 V62 H300` });
+    P.push({ f: 'hq', d: toHQ });
+    P.push({ f: 'govA', d: `M${s.cx + 6} 420 V${s.lane + 6} H${s.hx + 6} V325 H1010 V84` });
+    P.push({ f: 'govB', d: `M${s.cx} 420 V300 H${s.ex} V195 H620 V110 H1000 V84` });
+    P.push({ f: 'legacy', d: `${toHQ} V325 H935 V120 H200 V84` });
+    P.push({ f: 'legacyGov', d: `${toHQ} V325 H1010 V84`, noPk: true });
+    // local: IoT -> office (blocked), IoT -> BWAN (blocked)
+    P.push({ f: 'local', d: `M${s.cx - 70} 580 Q${s.cx} 545 ${s.cx + 70} 580`, noPk: true, x: [s.cx, 562] });
+    P.push({ f: 'local', d: `M${s.cx - 100} 580 V548 H${s.cx - 40} V470`, noPk: true, x: [s.cx - 40, 482] });
+  });
+  P.push({ f: 'internet', d: 'M935 290 V205 H560 V62 H300' });
+  // small site (#3) with Netskope Client
+  // site #4: ISP modem + WiFi, devices run Netskope Client
+  P.push({ f: 'cInet', d: 'M1085 580 V548 H1150 V418 H1282 V180 H560 V62 H300' });
+  P.push({ f: 'cNpa', d: 'M1215 580 V552 H1156 V424 H1274 V188 H955 V325' });
+  [250, 316, 382].forEach(y => P.push({ f: 'cNpa', d: `M1050 325 H1058 V${y} H1066`, noPk: true }));
+  P.push({ f: 'cGov', d: 'M1085 660 V640 H1144 V412 H1290 V172 H620 V110 H1000 V84' });
+  P.push({ f: 'cGovShared', d: 'M1085 660 V640 H1144 V412 H1290 V172 H620 V110 H1000 V84' });
+  P.push({ f: 'cGovNpa', d: 'M1085 660 V640 H1144 V412 H1266 V196 H965 V325 H1010 V84' });
+  [250, 316, 382].forEach(y => P.push({ f: 'hq', d: `M1050 325 H1058 V${y} H1066`, noPk: true }));
+  [250, 316, 382].forEach(y => P.push({ f: 'legacy', d: `M1050 325 H1058 V${y} H1066`, noPk: true }));
+  return P;
+}
+
+function visible(f) {
+  if (arch === 'legacy') return f === 'legacy' || f === 'legacyGov';
+  const g = gov === 'A' ? 'govA' : 'govB';
+  const c4g = gov === 'A' ? 'cGovNpa' : 'cGov';
+  if (flow === 'all') return ['internet', 'hq', g, 'local', 'cInet', 'cNpa', c4g].includes(f);
+  if (flow === 'gov') return f === g || f === c4g;
+  if (flow === 'client') return ['cInet', 'cNpa'].includes(f) || f === { deip: 'cGov', shared: 'cGovShared', npa: 'cGovNpa' }[c4];
+  if (flow === 'internet') return f === 'internet' || f === 'cInet';
+  if (flow === 'hq') return f === 'hq' || f === 'cNpa';
+  return f === flow;
+}
+const CMAP = { cInet: COL.internet, cNpa: COL.npa, cGov: COL.gov, cGovShared: '148 163 184', cGovNpa: COL.gov };
+const colorOf = (f) => CMAP[f] || (f.startsWith('gov') ? COL.gov : (f.startsWith('legacy') ? COL.legacy : COL[f]));
+
+/* ===================== NODES ===================== */
+function nodeList() {
+  const legacy = arch === 'legacy';
+  const N = [
+    { id: 'inet', x: 100, y: 40, w: 200, h: 44, c: '248 113 113', icon: 'globe', t1: L('Public Internet / SaaS', 'Public Internet / SaaS'), sm: true },
+    { id: 'gov', x: 900, y: 40, w: 200, h: 44, c: '167 139 250', icon: 'handshake', t1: L('第三方系統', 'Third-party systems'), sm: true },
+    { id: 'cloud', x: 410, y: 150, w: 300, h: 90, rx: 45, c: '34 211 238', icon: 'cloud', t1: L('Netskope NewEdge Cloud', 'Netskope NewEdge Cloud'),
+      t2: legacy ? L('（尚未導入）', '(not deployed)') : L('SWG · CASB · RTP · DLP', 'SWG · CASB · RTP · DLP') },
+    { id: 'hq', x: 900, y: 290, w: 150, h: 70, c: '96 165 250', icon: legacy ? 'brick-wall' : 'server', t1: legacy ? L('HQ FW', 'HQ FW') : L('HQ BWAN', 'HQ BWAN'), t2: legacy ? L('總部防火牆', 'HQ firewall') : L('Hub · HA · NPA', 'Hub · HA · NPA') }
+  ];
+  [[222, L('內部系統 #1', 'System #1')], [288, L('內部系統 #2', 'System #2')], [354, L('內部系統 #3', 'System #3')]].forEach(([y, t], i) =>
+    N.push({ id: 'sys' + (i + 1), x: 1066, y, w: 128, h: 56, c: '251 146 60', icon: 'app-window', t1: t, sys: true }));
+  SITES.forEach(s => {
+    N.push({ id: 'site' + s.n, x: s.cx - 100, y: 420, w: 200, h: 50, c: legacy ? '251 113 133' : '52 211 153', icon: legacy ? 'brick-wall' : 'router',
+      t1: legacy ? L(`分點#${s.n} Firewall`, `Site #${s.n} Firewall`) : L(`分點#${s.n} BWAN`, `Site #${s.n} BWAN`), t2: legacy ? null : L('Spoke · ZTP', 'Spoke · ZTP') });
+    N.push({ id: 'sw' + s.n, x: s.cx - 70, y: 505, w: 140, h: 30, c: '148 163 184', icon: 'network', t1: L('PoE Switch', 'PoE Switch'), sm: true, grp: 'sw' });
+    N.push({ id: 'iot' + s.n, x: s.cx - 130, y: 580, w: 120, h: 40, c: '251 191 36', icon: 'cpu', t1: L('IoT 設備群', 'IoT devices'), sm: true, grp: 'iot' });
+    N.push({ id: 'pc' + s.n, x: s.cx + 10, y: 580, w: 120, h: 40, c: '96 165 250', icon: 'monitor', t1: L('辦公室', 'Office'), sm: true, grp: 'pc' });
+    N.push({ id: 'edge' + s.n, x: s.cx - 130, y: 660, w: 120, h: 40, c: '45 212 191', icon: 'server', t1: L('Edge Server', 'Edge Server'), sm: true, grp: 'edge' });
+    N.push({ id: 'wifi' + s.n, x: s.cx + 10, y: 660, w: 120, h: 40, c: '167 139 250', icon: 'wifi', t1: L('WiFi AP', 'WiFi AP'), sm: true, grp: 'wifi' });
+  });
+  if (!legacy) {
+    N.push({ id: 'modem4', x: 1055, y: 430, w: 190, h: 45, c: '148 163 184', icon: 'router', t1: L('分點#4 小烏龜', 'Site #4 ISP modem') });
+    N.push({ id: 'ap4', x: 1080, y: 505, w: 140, h: 30, c: '167 139 250', icon: 'wifi', t1: L('WiFi AP', 'WiFi AP'), sm: true });
+    N.push({ id: 'lapA4', x: 1025, y: 580, w: 120, h: 40, c: '244 114 182', icon: 'laptop', t1: L('筆電', 'Laptop'), sm: true });
+    N.push({ id: 'lapB4', x: 1155, y: 580, w: 120, h: 40, c: '244 114 182', icon: 'laptop', t1: L('筆電', 'Laptop'), sm: true });
+    N.push({ id: 'phone4', x: 1025, y: 660, w: 120, h: 40, c: '244 114 182', icon: 'smartphone', t1: L('手機', 'Phone'), sm: true });
+    N.push({ id: 'prn4', x: 1155, y: 660, w: 120, h: 40, c: '148 163 184', icon: 'printer', t1: L('印表機', 'Printer'), sm: true });
+  }
+  return N;
+}
+
+function nodeSvg(n) {
+  const rx = n.rx || (n.sm ? 20 : 10);
+  const tint = `<rect class="base" x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}" rx="${rx}"/><rect class="tint" x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}" rx="${rx}"/>`;
+  if (n.sm) {
+    return `<g class="node sm" data-node="${n.id}" style="--c:${n.c}">${tint}
+      <foreignObject x="${n.x + 10}" y="${n.y + n.h / 2 - 10}" width="20" height="20"><div xmlns="http://www.w3.org/1999/xhtml" class="ico w-5 h-5 grid place-items-center"><i data-lucide="${n.icon}" class="w-4 h-4"></i></div></foreignObject>
+      <text class="t1" x="${n.x + 34}" y="${n.y + n.h / 2 + 4}">${esc(tr(n.t1))}</text></g>`;
+  }
+  if (n.id === 'cloud') {
+    return `<g class="node" data-node="${n.id}" style="--c:${n.c}">${tint}
+      <foreignObject x="${n.x + n.w / 2 - 14}" y="${n.y + 10}" width="28" height="28"><div xmlns="http://www.w3.org/1999/xhtml" class="ico w-7 h-7 grid place-items-center"><i data-lucide="cloud" class="w-6 h-6"></i></div></foreignObject>
+      <text class="t1" x="${n.x + n.w / 2}" y="${n.y + 56}" text-anchor="middle" style="font-size:16px">${esc(tr(n.t1))}</text>
+      <text class="t2" x="${n.x + n.w / 2}" y="${n.y + 75}" text-anchor="middle">${esc(tr(n.t2))}</text></g>`;
+  }
+  const cx = n.x + n.w / 2;
+  return `<g class="node" data-node="${n.id}" style="--c:${n.c}">${tint}
+    <foreignObject x="${n.x + 10}" y="${n.y + (n.sys ? 17 : 8)}" width="22" height="22"><div xmlns="http://www.w3.org/1999/xhtml" class="ico w-[22px] h-[22px] grid place-items-center"><i data-lucide="${n.icon}" class="w-4 h-4"></i></div></foreignObject>
+    <text class="t1" x="${n.x + 36}" y="${n.y + (n.sys ? 33 : 25)}" ${n.sys ? 'style="font-size:13px"' : ''}>${esc(tr(n.t1))}</text>
+    ${n.t2 ? `<text class="t2" x="${n.x + 12}" y="${n.y + n.h - 10}">${esc(tr(n.t2))}</text>` : ''}</g>`;
+}
+
+function xMark(x, y) {
+  return `<g class="xmark"><circle cx="${x}" cy="${y}" r="9"/><path d="M${x - 4} ${y - 4} L${x + 4} ${y + 4} M${x + 4} ${y - 4} L${x - 4} ${y + 4}"/></g>`;
+}
+
+function warn(x, y, text) {
+  const w = text.length * (lang === 'en' ? 6.4 : 11.5) + 30;
+  return `<g class="warn"><rect x="${x}" y="${y}" width="${w}" height="24" rx="12" fill="#7f1d1d" stroke="#fb7185"/>
+    <text x="${x + 12}" y="${y + 16}" fill="#fecdd3" font-size="11.5" font-weight="700">⚠ ${esc(text)}</text></g>`;
+}
+
+function buildTopology() {
+  const legacy = arch === 'legacy';
+  const P = paths();
+  const out = [];
+  // zones
+  SITES.forEach(s => {
+    out.push(`<rect class="zone" x="${s.cx - 145}" y="490" width="290" height="230" rx="14"/>`);
+    out.push(`<text class="zone-t" x="${s.cx - 132}" y="711">${lang === 'en' ? 'SITE #' + s.n : '分點 #' + s.n}</text>`);
+    // vlan zone tint (local)
+    out.push(`<g class="fz" data-fz="local">
+      <rect x="${s.cx - 137}" y="572" width="134" height="136" rx="10" fill="rgba(251,191,36,.10)" stroke="rgba(251,191,36,.6)" stroke-dasharray="4 4"/>
+      <rect x="${s.cx + 3}" y="572" width="134" height="56" rx="10" fill="rgba(96,165,250,.10)" stroke="rgba(96,165,250,.6)" stroke-dasharray="4 4"/>
+      <rect x="${s.cx + 3}" y="652" width="134" height="56" rx="10" fill="rgba(167,139,250,.10)" stroke="rgba(167,139,250,.6)" stroke-dasharray="4 4"/>
+    </g>`);
+    // wires
+    out.push(`<path class="wire" d="M${s.cx} 470 V505 M${s.cx} 535 V640 M${s.cx} 560 H${s.cx - 70} V580 M${s.cx} 560 H${s.cx + 70} V580 M${s.cx} 640 H${s.cx - 70} V660 M${s.cx} 640 H${s.cx + 70} V660"/>`);
+  });
+  if (!legacy) {
+    out.push(`<rect class="zone" x="1015" y="490" width="270" height="230" rx="14" style="stroke:rgba(244,114,182,.6)"/>`);
+    out.push(`<text class="zone-t" x="1028" y="711" style="fill:rgb(244 114 182)">${lang === 'en' ? 'SITE #4 · NETSKOPE CLIENT' : '分點 #4 · NETSKOPE CLIENT'}</text>`);
+    out.push(`<path class="wire" d="M1150 475 V505 M1150 535 V640 M1150 560 H1085 V580 M1150 560 H1215 V580 M1150 640 H1085 V660 M1150 640 H1215 V660"/>`);
+  }
+  // ghost routes
+  const ghostSet = legacy ? ['legacy'] : ['internet', 'hq'];
+  P.filter(p => ghostSet.includes(p.f)).forEach(p => out.push(`<path class="ghost" d="${p.d}"/>`));
+  // active flows
+  P.filter(p => visible(p.f)).forEach((p, i) => {
+    const c = colorOf(p.f);
+    const isLocal = p.f === 'local';
+    out.push(`<path class="flow ${isLocal ? 'static' : ''}" style="--fc:${c}" d="${p.d}"/>`);
+    if (!p.noPk) out.push(`<circle class="pk" r="5" style="--fc:${c}"><animateMotion dur="${3 + (i % 3) * .4}s" repeatCount="indefinite" path="${p.d}"/></circle>`);
+  });
+  // nodes
+  const N = nodeList();
+  N.forEach(n => out.push(nodeSvg(n)));
+  // markers on top
+  P.filter(p => visible(p.f) && p.x).forEach(p => out.push(xMark(p.x[0], p.x[1])));
+  const chip = (x, y, text, fill, stroke, color) => {
+    const w = text.length * (lang === 'en' ? 6.3 : 11) + 22;
+    return `<g><rect x="${x - w / 2}" y="${y - 12}" width="${w}" height="24" rx="12" fill="${fill}" stroke="${stroke}"/><text x="${x}" y="${y + 4}" text-anchor="middle" fill="${color}" font-size="11.5" font-weight="700">${esc(text)}</text></g>`;
+  };
+  if (!legacy) {
+    if (visible('cGov')) out.push(chip(810, 110, lang === 'en' ? 'DEIP · fixed IP' : 'DEIP 固定 IP', '#422006', '#fbbf24', '#fde68a'));
+    if (visible('cGovShared')) out.push(chip(810, 110, lang === 'en' ? '⚠ Shared IP pool' : '⚠ 共用 IP 池', '#1e293b', '#94a3b8', '#e2e8f0'));
+    if (visible('cGovNpa')) out.push(chip(1010, 150, lang === 'en' ? 'HQ fixed IP' : 'HQ 固定 IP', '#422006', '#fbbf24', '#fde68a'));
+  }
+  if (legacy) {
+    out.push(warn(745, 250, lang === 'en' ? 'HQ bandwidth congestion' : 'HQ 頻寬壅塞 / 單點'));
+    out.push(warn(330, 112, lang === 'en' ? 'All Internet hairpins via HQ' : '所有 Internet 回繞 HQ'));
+    out.push(warn(255, 340, lang === 'en' ? 'Manual IPsec VPN per site' : '逐點手動維護 IPsec VPN'));
+  }
+  $('#tp').innerHTML = out.join('');
+  // dim cloud in legacy
+  const cl = document.querySelector('[data-node="cloud"]');
+  cl.classList.toggle('dim', legacy);
+  document.querySelectorAll('.fz').forEach(z => z.classList.toggle('show', !legacy && (flow === 'local' || flow === 'all')));
+  document.querySelectorAll('#tp .node').forEach(el => {
+    el.classList.toggle('sel', el.dataset.node === sel);
+    el.addEventListener('click', () => { sel = el.dataset.node; buildTopology(); renderNode(); });
+  });
+  lucide.createIcons();
+}
+
+/* ===================== PANELS ===================== */
+const FLOW_INFO = {
+  all: {
+    title: L('四條核心流量一次看', 'All four core traffic paths'),
+    steps: [],
+    body: L('目標架構把流量拆成四條動線：Internet / SaaS 直送 Netskope 雲端檢查；分點到 HQ 系統走 BWAN Overlay；第三方系統以固定出口 IP 連線；分點內以 Zone 隔離 IoT。用上方按鈕可逐條查看。',
+            'The target splits traffic into four paths: Internet / SaaS goes straight to the Netskope cloud; site-to-HQ systems ride the BWAN overlay; third-party systems use a fixed egress IP; and on-site zones isolate IoT. Use the buttons above to view each one.'),
+    tags: ['Direct-to-Cloud', 'Hub & Spoke', 'Fixed Egress', 'Zone FW'] },
+  internet: {
+    title: L('① 分點 / HQ → Public Internet & SaaS', '① Site / HQ → Public Internet & SaaS'),
+    steps: [L('分點 / HQ 終端', 'Site / HQ user'), L('本地 BWAN', 'Local BWAN'), L('自動 IPsec / GRE Tunnel', 'Auto IPsec / GRE tunnel'), L('Netskope NewEdge POP', 'Netskope NewEdge POP'), 'Public Internet / SaaS'],
+    body: L('本地 BWAN 以 AppX 應用識別找出 Internet 流量，就近送往台灣的 NewEdge POP，做即時防護（RTP）、防毒、惡意網址攔截與 DLP 檢查後再出網。不再回繞 HQ，HQ 頻寬只留給內部系統。',
+            'The local BWAN uses AppX app identification to pick out Internet traffic and sends it to the nearest NewEdge POP in Taiwan for real-time protection (RTP), anti-malware, URL filtering and DLP before it leaves. Nothing hairpins through HQ, so HQ bandwidth is kept for internal systems.'),
+    tags: ['AppX', 'RTP', 'SWG', 'Threat Protection', 'DLP'] },
+  hq: {
+    title: L('② 分點 → HQ 內部系統（內部系統 #1～#3）', '② Site → HQ systems (#1–#3)'),
+    steps: [L('辦公室 PC / Edge Server', 'Office PC / Edge Server'), L('分點 BWAN（Spoke）', 'Site BWAN (spoke)'), 'BWAN Secure Overlay', L('HQ BWAN（Hub）', 'HQ BWAN (hub)'), L('內部系統', 'HQ applications')],
+    body: L('分點與 HQ 之間的私有流量走加密 Overlay 直達，不必繞經公有雲處理，延遲最低。BWAN 持續量測各線路的延遲、抖動與丟包，自動選擇較佳路徑，線路異常時切換備援。',
+            'Private site-to-HQ traffic goes straight over the encrypted overlay without detouring through the public cloud, keeping latency low. BWAN keeps measuring latency, jitter and loss on each link, picks the better path and fails over when a link degrades.'),
+    tags: ['Overlay', 'Path Quality', 'Failover', 'Hub & Spoke'] },
+  gov: {
+    title: L('③ 第三方系統（來源 IP 白名單）', '③ Third-party systems (source IP allowlist)'),
+    steps: [],
+    body: L('部分第三方系統（例如合作夥伴或公部門平台）只允許白名單內的固定公網 IP 連線，因此這類流量需要固定、可預期的出口。下方兩種方案可擇一。',
+            'Some third-party systems (partner or public-sector platforms, for example) only accept fixed, allow-listed public IPs, so this traffic needs a predictable egress. Choose one of the two options below.'),
+    tags: ['IP Allowlist'] },
+  local: {
+    title: L('④ 分點本地：IoT、辦公室、WiFi 與 Edge Server', '④ On-site: IoT, office, WiFi and Edge Server'),
+    steps: [],
+    body: L('IoT 設備與訪客 WiFi 最容易被入侵或當成跳板。分點 BWAN 以 VLAN 與 Zone 防火牆把 IoT、辦公室、訪客 WiFi 分開，圖中紅色 ✕ 表示被阻擋的連線：IoT 不能橫向存取辦公室 PC，也不能直接連往 HQ。',
+            'IoT devices and guest WiFi are the easiest to compromise or use as a pivot. The site BWAN separates IoT, the office and guest WiFi with VLANs and zone firewalling. Red ✕ marks blocked paths: IoT cannot reach the office PCs or connect straight to HQ.'),
+    tags: ['VLAN', 'Zone Firewall', 'Lateral Movement'] },
+  client: {
+    title: L('⑤ 分點 #4：只有小烏龜與 WiFi，改用 Netskope Client', '⑤ Site #4: just an ISP modem and WiFi, using the Netskope Client'),
+    steps: [L('筆電 / 手機（Netskope Client）', 'Laptop / phone (Netskope Client)'), L('WiFi + 小烏龜', 'WiFi + ISP modem'), 'Netskope NewEdge', L('Internet・HQ 內部系統・第三方系統', 'Internet · HQ systems · third-party')],
+    body: L('分點 #4 只有幾個人，現場只有電信的小烏龜和 WiFi，不需要放 BWAN 設備。每台筆電或手機安裝 Netskope Client，直接透過 WiFi 上網：上網流量由雲端檢查，存取 HQ 內部系統改用 Netskope Private Access（NPA），連第三方系統建議使用 DEIP 固定出口 IP（沒有 DEIP 時可用 NPA 經 HQ 出站）。',
+            'Site #4 has only a few people and just an ISP modem and WiFi, so it needs no BWAN appliance. Install the Netskope Client on each laptop or phone and connect over WiFi: Internet traffic is inspected in the cloud, HQ systems are reached with Netskope Private Access (NPA), and third-party systems should use a DEIP fixed egress IP (or NPA via HQ without one).'),
+    tags: ['Netskope Client', 'SWG', 'NPA', 'Dedicated Egress IP'] },
+  legacy: {
+    title: L('現況：傳統防火牆架構的痛點', "Today: pain points of the legacy design"),
+    steps: [L('分點終端', 'Site user'), L('分點 Firewall', 'Site firewall'), L('點對點 IPsec VPN', 'Point-to-point IPsec VPN'), 'HQ FW', L('Internet / 第三方 / HQ 系統', 'Internet / third-party / HQ systems')],
+    body: L('各分點的流量都先經手動維護的 VPN 回到 HQ，再由 HQ 防火牆出網。分點越多，HQ 頻寬越壅塞、VPN 越難維護，HQ 防火牆也成為單點故障；各點設備與日誌分散，難以統一管理。',
+            'Every site sends its traffic over a hand-maintained VPN back to HQ, which then breaks out to the Internet. More sites mean a more congested HQ link, more VPNs to maintain and a single point of failure at the HQ firewall, with devices and logs scattered across sites.'),
+    tags: ['Hairpinning', 'Manual VPN', 'Single Point of Failure'] }
+};
+
+function renderFlow() {
+  const key = arch === 'legacy' ? 'legacy' : flow;
+  const f = FLOW_INFO[key];
+  const c = arch === 'legacy' ? COL.legacy : FLOWS[flow].color;
+  document.documentElement.style.setProperty('--accent', c);
+  const steps = f.steps.length ? `<div class="mt-4 flex flex-wrap items-center gap-1.5">${f.steps.map((s, i) => `<span class="text-[11px] font-mono px-2 py-1 rounded-md border border-slate-700 bg-slate-900 text-slate-200">${esc(tr(s))}</span>${i < f.steps.length - 1 ? '<i data-lucide="chevron-right" class="w-3.5 h-3.5 text-slate-600"></i>' : ''}`).join('')}</div>` : '';
+  let extra = '';
+  if (key === 'gov') {
+    const opt = (id, title, body, icon) => `
+      <button data-gov="${id}" class="govcard text-left rounded-xl border p-4 transition ${gov === id ? 'accent-bg' : 'border-slate-800 bg-slate-950/50'}">
+        <div class="flex items-center gap-2 font-semibold ${gov === id ? 'accent-text' : 'text-slate-200'}"><i data-lucide="${icon}" class="w-4 h-4"></i>${tr(title)}</div>
+        <p class="mt-2 text-sm text-slate-300 leading-relaxed">${tr(body)}</p>
+      </button>`;
+    extra = `<p class="mt-3 text-xs text-slate-400">${lang === 'en' ? 'Site #4 has no BWAN, so for option A it reaches HQ through NPA and egresses from the HQ fixed IP; for option B it uses the DEIP directly. See "Site #4 (Client)" for details.' : '分點 #4 沒有 BWAN：方案 A 時改經 NPA 到 HQ，再由 HQ 固定 IP 出站；方案 B 時直接使用 DEIP。詳見「分點 #4（Client）」。'}</p><div class="mt-4 grid md:grid-cols-2 gap-3">
+      ${opt('A', L('方案 A：HQ 轉發出口', 'Option A: Egress via HQ'), L('以 BWAN AppX 規則把 第三方系統網段 / FQDN 的流量經 Overlay 送到 HQ BWAN，統一由 HQ 的固定公網 IP 出站。白名單只需登記 HQ 一個 IP，也保留集中管控。', 'A BWAN AppX rule sends third-party subnets / FQDNs over the overlay to the HQ BWAN, which egresses from HQ\'s fixed public IP. Only one HQ IP goes on the allowlist, and control stays central.'), 'building-2')}
+      ${opt('B', L('方案 B：Netskope 專屬出口 IP', 'Option B: Netskope dedicated egress IP'), L('若採用 Netskope Dedicated Egress IP，第三方系統流量可直接經 Netskope 雲端出口，把該專屬 IP 提供給對方加入白名單，同時套用 SSE 檢查。', 'With a Netskope Dedicated Egress IP, third-party traffic can egress straight from the Netskope cloud; give that dedicated IP to the other party for its allowlist, with SSE inspection applied.'), 'cloud')}
+    </div>`;
+  }
+  if (key === 'client') {
+    const box = (c, icon, t, b) => `<div class="rounded-lg border border-slate-800 bg-slate-950/50 p-3"><div class="flex items-center gap-2 font-semibold text-slate-100"><i data-lucide="${icon}" class="w-4 h-4" style="color:rgb(${c})"></i>${t}</div><div class="mt-1 text-xs text-slate-400 leading-relaxed">${b}</div></div>`;
+    const en = lang === 'en';
+    const c4card = (id, icon, t, b) => `<button data-c4="${id}" class="c4card text-left rounded-xl border p-3 transition ${c4 === id ? 'accent-bg' : 'border-slate-800 bg-slate-950/50'}" ${c4 === id ? 'style="--accent:251 191 36"' : ''}>
+      <div class="flex items-center gap-2 text-sm font-semibold ${c4 === id ? 'accent-text' : 'text-slate-200'}"><i data-lucide="${icon}" class="w-4 h-4"></i>${t}</div>
+      <p class="mt-1.5 text-xs text-slate-300 leading-relaxed">${b}</p></button>`;
+    extra = `<div class="mt-4 grid sm:grid-cols-3 gap-2">
+      ${box(COL.internet, 'globe', 'Internet / SaaS', en ? 'Client tunnels to the nearest NewEdge POP for SWG / CASB / DLP, same policy as BWAN sites.' : 'Client 連到就近 NewEdge POP，做 SWG / CASB / DLP 檢查，政策與 BWAN 分點一致。')}
+      ${box(COL.npa, 'key-round', en ? 'HQ systems (NPA)' : 'HQ 內部系統（NPA）', en ? 'Through the cloud to an NPA Publisher at HQ; access is granted per app, with no VPN.' : '經雲端連到 HQ 的 NPA Publisher，依應用逐一授權，不需 VPN。')}
+      ${box(COL.gov, 'handshake', en ? 'Third-party systems' : '第三方系統', en ? 'Leaves the cloud with a fixed egress IP for the allowlist; see the three options below.' : '出 Netskope 雲端時帶固定出口 IP 供白名單登記，三種做法見下方。')}
+    </div>
+    <div class="mt-4">
+      <div class="text-xs font-semibold text-slate-200">${en ? 'Third-party systems (IP allowlist): egress IP options' : '訪問第三方系統（IP 白名單）：出口 IP 機制'}</div>
+      <div class="mt-1 text-[11px] font-mono text-slate-500">${en ? 'Site #4 PC (Netskope Client) → Netskope Cloud (NewEdge POP) → egress IP → third-party system' : '分點 #4 PC（Netskope Client）→ Netskope Cloud（NewEdge POP）→ 帶指定 Egress IP → 第三方系統'}</div>
+      <div class="mt-2 grid md:grid-cols-3 gap-2">
+        ${c4card('deip', 'badge-check', en ? 'DEIP (strongly recommended)' : 'DEIP（強烈建議）',
+          en ? 'With a Netskope Dedicated Egress IP subscription, traffic to the third-party FQDNs / subnets leaves the Netskope cloud with the customer\'s own fixed public IP. Just give that DEIP to the other party for its firewall allowlist.'
+             : '客戶訂閱 Netskope DEIP（Dedicated Egress IP）後，使用者訪問第三方系統的 FQDN / 網段時，流量出 Netskope Cloud 會帶上客戶專屬的固定公網 IP。只要把這組 DEIP 提供給對方加入防火牆白名單即可。')}
+        ${c4card('shared', 'triangle-alert', en ? 'Shared POP egress IP' : '一般共用 POP 出口 IP',
+          en ? 'Without DEIP, traffic uses the shared public IP pool of the Taiwan POP (e.g. Taipei NewEdge). That pool can change as Netskope adds capacity or rebalances, while allowlists usually require one or a few fixed IPs, so this is not reliable for allowlisting.'
+             : '沒有訂閱 DEIP 時，流量會帶 Netskope 台灣 POP（如台北 NewEdge）的共用公網 IP 池。這個 IP 池可能因擴容或分流而動態調整，而白名單通常要求固定的單一或少數 IP，因此不適合用於白名單場景。')}
+        ${c4card('npa', 'key-round', en ? 'Fallback: NPA via HQ' : '備案：NPA 私有應用引流',
+          en ? 'Without DEIP, define the third-party system as a Private App in Netskope. Traffic goes through Netskope Private Access (NPA) to the Publisher at HQ, then out to the third party from HQ\'s fixed public IP.'
+             : '不買 DEIP 也可以在 Netskope 後台把第三方系統定義為 Private App，讓流量經 Netskope Private Access（NPA）先進 HQ 的 Publisher，再由 HQ 的固定公網 IP 代理出站。')}
+      </div>
+    </div>
+    <div class="mt-3 grid sm:grid-cols-2 gap-2 text-xs">
+      <div class="rounded-lg border border-slate-800 bg-slate-950/50 p-3"><div class="font-semibold text-emerald-300">${en ? 'Choose Client when' : '適合用 Client'}</div><ul class="mt-1 space-y-1 text-slate-300 list-disc pl-4">
+        <li>${en ? 'Only a few users, all on laptops or phones' : '人數少，主要是筆電或手機'}</li>
+        <li>${en ? 'Temporary or pop-up sites, or sites without a stable fixed line' : '臨時據點，或沒有穩定固網的地點'}</li>
+        <li>${en ? 'Staff also work from home or on the road' : '人員也會在家或外出工作'}</li></ul></div>
+      <div class="rounded-lg border border-slate-800 bg-slate-950/50 p-3"><div class="font-semibold text-amber-300">${en ? 'Choose BWAN when' : '建議改用 BWAN'}</div><ul class="mt-1 space-y-1 text-slate-300 list-disc pl-4">
+        <li>${en ? 'IoT, cameras, printers or servers that cannot run a Client' : '有 IoT、攝影機、印表機或伺服器等無法裝 Client 的設備'}</li>
+        <li>${en ? 'On-site zone isolation is required' : '需要分點內的 Zone 隔離'}</li></ul></div>
+    </div>`;
+  }
+  if (key === 'local') {
+    extra = `<div class="mt-4 grid sm:grid-cols-3 gap-2 text-xs">
+      <div class="rounded-lg border border-slate-800 bg-slate-950/50 p-3"><span class="inline-block w-2.5 h-2.5 rounded-sm mr-1.5 align-middle" style="background:rgba(251,191,36,.7)"></span><b class="text-slate-100">${lang === 'en' ? 'IoT zone' : 'IoT Zone'}</b><div class="mt-1 text-slate-400">${lang === 'en' ? 'IoT devices and Edge Server; only the services they need' : 'IoT 設備與 Edge Server，只開放必要服務'}</div></div>
+      <div class="rounded-lg border border-slate-800 bg-slate-950/50 p-3"><span class="inline-block w-2.5 h-2.5 rounded-sm mr-1.5 align-middle" style="background:rgba(96,165,250,.7)"></span><b class="text-slate-100">${lang === 'en' ? 'Office zone' : '辦公 Zone'}</b><div class="mt-1 text-slate-400">${lang === 'en' ? 'Office PCs; may reach HQ systems' : '辦公室 PC，可存取 HQ 系統'}</div></div>
+      <div class="rounded-lg border border-slate-800 bg-slate-950/50 p-3"><span class="inline-block w-2.5 h-2.5 rounded-sm mr-1.5 align-middle" style="background:rgba(167,139,250,.7)"></span><b class="text-slate-100">${lang === 'en' ? 'Guest WiFi zone' : '訪客 WiFi Zone'}</b><div class="mt-1 text-slate-400">${lang === 'en' ? 'Internet only, through Netskope cloud' : '只能上網，並經 Netskope 雲端檢查'}</div></div>
+    </div>`;
+  }
+  $('#flowPanel').innerHTML = `<div class="fade-in">
+    <div class="text-[11px] font-mono uppercase tracking-widest accent-text">${arch === 'legacy' ? 'LEGACY' : 'TRAFFIC PATH'}</div>
+    <div class="mt-1 text-xl font-bold text-slate-100">${tr(f.title)}</div>
+    ${steps}
+    <p class="mt-4 text-sm leading-relaxed text-slate-300">${tr(f.body)}</p>
+    ${extra}
+    <div class="mt-4 flex flex-wrap gap-1.5">${f.tags.map(t => `<span class="text-[11px] font-mono px-2 py-0.5 rounded-md border border-slate-700 bg-slate-900 text-slate-300">${t}</span>`).join('')}</div>
+  </div>`;
+  document.querySelectorAll('.govcard').forEach(b => b.addEventListener('click', () => setGov(b.dataset.gov)));
+  document.querySelectorAll('.c4card').forEach(b => b.addEventListener('click', () => setC4(b.dataset.c4)));
+}
+
+const NODE_INFO = {
+  site: { icon: 'router', title: L('分點 BWAN（Spoke）', 'Site BWAN (spoke)'), points: [
+    L('零接觸部署（ZTP）：設備寄到現場插電上線，設定由雲端下發', 'Zero-touch provisioning: ship, plug in, and the config arrives from the cloud'),
+    L('VLAN 與 Zone 防火牆，隔離 IoT、辦公室與訪客 WiFi', 'VLANs and zone firewalling to separate IoT, office and guest WiFi'),
+    L('多線路：固網加 4G / 5G 備援，異常自動切換', 'Multi-WAN: fixed line plus 4G / 5G backup with automatic failover'),
+    L('AppX 應用識別，分流 Internet、HQ 與 第三方系統流量', 'AppX app identification to steer Internet, HQ and third-party traffic')] },
+  siteLegacy: { icon: 'brick-wall', title: L('分點 Firewall（現況）', 'Site firewall (today)'), points: [
+    L('每台需各自設定 VPN、路由與政策', 'VPN, routing and policy configured on every box'),
+    L('韌體升級、授權與維保逐台處理', 'Firmware, licenses and support handled box by box'),
+    L('日誌分散在各點，事件難以追查', 'Logs scattered per site, hard to investigate')] },
+  hq: { icon: 'server', title: L('HQ BWAN（Hub）', 'HQ BWAN (hub)'), points: [
+    L('集中承載所有分點的 Overlay 連線', 'Terminates the overlay from every site'),
+    L('建議雙 BWAN（主備或雙活）搭配雙 ISP', 'Dual BWAN (active/standby or active/active) on two ISPs recommended'),
+    L('方案 A：以 HQ 固定公網 IP 代理 第三方系統出站', 'Option A: egress to third-party systems from the HQ fixed public IP'),
+    L('內部系統只對 Overlay 開放，不直接暴露於 Internet', 'HQ apps are reachable over the overlay only, not exposed to the Internet')] },
+  hqLegacy: { icon: 'brick-wall', title: L('HQ FW（現況）', 'HQ FW (today)'), points: [
+    L('所有分點的 Internet 流量都回繞到這裡', 'All site Internet traffic hairpins here'),
+    L('分點增加時頻寬壅塞，且為單點故障', 'Congests as sites grow and is a single point of failure'),
+    L('需逐一維護與每個分點的 VPN', 'A VPN per site to maintain')] },
+  cloud: { icon: 'cloud', title: L('Netskope NewEdge Cloud', 'Netskope NewEdge Cloud'), points: [
+    L('SWG：網頁過濾、惡意網址與威脅防護', 'SWG: web filtering, malicious URLs and threat protection'),
+    L('CASB：SaaS 應用可視與活動層級控管', 'CASB: SaaS visibility and activity-level control'),
+    L('RTP / DLP：即時防護與資料外洩防護', 'RTP / DLP: real-time protection and data loss prevention'),
+    L('統一日誌：全點流量與事件集中可查', 'Unified logging: traffic and events from every site in one place')] },
+  cloudLegacy: { icon: 'cloud-off', title: L('Netskope Cloud（尚未導入）', 'Netskope Cloud (not deployed)'), points: [
+    L('現況沒有統一的雲端資安檢查', 'No consistent cloud security inspection today'),
+    L('若各點直接出網，防護等級各點不一', 'Sites that break out locally each have different protection')] },
+  gov: { icon: 'handshake', title: L('第三方系統', 'Third-party systems'), points: [
+    L('多數以來源 IP 白名單控管連線', 'Usually controlled by a source IP allowlist'),
+    L('方案 A：經 HQ 固定 IP 出站，只登記一個 IP', 'Option A: egress via the HQ fixed IP; register one IP'),
+    L('方案 B：經 Netskope 專屬出口 IP，同時套用 SSE', 'Option B: egress via a Netskope dedicated IP with SSE applied')] },
+  inet: { icon: 'globe', title: L('Public Internet / SaaS', 'Public Internet / SaaS'), points: [
+    L('目標架構：經 Netskope 雲端檢查後出網', 'Target: leaves through the Netskope cloud after inspection'),
+    L('現況：回繞 HQ 出網，或各點直出缺乏統一防護', 'Today: via HQ, or local breakout without consistent security')] },
+  sys: { icon: 'app-window', title: L('內部系統', 'HQ applications'), points: [
+    L('內部系統 #1～#3 集中於 HQ', 'Internal systems #1–#3 live at HQ'),
+    L('分點經 Overlay 存取，延遲低、路徑可控', 'Sites reach them over the overlay with low latency'),
+    L('可依 Zone 限定只有辦公室能存取', 'Zones can limit access to the office only')] },
+  sw: { icon: 'network', title: L('PoE Switch', 'PoE Switch'), points: [
+    L('依 VLAN 區分 IoT、辦公室與訪客 WiFi', 'VLANs separate IoT, office and guest WiFi'),
+    L('跨 VLAN 流量一律經 BWAN Zone 防火牆', 'Inter-VLAN traffic always goes through the BWAN zone firewall')] },
+  iot: { icon: 'cpu', title: L('IoT 設備群', 'IoT devices'), points: [
+    L('最容易被入侵或當成跳板的設備', 'The devices most likely to be compromised or used as a pivot'),
+    L('放在獨立 IoT Zone，不能橫向存取辦公室', 'Kept in an IoT zone with no lateral access to the office'),
+    L('只開放必要的雲端或 Edge Server 連線', 'Only the cloud or Edge Server connections they need')] },
+  pc: { icon: 'monitor', title: L('辦公室網路點', 'Office'), points: [
+    L('經 Overlay 存取 HQ 內部系統', 'Reaches HQ applications over the overlay'),
+    L('上網經 Netskope 雲端檢查（SWG / DLP）', 'Internet goes through Netskope cloud (SWG / DLP)')] },
+  edge: { icon: 'server', title: L('Edge Server', 'Edge Server'), points: [
+    L('放在 IoT Zone，收集現場設備資料', 'In the IoT zone, collecting device data on site'),
+    L('只允許必要的對外與 HQ 連線', 'Only the outbound and HQ connections it needs')] },
+  router: { icon: 'router', title: L('分點 #4 · 小烏龜（ISP 數據機）', 'Site #4 · ISP modem'), points: [
+    L('沿用電信業者提供的數據機上網即可，不需要 BWAN 或防火牆設備', 'The ISP-supplied modem is enough; no BWAN or firewall appliance needed'),
+    L('安全由每台裝置上的 Netskope Client 負責', 'Security comes from the Netskope Client on each device'),
+    L('沒有本地 Zone 防火牆，無法隔離分點內的設備', 'No local zone firewall, so on-site devices are not isolated from each other')] },
+  swsmall: { icon: 'wifi', title: L('分點 #4 · WiFi AP', 'Site #4 · WiFi AP'), points: [
+    L('沿用現有的 WiFi 設備即可', 'Existing WiFi equipment is fine'),
+    L('建議至少將訪客 WiFi 與辦公網段分開', 'At least keep guest WiFi separate from the office network')] },
+  lap: { icon: 'laptop', title: L('分點 #4 · 筆電（Netskope Client）', 'Site #4 · Laptop (Netskope Client)'), points: [
+    L('上網經 Netskope 雲端檢查（SWG / CASB / DLP），政策與 BWAN 分點相同', 'Internet goes through Netskope cloud (SWG / CASB / DLP) with the same policy as BWAN sites'),
+    L('以 Netskope Private Access（NPA）存取 HQ 內部系統，不需 VPN', 'Reaches HQ systems with Netskope Private Access (NPA), no VPN'),
+    L('帶離分點（在家、外出）也維持同樣保護', 'Stays protected when taken home or on the road')] },
+  phone: { icon: 'smartphone', title: L('分點 #4 · 手機（Netskope Client）', 'Site #4 · Phone (Netskope Client)'), points: [
+    L('行動裝置安裝 Client 後同樣受保護', 'Mobile devices with the Client are protected too'),
+    L('連第三方系統建議經 DEIP 固定出口；沒有 DEIP 時可用 NPA 經 HQ 出站', 'Third-party systems: use a DEIP fixed egress, or NPA via HQ without one')] },
+  prn: { icon: 'printer', title: L('分點 #4 · 印表機（無法安裝 Client）', 'Site #4 · Printer (no Client)'), points: [
+    L('印表機、IoT 等無法安裝 Client，不在 Netskope 保護範圍內', 'Printers, IoT and similar devices cannot run the Client and are not covered by Netskope'),
+    L('若分點有這類設備需要連 HQ 或需要本地隔離，建議改用 BWAN', 'If such devices must reach HQ or be isolated, use BWAN instead')] },
+  hqNpa: { icon: 'server', title: L('HQ · NPA Publisher', 'HQ · NPA Publisher'), points: [
+    L('在 HQ 部署 NPA Publisher（虛擬機），主動連往 Netskope 雲端', 'An NPA Publisher (VM) at HQ connects out to the Netskope cloud'),
+    L('不需對外開放任何入站連接埠', 'No inbound ports need to be opened'),
+    L('與 HQ BWAN 並存：分點 #1～#3 走 Overlay，分點 #4 走 NPA', 'Coexists with HQ BWAN: sites #1–#3 use the overlay, site #4 uses NPA'),
+    L('可依使用者或群組授權個別內部系統', 'Each internal system can be authorized per user or group'),
+    L('備案：第三方系統可定義為 Private App，經 Publisher 由 HQ 固定 IP 出站', 'Fallback: define a third-party system as a Private App so it egresses from the HQ fixed IP via the Publisher')] },
+  wifi: { icon: 'wifi', title: L('WiFi AP', 'WiFi AP'), points: [
+    L('訪客 WiFi 獨立 Zone，只能上網', 'Guest WiFi in its own zone, Internet only'),
+    L('上網流量同樣經 Netskope 雲端檢查', 'Its Internet traffic is inspected in the Netskope cloud too')] }
+};
+
+function nodeKey(id) {
+  const legacy = arch === 'legacy';
+  if (id.startsWith('site')) return legacy ? 'siteLegacy' : 'site';
+  if (id === 'hq') return legacy ? 'hqLegacy' : (flow === 'client' ? 'hqNpa' : 'hq');
+  if (id === 'cloud') return legacy ? 'cloudLegacy' : 'cloud';
+  if (id.startsWith('sys')) return 'sys';
+  if (id === 'modem4') return 'router';
+  if (id === 'ap4') return 'swsmall';
+  if (id === 'lapA4' || id === 'lapB4') return 'lap';
+  if (id === 'phone4') return 'phone';
+  if (id === 'prn4') return 'prn';
+  return id.replace(/\d+$/, '');
+}
+
+function renderNode() {
+  const k = nodeKey(sel), n = NODE_INFO[k];
+  const site = sel.match(/(\d)$/) && !sel.startsWith('sys') ? (lang === 'en' ? ` · Site #${sel.slice(-1)}` : ` · 分點 #${sel.slice(-1)}`) : '';
+  $('#nodePanel').innerHTML = `<div class="fade-in">
+    <div class="flex items-center gap-3">
+      <div class="w-11 h-11 rounded-xl grid place-items-center accent-bg border"><i data-lucide="${n.icon}" class="w-5 h-5 accent-text"></i></div>
+      <div class="min-w-0">
+        <div class="text-[11px] font-mono uppercase tracking-widest text-slate-500">${lang === 'en' ? 'Selected node' : '已選節點'}${site}</div>
+        <div class="font-semibold text-lg leading-tight text-slate-100">${tr(n.title)}</div>
+      </div>
+    </div>
+    <ul class="mt-4 space-y-2.5 text-sm text-slate-300">
+      ${n.points.map(p => `<li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i><span>${tr(p)}</span></li>`).join('')}
+    </ul>
+    <p class="mt-4 text-xs text-slate-500">${lang === 'en' ? 'Click any node in the diagram to switch.' : '點圖上其他節點可切換說明。'}</p>
+  </div>`;
+  lucide.createIcons();
+}
+
+function renderLegend() {
+  const en = lang === 'en';
+  const items = arch === 'legacy'
+    ? [[COL.legacy, en ? 'Hairpinned traffic via manual VPN' : '經手動 VPN 回繞的流量']]
+    : flow === 'client'
+    ? [[COL.internet, en ? 'Client → cloud → Internet' : 'Client → 雲端 → Internet'], [COL.npa, en ? 'Client → NPA → HQ systems' : 'Client → NPA → HQ 內部系統'], c4 === 'shared' ? ['148 163 184', en ? 'Client → Netskope cloud → shared POP IP → third-party' : 'Client → Netskope 雲端 → 共用 POP IP → 第三方'] : c4 === 'npa' ? [COL.gov, en ? 'Client → NPA → HQ fixed IP → third-party' : 'Client → NPA → HQ 固定 IP → 第三方'] : [COL.gov, en ? 'Client → Netskope cloud → DEIP → third-party' : 'Client → Netskope 雲端 → DEIP → 第三方']]
+    : flow === 'hq' || flow === 'all'
+    ? [[COL.internet, 'Internet / SaaS'], [COL.hq, en ? 'Overlay to HQ' : 'Overlay 至 HQ'], [COL.npa, en ? 'Site #4: Client → NPA' : '分點 #4：Client → NPA'], [COL.gov, en ? 'Third-party egress' : '第三方出口'], [COL.local, en ? 'Blocked on site (✕)' : '分點內阻擋（✕）']]
+    : [[COL.internet, 'Internet / SaaS'], [COL.hq, lang === 'en' ? 'Overlay to HQ' : 'Overlay 至 HQ'], [COL.gov, lang === 'en' ? 'Third-party egress' : '第三方出口'], [COL.local, lang === 'en' ? 'Blocked on site (✕)' : '分點內阻擋（✕）']];
+  $('#legend').innerHTML = items.map(([c, t]) => `<span class="inline-flex items-center gap-2"><span class="inline-block w-6 h-0 border-t-[3px] border-dashed" style="border-color:rgb(${c})"></span>${t}</span>`).join('');
+}
+
+function renderControls() {
+  document.querySelectorAll('#segArch button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.arch === arch)));
+  $('#filterRow').style.display = arch === 'legacy' ? 'none' : '';
+  $('#segFlow').innerHTML = Object.keys(FLOWS).map(k => `<button data-flow="${k}" aria-pressed="${k === flow}" style="--bc:${FLOWS[k].color}">${k === 'all' ? '' : '<span class="dot"></span>'}${tr(FLOWS[k].label)}</button>`).join('');
+  document.querySelectorAll('#segFlow button').forEach(b => b.addEventListener('click', () => setFlow(b.dataset.flow)));
+  $('#govOpt').style.display = (flow === 'gov' || flow === 'all') ? '' : 'none';
+  $('#c4Opt').style.display = flow === 'client' ? '' : 'none';
+  document.querySelectorAll('#segC4 button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.c4 === c4)));
+  document.querySelectorAll('#segGov button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.gov === gov)));
+  $('#printState').textContent = (lang === 'en' ? 'Shown: ' : '目前顯示：') + (arch === 'legacy' ? (lang === 'en' ? 'Today (legacy FW)' : '現況（傳統 FW）') : tr(FLOWS[flow].label) + (flow === 'gov' || flow === 'all' ? (lang === 'en' ? ` · Third-party option ${gov}` : ` · 第三方方案 ${gov}`) : ''));
+}
+
+function renderAll() { renderControls(); buildTopology(); renderFlow(); renderNode(); renderLegend(); lucide.createIcons(); }
+
+const DEFAULT_SEL = { all: 'site1', internet: 'cloud', hq: 'hq', gov: 'gov', local: 'iot1', client: 'lapA4' };
+function setFlow(f) { flow = f; sel = DEFAULT_SEL[f]; renderAll(); }
+function setGov(g) { gov = g; renderAll(); }
+function setC4(v) { c4 = v; renderAll(); }
+function setArch(a) { arch = a; sel = a === 'legacy' ? 'hq' : DEFAULT_SEL[flow]; renderAll(); }
+
+document.querySelectorAll('#segArch button').forEach(b => b.addEventListener('click', () => setArch(b.dataset.arch)));
+document.querySelectorAll('#segGov button').forEach(b => b.addEventListener('click', () => setGov(b.dataset.gov)));
+document.querySelectorAll('#segC4 button').forEach(b => b.addEventListener('click', () => setC4(b.dataset.c4)));
+
+/* ===================== TOOLBAR ===================== */
+function applyLang(l) {
+  lang = l;
+  document.documentElement.setAttribute('lang', l === 'en' ? 'en' : 'zh-Hant');
+  document.title = l === 'en' ? 'Multi-Site SASE Modernization' : '多據點 SASE 現代化轉型';
+  document.querySelectorAll('#segLang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
+  try { localStorage.setItem('nsk-poc-lang', l); } catch (e) {}
+  renderAll();
+}
+function applyTheme(t) {
+  document.documentElement.classList.toggle('light', t === 'light');
+  document.querySelectorAll('#segTheme button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.theme === t)));
+  try { localStorage.setItem('nsk-poc-theme', t); } catch (e) {}
+}
+document.querySelectorAll('#segLang button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+document.querySelectorAll('#segTheme button').forEach(b => b.addEventListener('click', () => applyTheme(b.dataset.theme)));
+let themeBeforePrint = null;
+window.addEventListener('beforeprint', () => { themeBeforePrint = document.documentElement.classList.contains('light') ? 'light' : 'dark'; document.documentElement.classList.add('light'); });
+window.addEventListener('afterprint', () => { if (themeBeforePrint === 'dark') document.documentElement.classList.remove('light'); themeBeforePrint = null; });
+$('#btnPdf').addEventListener('click', () => window.print());
+
+/* ===================== INIT ===================== */
+applyTheme(document.documentElement.classList.contains('light') ? 'light' : 'dark');
+applyLang(lang);
+</script>
+</body>
+</html>
