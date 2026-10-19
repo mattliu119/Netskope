@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CASB API · OneDrive 資料保護</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+  (function () {
+    try {
+      if (localStorage.getItem('nsk-poc-theme') === 'light') document.documentElement.classList.add('light');
+      if (localStorage.getItem('nsk-poc-lang') === 'en') document.documentElement.setAttribute('lang', 'en');
+    } catch (e) {}
+  })();
+</script>
+<style id="tw-inline">*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:Inter,Noto Sans TC,system-ui,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:JetBrains Mono,ui-monospace,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.visible{visibility:visible}.static{position:static}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.bottom-4{bottom:1rem}.left-1{left:.25rem}.left-1\/2{left:50%}.top-0{top:0}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mr-1{margin-right:.25rem}.mt-1{margin-top:.25rem}.mt-1\.5{margin-top:.375rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.block{display:block}.inline{display:inline}.flex{display:flex}.inline-flex{display:inline-flex}.table{display:table}.grid{display:grid}.hidden{display:none}.h-11{height:2.75rem}.h-14{height:3.5rem}.h-2{height:.5rem}.h-3{height:.75rem}.h-3\.5{height:.875rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-8{height:2rem}.h-\[34px\]{height:34px}.h-auto{height:auto}.min-h-screen{min-height:100vh}.w-11{width:2.75rem}.w-16{width:4rem}.w-2{width:.5rem}.w-3{width:.75rem}.w-3\.5{width:.875rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-8{width:2rem}.w-\[34px\]{width:34px}.w-full{width:100%}.min-w-0{min-width:0}.min-w-\[720px\]{min-width:720px}.max-w-3xl{max-width:48rem}.max-w-7xl{max-width:80rem}.flex-shrink{flex-shrink:1}.shrink-0{flex-shrink:0}.-translate-x-1{--tw-translate-x:-0.25rem}.-translate-x-1,.-translate-x-1\/2{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-x-1\/2{--tw-translate-x:-50%}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scroll-mt-16{scroll-margin-top:4rem}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.place-items-center{place-items:center}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-x-5{-moz-column-gap:1.25rem;column-gap:1.25rem}.gap-y-3{row-gap:.75rem}.space-y-1>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.25rem*var(--tw-space-y-reverse))}.space-y-1\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.375rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.375rem*var(--tw-space-y-reverse))}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}.divide-slate-800>:not([hidden])~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(30 41 59/var(--tw-divide-opacity,1))}.overflow-x-auto{overflow-x:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-emerald-500{--tw-border-opacity:1;border-color:rgb(16 185 129/var(--tw-border-opacity,1))}.border-emerald-500\/40{border-color:rgba(16,185,129,.4)}.border-indigo-500{--tw-border-opacity:1;border-color:rgb(99 102 241/var(--tw-border-opacity,1))}.border-indigo-500\/40{border-color:rgba(99,102,241,.4)}.border-sky-500{--tw-border-opacity:1;border-color:rgb(14 165 233/var(--tw-border-opacity,1))}.border-sky-500\/40{border-color:rgba(14,165,233,.4)}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85/var(--tw-border-opacity,1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59/var(--tw-border-opacity,1))}.border-slate-800\/70{border-color:rgba(30,41,59,.7)}.bg-emerald-400{--tw-bg-opacity:1;background-color:rgb(52 211 153/var(--tw-bg-opacity,1))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129/var(--tw-bg-opacity,1))}.bg-emerald-500\/10{background-color:rgba(16,185,129,.1)}.bg-indigo-500{--tw-bg-opacity:1;background-color:rgb(99 102 241/var(--tw-bg-opacity,1))}.bg-indigo-500\/10{background-color:rgba(99,102,241,.1)}.bg-indigo-500\/15{background-color:rgba(99,102,241,.15)}.bg-red-500{--tw-bg-opacity:1;background-color:rgb(239 68 68/var(--tw-bg-opacity,1))}.bg-red-500\/15{background-color:rgba(239,68,68,.15)}.bg-sky-500{--tw-bg-opacity:1;background-color:rgb(14 165 233/var(--tw-bg-opacity,1))}.bg-sky-500\/10{background-color:rgba(14,165,233,.1)}.bg-sky-500\/15{background-color:rgba(14,165,233,.15)}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42/var(--tw-bg-opacity,1))}.bg-slate-950{--tw-bg-opacity:1;background-color:rgb(2 6 23/var(--tw-bg-opacity,1))}.bg-slate-950\/75{background-color:rgba(2,6,23,.75)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}.from-sky-400{--tw-gradient-from:#38bdf8 var(--tw-gradient-from-position);--tw-gradient-to:rgba(56,189,248,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.to-indigo-400{--tw-gradient-to:#818cf8 var(--tw-gradient-to-position)}.p-3{padding:.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.pb-28{padding-bottom:7rem}.pt-3{padding-top:.75rem}.pt-8{padding-top:2rem}.font-mono{font-family:JetBrains Mono,ui-monospace,monospace}.font-sans{font-family:Inter,Noto Sans TC,system-ui,sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\[11px\]{font-size:11px}.text-\[13px\]{font-size:13px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-.025em}.tracking-widest{letter-spacing:.1em}.text-amber-300{--tw-text-opacity:1;color:rgb(252 211 77/var(--tw-text-opacity,1))}.text-blue-300{--tw-text-opacity:1;color:rgb(147 197 253/var(--tw-text-opacity,1))}.text-cyan-300{--tw-text-opacity:1;color:rgb(103 232 249/var(--tw-text-opacity,1))}.text-emerald-300{--tw-text-opacity:1;color:rgb(110 231 183/var(--tw-text-opacity,1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153/var(--tw-text-opacity,1))}.text-indigo-300{--tw-text-opacity:1;color:rgb(165 180 252/var(--tw-text-opacity,1))}.text-red-300{--tw-text-opacity:1;color:rgb(252 165 165/var(--tw-text-opacity,1))}.text-rose-300{--tw-text-opacity:1;color:rgb(253 164 175/var(--tw-text-opacity,1))}.text-sky-300{--tw-text-opacity:1;color:rgb(125 211 252/var(--tw-text-opacity,1))}.text-slate-100{--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240/var(--tw-text-opacity,1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105/var(--tw-text-opacity,1))}.text-slate-950{--tw-text-opacity:1;color:rgb(2 6 23/var(--tw-text-opacity,1))}.text-violet-300{--tw-text-opacity:1;color:rgb(196 181 253/var(--tw-text-opacity,1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.ring{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.blur{--tw-blur:blur(8px)}.blur,.drop-shadow{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.drop-shadow{--tw-drop-shadow:drop-shadow(0 1px 2px rgba(0,0,0,.1)) drop-shadow(0 1px 1px rgba(0,0,0,.06))}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px)}.backdrop-blur,.backdrop-filter{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.hover\:bg-slate-800:hover{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.hover\:text-slate-100:hover{--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}@media (min-width:640px){.sm\:left-auto{left:auto}.sm\:right-4{right:1rem}.sm\:translate-x-0{--tw-translate-x:0px;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.sm\:flex-row{flex-direction:row}.sm\:items-center{align-items:center}.sm\:justify-between{justify-content:space-between}.sm\:p-4{padding:1rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:py-12{padding-top:3rem;padding-bottom:3rem}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-base{font-size:1rem;line-height:1.5rem}.sm\:text-lg{font-size:1.125rem;line-height:1.75rem}}@media (min-width:768px){.md\:flex{display:flex}}@media (min-width:1024px){.lg\:sticky{position:sticky}.lg\:top-20{top:5rem}.lg\:col-span-2{grid-column:span 2/span 2}.lg\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.lg\:flex-row{flex-direction:row}.lg\:items-end{align-items:flex-end}.lg\:justify-between{justify-content:space-between}.lg\:text-5xl{font-size:3rem;line-height:1}}</style>
+<style>
+  :root { --accent: 52 211 153; }
+  html { scroll-behavior: smooth; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(96,165,250,.10), transparent 60%),
+      #060a13;
+    color: #e2e8f0;
+    transition: background-color .3s ease, color .3s ease;
+  }
+  html[lang="en"] .zh { display: none !important; }
+  html:not([lang="en"]) .en { display: none !important; }
+  .grid-bg {
+    background-image: linear-gradient(rgba(148,163,184,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .card { background: rgba(15,23,42,.65); border: 1px solid rgba(51,65,85,.6); backdrop-filter: blur(8px); }
+  .accent-text { color: rgb(var(--accent)); transition: color .4s ease; }
+  .accent-bg { background: rgb(var(--accent) / .12); border-color: rgb(var(--accent) / .4); transition: all .4s ease; }
+  .hero-grad { background-image: linear-gradient(90deg, #6ee7b7, #bae6fd, #93c5fd); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  .seg { display: inline-flex; flex-wrap: wrap; border: 1px solid #334155; border-radius: .6rem; overflow: hidden; background: rgba(15,23,42,.8); }
+  .seg button { padding: .45rem .85rem; font-size: .8rem; color: #cbd5e1; transition: all .25s ease; white-space: nowrap; display: inline-flex; align-items: center; gap: .4rem; }
+  .seg button + button { border-left: 1px solid #334155; }
+  .seg button:hover { background: rgba(51,65,85,.5); }
+  .seg button[aria-pressed="true"] { background: rgb(var(--bc, 52 211 153)); color: #020617; font-weight: 600; }
+  .seg .dot { width: 8px; height: 8px; border-radius: 9999px; background: rgb(var(--bc)); }
+  .seg button[aria-pressed="true"] .dot { background: #020617; }
+  .seg.tb button { padding: .4rem .75rem; }
+  .seg.tb button[aria-pressed="true"] { background: #22d3ee; color: #020617; }
+
+  /* ---------- topology ---------- */
+  .tp text { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
+  .tp .zone { fill: rgba(15,23,42,.35); stroke: rgba(100,116,139,.55); stroke-dasharray: 6 6; }
+  .tp .zone-t { fill: #94a3b8; font-size: 12px; font-weight: 600; letter-spacing: .06em; }
+  .tp .wire { fill: none; stroke: rgba(100,116,139,.55); stroke-width: 1.5; }
+  .tp .ghost { fill: none; stroke: rgba(100,116,139,.28); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; stroke-linejoin: round; }
+  .tp .flow { fill: none; stroke: rgb(var(--fc)); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 11 9; animation: dash 1.1s linear infinite; filter: drop-shadow(0 0 5px rgb(var(--fc) / .6)); }
+  .tp .flow.static { animation: none; stroke-dasharray: 6 6; stroke-width: 2.5; }
+  @keyframes dash { to { stroke-dashoffset: -20; } }
+  .tp .pk { fill: #fff; filter: drop-shadow(0 0 6px rgb(var(--fc))); }
+  .tp .fz { opacity: 0; transition: opacity .35s ease; }
+  .tp .fz.show { opacity: 1; }
+
+  .tp .node { cursor: pointer; transition: opacity .35s ease; }
+  .tp .node .base { fill: #0b1222; }
+  .tp .node .tint { fill: rgb(var(--c) / .06); stroke: rgb(var(--c) / .55); stroke-width: 1.5; transition: all .3s ease; }
+  .tp .node .ico { color: rgb(var(--c)); }
+  .tp .node .t1 { fill: #f1f5f9; font-size: 14px; font-weight: 700; }
+  .tp .node .t2 { fill: #94a3b8; font-size: 11px; }
+  .tp .node.sm .t1 { font-size: 12px; font-weight: 600; }
+  .tp .node:hover .tint { stroke: rgb(var(--c)); }
+  .tp .node.sel .tint { stroke: rgb(var(--c)); stroke-width: 3; filter: drop-shadow(0 0 10px rgb(var(--c) / .8)); fill: rgb(var(--c) / .14); }
+  .tp .node.dim > :not(.base) { opacity: .3; }
+  .tp .warn { transition: opacity .35s ease; }
+  .tp .xmark circle { fill: #7f1d1d; stroke: #f87171; stroke-width: 2; }
+  .tp .xmark path { stroke: #fecaca; stroke-width: 2.5; stroke-linecap: round; }
+
+  .fade-in { animation: fadeIn .45s ease both; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .pulse-dot { position: relative; }
+  .pulse-dot::after { content: ''; position: absolute; inset: 0; border-radius: 9999px; background: inherit; animation: ping 1.8s infinite; }
+  @keyframes ping { 0% { opacity: .7; transform: scale(1); } 100% { opacity: 0; transform: scale(2.2); } }
+  ::-webkit-scrollbar { height: 8px; width: 8px; }
+  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 8px; }
+  .print-only { display: none; }
+
+  /* =================== LIGHT =================== */
+  html.light body {
+    background: radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(96,165,250,.12), transparent 60%), #f1f5f9;
+    color: #0f172a;
+  }
+  html.light .grid-bg { background-image: linear-gradient(rgba(15,23,42,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,.05) 1px, transparent 1px); }
+  html.light .card { background: rgba(255,255,255,.9); border-color: #e2e8f0; box-shadow: 0 1px 2px rgba(15,23,42,.04); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #059669, #0284c7, #2563eb); }
+  html.light .accent-text { color: color-mix(in srgb, rgb(var(--accent)) 62%, #000); }
+  html.light .text-slate-100 { color: #0f172a; }
+  html.light .text-slate-200 { color: #1e293b; }
+  html.light .text-slate-300 { color: #334155; }
+  html.light .text-slate-400 { color: #475569; }
+  html.light .text-slate-500 { color: #64748b; }
+  html.light .text-slate-600 { color: #94a3b8; }
+  html.light .text-cyan-300, html.light .text-cyan-300\/90 { color: #0e7490; }
+  html.light .text-blue-300 { color: #1d4ed8; }
+  html.light .text-amber-300 { color: #b45309; }
+  html.light .text-red-300, html.light .text-rose-300 { color: #b91c1c; }
+  html.light .text-emerald-300 { color: #047857; }
+  html.light .text-emerald-400 { color: #059669; }
+  html.light .text-violet-300 { color: #6d28d9; }
+  html.light .hover\:text-slate-100:hover { color: #0f172a; }
+  html.light .bg-slate-950\/75 { background: rgba(255,255,255,.82); }
+  html.light .bg-slate-950\/70, html.light .bg-slate-950\/50 { background: #f8fafc; }
+  html.light .bg-slate-900 { background: #ffffff; }
+  html.light .bg-slate-900\/90 { background: #f1f5f9; }
+  html.light .bg-slate-800, html.light .bg-slate-800\/60 { background: #e2e8f0; }
+  html.light .hover\:bg-slate-800:hover { background: #e2e8f0; }
+  html.light .border-slate-600, html.light .border-slate-700 { border-color: #cbd5e1; }
+  html.light .border-slate-800, html.light .border-slate-800\/70 { border-color: #e2e8f0; }
+  html.light .divide-slate-800\/80 > :not([hidden]) ~ :not([hidden]) { border-color: #e2e8f0; }
+  html.light .seg { border-color: #cbd5e1; background: #fff; }
+  html.light .seg button { color: #334155; }
+  html.light .seg button + button { border-left-color: #cbd5e1; }
+  html.light .seg button:hover { background: #f1f5f9; }
+  html.light .seg button[aria-pressed="true"] { color: #020617; }
+  html.light .tp .zone { fill: rgba(255,255,255,.6); stroke: #94a3b8; }
+  html.light .tp .zone-t { fill: #475569; }
+  html.light .tp .wire { stroke: #94a3b8; }
+  html.light .tp .ghost { stroke: rgba(100,116,139,.45); }
+  html.light .tp .pk { fill: rgb(var(--fc)); stroke: #fff; stroke-width: 1.5; }
+  html.light .tp .node .base { fill: #ffffff; }
+  html.light .tp .node .t1 { fill: #0f172a; }
+  html.light .tp .node .t2 { fill: #475569; }
+  html.light .tp .node .ico { color: color-mix(in srgb, rgb(var(--c)) 70%, #000); }
+  html.light ::-webkit-scrollbar-thumb { background: #cbd5e1; }
+
+  /* =================== PRINT =================== */
+  @page { size: A4 landscape; margin: 10mm; }
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    html, body { background: #fff !important; }
+    body { zoom: .62; }
+    .no-print, nav, #toolbar { display: none !important; }
+    .print-only { display: block !important; }
+    .card { backdrop-filter: none !important; break-inside: avoid; box-shadow: none !important; }
+    .overflow-x-auto { overflow: visible !important; }
+    .min-w-\[860px\], .min-w-\[760px\] { min-width: 0 !important; }
+    section { padding-top: 0 !important; padding-bottom: 0 !important; border-top: 0 !important; }
+    #topology, .print-break { break-before: page; }
+    #tp { width: 82% !important; margin: 0 auto; display: block; }
+    .tp .flow { animation: none !important; filter: none !important; }
+    .tp .pk { display: none; }
+    .fade-in { animation: none !important; }
+    header { padding-top: 0 !important; }
+    footer > div { padding-bottom: 0 !important; }
+  }
+</style>
+<style>
+  :root { --accent: 34 211 238; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(34,211,238,.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(251,146,60,.08), transparent 60%),
+      #060a13;
+  }
+  html.light body { background: radial-gradient(1200px 600px at 10% -10%, rgba(34,211,238,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(251,146,60,.10), transparent 60%), #f1f5f9; }
+  .hero-grad { background-image: linear-gradient(90deg, #67e8f9, #bae6fd, #fdba74); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #0e7490, #0369a1, #c2410c); }
+
+  /* toggle switches */
+  .tg { display: inline-flex; align-items: center; gap: .6rem; padding: .45rem .55rem .45rem .9rem; border: 1px solid #334155; border-radius: 9999px; background: rgba(15,23,42,.8); transition: all .25s ease; }
+  .tg .nm { font-weight: 600; font-size: .9rem; color: #e2e8f0; }
+  .tg .ds { font-size: .7rem; color: #94a3b8; }
+  .tg .sw { width: 38px; height: 22px; border-radius: 9999px; background: #334155; position: relative; transition: background .25s ease; flex-shrink: 0; }
+  .tg .sw::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 9999px; background: #94a3b8; transition: all .25s ease; }
+  .tg[aria-pressed="true"] { border-color: rgb(var(--tc) / .7); background: rgb(var(--tc) / .10); }
+  .tg[aria-pressed="true"] .sw { background: rgb(var(--tc)); }
+  .tg[aria-pressed="true"] .sw::after { left: 19px; background: #020617; }
+  html.light .tg { background: #fff; border-color: #cbd5e1; }
+  html.light .tg .nm { color: #0f172a; }
+  html.light .tg .ds { color: #64748b; }
+  html.light .tg .sw { background: #cbd5e1; }
+  .btn-s { height: 34px; padding: 0 .8rem; border: 1px solid #334155; border-radius: .55rem; background: rgba(15,23,42,.8); font-size: .8rem; font-weight: 600; color: #e2e8f0; display: inline-flex; align-items: center; gap: .35rem; }
+  .btn-s:hover { background: rgba(51,65,85,.6); }
+  html.light .btn-s { background: #fff; border-color: #cbd5e1; color: #0f172a; }
+
+  /* sim svg */
+  .sim text { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
+  .sim .zone { fill: rgba(15,23,42,.35); stroke: rgba(100,116,139,.5); stroke-dasharray: 6 6; }
+  .sim .zone-t { fill: #94a3b8; font-size: 13px; font-weight: 600; letter-spacing: .08em; }
+  .sim .pill rect { fill: rgba(51,65,85,.35); stroke: rgba(100,116,139,.6); stroke-width: 1.5; transition: all .3s ease; }
+  .sim .pill .ico { color: #64748b; }
+  .sim .pill .num { fill: #64748b; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; }
+  .sim .pill .nm { fill: #94a3b8; font-size: 14px; font-weight: 700; }
+  .sim .pill .ds { fill: #64748b; font-size: 11px; }
+  .sim .pill .st { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; }
+  .sim .pill.on rect { fill: rgb(var(--pc) / .12); stroke: rgb(var(--pc) / .8); }
+  .sim .pill.on .ico { color: rgb(var(--pc)); }
+  .sim .pill.on .num { fill: rgb(var(--pc)); }
+  .sim .pill.on .nm { fill: #f1f5f9; }
+  .sim .pill.on .ds { fill: #94a3b8; }
+  .sim .pill.act rect { stroke-width: 3; filter: drop-shadow(0 0 12px rgb(var(--pc) / .85)); }
+  .sim .pill.hit rect { stroke: #f87171; stroke-width: 3; fill: rgba(248,113,113,.15); filter: drop-shadow(0 0 12px rgba(248,113,113,.8)); }
+  .sim .pill { cursor: pointer; }
+  .sim .end { cursor: pointer; }
+  .sim .end .ring { fill: #0b1222; stroke-width: 2.5; transition: all .3s ease; }
+  .sim .end .nm { fill: #f1f5f9; font-size: 17px; font-weight: 700; }
+  .sim .end .ds { fill: #94a3b8; font-size: 12px; }
+  .sim .end.dim { opacity: .4; }
+  .sim .end.sel .ring { stroke-width: 4; filter: drop-shadow(0 0 12px currentColor); }
+  .sim .run { fill: none; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 12 9; animation: dash 1.1s linear infinite; }
+  .sim .run.ok { stroke: #34d399; stroke-dasharray: none; filter: drop-shadow(0 0 5px rgba(52,211,153,.6)); }
+  .sim .run.risk { stroke: #fb923c; filter: drop-shadow(0 0 5px rgba(251,146,60,.6)); }
+  .sim .run.go { stroke: #22d3ee; filter: drop-shadow(0 0 5px rgba(34,211,238,.6)); }
+  .sim .seen { fill: none; stroke: #fbbf24; stroke-width: 2.5; stroke-dasharray: 2 6; stroke-linecap: round; }
+  .sim .ghost { fill: none; stroke: rgba(100,116,139,.3); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; }
+  @keyframes dash { to { stroke-dashoffset: -21; } }
+  html.light .sim .zone { fill: rgba(255,255,255,.6); stroke: #94a3b8; }
+  html.light .sim .zone-t { fill: #475569; }
+  html.light .sim .pill rect { fill: #eef2f7; stroke: #94a3b8; }
+  html.light .sim .pill.on .nm, html.light .sim .end .nm { fill: #0f172a; }
+  html.light .sim .end .ring { fill: #fff; }
+  html.light .sim .end .ds, html.light .sim .pill.on .ds { fill: #475569; }
+
+  .verdict { border-width: 1.5px; transition: all .3s ease; }
+  .v-ok { border-color: rgba(52,211,153,.6); background: rgba(52,211,153,.08); color: #6ee7b7; }
+  .v-block { border-color: rgba(34,211,238,.6); background: rgba(34,211,238,.08); color: #67e8f9; }
+  .v-risk { border-color: rgba(251,146,60,.7); background: rgba(251,146,60,.08); color: #fdba74; }
+  .v-run { border-color: rgba(100,116,139,.5); background: rgba(15,23,42,.5); color: #cbd5e1; }
+  html.light .v-ok { color: #047857; } html.light .v-block { color: #0e7490; } html.light .v-risk { color: #c2410c; } html.light .v-run { color: #334155; background: #fff; }
+  .log-line { animation: fadeIn .35s ease both; }
+</style>
+<style>
+  :root { --accent: 56 189 248; }
+  body { background: radial-gradient(1200px 600px at 10% -10%, rgba(56,189,248,.10), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(129,140,248,.10), transparent 60%), #060a13; }
+  html.light body { background: radial-gradient(1200px 600px at 10% -10%, rgba(56,189,248,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(129,140,248,.12), transparent 60%), #f1f5f9; }
+  .hero-grad { background-image: linear-gradient(90deg, #7dd3fc, #c7d2fe, #a5b4fc); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #0369a1, #4338ca, #6d28d9); }
+  .sim .box .base { fill: #0b1222; }
+  .sim .box .tint { fill: rgb(var(--c) / .06); stroke: rgb(var(--c) / .5); stroke-width: 1.5; transition: all .3s ease; }
+  .sim .box .ico { color: rgb(var(--c)); }
+  .sim .box .t1 { fill: #f1f5f9; font-size: 15px; font-weight: 700; }
+  .sim .box .t2 { fill: #94a3b8; font-size: 11.5px; }
+  .sim .box .t3 { font-size: 11px; font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+  .sim .box { cursor: pointer; transition: opacity .3s ease; }
+  .sim .box.off { opacity: .35; }
+  .sim .box.act .tint { stroke: rgb(var(--c)); stroke-width: 3; fill: rgb(var(--c) / .14); filter: drop-shadow(0 0 12px rgb(var(--c) / .8)); }
+  .sim .box.sel .tint { stroke: rgb(var(--c)); stroke-width: 2.5; }
+  .sim .box.alarm .tint { stroke: #f87171; stroke-width: 3; fill: rgba(248,113,113,.12); filter: drop-shadow(0 0 12px rgba(248,113,113,.7)); }
+  html.light .sim .box .base { fill: #fff; }
+  html.light .sim .box .t1 { fill: #0f172a; }
+  html.light .sim .box .t2 { fill: #475569; }
+  html.light .sim .box .ico { color: color-mix(in srgb, rgb(var(--c)) 70%, #000); }
+  .sim .flowp { fill: none; stroke: rgb(var(--fc)); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 11 8; animation: dash 1.1s linear infinite; filter: drop-shadow(0 0 5px rgb(var(--fc) / .6)); }
+  .teams-card { border-left: 4px solid #818cf8; }
+  .dec-btn { border: 1px solid #334155; border-radius: .5rem; padding: .4rem .7rem; font-size: .8rem; font-weight: 600; transition: all .2s ease; }
+  .dec-btn:hover { background: rgba(51,65,85,.6); }
+  .dec-btn[data-dec="approve"][aria-pressed="true"] { background: #34d399; border-color: #34d399; color: #022c22; }
+  .dec-btn[data-dec="reject"][aria-pressed="true"] { background: #f87171; border-color: #f87171; color: #450a0a; }
+  html.light .dec-btn { border-color: #cbd5e1; }
+  html.light .dec-btn[aria-pressed="true"] { color: #020617; }
+</style>
+</head>
+<body class="font-sans antialiased min-h-screen">
+
+<nav class="sticky top-0 z-40 border-b border-slate-800/70 bg-slate-950/75 backdrop-blur">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+    <a href="index.html" class="flex items-center gap-2 min-w-0" title="Use Case Hub">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-sky-400 to-indigo-400 grid place-items-center shrink-0"><i data-lucide="shield-check" class="w-4 h-4 text-slate-950"></i></div>
+      <span class="font-semibold text-sm truncate"><span class="zh">CASB API · OneDrive</span><span class="en">CASB API · OneDrive</span></span>
+    </a>
+    <div class="hidden md:flex items-center gap-1 text-xs text-slate-400">
+      <a href="index.html" class="no-print px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100 inline-flex items-center gap-1"><i data-lucide="layout-grid" class="w-3.5 h-3.5"></i><span class="zh">Use Case 首頁</span><span class="en">Use Case Hub</span></a>
+      <a href="#sim" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">互動模擬</span><span class="en">Simulator</span></a>
+      <a href="#design" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">關鍵設計</span><span class="en">Key Design</span></a>
+    </div>
+  </div>
+</nav>
+
+<header class="grid-bg border-b border-slate-800/70">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
+    <div class="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-widest text-sky-300 mb-4"><i data-lucide="radio-tower" class="w-3.5 h-3.5"></i> Netskope One · CASB API · Cloud Exchange</div>
+    <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+      <span class="zh"><span class="hero-grad">SaaS 資料保護</span>：OneDrive 自動隔離 + Teams 主管決策</span>
+      <span class="en"><span class="hero-grad">SaaS Data Protection:</span> OneDrive Auto-Quarantine + Manager Decision in Teams</span>
+    </h1>
+    <p class="mt-3 text-sm sm:text-base text-slate-400 max-w-3xl">
+      <span class="zh">不需要在端點安裝 Netskope Client。CASB API 直接與 OneDrive 整合，檔案上傳後偵測到機敏或惡意內容，就自動移到隔離資料夾；同時由 Netskope Cloud Exchange 的 Teams plug-in 發送通知到 Teams 頻道，讓主管在 Teams 上按「同意」或「拒絕」：同意就由 Netskope 透過 API 把檔案還原到原資料夾，拒絕就刪除檔案，所有動作都留下日誌。</span>
+      <span class="en">No Netskope Client on the endpoint. CASB API connects straight to OneDrive: when an uploaded file contains sensitive or malicious content it is moved to a quarantine folder, and the Netskope Cloud Exchange Teams plug-in posts to a Teams channel where a manager clicks Approve or Reject: approve and Netskope restores the file to its original folder through the API; reject and the file is deleted. Every action is logged.</span>
+    </p>
+    <div class="mt-6 flex flex-wrap gap-2">
+      <span class="inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300"><span class="pulse-dot w-2 h-2 rounded-full bg-emerald-400"></span> Agentless · No Client</span>
+      <span class="inline-flex items-center gap-2 rounded-full border border-sky-500/40 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-300"><i data-lucide="cloud" class="w-3.5 h-3.5"></i> OneDrive · CASB API</span>
+      <span class="inline-flex items-center gap-2 rounded-full border border-indigo-500/40 bg-indigo-500/10 px-3 py-1 text-xs font-medium text-indigo-300"><i data-lucide="message-square" class="w-3.5 h-3.5"></i> Cloud Exchange → Teams</span>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6">
+<section id="sim" class="py-10 scroll-mt-16">
+  <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-3 mb-4">
+    <div>
+      <div class="text-xs font-mono uppercase tracking-widest accent-text">01 · Interactive Simulator</div>
+      <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">檔案上傳 OneDrive 後，發生了什麼事？</span><span class="en">What happens after a file lands in OneDrive?</span></h2>
+    </div>
+    <div class="flex gap-2 no-print">
+      <button id="btnReplay" class="btn-s"><i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i><span class="zh">重播</span><span class="en">Replay</span></button>
+      <button id="btnAllOn" class="btn-s"><span class="zh">全開</span><span class="en">All on</span></button>
+      <button id="btnAllOff" class="btn-s"><span class="zh">全關</span><span class="en">All off</span></button>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-2 no-print">
+    <span class="text-sm text-slate-400 mr-1"><span class="zh">功能</span><span class="en">Features</span></span>
+    <div id="toggles" class="flex flex-wrap gap-2"></div>
+  </div>
+  <div class="mt-3 flex flex-wrap items-center gap-x-5 gap-y-3 no-print">
+    <div class="flex items-center gap-2"><span class="text-sm text-slate-400"><span class="zh">上傳裝置</span><span class="en">Device</span></span><div class="seg" id="segDevice"></div></div>
+    <div class="flex items-center gap-2"><span class="text-sm text-slate-400"><span class="zh">檔案</span><span class="en">File</span></span><div class="seg" id="segFile"></div></div>
+  </div>
+
+  <div class="mt-4 grid lg:grid-cols-3 gap-4 items-start">
+    <div class="lg:col-span-2">
+      <div class="card rounded-2xl grid-bg overflow-x-auto">
+        <div class="min-w-[720px] p-3 sm:p-4"><svg id="svg" class="sim w-full h-auto" viewBox="0 0 1100 460" role="img" aria-label="CASB API flow"></svg></div>
+      </div>
+      <div id="verdict" class="verdict mt-3 rounded-xl border px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div id="verdictText" class="text-base sm:text-lg font-bold"></div>
+        <div id="counter" class="text-xs font-mono text-slate-400 shrink-0"></div>
+      </div>
+      <div class="mt-2 text-xs text-slate-500"><span class="zh">提醒：API 模式是檔案「落地後」偵測（近即時），不是上傳前阻擋；需要上傳前阻擋時，可搭配 Inline 模式。</span><span class="en">Note: API mode detects after the file lands (near real time); it does not block before upload. Pair with inline mode if pre-upload blocking is needed.</span></div>
+    </div>
+    <div class="lg:sticky lg:top-20 space-y-4">
+      <div id="panel" class="card rounded-2xl p-5"></div>
+      <div id="teams"></div>
+    </div>
+  </div>
+  <p class="mt-3 text-xs text-slate-500"><span class="zh">示意模擬，不代表實測數據；實際效果依授權、版本與政策設定而定。</span><span class="en">Illustrative simulation, not measured data; results depend on license, version and policy.</span></p>
+</section>
+
+<section id="design" class="py-10 border-t border-slate-800/70 scroll-mt-16 print-break">
+  <div class="mb-6">
+    <div class="text-xs font-mono uppercase tracking-widest text-sky-300">02 · Key Design</div>
+    <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">關鍵設計</span><span class="en">Key Design</span></h2>
+  </div>
+  <div class="grid lg:grid-cols-3 gap-4">
+    <article class="card rounded-2xl p-6">
+      <div class="w-11 h-11 rounded-xl bg-sky-500/15 text-sky-300 grid place-items-center"><i data-lucide="plug-zap" class="w-5 h-5"></i></div>
+      <h3 class="mt-4 text-lg font-semibold"><span class="zh">無代理，任何裝置都涵蓋</span><span class="en">Agentless, any device</span></h3>
+      <p class="mt-2 text-sm text-slate-300 leading-relaxed"><span class="zh">CASB API 以授權方式連接 Microsoft 365 租戶，不經過使用者的網路。公司電腦、個人裝置、手機，甚至後端程式上傳的檔案，只要進到 OneDrive 都會被檢查；既有檔案也能回溯掃描。</span><span class="en">CASB API connects to the Microsoft 365 tenant with an authorized connection, independent of the user's network. Files from company PCs, personal devices, phones or backend scripts are all checked once in OneDrive, and existing files can be scanned retroactively.</span></p>
+    </article>
+    <article class="card rounded-2xl p-6">
+      <div class="w-11 h-11 rounded-xl bg-red-500/15 text-red-300 grid place-items-center"><i data-lucide="folder-lock" class="w-5 h-5"></i></div>
+      <h3 class="mt-4 text-lg font-semibold"><span class="zh">隔離而不是刪除</span><span class="en">Quarantine, not delete</span></h3>
+      <p class="mt-2 text-sm text-slate-300 leading-relaxed"><span class="zh">命中 DLP 或威脅防護的檔案會移到管理者指定的隔離資料夾，原位置留下說明檔告知使用者。主管同意就還原、拒絕才刪除，避免誤判造成資料遺失。</span><span class="en">Files that hit DLP or threat protection move to an admin-defined quarantine folder, with a notice file left in place for the user. Approved files are restored and only rejected ones are deleted, so false positives cost nothing.</span></p>
+    </article>
+    <article class="card rounded-2xl p-6">
+      <div class="w-11 h-11 rounded-xl bg-indigo-500/15 text-indigo-300 grid place-items-center"><i data-lucide="message-square" class="w-5 h-5"></i></div>
+      <h3 class="mt-4 text-lg font-semibold"><span class="zh">Cloud Exchange 串接 Teams</span><span class="en">Cloud Exchange to Teams</span></h3>
+      <p class="mt-2 text-sm text-slate-300 leading-relaxed"><span class="zh">Netskope Cloud Exchange 取得隔離事件後，透過 Microsoft Teams plug-in 推送到指定頻道，主管不必登入 Console，直接在 Teams 按「同意」或「拒絕」，Netskope 再透過 API 執行還原或刪除，並記錄日誌。</span><span class="en">Netskope Cloud Exchange picks up the quarantine event and pushes it to a Teams channel through the Microsoft Teams plug-in, so managers can click Approve or Reject right in Teams; Netskope then restores or deletes the file through the API and logs it.</span></p>
+    </article>
+  </div>
+</section>
+</main>
+
+<footer class="border-t border-slate-800/70 mt-4">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-28 text-xs text-slate-500 flex flex-col sm:flex-row gap-2 sm:justify-between">
+    <span>Netskope · CASB API · OneDrive Use Case</span>
+    <span><span class="zh">示意模擬；實際功能依授權、版本與政策而定。</span><span class="en">Illustrative; actual capabilities depend on license, version and policy.</span></span>
+  </div>
+</footer>
+
+<div id="toolbar" class="fixed bottom-4 left-1/2 -translate-x-1/2 sm:left-auto sm:right-4 sm:translate-x-0 z-50 card rounded-xl px-2 py-2 flex items-center gap-2 shadow-2xl">
+  <a href="index.html" class="h-[34px] w-[34px] grid place-items-center rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800" title="Use Case Hub"><i data-lucide="layout-grid" class="w-4 h-4"></i></a>
+  <div class="seg tb" id="segLang"><button data-lang="zh" aria-pressed="true">中文</button><button data-lang="en" aria-pressed="false">EN</button></div>
+  <div class="seg tb" id="segTheme">
+    <button data-theme="dark" aria-pressed="true"><i data-lucide="moon" class="w-3.5 h-3.5"></i><span class="zh">深</span><span class="en">Dark</span></button>
+    <button data-theme="light" aria-pressed="false"><i data-lucide="sun" class="w-3.5 h-3.5"></i><span class="zh">淺</span><span class="en">Light</span></button>
+  </div>
+  <button id="btnPdf" class="h-[34px] px-3 inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800 text-[13px] font-medium"><i data-lucide="file-down" class="w-4 h-4"></i> PDF</button>
+</div>
+
+<script id="icon-shim">/* Inlined Lucide icons (ISC License, lucide.dev) — no CDN needed */
+window.lucide = (function () {
+  const ICONS = {"shield-check":[["path",{"d":"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"}],["path",{"d":"m9 12 2 2 4-4"}]],"layout-grid":[["rect",{"width":"7","height":"7","x":"3","y":"3","rx":"1"}],["rect",{"width":"7","height":"7","x":"14","y":"3","rx":"1"}],["rect",{"width":"7","height":"7","x":"14","y":"14","rx":"1"}],["rect",{"width":"7","height":"7","x":"3","y":"14","rx":"1"}]],"radio-tower":[["path",{"d":"M4.9 16.1C1 12.2 1 5.8 4.9 1.9"}],["path",{"d":"M7.8 4.7a6.14 6.14 0 0 0-.8 7.5"}],["circle",{"cx":"12","cy":"9","r":"2"}],["path",{"d":"M16.2 4.8c2 2 2.26 5.11.8 7.47"}],["path",{"d":"M19.1 1.9a9.96 9.96 0 0 1 0 14.1"}],["path",{"d":"M9.5 18h5"}],["path",{"d":"m8 22 4-11 4 11"}]],"cloud":[["path",{"d":"M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"}]],"message-square":[["path",{"d":"M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"}]],"rotate-ccw":[["path",{"d":"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"}],["path",{"d":"M3 3v5h5"}]],"plug-zap":[["path",{"d":"M6.3 20.3a2.4 2.4 0 0 0 3.4 0L12 18l-6-6-2.3 2.3a2.4 2.4 0 0 0 0 3.4Z"}],["path",{"d":"m2 22 3-3"}],["path",{"d":"M7.5 13.5 10 11"}],["path",{"d":"M10.5 16.5 13 14"}],["path",{"d":"m18 3-4 4h6l-4 4"}]],"folder-lock":[["rect",{"width":"8","height":"5","x":"14","y":"17","rx":"1"}],["path",{"d":"M10 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v2.5"}],["path",{"d":"M20 17v-2a2 2 0 1 0-4 0v2"}]],"moon":[["path",{"d":"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"}]],"sun":[["circle",{"cx":"12","cy":"12","r":"4"}],["path",{"d":"M12 2v2"}],["path",{"d":"M12 20v2"}],["path",{"d":"m4.93 4.93 1.41 1.41"}],["path",{"d":"m17.66 17.66 1.41 1.41"}],["path",{"d":"M2 12h2"}],["path",{"d":"M20 12h2"}],["path",{"d":"m6.34 17.66-1.41 1.41"}],["path",{"d":"m19.07 4.93-1.41 1.41"}]],"file-down":[["path",{"d":"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"}],["path",{"d":"M14 2v5a1 1 0 0 0 1 1h5"}],["path",{"d":"M12 18v-6"}],["path",{"d":"m9 15 3 3 3-3"}]],"monitor":[["rect",{"width":"20","height":"14","x":"2","y":"3","rx":"2"}],["line",{"x1":"8","x2":"16","y1":"21","y2":"21"}],["line",{"x1":"12","x2":"12","y1":"17","y2":"21"}]],"laptop":[["path",{"d":"M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"}],["path",{"d":"M20.054 15.987H3.946"}]],"smartphone":[["rect",{"width":"14","height":"20","x":"5","y":"2","rx":"2","ry":"2"}],["path",{"d":"M12 18h.01"}]],"delete":[["path",{"d":"M10 5a2 2 0 0 0-1.344.519l-6.328 5.74a1 1 0 0 0 0 1.481l6.328 5.741A2 2 0 0 0 10 19h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2z"}],["path",{"d":"m12 9 6 6"}],["path",{"d":"m18 9-6 6"}]],"user":[["path",{"d":"M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"}],["circle",{"cx":"12","cy":"7","r":"4"}]],"folder-open":[["path",{"d":"m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"}]],"cloud-cog":[["path",{"d":"m10.852 19.772-.383.924"}],["path",{"d":"m13.148 14.228.383-.923"}],["path",{"d":"M13.148 19.772a3 3 0 1 0-2.296-5.544l-.383-.923"}],["path",{"d":"m13.53 20.696-.382-.924a3 3 0 1 1-2.296-5.544"}],["path",{"d":"m14.772 15.852.923-.383"}],["path",{"d":"m14.772 18.148.923.383"}],["path",{"d":"M4.2 15.1a7 7 0 1 1 9.93-9.858A7 7 0 0 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.2"}],["path",{"d":"m9.228 15.852-.923-.383"}],["path",{"d":"m9.228 18.148-.923.383"}]],"scan-search":[["path",{"d":"M3 7V5a2 2 0 0 1 2-2h2"}],["path",{"d":"M17 3h2a2 2 0 0 1 2 2v2"}],["path",{"d":"M21 17v2a2 2 0 0 1-2 2h-2"}],["path",{"d":"M7 21H5a2 2 0 0 1-2-2v-2"}],["circle",{"cx":"12","cy":"12","r":"3"}],["path",{"d":"m16 16-1.9-1.9"}]],"workflow":[["rect",{"width":"8","height":"8","x":"3","y":"3","rx":"2"}],["path",{"d":"M7 11v4a2 2 0 0 0 2 2h4"}],["rect",{"width":"8","height":"8","x":"13","y":"13","rx":"2"}]],"user-check":[["path",{"d":"m16 11 2 2 4-4"}],["path",{"d":"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"}],["circle",{"cx":"9","cy":"7","r":"4"}]],"upload":[["path",{"d":"M12 3v12"}],["path",{"d":"m17 8-5-5-5 5"}],["path",{"d":"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"}]],"scan":[["path",{"d":"M3 7V5a2 2 0 0 1 2-2h2"}],["path",{"d":"M17 3h2a2 2 0 0 1 2 2v2"}],["path",{"d":"M21 17v2a2 2 0 0 1-2 2h-2"}],["path",{"d":"M7 21H5a2 2 0 0 1-2-2v-2"}]],"move":[["path",{"d":"M12 2v20"}],["path",{"d":"m15 19-3 3-3-3"}],["path",{"d":"m19 9 3 3-3 3"}],["path",{"d":"M2 12h20"}],["path",{"d":"m5 9-3 3 3 3"}],["path",{"d":"m9 5 3-3 3 3"}]]};
+  const NS = 'http://www.w3.org/2000/svg';
+  function createIcons() {
+    document.querySelectorAll('i[data-lucide]').forEach(function (el) {
+      const name = el.getAttribute('data-lucide');
+      const node = ICONS[name];
+      if (!node) return;
+      const svg = document.createElementNS(NS, 'svg');
+      const base = { xmlns: NS, width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' };
+      Object.keys(base).forEach(function (k) { svg.setAttribute(k, base[k]); });
+      svg.setAttribute('class', ('lucide lucide-' + name + ' ' + (el.getAttribute('class') || '')).trim());
+      node.forEach(function (child) {
+        const c = document.createElementNS(NS, child[0]);
+        Object.keys(child[1]).forEach(function (k) { if (k !== 'key') c.setAttribute(k, child[1][k]); });
+        svg.appendChild(c);
+      });
+      el.replaceWith(svg);
+    });
+  }
+  return { createIcons: createIcons };
+})();
+</script>
+<script>
+let lang = document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'zh';
+const L = (zh, en) => ({ zh, en });
+const tr = (x) => (x && typeof x === 'object' && 'zh' in x) ? x[lang] : x;
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+/* ===================== DATA ===================== */
+const FEAT = [
+  { id: 'api', c: '56 189 248', nm: 'CASB API', ds: L('OneDrive 整合', 'OneDrive link') },
+  { id: 'dlp', c: '244 114 182', nm: 'DLP', ds: L('機敏內容', 'Sensitive data') },
+  { id: 'thr', c: '248 113 113', nm: L('威脅防護', 'Threat'), ds: L('惡意檔案', 'Malware') },
+  { id: 'qua', c: '251 146 60', nm: L('隔離', 'Quarantine'), ds: L('移至隔離資料夾', 'Move to folder') },
+  { id: 'ce', c: '129 140 248', nm: 'Cloud Exchange', ds: L('Teams 通知', 'Teams alert') }
+];
+const DEVICE = { corp: { label: L('公司電腦', 'Company PC'), icon: 'monitor' }, byod: { label: L('個人裝置', 'Personal device'), icon: 'laptop' }, mobile: { label: L('手機', 'Phone'), icon: 'smartphone' } };
+const FILE = {
+  pii: { label: L('含個資', 'Contains PII'), name: L('客戶名單_2026Q4.xlsx', 'Customer_List_2026Q4.xlsx'), kind: 'dlp', rule: L('DLP：台灣身分證字號 × 86', 'DLP: Taiwan national ID × 86'), sev: L('高', 'High') },
+  mal: { label: L('惡意檔案', 'Malicious'), name: L('發票_INV-1019.pdf.exe', 'Invoice_INV-1019.pdf.exe'), kind: 'thr', rule: L('威脅防護：Trojan / 惡意執行檔', 'Threat: Trojan / malicious executable'), sev: L('嚴重', 'Critical') },
+  doc: { label: L('一般文件', 'Clean file'), name: L('會議紀錄_1019.docx', 'Meeting_Notes_1019.docx'), kind: null, rule: null, sev: null }
+};
+let on = { api: true, dlp: true, thr: true, qua: true, ce: true };
+let device = 'byod', file = 'pii', sel = 'api', decision = null;
+let step = 0, timer = null, result = null;
+let stats = { up: 0, q: 0, n: 0 };
+const N_STEPS = 5;
+
+/* ===================== ENGINE ===================== */
+function evaluate() {
+  const f = FILE[file], log = [];
+  const add = (s, kind, msg) => log.push({ s, kind, msg });
+  add(1, 'pass', L(`使用者從${tr(DEVICE[device].label)}上傳「${tr(f.name)}」到 OneDrive（未安裝 Netskope Client）`, `User uploads "${tr(f.name)}" to OneDrive from a ${tr(DEVICE[device].label).toLowerCase()} (no Netskope Client)`));
+  let outcome = 'ok', detected = false, quarantined = false, notified = false;
+  if (!on.api) {
+    add(2, 'off', L('CASB API 未啟用，Netskope 看不到這個檔案', 'CASB API off; Netskope cannot see the file'));
+    outcome = f.kind ? 'risk' : 'ok';
+    return { log, outcome, detected, quarantined, notified, last: 2 };
+  }
+  add(2, 'pass', L('CASB API 收到 OneDrive 檔案事件，開始掃描', 'CASB API receives the OneDrive file event and scans it'));
+  if (!f.kind) { add(3, 'pass', L('DLP 與威脅防護皆未命中，檔案保留原位', 'No DLP or threat match; file stays in place'));
+    return { log, outcome: 'ok', detected, quarantined, notified, last: 3 }; }
+  if (!on[f.kind]) { add(3, 'off', L(`${f.kind === 'dlp' ? 'DLP' : '威脅防護'}未啟用，未偵測到問題`, `${f.kind === 'dlp' ? 'DLP' : 'Threat protection'} off; nothing detected`));
+    return { log, outcome: 'risk', detected, quarantined, notified, last: 3 }; }
+  detected = true;
+  add(3, 'block', L(`命中 ${tr(f.rule)}`, `Matched ${tr(f.rule)}`));
+  if (!on.qua) { add(4, 'seen', L('隔離動作未啟用，只產生告警，檔案仍留在 OneDrive', 'Quarantine off; alert only, file stays in OneDrive'));
+    outcome = 'seen'; }
+  else { quarantined = true; add(4, 'block', L('檔案移至隔離資料夾，原位置留下說明檔', 'File moved to the quarantine folder; a notice file is left in place')); outcome = 'quar'; }
+  if (!on.ce) { add(5, 'off', L('Cloud Exchange 未串接，主管不會收到通知，需由管理者自行查看 Console', 'Cloud Exchange not connected; no manager notice, admins must check the console'));
+    return { log, outcome, detected, quarantined, notified, last: 5 }; }
+  notified = true;
+  add(5, 'pass', L('Cloud Exchange 透過 Teams plug-in 發送通知到 #資安通報 頻道', 'Cloud Exchange posts to the #security-alerts channel via the Teams plug-in'));
+  return { log, outcome, detected, quarantined, notified, last: 5 };
+}
+function verdictText() {
+  const r = result, f = FILE[file];
+  if (decision && r.notified) {
+    return decision === 'approve' ? [L('主管同意：Netskope 已透過 API 將檔案還原到原資料夾，並記錄日誌', 'Approved: Netskope restored the file to its original folder via API and logged it'), 'ok']
+      : [L('主管拒絕：Netskope 已透過 API 刪除檔案，並記錄日誌', 'Rejected: Netskope deleted the file via API and logged it'), 'block'];
+  }
+  if (r.outcome === 'ok') return [!on.api ? L('一般文件留在 OneDrive（未經檢查）', 'Clean file sits in OneDrive (not checked)') : L('一般文件，檢查通過，保留在 OneDrive', 'Clean file; checked and kept in OneDrive'), 'ok'];
+  if (r.outcome === 'risk') return [!on.api ? L(`${tr(f.label)}的檔案留在 OneDrive，沒有被檢查`, `The file (${tr(f.label).toLowerCase()}) sits in OneDrive unchecked`) : L(`${tr(f.label)}的檔案未被偵測，可被分享或下載`, `The file (${tr(f.label).toLowerCase()}) was not detected and can be shared or downloaded`), 'risk'];
+  if (r.outcome === 'seen') return [L('已偵測但未隔離，檔案仍可被分享或下載', 'Detected but not quarantined; the file can still be shared or downloaded'), 'risk'];
+  return [r.notified ? L('檔案已隔離，Teams 已通知主管，等待決策', 'File quarantined; manager notified in Teams, awaiting decision') : L('檔案已隔離，但主管未收到通知', 'File quarantined, but no manager was notified'), 'block'];
+}
+
+/* ===================== DIAGRAM ===================== */
+const B = {
+  user:  { x: 30,  y: 160, w: 150, h: 90, c: '192 132 252', icon: 'user' },
+  ufold: { x: 225, y: 110, w: 210, h: 80, c: '56 189 248', icon: 'folder-open' },
+  qfold: { x: 225, y: 300, w: 210, h: 80, c: '251 146 60', icon: 'folder-lock' },
+  api:   { x: 485, y: 70,  w: 280, h: 75, c: '56 189 248', icon: 'cloud-cog' },
+  eng:   { x: 485, y: 190, w: 280, h: 75, c: '244 114 182', icon: 'scan-search' },
+  ce:    { x: 485, y: 310, w: 280, h: 75, c: '129 140 248', icon: 'workflow' },
+  teams: { x: 830, y: 150, w: 240, h: 75, c: '129 140 248', icon: 'message-square' },
+  mgr:   { x: 830, y: 310, w: 240, h: 75, c: '52 211 153', icon: 'user-check' }
+};
+const E = {
+  upload: 'M180 205 H200 V150 H225', scan: 'M435 150 H460 V107 H485', eng: 'M625 145 V190',
+  move: 'M300 190 V300', ce: 'M625 265 V310', teams: 'M765 347 H795 V187 H830', mgr: 'M950 225 V310',
+  restore: 'M370 300 V190', decide: 'M830 362 H810 V95 H765'
+};
+function label(k) {
+  const f = FILE[file], r = result;
+  const q = r && r.quarantined && step >= 4 && decision !== 'approve';
+  const del = decision === 'reject';
+  switch (k) {
+    case 'user': return [L('使用者', 'User'), DEVICE[device].label, L('無 Netskope Client', 'No Netskope Client')];
+    case 'ufold': return [L('OneDrive · 使用者資料夾', 'OneDrive · user folder'), step >= 1 ? (q || del ? L('📄 檔案已隔離說明.txt', '📄 File-quarantined-notice.txt') : f.name) : L('（空）', '(empty)'), null];
+    case 'qfold': return [L('OneDrive · 隔離資料夾', 'OneDrive · quarantine folder'), q && !del ? f.name : (del ? L('（已永久刪除）', '(permanently deleted)') : L('（空）', '(empty)')), L('僅管理者可存取', 'Admins only')];
+    case 'api': return [L('Netskope CASB API', 'Netskope CASB API'), L('Microsoft 365 授權連線 · 事件觸發', 'Microsoft 365 app grant · event-driven'), null];
+    case 'eng': return [L('DLP · 威脅防護', 'DLP · Threat protection'), L('機敏資料與惡意檔案檢查', 'Sensitive data and malware checks'), null];
+    case 'ce': return [L('Netskope Cloud Exchange', 'Netskope Cloud Exchange'), L('Microsoft Teams plug-in', 'Microsoft Teams plug-in'), null];
+    case 'teams': return [L('Teams · #資安通報', 'Teams · #security-alerts'), L('即時通知', 'Real-time notice'), null];
+    case 'mgr': return [L('主管', 'Manager'), L('同意 / 拒絕', 'Approve / reject'), null];
+  }
+}
+function featOf(k) { return { api: 'api', eng: null, ce: 'ce', teams: 'ce', mgr: 'ce', qfold: 'qua' }[k]; }
+
+function buildSvg() {
+  const r = result, out = [];
+  out.push(`<rect class="zone" x="15" y="20" width="180" height="420" rx="14"/><text class="zone-t" x="30" y="48">${lang === 'en' ? 'ANY DEVICE' : '任何裝置'}</text>`);
+  out.push(`<rect class="zone" x="210" y="20" width="240" height="420" rx="14"/><text class="zone-t" x="225" y="48">MICROSOFT ONEDRIVE</text>`);
+  out.push(`<rect class="zone" x="470" y="20" width="310" height="420" rx="14"/><text class="zone-t" x="485" y="48">NETSKOPE</text>`);
+  out.push(`<rect class="zone" x="815" y="20" width="270" height="420" rx="14"/><text class="zone-t" x="830" y="48">MICROSOFT TEAMS</text>`);
+  Object.entries(E).forEach(([k, d]) => { if (k !== 'restore' && k !== 'decide') out.push(`<path class="ghost" d="${d}"/>`); });
+  // active edges by step
+  const act = [];
+  if (step >= 1) act.push(['upload', '192 132 252']);
+  if (step >= 2 && on.api) act.push(['scan', '56 189 248']);
+  if (step >= 3 && on.api && r.log.find(l => l.s === 3)) act.push(['eng', r.detected ? '248 113 113' : '52 211 153']);
+  if (step >= 4 && r.quarantined) act.push(['move', '251 146 60']);
+  if (step >= 5 && r.notified) { act.push(['ce', '129 140 248']); act.push(['teams', '129 140 248']); }
+  if (decision && r.notified) { const dc = decision === 'approve' ? '52 211 153' : '248 113 113'; act.push(['mgr', '129 140 248']); act.push(['decide', dc]); if (decision === 'approve') act.push(['restore', '52 211 153']); }
+  act.forEach(([k, c]) => {
+    out.push(`<path class="flowp" style="--fc:${c}" d="${E[k]}"/>`);
+    out.push(`<circle class="pk" r="5" style="--fc:${c}"><animateMotion dur="1.5s" repeatCount="indefinite" path="${E[k]}"/></circle>`);
+  });
+  Object.entries(B).forEach(([k, b]) => {
+    const [t1, t2, t3] = label(k);
+    const fk = featOf(k);
+    const off = (fk && !on[fk]) || (k === 'eng' && !on.dlp && !on.thr);
+    const cur = (step === 1 && k === 'ufold') || (step === 2 && k === 'api') || (step === 3 && k === 'eng') || (step === 4 && k === 'qfold') || (step === 5 && k === 'teams');
+    const alarm = (k === 'eng' && r.detected && step >= 3) || (k === 'qfold' && r.quarantined && step >= 4 && !decision);
+    out.push(`<g class="box ${off ? 'off' : ''} ${cur ? 'act' : ''} ${alarm ? 'alarm' : ''} ${sel === k ? 'sel' : ''}" data-node="${k}" style="--c:${b.c}">
+      <rect class="base" x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}" rx="12"/><rect class="tint" x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}" rx="12"/>
+      <foreignObject x="${b.x + 12}" y="${b.y + 12}" width="24" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="ico w-6 h-6 grid place-items-center"><i data-lucide="${k === 'user' ? DEVICE[device].icon : b.icon}" class="w-5 h-5"></i></div></foreignObject>
+      <text class="t1" x="${b.x + 44}" y="${b.y + 30}">${esc(tr(t1))}</text>
+      <text class="t2" x="${b.x + 14}" y="${b.y + 54}">${esc(tr(t2))}</text>
+      ${t3 ? `<text class="t2" x="${b.x + 14}" y="${b.y + 72}" style="opacity:.75">${esc(tr(t3))}</text>` : ''}
+    </g>`);
+  });
+  if (decision === 'reject') out.push(`<g><circle cx="420" cy="312" r="12" fill="#7f1d1d" stroke="#f87171" stroke-width="2"/><path d="M415 307 L425 317 M425 307 L415 317" stroke="#fecaca" stroke-width="2.5" stroke-linecap="round"/></g>`);
+  $('#svg').innerHTML = out.join('');
+  document.querySelectorAll('#svg [data-node]').forEach(el => el.addEventListener('click', () => { sel = el.dataset.node; buildSvg(); renderPanel(); lucide.createIcons(); }));
+}
+
+const INFO = {
+  user: L('使用者不需要安裝任何軟體。不論從公司電腦、個人裝置或手機上傳，只要檔案進到 OneDrive，就會被 CASB API 檢查。', 'Users install nothing. Whether from a company PC, personal device or phone, any file that reaches OneDrive is checked by CASB API.'),
+  ufold: L('使用者原本的資料夾。檔案被隔離後，這裡會留下一份說明檔，告訴使用者檔案為何被移走、要聯絡誰。', 'The user\'s own folder. After quarantine, a notice file explains why the file was moved and whom to contact.'),
+  qfold: L('管理者指定的隔離資料夾，只有管理者可以存取。主管同意後，Netskope 透過 API 把檔案從這裡還原到原資料夾；拒絕則刪除。', 'An admin-defined quarantine folder that only admins can open. On approval Netskope restores the file to its original folder via API; on rejection it is deleted.'),
+  api: L('以 Microsoft 365 的授權連線（App Grant）存取 OneDrive，依檔案事件近即時掃描，也能回溯掃描既有檔案。', 'Uses a Microsoft 365 app grant to access OneDrive, scanning on file events in near real time and retroactively for existing files.'),
+  eng: L('DLP 檢查個資、信用卡號等機敏資料；威脅防護檢查惡意程式。兩者共用同一套租戶政策。', 'DLP checks for PII, card numbers and other sensitive data; threat protection checks for malware. Both use the same tenant policies.'),
+  ce: L('Netskope Cloud Exchange 從租戶取得告警與事件，透過 plug-in 轉送到其他系統。這裡使用 Microsoft Teams plug-in。', 'Netskope Cloud Exchange pulls alerts and events from the tenant and forwards them through plug-ins; here, the Microsoft Teams plug-in.'),
+  teams: L('通知送到指定的 Teams 頻道，內容包含檔案、使用者、命中規則與嚴重度。', 'The notice lands in a chosen Teams channel with the file, user, matched rule and severity.'),
+  mgr: L('主管在 Teams 通知上按「同意」或「拒絕」。同意：允許上傳，Netskope 透過 API 把檔案還原到原本要上傳的資料夾；拒絕：刪除檔案。兩種結果都會記錄日誌。', 'The manager clicks Approve or Reject on the Teams notice. Approve allows the upload and Netskope restores the file to its intended folder via API; Reject deletes the file. Both are logged.'),
+};
+
+function renderPanel() {
+  const r = result;
+  const [t1] = label(sel);
+  const lines = r.log.filter(l => l.s <= step).map(l => {
+    const col = l.kind === 'block' ? 'text-red-300' : l.kind === 'seen' ? 'text-amber-300' : l.kind === 'off' ? 'text-slate-400' : 'text-emerald-300';
+    return `<div class="log-line ${col}"><span class="font-mono text-slate-500">0${l.s}</span> ${esc(tr(l.msg))}</div>`;
+  });
+  if (decision && r.notified) {
+    const f = FILE[file], ap = decision === 'approve';
+    const ts = new Date().toTimeString().slice(0, 8);
+    [[ '06', ap ? L('主管在 Teams 按下「同意」', 'Manager clicked Approve in Teams') : L('主管在 Teams 按下「拒絕」', 'Manager clicked Reject in Teams'), 'text-indigo-300'],
+     [ '07', ap ? L(`Netskope 透過 API 將「${tr(f.name)}」從隔離資料夾還原到原資料夾`, `Netskope restored "${tr(f.name)}" from quarantine to its original folder via API`) : L(`Netskope 透過 API 刪除「${tr(f.name)}」`, `Netskope deleted "${tr(f.name)}" via API`), ap ? 'text-emerald-300' : 'text-red-300'],
+     [ '08', L(`已寫入稽核日誌（${ts}，決策者：manager@corp.example）`, `Audit log written (${ts}, decided by manager@corp.example)`), 'text-slate-300']
+    ].forEach(([n, m, c]) => lines.push(`<div class="log-line ${c}"><span class="font-mono text-slate-500">${n}</span> ${esc(tr(m))}</div>`));
+  }
+  $('#panel').innerHTML = `
+    <div class="text-xs text-slate-500">${lang === 'en' ? 'Selected node' : '所選節點'}</div>
+    <div class="mt-1 text-xl font-bold text-slate-100">${esc(tr(t1))}</div>
+    <p class="mt-2 text-sm text-slate-300 leading-relaxed">${tr(INFO[sel])}</p>
+    <div class="mt-4 pt-3 border-t border-slate-800 text-xs font-semibold text-slate-200">${lang === 'en' ? 'Event log' : '事件紀錄'}</div>
+    <div class="mt-2 space-y-1.5 text-xs leading-relaxed">${lines.join('') || `<div class="text-slate-500">${lang === 'en' ? 'Waiting for upload…' : '等待上傳…'}</div>`}</div>`;
+}
+
+function renderTeams() {
+  const r = result, f = FILE[file];
+  if (!(r.notified && step >= 5)) { $('#teams').innerHTML = ''; return; }
+  const btn = (id, zh, en) => `<button class="dec-btn" data-dec="${id}" aria-pressed="${decision === id}">${lang === 'en' ? en : zh}</button>`;
+  const now = new Date(); const ts = now.toTimeString().slice(0, 5);
+  $('#teams').innerHTML = `<div class="card rounded-2xl p-4 teams-card fade-in">
+    <div class="flex items-center gap-2 text-xs text-slate-400"><i data-lucide="message-square" class="w-4 h-4 text-indigo-300"></i><b class="text-slate-200">#${lang === 'en' ? 'security-alerts' : '資安通報'}</b> · Netskope CE · ${ts}</div>
+    <div class="mt-2 font-semibold text-slate-100">${lang === 'en' ? '⚠ OneDrive file quarantined' : '⚠ OneDrive 檔案已隔離'}</div>
+    <dl class="mt-2 text-xs space-y-1">
+      <div class="flex gap-2"><dt class="w-16 text-slate-500">${lang === 'en' ? 'File' : '檔案'}</dt><dd class="font-mono text-slate-200">${esc(tr(f.name))}</dd></div>
+      <div class="flex gap-2"><dt class="w-16 text-slate-500">${lang === 'en' ? 'User' : '使用者'}</dt><dd class="text-slate-200">poc.user@corp.example</dd></div>
+      <div class="flex gap-2"><dt class="w-16 text-slate-500">${lang === 'en' ? 'Policy' : '命中規則'}</dt><dd class="text-slate-200">${esc(tr(f.rule))}</dd></div>
+      <div class="flex gap-2"><dt class="w-16 text-slate-500">${lang === 'en' ? 'Severity' : '嚴重度'}</dt><dd class="text-red-300 font-semibold">${esc(tr(f.sev))}</dd></div>
+      ${!r.quarantined ? `<div class="flex gap-2"><dt class="w-16 text-slate-500">${lang === 'en' ? 'Status' : '狀態'}</dt><dd class="text-amber-300">${lang === 'en' ? 'Alert only (not quarantined)' : '僅告警（未隔離）'}</dd></div>` : ''}
+    </dl>
+    ${r.quarantined ? `<div class="mt-3 text-xs text-slate-400">${lang === 'en' ? 'Allow this upload?' : '是否允許這次上傳？'}</div>
+    <div class="mt-1.5 flex flex-wrap gap-2 no-print">${btn('approve', '同意', 'Approve')}${btn('reject', '拒絕', 'Reject')}</div>
+    <div class="mt-2 text-[11px] text-slate-500 leading-relaxed">${lang === 'en' ? 'Approve: restore to the original folder via API. Reject: delete the file. Both actions are logged.' : '同意：透過 API 還原到原資料夾；拒絕：刪除檔案。兩種動作都會記錄日誌。'}</div>` : ''}
+  </div>`;
+  document.querySelectorAll('.dec-btn').forEach(b => b.addEventListener('click', () => {
+    if (!decision) { /* first decision */ }
+    decision = b.dataset.dec; sel = 'mgr'; frame();
+  }));
+}
+
+function renderVerdict() {
+  const r = result, finished = step >= r.last;
+  const [t, k] = verdictText();
+  $('#verdict').className = 'verdict mt-3 rounded-xl border px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 ' + (!finished ? 'v-run' : k === 'ok' ? 'v-ok' : k === 'block' ? 'v-block' : 'v-risk');
+  $('#verdictText').textContent = finished ? tr(t) : (lang === 'en' ? 'Processing…' : '處理中…');
+  $('#counter').textContent = lang === 'en' ? `Uploaded ${stats.up} | Quarantined ${stats.q} | Notified ${stats.n}` : `已上傳 ${stats.up}｜已隔離 ${stats.q}｜已通知 ${stats.n}`;
+  return finished;
+}
+
+function renderControls() {
+  $('#toggles').innerHTML = FEAT.map(c => `<button class="tg" data-ctrl="${c.id}" aria-pressed="${on[c.id]}" style="--tc:${c.c}"><span class="nm">${esc(tr(c.nm))}</span><span class="ds">${esc(tr(c.ds))}</span><span class="sw"></span></button>`).join('');
+  document.querySelectorAll('.tg').forEach(b => b.addEventListener('click', () => { on[b.dataset.ctrl] = !on[b.dataset.ctrl]; run(); }));
+  $('#segDevice').innerHTML = Object.entries(DEVICE).map(([k, v]) => `<button data-v="${k}" aria-pressed="${k === device}" style="--bc:56 189 248"><i data-lucide="${v.icon}" class="w-3.5 h-3.5"></i>${tr(v.label)}</button>`).join('');
+  document.querySelectorAll('#segDevice button').forEach(b => b.addEventListener('click', () => { device = b.dataset.v; run(); }));
+  $('#segFile').innerHTML = Object.entries(FILE).map(([k, v]) => `<button data-v="${k}" aria-pressed="${k === file}" style="--bc:56 189 248">${tr(v.label)}</button>`).join('');
+  document.querySelectorAll('#segFile button').forEach(b => b.addEventListener('click', () => { file = b.dataset.v; run(); }));
+}
+
+function frame() { buildSvg(); renderPanel(); renderTeams(); const f = renderVerdict(); lucide.createIcons(); return f; }
+function run() {
+  clearInterval(timer);
+  result = evaluate(); step = 0; decision = null;
+  renderControls(); frame();
+  timer = setInterval(() => {
+    step++;
+    if (frame()) {
+      clearInterval(timer);
+      stats.up++; if (result.quarantined) stats.q++; if (result.notified) stats.n++;
+      renderVerdict();
+    }
+  }, 750);
+}
+$('#btnReplay').addEventListener('click', run);
+$('#btnAllOn').addEventListener('click', () => { FEAT.forEach(c => on[c.id] = true); run(); });
+$('#btnAllOff').addEventListener('click', () => { FEAT.forEach(c => on[c.id] = false); run(); });
+
+function applyLang(l) {
+  lang = l;
+  document.documentElement.setAttribute('lang', l === 'en' ? 'en' : 'zh-Hant');
+  document.title = l === 'en' ? 'CASB API · OneDrive Data Protection' : 'CASB API · OneDrive 資料保護';
+  document.querySelectorAll('#segLang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
+  try { localStorage.setItem('nsk-poc-lang', l); } catch (e) {}
+  renderControls(); if (result) { result = evaluate(); frame(); }
+  lucide.createIcons();
+}
+function applyTheme(t) {
+  document.documentElement.classList.toggle('light', t === 'light');
+  document.querySelectorAll('#segTheme button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.theme === t)));
+  try { localStorage.setItem('nsk-poc-theme', t); } catch (e) {}
+}
+document.querySelectorAll('#segLang button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+document.querySelectorAll('#segTheme button').forEach(b => b.addEventListener('click', () => applyTheme(b.dataset.theme)));
+let themeBeforePrint = null;
+window.addEventListener('beforeprint', () => { themeBeforePrint = document.documentElement.classList.contains('light') ? 'light' : 'dark'; document.documentElement.classList.add('light'); clearInterval(timer); step = N_STEPS; frame(); });
+window.addEventListener('afterprint', () => { if (themeBeforePrint === 'dark') document.documentElement.classList.remove('light'); themeBeforePrint = null; });
+$('#btnPdf').addEventListener('click', () => window.print());
+
+applyTheme(document.documentElement.classList.contains('light') ? 'light' : 'dark');
+applyLang(lang);
+run();
+</script>
+</body>
+</html>
