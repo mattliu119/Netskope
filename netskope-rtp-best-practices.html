@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>即時防護政策最佳實務</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+  (function () {
+    try {
+      if (localStorage.getItem('nsk-poc-theme') === 'light') document.documentElement.classList.add('light');
+      if (localStorage.getItem('nsk-poc-lang') === 'en') document.documentElement.setAttribute('lang', 'en');
+    } catch (e) {}
+  })();
+</script>
+<style id="tw-inline">*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:Inter,Noto Sans TC,system-ui,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:JetBrains Mono,ui-monospace,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.visible{visibility:visible}.static{position:static}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.bottom-4{bottom:1rem}.left-1\/2{left:50%}.top-0{top:0}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.my-2{margin-top:.5rem}.mb-2,.my-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-1\.5{margin-top:.375rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.block{display:block}.inline{display:inline}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-14{height:3.5rem}.h-3\.5{height:.875rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-8{height:2rem}.h-\[34px\]{height:34px}.min-h-\[90px\]{min-height:90px}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-3\.5{width:.875rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-8{width:2rem}.w-\[34px\]{width:34px}.w-full{width:100%}.w-px{width:1px}.min-w-0{min-width:0}.max-w-3xl{max-width:48rem}.max-w-7xl{max-width:80rem}.flex-1{flex:1 1 0%}.flex-shrink{flex-shrink:1}.shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%}.-translate-x-1\/2,.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scroll-mt-16{scroll-margin-top:4rem}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.place-items-center{place-items:center}.items-center{align-items:center}.items-stretch{align-items:stretch}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.space-y-1>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.25rem*var(--tw-space-y-reverse))}.space-y-1\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.375rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.375rem*var(--tw-space-y-reverse))}.divide-slate-800>:not([hidden])~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(30 41 59/var(--tw-divide-opacity,1))}.overflow-x-auto{overflow-x:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rounded-2xl{border-radius:1rem}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-dashed{border-style:dashed}.border-amber-300{--tw-border-opacity:1;border-color:rgb(252 211 77/var(--tw-border-opacity,1))}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85/var(--tw-border-opacity,1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59/var(--tw-border-opacity,1))}.border-slate-800\/70{border-color:rgba(30,41,59,.7)}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42/var(--tw-bg-opacity,1))}.bg-slate-950{--tw-bg-opacity:1;background-color:rgb(2 6 23/var(--tw-bg-opacity,1))}.bg-slate-950\/50{background-color:rgba(2,6,23,.5)}.bg-slate-950\/75{background-color:rgba(2,6,23,.75)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}.from-violet-400{--tw-gradient-from:#a78bfa var(--tw-gradient-from-position);--tw-gradient-to:rgba(167,139,250,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.to-cyan-400{--tw-gradient-to:#22d3ee var(--tw-gradient-to-position)}.p-3{padding:.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\.5{padding-top:.625rem;padding-bottom:.625rem}.pb-2{padding-bottom:.5rem}.pb-28{padding-bottom:7rem}.pt-1{padding-top:.25rem}.pt-8{padding-top:2rem}.font-mono{font-family:JetBrains Mono,ui-monospace,monospace}.font-sans{font-family:Inter,Noto Sans TC,system-ui,sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[13px\]{font-size:13px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-.025em}.tracking-widest{letter-spacing:.1em}.text-amber-300{--tw-text-opacity:1;color:rgb(252 211 77/var(--tw-text-opacity,1))}.text-blue-300{--tw-text-opacity:1;color:rgb(147 197 253/var(--tw-text-opacity,1))}.text-cyan-300{--tw-text-opacity:1;color:rgb(103 232 249/var(--tw-text-opacity,1))}.text-emerald-300{--tw-text-opacity:1;color:rgb(110 231 183/var(--tw-text-opacity,1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153/var(--tw-text-opacity,1))}.text-rose-300{--tw-text-opacity:1;color:rgb(253 164 175/var(--tw-text-opacity,1))}.text-slate-100{--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240/var(--tw-text-opacity,1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105/var(--tw-text-opacity,1))}.text-slate-950{--tw-text-opacity:1;color:rgb(2 6 23/var(--tw-text-opacity,1))}.text-violet-300{--tw-text-opacity:1;color:rgb(196 181 253/var(--tw-text-opacity,1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.ring{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.blur{--tw-blur:blur(8px)}.blur,.drop-shadow{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.drop-shadow{--tw-drop-shadow:drop-shadow(0 1px 2px rgba(0,0,0,.1)) drop-shadow(0 1px 1px rgba(0,0,0,.06))}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px)}.backdrop-blur,.backdrop-filter{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.ease-in-out{transition-timing-function:cubic-bezier(.4,0,.2,1)}.hover\:bg-slate-800:hover{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.hover\:text-slate-100:hover{--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}@media (min-width:640px){.sm\:left-auto{left:auto}.sm\:right-4{right:1rem}.sm\:inline{display:inline}.sm\:translate-x-0{--tw-translate-x:0px;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.sm\:flex-row{flex-direction:row}.sm\:justify-between{justify-content:space-between}.sm\:p-4{padding:1rem}.sm\:p-5{padding:1.25rem}.sm\:p-6{padding:1.5rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:py-12{padding-top:3rem;padding-bottom:3rem}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-base{font-size:1rem;line-height:1.5rem}}@media (min-width:768px){.md\:flex{display:flex}}@media (min-width:1024px){.lg\:col-span-2{grid-column:span 2/span 2}.lg\:col-span-3{grid-column:span 3/span 3}.lg\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.lg\:grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.lg\:flex-row{flex-direction:row}.lg\:items-end{align-items:flex-end}.lg\:justify-between{justify-content:space-between}.lg\:text-5xl{font-size:3rem;line-height:1}}</style>
+<style>
+  :root { --accent: 52 211 153; }
+  html { scroll-behavior: smooth; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(96,165,250,.10), transparent 60%),
+      #060a13;
+    color: #e2e8f0;
+    transition: background-color .3s ease, color .3s ease;
+  }
+  html[lang="en"] .zh { display: none !important; }
+  html:not([lang="en"]) .en { display: none !important; }
+  .grid-bg {
+    background-image: linear-gradient(rgba(148,163,184,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .card { background: rgba(15,23,42,.65); border: 1px solid rgba(51,65,85,.6); backdrop-filter: blur(8px); }
+  .accent-text { color: rgb(var(--accent)); transition: color .4s ease; }
+  .accent-bg { background: rgb(var(--accent) / .12); border-color: rgb(var(--accent) / .4); transition: all .4s ease; }
+  .hero-grad { background-image: linear-gradient(90deg, #6ee7b7, #bae6fd, #93c5fd); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  .seg { display: inline-flex; flex-wrap: wrap; border: 1px solid #334155; border-radius: .6rem; overflow: hidden; background: rgba(15,23,42,.8); }
+  .seg button { padding: .45rem .85rem; font-size: .8rem; color: #cbd5e1; transition: all .25s ease; white-space: nowrap; display: inline-flex; align-items: center; gap: .4rem; }
+  .seg button + button { border-left: 1px solid #334155; }
+  .seg button:hover { background: rgba(51,65,85,.5); }
+  .seg button[aria-pressed="true"] { background: rgb(var(--bc, 52 211 153)); color: #020617; font-weight: 600; }
+  .seg .dot { width: 8px; height: 8px; border-radius: 9999px; background: rgb(var(--bc)); }
+  .seg button[aria-pressed="true"] .dot { background: #020617; }
+  .seg.tb button { padding: .4rem .75rem; }
+  .seg.tb button[aria-pressed="true"] { background: #22d3ee; color: #020617; }
+
+  /* ---------- topology ---------- */
+  .tp text { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
+  .tp .zone { fill: rgba(15,23,42,.35); stroke: rgba(100,116,139,.55); stroke-dasharray: 6 6; }
+  .tp .zone-t { fill: #94a3b8; font-size: 12px; font-weight: 600; letter-spacing: .06em; }
+  .tp .wire { fill: none; stroke: rgba(100,116,139,.55); stroke-width: 1.5; }
+  .tp .ghost { fill: none; stroke: rgba(100,116,139,.28); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; stroke-linejoin: round; }
+  .tp .flow { fill: none; stroke: rgb(var(--fc)); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 11 9; animation: dash 1.1s linear infinite; filter: drop-shadow(0 0 5px rgb(var(--fc) / .6)); }
+  .tp .flow.static { animation: none; stroke-dasharray: 6 6; stroke-width: 2.5; }
+  @keyframes dash { to { stroke-dashoffset: -20; } }
+  .tp .pk { fill: #fff; filter: drop-shadow(0 0 6px rgb(var(--fc))); }
+  .tp .fz { opacity: 0; transition: opacity .35s ease; }
+  .tp .fz.show { opacity: 1; }
+
+  .tp .node { cursor: pointer; transition: opacity .35s ease; }
+  .tp .node .base { fill: #0b1222; }
+  .tp .node .tint { fill: rgb(var(--c) / .06); stroke: rgb(var(--c) / .55); stroke-width: 1.5; transition: all .3s ease; }
+  .tp .node .ico { color: rgb(var(--c)); }
+  .tp .node .t1 { fill: #f1f5f9; font-size: 14px; font-weight: 700; }
+  .tp .node .t2 { fill: #94a3b8; font-size: 11px; }
+  .tp .node.sm .t1 { font-size: 12px; font-weight: 600; }
+  .tp .node:hover .tint { stroke: rgb(var(--c)); }
+  .tp .node.sel .tint { stroke: rgb(var(--c)); stroke-width: 3; filter: drop-shadow(0 0 10px rgb(var(--c) / .8)); fill: rgb(var(--c) / .14); }
+  .tp .node.dim > :not(.base) { opacity: .3; }
+  .tp .warn { transition: opacity .35s ease; }
+  .tp .xmark circle { fill: #7f1d1d; stroke: #f87171; stroke-width: 2; }
+  .tp .xmark path { stroke: #fecaca; stroke-width: 2.5; stroke-linecap: round; }
+
+  .fade-in { animation: fadeIn .45s ease both; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .pulse-dot { position: relative; }
+  .pulse-dot::after { content: ''; position: absolute; inset: 0; border-radius: 9999px; background: inherit; animation: ping 1.8s infinite; }
+  @keyframes ping { 0% { opacity: .7; transform: scale(1); } 100% { opacity: 0; transform: scale(2.2); } }
+  ::-webkit-scrollbar { height: 8px; width: 8px; }
+  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 8px; }
+  .print-only { display: none; }
+
+  /* =================== LIGHT =================== */
+  html.light body {
+    background: radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(96,165,250,.12), transparent 60%), #f1f5f9;
+    color: #0f172a;
+  }
+  html.light .grid-bg { background-image: linear-gradient(rgba(15,23,42,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,.05) 1px, transparent 1px); }
+  html.light .card { background: rgba(255,255,255,.9); border-color: #e2e8f0; box-shadow: 0 1px 2px rgba(15,23,42,.04); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #059669, #0284c7, #2563eb); }
+  html.light .accent-text { color: color-mix(in srgb, rgb(var(--accent)) 62%, #000); }
+  html.light .text-slate-100 { color: #0f172a; }
+  html.light .text-slate-200 { color: #1e293b; }
+  html.light .text-slate-300 { color: #334155; }
+  html.light .text-slate-400 { color: #475569; }
+  html.light .text-slate-500 { color: #64748b; }
+  html.light .text-slate-600 { color: #94a3b8; }
+  html.light .text-cyan-300, html.light .text-cyan-300\/90 { color: #0e7490; }
+  html.light .text-blue-300 { color: #1d4ed8; }
+  html.light .text-amber-300 { color: #b45309; }
+  html.light .text-red-300, html.light .text-rose-300 { color: #b91c1c; }
+  html.light .text-emerald-300 { color: #047857; }
+  html.light .text-emerald-400 { color: #059669; }
+  html.light .text-violet-300 { color: #6d28d9; }
+  html.light .hover\:text-slate-100:hover { color: #0f172a; }
+  html.light .bg-slate-950\/75 { background: rgba(255,255,255,.82); }
+  html.light .bg-slate-950\/70, html.light .bg-slate-950\/50 { background: #f8fafc; }
+  html.light .bg-slate-900 { background: #ffffff; }
+  html.light .bg-slate-900\/90 { background: #f1f5f9; }
+  html.light .bg-slate-800, html.light .bg-slate-800\/60 { background: #e2e8f0; }
+  html.light .hover\:bg-slate-800:hover { background: #e2e8f0; }
+  html.light .border-slate-600, html.light .border-slate-700 { border-color: #cbd5e1; }
+  html.light .border-slate-800, html.light .border-slate-800\/70 { border-color: #e2e8f0; }
+  html.light .divide-slate-800\/80 > :not([hidden]) ~ :not([hidden]) { border-color: #e2e8f0; }
+  html.light .seg { border-color: #cbd5e1; background: #fff; }
+  html.light .seg button { color: #334155; }
+  html.light .seg button + button { border-left-color: #cbd5e1; }
+  html.light .seg button:hover { background: #f1f5f9; }
+  html.light .seg button[aria-pressed="true"] { color: #020617; }
+  html.light .tp .zone { fill: rgba(255,255,255,.6); stroke: #94a3b8; }
+  html.light .tp .zone-t { fill: #475569; }
+  html.light .tp .wire { stroke: #94a3b8; }
+  html.light .tp .ghost { stroke: rgba(100,116,139,.45); }
+  html.light .tp .pk { fill: rgb(var(--fc)); stroke: #fff; stroke-width: 1.5; }
+  html.light .tp .node .base { fill: #ffffff; }
+  html.light .tp .node .t1 { fill: #0f172a; }
+  html.light .tp .node .t2 { fill: #475569; }
+  html.light .tp .node .ico { color: color-mix(in srgb, rgb(var(--c)) 70%, #000); }
+  html.light ::-webkit-scrollbar-thumb { background: #cbd5e1; }
+
+  /* =================== PRINT =================== */
+  @page { size: A4 landscape; margin: 10mm; }
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    html, body { background: #fff !important; }
+    body { zoom: .62; }
+    .no-print, nav, #toolbar { display: none !important; }
+    .print-only { display: block !important; }
+    .card { backdrop-filter: none !important; break-inside: avoid; box-shadow: none !important; }
+    .overflow-x-auto { overflow: visible !important; }
+    .min-w-\[860px\], .min-w-\[760px\] { min-width: 0 !important; }
+    section { padding-top: 0 !important; padding-bottom: 0 !important; border-top: 0 !important; }
+    #topology, .print-break { break-before: page; }
+    #tp { width: 82% !important; margin: 0 auto; display: block; }
+    .tp .flow { animation: none !important; filter: none !important; }
+    .tp .pk { display: none; }
+    .fade-in { animation: none !important; }
+    header { padding-top: 0 !important; }
+    footer > div { padding-bottom: 0 !important; }
+  }
+</style>
+<style>
+  :root { --accent: 34 211 238; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(34,211,238,.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(251,146,60,.08), transparent 60%),
+      #060a13;
+  }
+  html.light body { background: radial-gradient(1200px 600px at 10% -10%, rgba(34,211,238,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(251,146,60,.10), transparent 60%), #f1f5f9; }
+  .hero-grad { background-image: linear-gradient(90deg, #67e8f9, #bae6fd, #fdba74); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #0e7490, #0369a1, #c2410c); }
+
+  /* toggle switches */
+  .tg { display: inline-flex; align-items: center; gap: .6rem; padding: .45rem .55rem .45rem .9rem; border: 1px solid #334155; border-radius: 9999px; background: rgba(15,23,42,.8); transition: all .25s ease; }
+  .tg .nm { font-weight: 600; font-size: .9rem; color: #e2e8f0; }
+  .tg .ds { font-size: .7rem; color: #94a3b8; }
+  .tg .sw { width: 38px; height: 22px; border-radius: 9999px; background: #334155; position: relative; transition: background .25s ease; flex-shrink: 0; }
+  .tg .sw::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 9999px; background: #94a3b8; transition: all .25s ease; }
+  .tg[aria-pressed="true"] { border-color: rgb(var(--tc) / .7); background: rgb(var(--tc) / .10); }
+  .tg[aria-pressed="true"] .sw { background: rgb(var(--tc)); }
+  .tg[aria-pressed="true"] .sw::after { left: 19px; background: #020617; }
+  html.light .tg { background: #fff; border-color: #cbd5e1; }
+  html.light .tg .nm { color: #0f172a; }
+  html.light .tg .ds { color: #64748b; }
+  html.light .tg .sw { background: #cbd5e1; }
+  .btn-s { height: 34px; padding: 0 .8rem; border: 1px solid #334155; border-radius: .55rem; background: rgba(15,23,42,.8); font-size: .8rem; font-weight: 600; color: #e2e8f0; display: inline-flex; align-items: center; gap: .35rem; }
+  .btn-s:hover { background: rgba(51,65,85,.6); }
+  html.light .btn-s { background: #fff; border-color: #cbd5e1; color: #0f172a; }
+
+  /* sim svg */
+  .sim text { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
+  .sim .zone { fill: rgba(15,23,42,.35); stroke: rgba(100,116,139,.5); stroke-dasharray: 6 6; }
+  .sim .zone-t { fill: #94a3b8; font-size: 13px; font-weight: 600; letter-spacing: .08em; }
+  .sim .pill rect { fill: rgba(51,65,85,.35); stroke: rgba(100,116,139,.6); stroke-width: 1.5; transition: all .3s ease; }
+  .sim .pill .ico { color: #64748b; }
+  .sim .pill .num { fill: #64748b; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; }
+  .sim .pill .nm { fill: #94a3b8; font-size: 14px; font-weight: 700; }
+  .sim .pill .ds { fill: #64748b; font-size: 11px; }
+  .sim .pill .st { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; }
+  .sim .pill.on rect { fill: rgb(var(--pc) / .12); stroke: rgb(var(--pc) / .8); }
+  .sim .pill.on .ico { color: rgb(var(--pc)); }
+  .sim .pill.on .num { fill: rgb(var(--pc)); }
+  .sim .pill.on .nm { fill: #f1f5f9; }
+  .sim .pill.on .ds { fill: #94a3b8; }
+  .sim .pill.act rect { stroke-width: 3; filter: drop-shadow(0 0 12px rgb(var(--pc) / .85)); }
+  .sim .pill.hit rect { stroke: #f87171; stroke-width: 3; fill: rgba(248,113,113,.15); filter: drop-shadow(0 0 12px rgba(248,113,113,.8)); }
+  .sim .pill { cursor: pointer; }
+  .sim .end { cursor: pointer; }
+  .sim .end .ring { fill: #0b1222; stroke-width: 2.5; transition: all .3s ease; }
+  .sim .end .nm { fill: #f1f5f9; font-size: 17px; font-weight: 700; }
+  .sim .end .ds { fill: #94a3b8; font-size: 12px; }
+  .sim .end.dim { opacity: .4; }
+  .sim .end.sel .ring { stroke-width: 4; filter: drop-shadow(0 0 12px currentColor); }
+  .sim .run { fill: none; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 12 9; animation: dash 1.1s linear infinite; }
+  .sim .run.ok { stroke: #34d399; stroke-dasharray: none; filter: drop-shadow(0 0 5px rgba(52,211,153,.6)); }
+  .sim .run.risk { stroke: #fb923c; filter: drop-shadow(0 0 5px rgba(251,146,60,.6)); }
+  .sim .run.go { stroke: #22d3ee; filter: drop-shadow(0 0 5px rgba(34,211,238,.6)); }
+  .sim .seen { fill: none; stroke: #fbbf24; stroke-width: 2.5; stroke-dasharray: 2 6; stroke-linecap: round; }
+  .sim .ghost { fill: none; stroke: rgba(100,116,139,.3); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; }
+  @keyframes dash { to { stroke-dashoffset: -21; } }
+  html.light .sim .zone { fill: rgba(255,255,255,.6); stroke: #94a3b8; }
+  html.light .sim .zone-t { fill: #475569; }
+  html.light .sim .pill rect { fill: #eef2f7; stroke: #94a3b8; }
+  html.light .sim .pill.on .nm, html.light .sim .end .nm { fill: #0f172a; }
+  html.light .sim .end .ring { fill: #fff; }
+  html.light .sim .end .ds, html.light .sim .pill.on .ds { fill: #475569; }
+
+  .verdict { border-width: 1.5px; transition: all .3s ease; }
+  .v-ok { border-color: rgba(52,211,153,.6); background: rgba(52,211,153,.08); color: #6ee7b7; }
+  .v-block { border-color: rgba(34,211,238,.6); background: rgba(34,211,238,.08); color: #67e8f9; }
+  .v-risk { border-color: rgba(251,146,60,.7); background: rgba(251,146,60,.08); color: #fdba74; }
+  .v-run { border-color: rgba(100,116,139,.5); background: rgba(15,23,42,.5); color: #cbd5e1; }
+  html.light .v-ok { color: #047857; } html.light .v-block { color: #0e7490; } html.light .v-risk { color: #c2410c; } html.light .v-run { color: #334155; background: #fff; }
+  .log-line { animation: fadeIn .35s ease both; }
+</style>
+<style>
+  :root { --accent: 168 85 247; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(168,85,247,.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(34,211,238,.08), transparent 60%),
+      #060a13;
+  }
+  html.light body { background: radial-gradient(1200px 600px at 10% -10%, rgba(168,85,247,.10), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(34,211,238,.10), transparent 60%), #f1f5f9; }
+  .hero-grad { background-image: linear-gradient(90deg, #d8b4fe, #bae6fd, #67e8f9); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #7e22ce, #0369a1, #0e7490); }
+
+  /* ---------- policy rows ---------- */
+  .prow { display: grid; grid-template-columns: 30px 66px minmax(0,1fr) 150px 62px; align-items: center; gap: .6rem; padding: .5rem .7rem; border: 1px solid rgba(51,65,85,.6); border-radius: .7rem; background: rgba(15,23,42,.55); transition: all .25s ease; }
+  .prow + .prow { margin-top: .4rem; }
+  .prow .pn { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: #64748b; text-align: center; }
+  .prow .lb { font-size: 10.5px; font-weight: 700; letter-spacing: .04em; text-align: center; padding: .2rem .3rem; border-radius: .4rem; color: rgb(var(--lc)); background: rgb(var(--lc) / .12); border: 1px solid rgb(var(--lc) / .4); }
+  .prow .pnm { font-size: 13px; font-weight: 600; color: #e2e8f0; display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; }
+  .prow .pds { font-size: 11px; color: #94a3b8; margin-top: 1px; }
+  .prow .act { display: inline-flex; align-items: center; gap: .3rem; font-size: 12px; font-weight: 600; color: rgb(var(--ac)); }
+  .prow .mv { display: flex; gap: .25rem; justify-content: flex-end; }
+  .prow .mv button { width: 26px; height: 26px; border-radius: .4rem; border: 1px solid #334155; display: grid; place-items: center; color: #94a3b8; }
+  .prow .mv button:hover:not(:disabled) { background: rgba(51,65,85,.6); color: #f1f5f9; }
+  .prow .mv button:disabled { opacity: .25; cursor: default; }
+  .prow .pend { font-size: 10px; font-weight: 600; font-family: 'JetBrains Mono', monospace; padding: 0 .35rem; border-radius: .3rem; color: #fbbf24; border: 1px solid rgba(251,191,36,.5); }
+  .prow.scan { border-color: #22d3ee; box-shadow: 0 0 0 2px rgba(34,211,238,.35); }
+  .prow.miss { opacity: .4; }
+  .prow.hit { border-color: rgb(var(--ac)); background: rgb(var(--ac) / .13); box-shadow: 0 0 16px rgb(var(--ac) / .35); }
+  .prow.cont { border-color: rgb(251 191 36); background: rgba(251,191,36,.10); }
+  .prow.dflt { border-style: dashed; }
+  .prow.moved { border-color: rgba(251,191,36,.55); }
+
+  .req { display: flex; align-items: center; gap: .5rem; padding: .5rem .65rem; border: 1px solid #334155; border-radius: .6rem; background: rgba(15,23,42,.7); font-size: .78rem; color: #cbd5e1; text-align: left; transition: all .2s ease; }
+  .req:hover { background: rgba(51,65,85,.5); }
+  .req[aria-pressed="true"] { border-color: #a855f7; background: rgba(168,85,247,.15); color: #f1f5f9; font-weight: 600; }
+  .req i, .req svg { flex-shrink: 0; color: #c084fc; }
+
+  .pendbar { border: 1px solid rgba(251,191,36,.6); background: rgba(251,191,36,.08); }
+  .btn-apply { background: #a855f7; color: #fff; border-color: #a855f7; }
+  .btn-apply:hover { background: #9333ea !important; }
+  .btn-apply.pulse { animation: glow 1.4s ease-in-out infinite; }
+  @keyframes glow { 0%,100% { box-shadow: 0 0 0 0 rgba(168,85,247,.6); } 50% { box-shadow: 0 0 0 6px rgba(168,85,247,0); } }
+  .v-alert { border-color: rgba(251,191,36,.7); background: rgba(251,191,36,.08); color: #fcd34d; }
+  .v-red { border-color: rgba(248,113,113,.7); background: rgba(248,113,113,.08); color: #fca5a5; }
+  .v-cyan { border-color: rgba(34,211,238,.6); background: rgba(34,211,238,.08); color: #67e8f9; }
+  html.light .v-alert { color: #b45309; } html.light .v-red { color: #b91c1c; } html.light .v-cyan { color: #0e7490; }
+
+  /* ---------- layer stack ---------- */
+  .lay { display: flex; align-items: center; justify-content: space-between; gap: .75rem; border: 1px solid rgb(var(--lc) / .55); background: rgb(var(--lc) / .12); border-radius: .6rem; padding: .55rem .9rem; cursor: pointer; transition: all .25s ease; width: 100%; text-align: left; }
+  .lay + .lay, .lay + .laygrp, .laygrp + .lay { margin-top: .4rem; }
+  .lay:hover { background: rgb(var(--lc) / .2); }
+  .lay.sel { box-shadow: 0 0 0 2px rgb(var(--lc)), 0 0 18px rgb(var(--lc) / .4); }
+  .lay .ln { font-weight: 700; color: #f1f5f9; }
+  .lay .lt { font-size: 11px; color: #94a3b8; }
+  .lay .lk { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: rgb(var(--lc)); }
+  .lay.flex-col { align-items: stretch; }
+  .pyr { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: .5rem 0 .2rem; }
+  .pyr span { display: block; text-align: center; font-size: 11.5px; font-weight: 600; color: #fff; background: #3b6fd1; border: 1px solid #1e40af; border-radius: 4px; padding: 3px 0; }
+  html.light .lay .ln { color: #0f172a; }
+  html.light .lay .lt { color: #475569; }
+  html.light .lay .lk { color: color-mix(in srgb, rgb(var(--lc)) 65%, #000); }
+
+  /* ---------- dynamic URL ---------- */
+  .du { border: 1.5px solid rgba(100,116,139,.5); border-radius: .75rem; padding: .75rem; background: rgba(15,23,42,.5); transition: all .3s ease; min-height: 104px; }
+  .du.miss { border-color: rgba(251,191,36,.7); background: rgba(251,191,36,.07); }
+  .du.ok { border-color: rgba(52,211,153,.7); background: rgba(52,211,153,.07); }
+  .du.run { border-color: rgba(34,211,238,.7); background: rgba(34,211,238,.07); }
+  .du.exp { border-color: rgba(248,113,113,.6); background: rgba(248,113,113,.06); }
+  .ttl { height: 6px; border-radius: 9999px; background: rgba(51,65,85,.7); overflow: hidden; }
+  .ttl > div { height: 100%; background: #34d399; transition: width .6s ease; }
+
+  html.light .prow, html.light .req, html.light .du { background: #fff; border-color: #cbd5e1; }
+  html.light .prow .pnm { color: #0f172a; }
+  html.light .prow .pds { color: #475569; }
+  html.light .prow .mv button { border-color: #cbd5e1; color: #475569; }
+  html.light .prow .act { color: color-mix(in srgb, rgb(var(--ac)) 70%, #000); }
+  html.light .prow .lb { color: color-mix(in srgb, rgb(var(--lc)) 65%, #000); }
+  html.light .prow.hit { background: rgb(var(--ac) / .12); }
+  html.light .prow.cont { background: rgba(251,191,36,.12); }
+  html.light .req { color: #334155; }
+  html.light .req[aria-pressed="true"] { background: rgba(168,85,247,.12); color: #0f172a; }
+  html.light .req i, html.light .req svg { color: #7e22ce; }
+  html.light .pendbar { background: #fffbeb; }
+  html.light .du.miss { background: #fffbeb; } html.light .du.ok { background: #ecfdf5; } html.light .du.run { background: #ecfeff; } html.light .du.exp { background: #fef2f2; }
+  @media (max-width: 640px) { .prow { grid-template-columns: 24px 58px minmax(0,1fr) 54px; } .prow .act { grid-column: 3; } .prow .mv { grid-row: 1; grid-column: 4; } }
+  @media print {
+    .mv, #pendBar, #presetRow { display: none !important; }
+    .prow { grid-template-columns: 30px 66px minmax(0,1fr) 150px; }
+    .btn-apply.pulse { animation: none; }
+    #sim .card { break-inside: auto; }
+    .prow { break-inside: avoid; }
+  }
+</style>
+</head>
+<body class="font-sans antialiased min-h-screen">
+
+<nav class="sticky top-0 z-40 border-b border-slate-800/70 bg-slate-950/75 backdrop-blur">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+    <a href="index.html" class="flex items-center gap-2 min-w-0" title="Use Case Hub">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-400 to-cyan-400 grid place-items-center shrink-0"><i data-lucide="list-ordered" class="w-4 h-4 text-slate-950"></i></div>
+      <span class="font-semibold text-sm truncate"><span class="zh">即時防護政策最佳實務</span><span class="en">Real-time Protection Best Practices</span></span>
+    </a>
+    <div class="hidden md:flex items-center gap-1 text-xs text-slate-400">
+      <a href="index.html" class="no-print px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100 inline-flex items-center gap-1"><i data-lucide="layout-grid" class="w-3.5 h-3.5"></i><span class="zh">Use Case 首頁</span><span class="en">Use Case Hub</span></a>
+      <a href="#sim" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">政策比對</span><span class="en">Evaluation</span></a>
+      <a href="#layers" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">政策分層</span><span class="en">Structure</span></a>
+      <a href="#guide" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">通用原則</span><span class="en">Guidelines</span></a>
+    </div>
+  </div>
+</nav>
+
+<header class="grid-bg border-b border-slate-800/70">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
+    <div class="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-widest text-violet-300 mb-4"><i data-lucide="radio-tower" class="w-3.5 h-3.5"></i> Netskope One · Real-time Protection · Policy Design</div>
+    <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+      <span class="zh"><span class="hero-grad">即時防護政策</span>：順序決定結果</span>
+      <span class="en"><span class="hero-grad">Real-time Protection:</span> Order Decides the Outcome</span>
+    </h1>
+    <p class="mt-3 text-sm sm:text-base text-slate-400 max-w-3xl">
+      <span class="zh">即時防護政策由上而下逐條比對，命中就執行該動作並停止往下比對；只有設為 Alert 與 Continue 的 DLP 政策例外。都沒有命中時，Netskope 預設允許。所以政策要由精確到廣泛排列：Threat → Utility → RBI → CASB → Web → NPA。</span>
+      <span class="en">Real-time Protection policies are evaluated top-down. The first match applies its action and evaluation stops; only DLP policies set to Alert and Continue keep going. If nothing matches, Netskope allows by default. So order policies from specific to broad: Threat → Utility → RBI → CASB → Web → NPA.</span>
+    </p>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6">
+
+<!-- 01 SIM -->
+<section id="sim" class="py-10 scroll-mt-16">
+  <div class="mb-6 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+    <div>
+      <div class="text-xs font-mono uppercase tracking-widest text-violet-300">01 · Policy Evaluation</div>
+      <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">政策比對模擬：調整順序、套用變更、看結果</span><span class="en">Evaluation simulator: reorder, apply, see the result</span></h2>
+      <p class="mt-2 text-sm text-slate-400 max-w-3xl"><span class="zh">選一個請求，看它從第 1 條開始往下比對。用 ↑↓ 調整順序後，要按「套用變更」才會生效，和管理介面的 Apply Changes 一樣。</span><span class="en">Pick a request and watch it evaluated from rule 1 down. Reorder with ↑↓; changes take effect only after Apply Changes, just like the console.</span></p>
+    </div>
+    <div id="presetRow" class="no-print flex flex-wrap gap-2">
+      <button class="btn-s" data-preset="exc"><i data-lucide="flask-conical" class="w-3.5 h-3.5"></i><span class="zh">示範：例外放到封鎖之後</span><span class="en">Demo: exception below block</span></button>
+      <button class="btn-s" data-preset="rbi"><i data-lucide="flask-conical" class="w-3.5 h-3.5"></i><span class="zh">示範：廣泛規則放到前面</span><span class="en">Demo: broad rule first</span></button>
+      <button class="btn-s" data-preset="best"><i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i><span class="zh">建議順序</span><span class="en">Recommended order</span></button>
+    </div>
+  </div>
+
+  <div class="grid lg:grid-cols-5 gap-4">
+    <div class="lg:col-span-3 card rounded-2xl p-3 sm:p-4">
+      <div id="pendBar" class="pendbar hidden rounded-xl px-3 py-2.5 mb-3 flex flex-wrap items-center justify-between gap-2">
+        <div class="text-sm text-amber-300 flex items-center gap-2"><i data-lucide="triangle-alert" class="w-4 h-4"></i><span class="zh">有尚未套用的變更，比對仍依目前生效的順序</span><span class="en">Unapplied changes: evaluation still uses the live order</span></div>
+        <div class="flex gap-2">
+          <button id="btnDiscard" class="btn-s"><span class="zh">捨棄</span><span class="en">Discard</span></button>
+          <button id="btnApply" class="btn-s btn-apply pulse"><i data-lucide="check" class="w-3.5 h-3.5"></i><span class="zh">套用變更</span><span class="en">Apply Changes</span></button>
+        </div>
+      </div>
+      <div class="flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-slate-500 px-2 pb-2">
+        <span><span class="zh">由上而下比對 · 精確 → 廣泛</span><span class="en">Top-down · specific → broad</span></span>
+        <span class="hidden sm:inline"><span class="zh">動作</span><span class="en">Action</span></span>
+      </div>
+      <div id="polList"></div>
+    </div>
+
+    <div class="lg:col-span-2 flex flex-col gap-4">
+      <div class="card rounded-2xl p-4">
+        <div class="text-xs font-mono uppercase tracking-widest text-slate-500 mb-2"><span class="zh">測試請求</span><span class="en">Test request</span></div>
+        <div id="reqGrid" class="grid sm:grid-cols-2 gap-2"></div>
+        <div id="reqCard" class="mt-3 rounded-xl border border-slate-700 bg-slate-950/50 p-3 font-mono text-xs leading-relaxed"></div>
+      </div>
+      <div id="verdict" class="verdict rounded-2xl p-4"></div>
+      <div class="card rounded-2xl p-4">
+        <div class="flex items-center justify-between mb-2">
+          <div class="text-xs font-mono uppercase tracking-widest text-slate-500"><span class="zh">比對紀錄</span><span class="en">Evaluation log</span></div>
+          <button id="btnReplay" class="btn-s no-print"><i data-lucide="play" class="w-3.5 h-3.5"></i><span class="zh">重播</span><span class="en">Replay</span></button>
+        </div>
+        <div id="log" class="font-mono text-[11px] space-y-1 min-h-[90px]"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 LAYERS -->
+<section id="layers" class="py-10 border-t border-slate-800/70 scroll-mt-16 print-break">
+  <div class="mb-6">
+    <div class="text-xs font-mono uppercase tracking-widest text-violet-300">02 · Policy Structure</div>
+    <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">政策分層：由精確到廣泛</span><span class="en">Policy layers: specific to broad</span></h2>
+    <p class="mt-2 text-sm text-slate-400 max-w-3xl"><span class="zh">Threat Protection 放最上面，阻擋下載惡意程式、上傳機敏資料到未核准應用等高風險行為；範圍較廣的存取控制放在下方。點選各層查看用途與範例。</span><span class="en">Threat Protection goes on top to block high-risk behavior such as downloading malware or uploading sensitive data to unsanctioned apps; broader access control goes toward the bottom. Click a layer for its purpose and examples.</span></p>
+  </div>
+  <div class="grid lg:grid-cols-5 gap-4">
+    <div class="lg:col-span-3 card rounded-2xl p-4 sm:p-5 flex gap-3">
+      <div class="flex flex-col items-center shrink-0 pt-1 text-[10px] font-mono uppercase tracking-widest text-slate-500">
+        <span class="zh">精確</span><span class="en">Specific</span>
+        <div class="flex-1 w-px my-2" style="background:linear-gradient(#a855f7,#4ade80)"></div>
+        <span class="zh">廣泛</span><span class="en">Broad</span>
+      </div>
+      <div id="layerStack" class="flex-1 min-w-0"></div>
+    </div>
+    <div id="layerInfo" class="lg:col-span-2 card rounded-2xl p-5"></div>
+  </div>
+</section>
+
+<!-- 03 GUIDE -->
+<section id="guide" class="py-10 border-t border-slate-800/70 scroll-mt-16 print-break">
+  <div class="mb-6">
+    <div class="text-xs font-mono uppercase tracking-widest text-violet-300">03 · General Guidelines</div>
+    <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">通用原則</span><span class="en">General guidelines</span></h2>
+  </div>
+  <div id="guideCards" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+
+  <div class="mt-4 card rounded-2xl p-5 sm:p-6">
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-3 mb-4">
+      <div>
+        <div class="flex items-center gap-2 font-semibold"><i data-lucide="refresh-cw" class="w-4 h-4 text-violet-300"></i><span class="zh">動態 URL 分類（Dynamic URL Classification）</span><span class="en">Dynamic URL Classification</span></div>
+        <p class="mt-1 text-sm text-slate-400 max-w-3xl"><span class="zh">URL 不在 Inline（NSProxy）資料庫時，系統會非同步查詢另一個更大的資料庫找出正確類別。結果在同一個 POP 的所有執行個體間共享 12 小時，到期後再次存取時自動更新。</span><span class="en">When a URL is not in the inline (NSProxy) database, the system starts an asynchronous lookup in a second, larger database. The category is shared across all instances in the same POP for 12 hours and refreshed automatically on the next access after it expires.</span></p>
+      </div>
+      <div class="seg no-print" id="segDurl"></div>
+    </div>
+    <div id="durl" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3"></div>
+    <div id="durlNote" class="mt-3 text-sm text-slate-300"></div>
+  </div>
+</section>
+</main>
+
+<footer class="border-t border-slate-800/70 mt-4">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-28 text-xs text-slate-500 flex flex-col sm:flex-row gap-2 sm:justify-between">
+    <span>Netskope · Real-time Protection Policy Best Practices</span>
+    <span><span class="zh">依 Netskope「Best Practices for Real-time Protection Policies」整理；政策範例為示意。</span><span class="en">Based on Netskope's "Best Practices for Real-time Protection Policies"; sample policies are illustrative.</span></span>
+  </div>
+</footer>
+
+<div id="toolbar" class="fixed bottom-4 left-1/2 -translate-x-1/2 sm:left-auto sm:right-4 sm:translate-x-0 z-50 card rounded-xl px-2 py-2 flex items-center gap-2 shadow-2xl">
+  <a href="index.html" class="h-[34px] w-[34px] grid place-items-center rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800" title="Use Case Hub"><i data-lucide="layout-grid" class="w-4 h-4"></i></a>
+  <div class="seg tb" id="segLang"><button data-lang="zh" aria-pressed="true">中文</button><button data-lang="en" aria-pressed="false">EN</button></div>
+  <div class="seg tb" id="segTheme">
+    <button data-theme="dark" aria-pressed="true"><i data-lucide="moon" class="w-3.5 h-3.5"></i><span class="zh">深</span><span class="en">Dark</span></button>
+    <button data-theme="light" aria-pressed="false"><i data-lucide="sun" class="w-3.5 h-3.5"></i><span class="zh">淺</span><span class="en">Light</span></button>
+  </div>
+  <button id="btnPdf" class="h-[34px] px-3 inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800 text-[13px] font-medium"><i data-lucide="file-down" class="w-4 h-4"></i> PDF</button>
+</div>
+
+<script id="icon-shim">/* Inlined Lucide icons (ISC License, lucide.dev) — no CDN needed */
+window.lucide = (function () {
+  const ICONS = {"list-ordered":[["path",{"d":"M11 5h10"}],["path",{"d":"M11 12h10"}],["path",{"d":"M11 19h10"}],["path",{"d":"M4 4h1v5"}],["path",{"d":"M4 9h2"}],["path",{"d":"M6.5 20H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02"}]],"layout-grid":[["rect",{"width":"7","height":"7","x":"3","y":"3","rx":"1"}],["rect",{"width":"7","height":"7","x":"14","y":"3","rx":"1"}],["rect",{"width":"7","height":"7","x":"14","y":"14","rx":"1"}],["rect",{"width":"7","height":"7","x":"3","y":"14","rx":"1"}]],"radio-tower":[["path",{"d":"M4.9 16.1C1 12.2 1 5.8 4.9 1.9"}],["path",{"d":"M7.8 4.7a6.14 6.14 0 0 0-.8 7.5"}],["circle",{"cx":"12","cy":"9","r":"2"}],["path",{"d":"M16.2 4.8c2 2 2.26 5.11.8 7.47"}],["path",{"d":"M19.1 1.9a9.96 9.96 0 0 1 0 14.1"}],["path",{"d":"M9.5 18h5"}],["path",{"d":"m8 22 4-11 4 11"}]],"flask-conical":[["path",{"d":"M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"}],["path",{"d":"M6.453 15h11.094"}],["path",{"d":"M8.5 2h7"}]],"rotate-ccw":[["path",{"d":"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"}],["path",{"d":"M3 3v5h5"}]],"triangle-alert":[["path",{"d":"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"}],["path",{"d":"M12 9v4"}],["path",{"d":"M12 17h.01"}]],"check":[["path",{"d":"M20 6 9 17l-5-5"}]],"play":[["path",{"d":"M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"}]],"refresh-cw":[["path",{"d":"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"}],["path",{"d":"M21 3v5h-5"}],["path",{"d":"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"}],["path",{"d":"M8 16H3v5"}]],"moon":[["path",{"d":"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"}]],"sun":[["circle",{"cx":"12","cy":"12","r":"4"}],["path",{"d":"M12 2v2"}],["path",{"d":"M12 20v2"}],["path",{"d":"m4.93 4.93 1.41 1.41"}],["path",{"d":"m17.66 17.66 1.41 1.41"}],["path",{"d":"M2 12h2"}],["path",{"d":"M20 12h2"}],["path",{"d":"m6.34 17.66-1.41 1.41"}],["path",{"d":"m19.07 4.93-1.41 1.41"}]],"file-down":[["path",{"d":"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"}],["path",{"d":"M14 2v5a1 1 0 0 0 1 1h5"}],["path",{"d":"M12 18v-6"}],["path",{"d":"m9 15 3 3 3-3"}]],"arrow-up":[["path",{"d":"m5 12 7-7 7 7"}],["path",{"d":"M12 19V5"}]],"arrow-down":[["path",{"d":"M12 5v14"}],["path",{"d":"m19 12-7 7-7-7"}]],"circle-check":[["circle",{"cx":"12","cy":"12","r":"10"}],["path",{"d":"m16 9-5.5 5.5L8 12"}]],"loader":[["path",{"d":"M12 2v4"}],["path",{"d":"m16.2 7.8 2.9-2.9"}],["path",{"d":"M18 12h4"}],["path",{"d":"m16.2 16.2 2.9 2.9"}],["path",{"d":"M12 18v4"}],["path",{"d":"m4.9 19.1 2.9-2.9"}],["path",{"d":"M2 12h4"}],["path",{"d":"m4.9 4.9 2.9 2.9"}]],"key":[["path",{"d":"m2 21 9.6-9.6"}],["path",{"d":"m7.5 15.5 2.3 2.3a1 1 0 0 1 0 1.4l-2.1 2.1a1 1 0 0 1-1.4 0L4 19"}],["circle",{"cx":"15.5","cy":"7.5","r":"5.5"}]],"circle-x":[["circle",{"cx":"12","cy":"12","r":"10"}],["path",{"d":"m15 9-6 6"}],["path",{"d":"m9 9 6 6"}]],"monitor-play":[["path",{"d":"M15.033 9.44a.647.647 0 0 1 0 1.12l-4.065 2.352a.645.645 0 0 1-.968-.56V7.648a.645.645 0 0 1 .967-.56z"}],["path",{"d":"M12 17v4"}],["path",{"d":"M8 21h8"}],["rect",{"x":"2","y":"3","width":"20","height":"14","rx":"2"}]],"bell-ring":[["path",{"d":"M10.268 21a2 2 0 0 0 3.464 0"}],["path",{"d":"M22 8c0-2.3-.8-4.3-2-6"}],["path",{"d":"M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"}],["path",{"d":"M4 2C2.8 3.7 2 5.7 2 8"}]],"message-square-warning":[["path",{"d":"M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"}],["path",{"d":"M12 15h.01"}],["path",{"d":"M12 7v4"}]],"upload":[["path",{"d":"M12 3v12"}],["path",{"d":"m17 8-5-5-5 5"}],["path",{"d":"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"}]],"shield-alert":[["path",{"d":"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"}],["path",{"d":"M12 8v4"}],["path",{"d":"M12 16h.01"}]],"bug":[["path",{"d":"M12 20v-9"}],["path",{"d":"M14 7a4 4 0 0 1 4 4v3a6 6 0 0 1-12 0v-3a4 4 0 0 1 4-4z"}],["path",{"d":"M14.12 3.88 16 2"}],["path",{"d":"M21 21a4 4 0 0 0-3.81-4"}],["path",{"d":"M21 5a4 4 0 0 1-3.55 3.97"}],["path",{"d":"M22 13h-4"}],["path",{"d":"M3 21a4 4 0 0 1 3.81-4"}],["path",{"d":"M3 5a4 4 0 0 0 3.55 3.97"}],["path",{"d":"M6 13H2"}],["path",{"d":"m8 2 1.88 1.88"}],["path",{"d":"M9 7.13V6a3 3 0 1 1 6 0v1.13"}]],"download":[["path",{"d":"M12 15V3"}],["path",{"d":"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"}],["path",{"d":"m7 10 5 5 5-5"}]],"user-cog":[["path",{"d":"M10 15H6a4 4 0 0 0-4 4v2"}],["path",{"d":"m14.305 16.53.923-.382"}],["path",{"d":"m15.228 13.852-.923-.383"}],["path",{"d":"m16.852 12.228-.383-.923"}],["path",{"d":"m16.852 17.772-.383.924"}],["path",{"d":"m19.148 12.228.383-.923"}],["path",{"d":"m19.53 18.696-.382-.924"}],["path",{"d":"m20.772 13.852.924-.383"}],["path",{"d":"m20.772 16.148.924.383"}],["circle",{"cx":"18","cy":"15","r":"3"}],["circle",{"cx":"9","cy":"7","r":"4"}]],"server":[["rect",{"width":"20","height":"8","x":"2","y":"2","rx":"2","ry":"2"}],["rect",{"width":"20","height":"8","x":"2","y":"14","rx":"2","ry":"2"}],["line",{"x1":"6","x2":"6.01","y1":"6","y2":"6"}],["line",{"x1":"6","x2":"6.01","y1":"18","y2":"18"}]],"building":[["path",{"d":"M12 10h.01"}],["path",{"d":"M12 14h.01"}],["path",{"d":"M12 6h.01"}],["path",{"d":"M16 10h.01"}],["path",{"d":"M16 14h.01"}],["path",{"d":"M16 6h.01"}],["path",{"d":"M8 10h.01"}],["path",{"d":"M8 14h.01"}],["path",{"d":"M8 6h.01"}],["path",{"d":"M9 22v-3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"}],["rect",{"x":"4","y":"2","width":"16","height":"20","rx":"2"}]],"link":[["path",{"d":"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"}],["path",{"d":"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"}]],"file-up":[["path",{"d":"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"}],["path",{"d":"M14 2v5a1 1 0 0 0 1 1h5"}],["path",{"d":"M12 12v6"}],["path",{"d":"m15 15-3-3-3 3"}]],"cloud":[["path",{"d":"M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"}]],"cloud-upload":[["path",{"d":"M12 13v8"}],["path",{"d":"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"}],["path",{"d":"m8 17 4-4 4 4"}]],"dice-5":[["rect",{"width":"18","height":"18","x":"3","y":"3","rx":"2","ry":"2"}],["path",{"d":"M16 8h.01"}],["path",{"d":"M8 8h.01"}],["path",{"d":"M8 16h.01"}],["path",{"d":"M16 16h.01"}],["path",{"d":"M12 12h.01"}]],"newspaper":[["path",{"d":"M15 18h-5"}],["path",{"d":"M18 14h-8"}],["path",{"d":"M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-4 0v-9a2 2 0 0 1 2-2h2"}],["rect",{"width":"8","height":"4","x":"10","y":"6","rx":"1"}]],"lock-keyhole":[["circle",{"cx":"12","cy":"16","r":"1"}],["rect",{"x":"3","y":"10","width":"18","height":"12","rx":"2"}],["path",{"d":"M7 10V7a5 5 0 0 1 10 0v3"}]],"scan":[["path",{"d":"M3 7V5a2 2 0 0 1 2-2h2"}],["path",{"d":"M17 3h2a2 2 0 0 1 2 2v2"}],["path",{"d":"M21 17v2a2 2 0 0 1-2 2h-2"}],["path",{"d":"M7 21H5a2 2 0 0 1-2-2v-2"}]],"user":[["path",{"d":"M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"}],["circle",{"cx":"12","cy":"7","r":"4"}]],"activity":[["path",{"d":"M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"}]],"cat":[["path",{"d":"M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.26 1.4.58-.42 7-.42 7 .57 1.07 1 2.24 1 3.44C21 17.9 16.97 21 12 21s-9-3-9-7.56c0-1.25.5-2.4 1-3.44 0 0-1.89-6.42-.5-7 1.39-.58 4.72.23 6.5 2.23A9.04 9.04 0 0 1 12 5Z"}],["path",{"d":"M8 14v.5"}],["path",{"d":"M16 14v.5"}],["path",{"d":"M11.25 16.25h1.5L12 17l-.75-.75Z"}]],"arrow-down-narrow-wide":[["path",{"d":"m3 16 4 4 4-4"}],["path",{"d":"M7 20V4"}],["path",{"d":"M11 4h4"}],["path",{"d":"M11 8h7"}],["path",{"d":"M11 12h10"}]],"user-round":[["circle",{"cx":"12","cy":"8","r":"5"}],["path",{"d":"M20 21a8 8 0 0 0-16 0"}]],"shield-check":[["path",{"d":"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"}],["path",{"d":"m9 12 2 2 4-4"}]],"star":[["path",{"d":"M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"}]],"ban":[["circle",{"cx":"12","cy":"12","r":"10"}],["path",{"d":"M4.929 4.929 19.07 19.071"}]],"code":[["path",{"d":"m16 18 6-6-6-6"}],["path",{"d":"m8 6-6 6 6 6"}]],"check-check":[["path",{"d":"M18 6 7 17l-5-5"}],["path",{"d":"m22 10-7.5 7.5L13 16"}]],"database":[["ellipse",{"cx":"12","cy":"5","rx":"9","ry":"3"}],["path",{"d":"M3 5V19A9 3 0 0 0 21 19V5"}],["path",{"d":"M3 12A9 3 0 0 0 21 12"}]],"search":[["path",{"d":"m21 21-4.34-4.34"}],["circle",{"cx":"11","cy":"11","r":"8"}]],"share-2":[["circle",{"cx":"18","cy":"5","r":"3"}],["circle",{"cx":"6","cy":"12","r":"3"}],["circle",{"cx":"18","cy":"19","r":"3"}],["line",{"x1":"8.59","x2":"15.42","y1":"13.51","y2":"17.49"}],["line",{"x1":"15.41","x2":"8.59","y1":"6.51","y2":"10.49"}]],"clock":[["circle",{"cx":"12","cy":"12","r":"10"}],["path",{"d":"M12 6v6l4 2"}]]};
+  const NS = 'http://www.w3.org/2000/svg';
+  function createIcons() {
+    document.querySelectorAll('i[data-lucide]').forEach(function (el) {
+      const name = el.getAttribute('data-lucide');
+      const node = ICONS[name];
+      if (!node) return;
+      const svg = document.createElementNS(NS, 'svg');
+      const base = { xmlns: NS, width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' };
+      Object.keys(base).forEach(function (k) { svg.setAttribute(k, base[k]); });
+      svg.setAttribute('class', ('lucide lucide-' + name + ' ' + (el.getAttribute('class') || '')).trim());
+      node.forEach(function (child) {
+        const c = document.createElementNS(NS, child[0]);
+        Object.keys(child[1]).forEach(function (k) { if (k !== 'key') c.setAttribute(k, child[1][k]); });
+        svg.appendChild(c);
+      });
+      el.replaceWith(svg);
+    });
+  }
+  return { createIcons: createIcons };
+})();
+</script>
+<script>
+let lang = document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'zh';
+const L = (zh, en) => ({ zh, en });
+const tr = (x) => (x && typeof x === 'object' && 'zh' in x) ? x[lang] : x;
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => document.querySelectorAll(s);
+const esc = (s) => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+/* ===================== DATA ===================== */
+const LAYERS = {
+  threat:  { nm: 'Threat',  c: '168 85 247' },
+  utility: { nm: 'Utility', c: '148 163 184' },
+  rbi:     { nm: 'RBI',     c: '34 211 238' },
+  casb:    { nm: 'CASB',    c: '96 165 250' },
+  web:     { nm: 'Web',     c: '74 222 128' },
+  npa:     { nm: 'NPA',     c: '251 146 60' }
+};
+const ACTS = {
+  allow:  { nm: L('允許', 'Allow'),                 c: '52 211 153',  icon: 'circle-check', v: 'v-ok' },
+  block:  { nm: L('封鎖', 'Block'),                 c: '248 113 113', icon: 'circle-x',     v: 'v-red' },
+  rbi:    { nm: L('隔離瀏覽（RBI）', 'Isolate (RBI)'), c: '34 211 238', icon: 'monitor-play', v: 'v-cyan' },
+  alert:  { nm: L('告警並繼續', 'Alert & Continue'), c: '251 191 36',  icon: 'bell-ring',    v: 'v-alert' },
+  ualert: { nm: L('使用者提示', 'User Alert'),       c: '251 191 36',  icon: 'message-square-warning', v: 'v-alert' }
+};
+const ANY = L('任何人', 'Any');
+const POL = {
+  p1:  { layer: 'threat',  nm: L('允許資安風險例外清單', 'Allow Security Risk exceptions'), src: ANY, dst: L('URL 清單：資安風險例外', 'URL list: Security Risk exceptions'), act: 'allow', m: r => r.cat === 'secrisk' && r.exc },
+  p2:  { layer: 'threat',  nm: L('封鎖資安風險類別', 'Block Security Risk category'), src: ANY, dst: L('類別：Security Risk', 'Category: Security Risk'), act: 'block', m: r => r.cat === 'secrisk' },
+  p3:  { layer: 'threat',  nm: L('封鎖惡意程式', 'Block malware'), src: ANY, dst: L('下載／上傳 · 威脅防護設定檔（高／中風險）', 'Download / upload · threat profile (high / medium)'), act: 'block', m: r => !!r.malware },
+  p4:  { layer: 'utility', nm: L('政策同步測試', 'Policy sync test'), src: L('IT 測試人員', 'IT tester'), dst: L('Netskope 測試頁', 'Netskope test page'), act: 'ualert', m: r => r.user === 'it' && r.cat === 'nstest' },
+  p5:  { layer: 'utility', nm: L('封鎖 DNS over HTTPS', 'Block DNS over HTTPS'), src: ANY, dst: L('類別：DNS Over HTTPS', 'Category: DNS Over HTTPS'), act: 'block', m: r => r.cat === 'doh' },
+  p6:  { layer: 'rbi',     nm: L('允許未分類的公司網域', 'Allow uncategorized company domains'), src: ANY, dst: L('URL 清單：公司網域', 'URL list: company domains'), act: 'allow', m: r => r.cat === 'uncat' && r.corp },
+  p7:  { layer: 'rbi',     nm: L('風險不明網域導向 RBI', 'Send unknown-risk domains to RBI'), src: ANY, dst: L('未分類、停放網域、新註冊網域', 'Uncategorized, parked, newly registered'), act: 'rbi', m: r => ['uncat', 'parked', 'nrd'].includes(r.cat) },
+  p8:  { layer: 'casb',    nm: L('DLP：個資上傳告警', 'DLP: alert on PII upload'), src: ANY, dst: L('雲端儲存 · 上傳 · DLP 個資規則', 'Cloud storage · upload · DLP PII profile'), act: 'alert', terminal: false, m: r => r.act === 'upload' && r.pii },
+  p9:  { layer: 'casb',    nm: L('允許企業 Microsoft 365 實例', 'Allow corporate Microsoft 365 instance'), src: ANY, dst: L('Microsoft 365：企業實例', 'Microsoft 365: corporate instance'), act: 'allow', m: r => r.inst === 'corp' },
+  p10: { layer: 'casb',    nm: L('封鎖上傳至個人雲端儲存', 'Block uploads to personal cloud storage'), src: ANY, dst: L('雲端儲存：個人實例 · 上傳', 'Cloud storage: personal instance · upload'), act: 'block', m: r => r.inst === 'personal' && r.act === 'upload' },
+  p11: { layer: 'web',     nm: L('封鎖不當使用類別', 'Block AUP categories'), src: ANY, dst: L('類別群組：公司 AUP（成人、暴力…）', 'Category group: company AUP (adult, violence…)'), act: 'block', m: r => r.cat === 'aup' },
+  p12: { layer: 'web',     nm: L('封鎖博弈網站', 'Block gambling'), src: ANY, dst: L('類別：Gambling', 'Category: Gambling'), act: 'block', m: r => r.cat === 'gambling' },
+  p13: { layer: 'npa',     nm: L('員工存取內部 ERP', 'Employees access internal ERP'), src: L('群組：員工', 'Group: Employees'), dst: L('私有應用：ERP', 'Private app: ERP'), act: 'allow', m: r => !!r.priv }
+};
+const BEST = Object.keys(POL);
+const CATN = { secrisk: 'Security Risk', tech: 'Technology', doh: 'DNS Over HTTPS', uncat: L('未分類', 'Uncategorized'), nrd: 'Newly Registered Domain', cloud: 'Cloud Storage', gambling: 'Gambling', news: 'News & Media', nstest: 'Netskope', priv: L('私有應用', 'Private app') };
+const EMP = L('一般員工', 'Employee');
+const REQ = {
+  exc:   { icon: 'shield-alert', label: L('資安研究網站（例外）', 'Security research site (exception)'), url: 'research.sec-lab.example', cat: 'secrisk', exc: true, note: L('屬 Security Risk 類別，但已列入例外清單', 'Security Risk category, but on the exception list') },
+  mal:   { icon: 'bug', label: L('下載含惡意程式的檔案', 'Download a malicious file'), url: 'files.freeshare.example/setup.exe', cat: 'tech', act: 'download', malware: true, note: L('檔案含高風險惡意程式', 'File contains high-severity malware') },
+  sync:  { icon: 'user-cog', label: L('IT 驗證政策同步', 'IT checks policy sync'), url: 'Netskope test page', cat: 'nstest', user: 'it', note: L('只針對特定測試人員的政策', 'A policy scoped to one tester') },
+  doh:   { icon: 'server', label: 'DNS over HTTPS', url: 'dns.example/dns-query', cat: 'doh', note: L('會繞過 DNS 層控管的加密 DNS', 'Encrypted DNS that bypasses DNS-layer control') },
+  intra: { icon: 'building', label: L('新上線的公司網站', 'New company site'), url: 'portal-new.corp.example', cat: 'uncat', corp: true, note: L('尚未分類，但屬於公司網域', 'Not yet categorized, but a company domain') },
+  nrd:   { icon: 'link', label: L('新註冊網域的連結', 'Newly registered domain'), url: 'promo-x7k.example', cat: 'nrd', note: L('三天前才註冊的網域', 'Registered three days ago') },
+  pii:   { icon: 'file-up', label: L('個資上傳企業 OneDrive', 'PII to corporate OneDrive'), url: 'contoso-my.sharepoint.com', cat: 'cloud', act: 'upload', pii: true, inst: 'corp', note: L('檔案含客戶個資，企業租戶', 'File holds customer PII; corporate tenant') },
+  pers:  { icon: 'cloud-upload', label: L('上傳至個人 OneDrive', 'Upload to personal OneDrive'), url: 'onedrive.live.com', cat: 'cloud', act: 'upload', inst: 'personal', note: L('個人帳號登入', 'Signed in with a personal account') },
+  gamb:  { icon: 'dice-5', label: L('博弈網站', 'Gambling site'), url: 'bet-online.example', cat: 'gambling' },
+  news:  { icon: 'newspaper', label: L('一般新聞網站', 'News site'), url: 'news.example', cat: 'news', note: L('沒有任何政策涵蓋', 'No policy covers it') },
+  npa:   { icon: 'lock-keyhole', label: L('存取內部 ERP（NPA）', 'Internal ERP (NPA)'), url: 'erp.corp.local', cat: 'priv', priv: true }
+};
+const ACTN = { upload: L('上傳', 'Upload'), download: L('下載', 'Download') };
+
+const PRESETS = {
+  exc:  { order: ['p2', 'p1', ...BEST.slice(2)], req: 'exc' },
+  rbi:  { order: [...BEST.slice(0, 5), 'p7', 'p6', ...BEST.slice(7)], req: 'intra' },
+  best: { order: [...BEST], req: null }
+};
+
+let applied = [...BEST], draft = [...BEST];
+let req = 'exc', result = null, step = 0, timer = null;
+
+/* ===================== ENGINE ===================== */
+function evaluate(order) {
+  const r = REQ[req], trace = [], alerts = [];
+  let final = null;
+  for (let i = 0; i < order.length; i++) {
+    const id = order[i], p = POL[id];
+    if (!p.m(r)) { trace.push({ id, kind: 'miss' }); continue; }
+    if (p.terminal === false) { trace.push({ id, kind: 'cont' }); alerts.push(id); continue; }
+    trace.push({ id, kind: 'hit' }); final = { id, act: p.act, pos: i + 1 }; break;
+  }
+  if (!final) final = { id: null, act: 'allow', pos: null };
+  return { trace, final, alerts, order: [...order] };
+}
+const pending = () => draft.join() !== applied.join();
+
+/* ===================== RENDER: POLICIES ===================== */
+function renderPolicies() {
+  const shown = result ? result.trace.slice(0, step) : [];
+  const stateOf = {};
+  shown.forEach(t => stateOf[t.id] = t.kind);
+  const scanning = result && step < result.trace.length ? result.trace[step].id : null;
+  const finished = result && step >= result.trace.length;
+  const rows = draft.map((id, i) => {
+    const p = POL[id], ly = LAYERS[p.layer], a = ACTS[p.act];
+    const livePos = applied.indexOf(id) + 1;
+    const moved = livePos !== i + 1;
+    let cls = stateOf[id] || '';
+    if (id === scanning) cls = 'scan';
+    return `<div class="prow ${cls} ${moved ? 'moved' : ''}" data-id="${id}" style="--lc:${ly.c};--ac:${a.c}">
+      <span class="pn">${i + 1}</span>
+      <span class="lb">${ly.nm}</span>
+      <div class="min-w-0"><div class="pnm">${tr(p.nm)}${moved ? `<span class="pend">${lang === 'en' ? 'live' : '生效中'} #${livePos}</span>` : ''}</div>
+        <div class="pds truncate">${tr(p.src)} → ${tr(p.dst)}</div></div>
+      <span class="act"><i data-lucide="${a.icon}" class="w-3.5 h-3.5"></i>${tr(a.nm)}</span>
+      <span class="mv no-print"><button data-mv="-1" data-i="${i}" ${i === 0 ? 'disabled' : ''} title="↑"><i data-lucide="arrow-up" class="w-3.5 h-3.5"></i></button><button data-mv="1" data-i="${i}" ${i === draft.length - 1 ? 'disabled' : ''} title="↓"><i data-lucide="arrow-down" class="w-3.5 h-3.5"></i></button></span>
+    </div>`;
+  }).join('');
+  const dHit = finished && result.final.id === null;
+  const dflt = `<div class="prow dflt ${dHit ? 'hit' : (finished ? 'miss' : '')}" style="--lc:100 116 139;--ac:52 211 153">
+      <span class="pn">—</span><span class="lb">Default</span>
+      <div class="min-w-0"><div class="pnm">${lang === 'en' ? 'No policy matched' : '未符合任何政策'}</div><div class="pds">${lang === 'en' ? 'Netskope allows by default' : 'Netskope 預設允許'}</div></div>
+      <span class="act"><i data-lucide="circle-check" class="w-3.5 h-3.5"></i>${tr(ACTS.allow.nm)}</span><span></span></div>`;
+  $('#polList').innerHTML = rows + dflt;
+  $('#pendBar').classList.toggle('hidden', !pending());
+  $$('#polList [data-mv]').forEach(b => b.addEventListener('click', () => {
+    const i = +b.dataset.i, j = i + +b.dataset.mv;
+    [draft[i], draft[j]] = [draft[j], draft[i]];
+    renderPolicies(); lucide.createIcons();
+  }));
+}
+
+/* ===================== RENDER: REQUEST / VERDICT / LOG ===================== */
+function renderReq() {
+  $('#reqGrid').innerHTML = Object.entries(REQ).map(([k, v]) => `<button class="req" data-v="${k}" aria-pressed="${k === req}"><i data-lucide="${v.icon}" class="w-4 h-4"></i><span>${tr(v.label)}</span></button>`).join('');
+  $$('#reqGrid .req').forEach(b => b.addEventListener('click', () => { req = b.dataset.v; renderReq(); run(); }));
+  const r = REQ[req];
+  const row = (k, v) => `<div><span class="text-slate-500">${k.padEnd(9, ' ').replace(/ /g, '&nbsp;')}</span> <span class="text-slate-200">${esc(v)}</span></div>`;
+  $('#reqCard').innerHTML = [
+    row('user', r.user === 'it' ? tr(L('IT 測試人員', 'IT tester')) : tr(EMP)),
+    row('url', r.url),
+    row('category', tr(CATN[r.cat]) + (r.exc ? (lang === 'en' ? ' (exception list)' : '（例外清單）') : '')),
+    r.act ? row('activity', tr(ACTN[r.act])) : '',
+    r.inst ? row('instance', r.inst === 'corp' ? (lang === 'en' ? 'Corporate' : '企業版') : (lang === 'en' ? 'Personal' : '個人版')) : '',
+    r.note ? `<div class="mt-1 text-violet-300">› ${esc(tr(r.note))}</div>` : ''
+  ].join('');
+}
+
+function renderVerdict() {
+  const v = $('#verdict');
+  if (!result || step < result.trace.length) {
+    v.className = 'verdict rounded-2xl p-4 v-run';
+    v.innerHTML = `<div class="flex items-center gap-2 font-semibold"><i data-lucide="loader" class="w-5 h-5"></i>${lang === 'en' ? `Evaluating rule ${Math.min(step + 1, draft.length)}…` : `比對第 ${Math.min(step + 1, draft.length)} 條…`}</div>`;
+    return false;
+  }
+  const f = result.final, a = ACTS[f.act];
+  const p = f.id ? POL[f.id] : null;
+  const title = p
+    ? (lang === 'en' ? `${tr(a.nm)} · rule ${f.pos} “${tr(p.nm)}”` : `${tr(a.nm)} · 第 ${f.pos} 條「${tr(p.nm)}」`)
+    : (lang === 'en' ? 'Allow · no policy matched (default)' : '允許 · 未符合任何政策（預設）');
+  let sub = '';
+  if (result.alerts.length) sub += `<p class="mt-2 text-sm text-slate-300">${lang === 'en' ? 'A DLP alert was logged by an Alert & Continue rule; evaluation kept going until a terminal match.' : 'DLP「告警並繼續」政策已記錄告警，接著繼續往下比對，直到命中終止型政策。'}</p>`;
+  if (!p) sub += `<p class="mt-2 text-sm text-slate-300">${lang === 'en' ? 'Netskope allows activity that matches no policy. Use explicit policies for anything that must be controlled.' : '未符合任何政策的活動會被允許；需要控管的流量要有明確的政策涵蓋。'}</p>`;
+  const best = evaluate(BEST).final;
+  const differs = applied.join() !== BEST.join() && (best.act !== f.act || best.id !== f.id);
+  if (differs) {
+    const bp = best.id ? POL[best.id] : null;
+    sub += `<div class="mt-3 rounded-lg border border-amber-300 px-3 py-2 text-sm text-amber-300 flex gap-2"><i data-lucide="triangle-alert" class="w-4 h-4 shrink-0 mt-0.5"></i><span>${lang === 'en'
+      ? `Order changed the outcome. With the recommended order this request would be: ${tr(ACTS[best.act].nm)}${bp ? ` (“${tr(bp.nm)}”)` : ''}.`
+      : `順序改變了結果。依建議順序，這個請求應該是：${tr(ACTS[best.act].nm)}${bp ? `（「${tr(bp.nm)}」）` : ''}。`}</span></div>`;
+  }
+  v.className = `verdict rounded-2xl p-4 ${a.v}`;
+  v.innerHTML = `<div class="flex items-center gap-2 text-lg font-bold"><i data-lucide="${a.icon}" class="w-5 h-5"></i>${esc(title)}</div>${sub}`;
+  return true;
+}
+
+function renderLog() {
+  if (!result) return;
+  const lines = result.trace.slice(0, step).map(t => {
+    const p = POL[t.id], pos = result.order.indexOf(t.id) + 1;
+    const n = `#${String(pos).padStart(2, '0')} ${tr(p.nm)}`;
+    if (t.kind === 'miss') return `<div class="log-line text-slate-500">${esc(n)} — ${lang === 'en' ? 'no match' : '不符合'}</div>`;
+    if (t.kind === 'cont') return `<div class="log-line text-amber-300">${esc(n)} — ${lang === 'en' ? 'match → alert, continue' : '符合 → 記錄告警，繼續比對'}</div>`;
+    return `<div class="log-line" style="color:rgb(${ACTS[p.act].c})">${esc(n)} — ${lang === 'en' ? `match → ${tr(ACTS[p.act].nm)}, stop` : `符合 → ${tr(ACTS[p.act].nm)}，停止比對`}</div>`;
+  });
+  if (step >= result.trace.length && !result.final.id) lines.push(`<div class="log-line text-emerald-300">— ${lang === 'en' ? 'no match → default allow' : '全部不符合 → 預設允許'}</div>`);
+  $('#log').innerHTML = lines.join('');
+}
+
+function frame() {
+  renderPolicies(); renderLog();
+  const done = renderVerdict();
+  lucide.createIcons();
+  return done;
+}
+function run() {
+  clearInterval(timer);
+  result = evaluate(applied); step = 0;
+  frame();
+  timer = setInterval(() => { step++; if (frame()) clearInterval(timer); }, 260);
+}
+function finishNow() { clearInterval(timer); if (result) { step = result.trace.length; frame(); } }
+
+$('#btnApply').addEventListener('click', () => { applied = [...draft]; run(); });
+$('#btnDiscard').addEventListener('click', () => { draft = [...applied]; renderPolicies(); lucide.createIcons(); });
+$('#btnReplay').addEventListener('click', run);
+$$('[data-preset]').forEach(b => b.addEventListener('click', () => {
+  const ps = PRESETS[b.dataset.preset];
+  draft = [...ps.order];
+  if (ps.req) { req = ps.req; renderReq(); }
+  run();
+  document.getElementById('pendBar').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}));
+
+/* ===================== 02 LAYERS ===================== */
+const STACK = [
+  { id: 'threat', k: '1', ln: 'Threat Protection', lt: 'Block · Scan · Allow', pol: ['p1', 'p2', 'p3'],
+    d: L('優先順序最高。阻擋惡意程式、資安風險類別與 IOC 等高風險行為。例外清單（Allow）要放在對應的封鎖政策之上，否則永遠不會被命中。', 'Highest priority. Blocks malware, Security Risk categories, IOCs and other high-risk behavior. Exception (Allow) rules must sit above the block they except, or they never match.') },
+  { id: 'utility', k: '2', ln: 'Utility', lt: L('特定對象 · 測試 · 繞過控管的協定', 'Targeted · test · bypass protocols'), pol: ['p4', 'p5'],
+    d: L('套用在個人或少數群組的政策、測試用政策，以及 DNS over HTTPS 這類會繞過控管的協定。放在上方，避免被下方較廣泛的規則先攔下。', 'Policies for individuals or small groups, test policies, and protocols that bypass controls such as DNS over HTTPS. Keep them high so broader rules below do not catch the traffic first.') },
+  { id: 'rbi', k: '3', ln: 'Remote Browser Isolation', lt: L('風險不明的網域', 'Unknown-risk domains'), pol: ['p6', 'p7'],
+    d: L('未分類、停放網域、新註冊網域等風險不明的網站導向 RBI 隔離瀏覽；公司自有但尚未分類的網域，用例外先行放行。', 'Uncategorized, parked and newly registered domains go to RBI; company-owned domains that are not yet categorized are allowed first by an exception.') },
+  { id: 'casb', k: '4', ln: 'CASB', lt: L('以活動為導向', 'Activity oriented'), pol: ['p8', 'p9', 'p10'], pyr: ['Instance ID', 'App', 'Category Sanctioned', 'Category Personal', 'CASB Tools', 'Category Unsanctioned', 'Low / Poor CCL'],
+    d: L('依應用活動（上傳、下載、分享、登入…）控管。CASB 內部同樣由精確到廣泛：特定實例（Instance ID）→ 特定 App → 類別層級 → 低／差 CCL 評分。DLP 若設為 Alert 與 Continue，記錄告警後會繼續往下比對。', 'Controls app activities (upload, download, share, login…). Inside CASB, go from specific to broad: instance ID → app → category level → low/poor CCL. A DLP rule set to Alert and Continue logs an alert and keeps evaluating.') },
+  { id: 'cat', k: '', ln: 'Category Level Policy', lt: L('類別層級', 'Category level'), c: '250 204 21', pol: [],
+    d: L('以應用類別為範圍的通用規則，放在個別 App 與實例政策之下，涵蓋還沒有專屬政策的應用。', 'Generic rules scoped to app categories, placed below app- and instance-specific policies to cover apps without their own policy.') },
+  { id: 'web', k: '5', ln: 'Web', lt: L('以類別為主', 'Category based'), pol: ['p11', 'p12'],
+    d: L('以 URL 類別為主的上網政策（AUP），範圍最廣，放在下方。業務關鍵應用加入允許清單，預先定義的高風險類別與 IOC 加入封鎖清單。', 'Category-based web access (AUP), the broadest scope, so it sits low. Allow-list business-critical apps and block-list predefined high-risk categories and IOCs.') },
+  { id: 'npa', k: '6', ln: 'Netskope Private Access', lt: L('私有應用', 'Private apps'), pol: ['p13'],
+    d: L('NPA 私有應用存取政策，依使用者與群組授權內部應用。', 'NPA private-app policies grant internal apps by user and group.') }
+];
+let layerSel = 'threat';
+function renderLayers() {
+  $('#layerStack').innerHTML = STACK.map(s => {
+    const c = s.c || LAYERS[s.id].c;
+    const pyr = s.pyr ? `<div class="pyr">${s.pyr.map((t, i) => `<span style="width:${34 + i * 10}%">${t}</span>`).join('')}</div>` : '';
+    return `<button class="lay ${layerSel === s.id ? 'sel' : ''} ${s.pyr ? 'flex-col items-stretch' : ''}" data-l="${s.id}" style="--lc:${c}">
+      <div class="flex items-center justify-between gap-3 w-full"><div class="min-w-0"><div class="ln">${s.ln}</div><div class="lt">${tr(s.lt)}</div></div><span class="lk">${s.k ? '0' + s.k : ''}</span></div>${pyr}</button>`;
+  }).join('') + `<div class="mt-2 rounded-lg border border-dashed border-slate-700 px-3 py-2 text-xs text-slate-400 flex items-center gap-2"><i data-lucide="circle-check" class="w-3.5 h-3.5 text-emerald-400"></i>${lang === 'en' ? 'No match → Netskope allows by default' : '未符合任何政策 → Netskope 預設允許'}</div>`;
+  $$('#layerStack .lay').forEach(b => b.addEventListener('click', () => { layerSel = b.dataset.l; renderLayers(); lucide.createIcons(); }));
+  const s = STACK.find(x => x.id === layerSel), c = s.c || LAYERS[s.id].c;
+  const ex = s.pol.length ? `<div class="mt-4 text-xs font-mono uppercase tracking-widest text-slate-500">${lang === 'en' ? 'Examples in the simulator' : '模擬器中的範例'}</div>
+    <div class="mt-2 space-y-1.5">${s.pol.map(id => { const p = POL[id], a = ACTS[p.act]; return `<div class="flex items-center justify-between gap-2 text-sm"><span class="text-slate-200">${tr(p.nm)}</span><span class="text-xs font-semibold shrink-0" style="color:rgb(${a.c})">${tr(a.nm)}</span></div>`; }).join('')}</div>` : '';
+  $('#layerInfo').innerHTML = `<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg grid place-items-center font-mono font-bold" style="background:rgb(${c} / .15);color:rgb(${c})">${s.k ? '0' + s.k : '·'}</div>
+    <div><div class="font-semibold text-slate-100">${s.ln}</div><div class="text-xs text-slate-400">${tr(s.lt)}</div></div></div>
+    <p class="mt-3 text-sm text-slate-300 leading-relaxed">${tr(s.d)}</p>${ex}`;
+}
+
+/* ===================== 03 GUIDELINES ===================== */
+const GUIDE = [
+  { icon: 'arrow-down-narrow-wide', t: L('由上而下比對', 'Evaluated top-down'), d: L('命中就執行動作並停止比對，所有政策都是終止型，只有設為 Alert 與 Continue 的 DLP 政策例外。', 'The first match applies and evaluation stops; every policy is terminal except DLP policies set to Alert and Continue.') },
+  { icon: 'user-round', t: L('特定對象放上面', 'Specific users near the top'), d: L('套用在個人或少數群組的規則，放在清單靠上的位置。', 'Put rules for individuals or small groups near the top of the list.') },
+  { icon: 'shield-check', t: L('例外放在封鎖之上', 'Exceptions above blocks'), d: L('封鎖政策的例外要放在最上面，否則會先被封鎖規則攔下。', 'Place exceptions for block policies at the top, or the block catches the traffic first.') },
+  { icon: 'circle-check', t: L('預設允許', 'Allowed by default'), d: L('沒有符合任何政策的活動，Netskope 預設允許；需要控管的流量要有政策涵蓋。', 'Activity that matches no policy is allowed by default, so anything that must be controlled needs a policy.') },
+  { icon: 'star', t: L('業務關鍵應用加入允許清單', 'Allow-list critical apps'), d: L('明確允許業務關鍵應用，避免被廣泛的類別規則誤擋。', 'Explicitly allow business-critical apps so broad category rules do not block them.') },
+  { icon: 'ban', t: L('封鎖高風險類別與 IOC', 'Block high-risk categories & IOCs'), d: L('預先定義的高風險類別與 IOC 加入封鎖清單。', 'Block-list the predefined high-risk categories and IOCs.') },
+  { icon: 'code', t: L('用 REST API 維護 URL 清單', 'Maintain URL lists via REST API'), d: L('以 Netskope REST API 自動維護 URL 清單，不必手動逐筆更新。', 'Use the Netskope REST API to maintain URL lists instead of editing them by hand.') },
+  { icon: 'check-check', t: L('套用變更才生效', 'Apply Changes to take effect'), d: L('可拖放或選擇政策調整順序，按 Apply Changes 儲存；變更在套用前不會生效。善用 Filter 檢視特定政策。', 'Drag and drop or select policies to reorder, then click Apply Changes; nothing takes effect until applied. Use Filter to view specific policies.') }
+];
+function renderGuide() {
+  $('#guideCards').innerHTML = GUIDE.map(g => `<article class="card rounded-2xl p-5">
+    <div class="w-10 h-10 rounded-lg grid place-items-center" style="background:rgb(168 85 247 / .14);color:rgb(192 132 252)"><i data-lucide="${g.icon}" class="w-5 h-5"></i></div>
+    <div class="mt-3 font-semibold text-slate-100">${tr(g.t)}</div>
+    <p class="mt-1.5 text-sm text-slate-300 leading-relaxed">${tr(g.d)}</p></article>`).join('');
+}
+
+/* dynamic URL classification */
+const DSTEPS = [
+  { k: 'a', lbl: L('使用者 A 首次存取', 'User A, first visit') },
+  { k: 'b', lbl: L('使用者 B 稍後存取', 'User B, later') },
+  { k: 'c', lbl: L('12 小時後', 'After 12 hours') }
+];
+let dstep = 'a';
+function renderDurl() {
+  $('#segDurl').innerHTML = DSTEPS.map(s => `<button data-v="${s.k}" aria-pressed="${s.k === dstep}" style="--bc:168 85 247">${tr(s.lbl)}</button>`).join('');
+  $$('#segDurl button').forEach(b => b.addEventListener('click', () => { dstep = b.dataset.v; renderDurl(); lucide.createIcons(); }));
+  const S = {
+    a: [
+      ['miss', 'database', L('Inline（NSProxy）資料庫', 'Inline (NSProxy) DB'), L('查無 new-vendor.example', 'new-vendor.example not found')],
+      ['run', 'search', L('非同步查詢較大資料庫', 'Async lookup, larger DB'), L('找到類別：Business', 'Found: Business')],
+      ['ok', 'share-2', L('POP 內共享', 'Shared in the POP'), L('同 POP 所有執行個體可用', 'Available to every instance in the POP')],
+      ['ok', 'clock', L('有效期限', 'Valid for'), null, 100]
+    ],
+    b: [
+      ['miss', 'database', L('Inline（NSProxy）資料庫', 'Inline (NSProxy) DB'), L('仍查無此 URL', 'Still not in the inline DB')],
+      ['ok', 'search', L('非同步查詢較大資料庫', 'Async lookup, larger DB'), L('不需再查詢', 'No lookup needed')],
+      ['ok', 'share-2', L('POP 內共享', 'Shared in the POP'), L('直接取得類別：Business', 'Category served: Business')],
+      ['ok', 'clock', L('有效期限', 'Valid for'), null, 70]
+    ],
+    c: [
+      ['exp', 'database', L('POP 內共享分類', 'POP-shared category'), L('已超過 12 小時，過期', 'Older than 12 hours, expired')],
+      ['run', 'search', L('再次存取時自動更新', 'Refreshed on next access'), L('重新取得類別：Business', 'Category fetched again: Business')],
+      ['ok', 'share-2', L('POP 內共享', 'Shared in the POP'), L('更新後的分類再次共享', 'Refreshed category shared again')],
+      ['ok', 'clock', L('有效期限', 'Valid for'), null, 100]
+    ]
+  }[dstep];
+  $('#durl').innerHTML = S.map(([st, icon, t, d, ttl], i) => `<div class="du ${st}">
+    <div class="flex items-center gap-2 text-xs font-mono text-slate-400"><span>0${i + 1}</span><i data-lucide="${icon}" class="w-3.5 h-3.5"></i></div>
+    <div class="mt-1.5 text-sm font-semibold text-slate-100">${tr(t)}</div>
+    ${ttl != null ? `<div class="mt-2 ttl"><div style="width:${ttl}%"></div></div><div class="mt-1 text-xs text-slate-400">${ttl === 100 ? (lang === 'en' ? '12 h remaining' : '剩餘 12 小時') : (lang === 'en' ? 'about 8 h remaining' : '約剩 8 小時')}</div>` : `<div class="mt-1 text-xs text-slate-400">${tr(d)}</div>`}
+  </div>`).join('');
+  $('#durlNote').innerHTML = tr({
+    a: L('第一次遇到未知 URL 時，查詢是非同步進行的；找到的類別會分享給同一個 POP 內的所有執行個體。', 'The first time an unknown URL is seen, the lookup runs asynchronously, and the category it finds is shared with every instance in the same POP.'),
+    b: L('同一個 POP 的後續請求直接取得已找到的類別，政策可依正確類別執行。', 'Later requests in the same POP receive the category directly, so policy applies to the right category.'),
+    c: L('分類 12 小時後過期，下次有人存取時會自動重新查詢並更新。', 'After 12 hours the category expires and is refreshed automatically the next time the URL is accessed.')
+  }[dstep]);
+}
+
+/* ===================== LANG / THEME / PRINT ===================== */
+function applyLang(l) {
+  lang = l;
+  document.documentElement.setAttribute('lang', l === 'en' ? 'en' : 'zh-Hant');
+  document.title = l === 'en' ? 'Real-time Protection Best Practices' : '即時防護政策最佳實務';
+  $$('#segLang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
+  try { localStorage.setItem('nsk-poc-lang', l); } catch (e) {}
+  renderReq(); frame(); renderLayers(); renderGuide(); renderDurl();
+  lucide.createIcons();
+}
+function applyTheme(t) {
+  document.documentElement.classList.toggle('light', t === 'light');
+  $$('#segTheme button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.theme === t)));
+  try { localStorage.setItem('nsk-poc-theme', t); } catch (e) {}
+}
+$$('#segLang button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+$$('#segTheme button').forEach(b => b.addEventListener('click', () => applyTheme(b.dataset.theme)));
+let themeBeforePrint = null;
+window.addEventListener('beforeprint', () => { themeBeforePrint = document.documentElement.classList.contains('light') ? 'light' : 'dark'; document.documentElement.classList.add('light'); finishNow(); });
+window.addEventListener('afterprint', () => { if (themeBeforePrint === 'dark') document.documentElement.classList.remove('light'); themeBeforePrint = null; });
+$('#btnPdf').addEventListener('click', () => window.print());
+
+applyTheme(document.documentElement.classList.contains('light') ? 'light' : 'dark');
+result = evaluate(applied);
+applyLang(lang);
+run();
+</script>
+</body>
+</html>
