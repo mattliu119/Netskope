@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email DLP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+  (function () {
+    try {
+      if (localStorage.getItem('nsk-poc-theme') === 'light') document.documentElement.classList.add('light');
+      if (localStorage.getItem('nsk-poc-lang') === 'en') document.documentElement.setAttribute('lang', 'en');
+    } catch (e) {}
+  })();
+</script>
+<style id="tw-inline">*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:Inter,Noto Sans TC,system-ui,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:JetBrains Mono,ui-monospace,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.visible{visibility:visible}.static{position:static}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.bottom-4{bottom:1rem}.left-1{left:.25rem}.left-1\/2{left:50%}.top-0{top:0}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mr-1{margin-right:.25rem}.mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.table{display:table}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-14{height:3.5rem}.h-3{height:.75rem}.h-3\.5{height:.875rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-8{height:2rem}.h-\[34px\]{height:34px}.h-auto{height:auto}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-14{width:3.5rem}.w-3{width:.75rem}.w-3\.5{width:.875rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-8{width:2rem}.w-\[34px\]{width:34px}.w-full{width:100%}.min-w-0{min-width:0}.min-w-\[640px\]{min-width:640px}.min-w-\[720px\]{min-width:720px}.max-w-3xl{max-width:48rem}.max-w-7xl{max-width:80rem}.flex-shrink{flex-shrink:1}.shrink-0{flex-shrink:0}.-translate-x-1{--tw-translate-x:-0.25rem}.-translate-x-1,.-translate-x-1\/2{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-x-1\/2{--tw-translate-x:-50%}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scroll-mt-16{scroll-margin-top:4rem}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.place-items-center{place-items:center}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-x-5{-moz-column-gap:1.25rem;column-gap:1.25rem}.gap-y-3{row-gap:.75rem}.space-y-1>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.25rem*var(--tw-space-y-reverse))}.space-y-1\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.375rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.375rem*var(--tw-space-y-reverse))}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}.divide-y>:not([hidden])~:not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px*(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px*var(--tw-divide-y-reverse))}.divide-slate-800>:not([hidden])~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(30 41 59/var(--tw-divide-opacity,1))}.divide-slate-800\/80>:not([hidden])~:not([hidden]){border-color:rgba(30,41,59,.8)}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.break-all{word-break:break-all}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-blue-500{--tw-border-opacity:1;border-color:rgb(59 130 246/var(--tw-border-opacity,1))}.border-blue-500\/40{border-color:rgba(59,130,246,.4)}.border-orange-500{--tw-border-opacity:1;border-color:rgb(249 115 22/var(--tw-border-opacity,1))}.border-orange-500\/40{border-color:rgba(249,115,22,.4)}.border-pink-500\/40{border-color:rgba(236,72,153,.4)}.border-slate-600{--tw-border-opacity:1;border-color:rgb(71 85 105/var(--tw-border-opacity,1))}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85/var(--tw-border-opacity,1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59/var(--tw-border-opacity,1))}.border-slate-800\/70{border-color:rgba(30,41,59,.7)}.bg-amber-500{--tw-bg-opacity:1;background-color:rgb(245 158 11/var(--tw-bg-opacity,1))}.bg-amber-500\/15{background-color:rgba(245,158,11,.15)}.bg-blue-500{--tw-bg-opacity:1;background-color:rgb(59 130 246/var(--tw-bg-opacity,1))}.bg-blue-500\/10{background-color:rgba(59,130,246,.1)}.bg-blue-500\/15{background-color:rgba(59,130,246,.15)}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129/var(--tw-bg-opacity,1))}.bg-emerald-500\/15{background-color:rgba(16,185,129,.15)}.bg-orange-500{--tw-bg-opacity:1;background-color:rgb(249 115 22/var(--tw-bg-opacity,1))}.bg-orange-500\/10{background-color:rgba(249,115,22,.1)}.bg-pink-500\/10{background-color:rgba(236,72,153,.1)}.bg-red-500{--tw-bg-opacity:1;background-color:rgb(239 68 68/var(--tw-bg-opacity,1))}.bg-red-500\/15{background-color:rgba(239,68,68,.15)}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.bg-slate-800\/60{background-color:rgba(30,41,59,.6)}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42/var(--tw-bg-opacity,1))}.bg-slate-900\/90{background-color:rgba(15,23,42,.9)}.bg-slate-950{--tw-bg-opacity:1;background-color:rgb(2 6 23/var(--tw-bg-opacity,1))}.bg-slate-950\/75{background-color:rgba(2,6,23,.75)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}.from-orange-400{--tw-gradient-from:#fb923c var(--tw-gradient-from-position);--tw-gradient-to:rgba(251,146,60,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.to-blue-500{--tw-gradient-to:#3b82f6 var(--tw-gradient-to-position)}.p-3{padding:.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-0{padding-top:0;padding-bottom:0}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.pb-28{padding-bottom:7rem}.pt-3{padding-top:.75rem}.pt-8{padding-top:2rem}.text-left{text-align:left}.font-mono{font-family:JetBrains Mono,ui-monospace,monospace}.font-sans{font-family:Inter,Noto Sans TC,system-ui,sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\[11px\]{font-size:11px}.text-\[13px\]{font-size:13px}.text-base{font-size:1rem;line-height:1.5rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-.025em}.tracking-wider{letter-spacing:.05em}.tracking-widest{letter-spacing:.1em}.text-amber-300{--tw-text-opacity:1;color:rgb(252 211 77/var(--tw-text-opacity,1))}.text-blue-300{--tw-text-opacity:1;color:rgb(147 197 253/var(--tw-text-opacity,1))}.text-cyan-300{--tw-text-opacity:1;color:rgb(103 232 249/var(--tw-text-opacity,1))}.text-emerald-300{--tw-text-opacity:1;color:rgb(110 231 183/var(--tw-text-opacity,1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153/var(--tw-text-opacity,1))}.text-orange-300{--tw-text-opacity:1;color:rgb(253 186 116/var(--tw-text-opacity,1))}.text-pink-300{--tw-text-opacity:1;color:rgb(249 168 212/var(--tw-text-opacity,1))}.text-red-300{--tw-text-opacity:1;color:rgb(252 165 165/var(--tw-text-opacity,1))}.text-rose-300{--tw-text-opacity:1;color:rgb(253 164 175/var(--tw-text-opacity,1))}.text-slate-100{--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240/var(--tw-text-opacity,1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105/var(--tw-text-opacity,1))}.text-slate-950{--tw-text-opacity:1;color:rgb(2 6 23/var(--tw-text-opacity,1))}.text-violet-300{--tw-text-opacity:1;color:rgb(196 181 253/var(--tw-text-opacity,1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.ring{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.blur{--tw-blur:blur(8px)}.blur,.drop-shadow{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.drop-shadow{--tw-drop-shadow:drop-shadow(0 1px 2px rgba(0,0,0,.1)) drop-shadow(0 1px 1px rgba(0,0,0,.06))}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px)}.backdrop-blur,.backdrop-filter{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.hover\:bg-slate-800:hover{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.hover\:text-slate-100:hover{--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}@media (min-width:640px){.sm\:left-auto{left:auto}.sm\:right-4{right:1rem}.sm\:translate-x-0{--tw-translate-x:0px;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.sm\:flex-row{flex-direction:row}.sm\:items-center{align-items:center}.sm\:justify-between{justify-content:space-between}.sm\:p-4{padding:1rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:py-12{padding-top:3rem;padding-bottom:3rem}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-base{font-size:1rem;line-height:1.5rem}.sm\:text-lg{font-size:1.125rem;line-height:1.75rem}}@media (min-width:768px){.md\:flex{display:flex}}@media (min-width:1024px){.lg\:sticky{position:sticky}.lg\:top-20{top:5rem}.lg\:col-span-2{grid-column:span 2/span 2}.lg\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.lg\:flex-row{flex-direction:row}.lg\:items-end{align-items:flex-end}.lg\:justify-between{justify-content:space-between}.lg\:text-5xl{font-size:3rem;line-height:1}}</style>
+<style>
+  :root { --accent: 52 211 153; }
+  html { scroll-behavior: smooth; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(96,165,250,.10), transparent 60%),
+      #060a13;
+    color: #e2e8f0;
+    transition: background-color .3s ease, color .3s ease;
+  }
+  html[lang="en"] .zh { display: none !important; }
+  html:not([lang="en"]) .en { display: none !important; }
+  .grid-bg {
+    background-image: linear-gradient(rgba(148,163,184,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .card { background: rgba(15,23,42,.65); border: 1px solid rgba(51,65,85,.6); backdrop-filter: blur(8px); }
+  .accent-text { color: rgb(var(--accent)); transition: color .4s ease; }
+  .accent-bg { background: rgb(var(--accent) / .12); border-color: rgb(var(--accent) / .4); transition: all .4s ease; }
+  .hero-grad { background-image: linear-gradient(90deg, #6ee7b7, #bae6fd, #93c5fd); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  .seg { display: inline-flex; flex-wrap: wrap; border: 1px solid #334155; border-radius: .6rem; overflow: hidden; background: rgba(15,23,42,.8); }
+  .seg button { padding: .45rem .85rem; font-size: .8rem; color: #cbd5e1; transition: all .25s ease; white-space: nowrap; display: inline-flex; align-items: center; gap: .4rem; }
+  .seg button + button { border-left: 1px solid #334155; }
+  .seg button:hover { background: rgba(51,65,85,.5); }
+  .seg button[aria-pressed="true"] { background: rgb(var(--bc, 52 211 153)); color: #020617; font-weight: 600; }
+  .seg .dot { width: 8px; height: 8px; border-radius: 9999px; background: rgb(var(--bc)); }
+  .seg button[aria-pressed="true"] .dot { background: #020617; }
+  .seg.tb button { padding: .4rem .75rem; }
+  .seg.tb button[aria-pressed="true"] { background: #22d3ee; color: #020617; }
+
+  /* ---------- topology ---------- */
+  .tp text { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
+  .tp .zone { fill: rgba(15,23,42,.35); stroke: rgba(100,116,139,.55); stroke-dasharray: 6 6; }
+  .tp .zone-t { fill: #94a3b8; font-size: 12px; font-weight: 600; letter-spacing: .06em; }
+  .tp .wire { fill: none; stroke: rgba(100,116,139,.55); stroke-width: 1.5; }
+  .tp .ghost { fill: none; stroke: rgba(100,116,139,.28); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; stroke-linejoin: round; }
+  .tp .flow { fill: none; stroke: rgb(var(--fc)); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 11 9; animation: dash 1.1s linear infinite; filter: drop-shadow(0 0 5px rgb(var(--fc) / .6)); }
+  .tp .flow.static { animation: none; stroke-dasharray: 6 6; stroke-width: 2.5; }
+  @keyframes dash { to { stroke-dashoffset: -20; } }
+  .tp .pk { fill: #fff; filter: drop-shadow(0 0 6px rgb(var(--fc))); }
+  .tp .fz { opacity: 0; transition: opacity .35s ease; }
+  .tp .fz.show { opacity: 1; }
+
+  .tp .node { cursor: pointer; transition: opacity .35s ease; }
+  .tp .node .base { fill: #0b1222; }
+  .tp .node .tint { fill: rgb(var(--c) / .06); stroke: rgb(var(--c) / .55); stroke-width: 1.5; transition: all .3s ease; }
+  .tp .node .ico { color: rgb(var(--c)); }
+  .tp .node .t1 { fill: #f1f5f9; font-size: 14px; font-weight: 700; }
+  .tp .node .t2 { fill: #94a3b8; font-size: 11px; }
+  .tp .node.sm .t1 { font-size: 12px; font-weight: 600; }
+  .tp .node:hover .tint { stroke: rgb(var(--c)); }
+  .tp .node.sel .tint { stroke: rgb(var(--c)); stroke-width: 3; filter: drop-shadow(0 0 10px rgb(var(--c) / .8)); fill: rgb(var(--c) / .14); }
+  .tp .node.dim > :not(.base) { opacity: .3; }
+  .tp .warn { transition: opacity .35s ease; }
+  .tp .xmark circle { fill: #7f1d1d; stroke: #f87171; stroke-width: 2; }
+  .tp .xmark path { stroke: #fecaca; stroke-width: 2.5; stroke-linecap: round; }
+
+  .fade-in { animation: fadeIn .45s ease both; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .pulse-dot { position: relative; }
+  .pulse-dot::after { content: ''; position: absolute; inset: 0; border-radius: 9999px; background: inherit; animation: ping 1.8s infinite; }
+  @keyframes ping { 0% { opacity: .7; transform: scale(1); } 100% { opacity: 0; transform: scale(2.2); } }
+  ::-webkit-scrollbar { height: 8px; width: 8px; }
+  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 8px; }
+  .print-only { display: none; }
+
+  /* =================== LIGHT =================== */
+  html.light body {
+    background: radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(96,165,250,.12), transparent 60%), #f1f5f9;
+    color: #0f172a;
+  }
+  html.light .grid-bg { background-image: linear-gradient(rgba(15,23,42,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,.05) 1px, transparent 1px); }
+  html.light .card { background: rgba(255,255,255,.9); border-color: #e2e8f0; box-shadow: 0 1px 2px rgba(15,23,42,.04); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #059669, #0284c7, #2563eb); }
+  html.light .accent-text { color: color-mix(in srgb, rgb(var(--accent)) 62%, #000); }
+  html.light .text-slate-100 { color: #0f172a; }
+  html.light .text-slate-200 { color: #1e293b; }
+  html.light .text-slate-300 { color: #334155; }
+  html.light .text-slate-400 { color: #475569; }
+  html.light .text-slate-500 { color: #64748b; }
+  html.light .text-slate-600 { color: #94a3b8; }
+  html.light .text-cyan-300, html.light .text-cyan-300\/90 { color: #0e7490; }
+  html.light .text-blue-300 { color: #1d4ed8; }
+  html.light .text-amber-300 { color: #b45309; }
+  html.light .text-red-300, html.light .text-rose-300 { color: #b91c1c; }
+  html.light .text-emerald-300 { color: #047857; }
+  html.light .text-emerald-400 { color: #059669; }
+  html.light .text-violet-300 { color: #6d28d9; }
+  html.light .hover\:text-slate-100:hover { color: #0f172a; }
+  html.light .bg-slate-950\/75 { background: rgba(255,255,255,.82); }
+  html.light .bg-slate-950\/70, html.light .bg-slate-950\/50 { background: #f8fafc; }
+  html.light .bg-slate-900 { background: #ffffff; }
+  html.light .bg-slate-900\/90 { background: #f1f5f9; }
+  html.light .bg-slate-800, html.light .bg-slate-800\/60 { background: #e2e8f0; }
+  html.light .hover\:bg-slate-800:hover { background: #e2e8f0; }
+  html.light .border-slate-600, html.light .border-slate-700 { border-color: #cbd5e1; }
+  html.light .border-slate-800, html.light .border-slate-800\/70 { border-color: #e2e8f0; }
+  html.light .divide-slate-800\/80 > :not([hidden]) ~ :not([hidden]) { border-color: #e2e8f0; }
+  html.light .seg { border-color: #cbd5e1; background: #fff; }
+  html.light .seg button { color: #334155; }
+  html.light .seg button + button { border-left-color: #cbd5e1; }
+  html.light .seg button:hover { background: #f1f5f9; }
+  html.light .seg button[aria-pressed="true"] { color: #020617; }
+  html.light .tp .zone { fill: rgba(255,255,255,.6); stroke: #94a3b8; }
+  html.light .tp .zone-t { fill: #475569; }
+  html.light .tp .wire { stroke: #94a3b8; }
+  html.light .tp .ghost { stroke: rgba(100,116,139,.45); }
+  html.light .tp .pk { fill: rgb(var(--fc)); stroke: #fff; stroke-width: 1.5; }
+  html.light .tp .node .base { fill: #ffffff; }
+  html.light .tp .node .t1 { fill: #0f172a; }
+  html.light .tp .node .t2 { fill: #475569; }
+  html.light .tp .node .ico { color: color-mix(in srgb, rgb(var(--c)) 70%, #000); }
+  html.light ::-webkit-scrollbar-thumb { background: #cbd5e1; }
+
+  /* =================== PRINT =================== */
+  @page { size: A4 landscape; margin: 10mm; }
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    html, body { background: #fff !important; }
+    body { zoom: .62; }
+    .no-print, nav, #toolbar { display: none !important; }
+    .print-only { display: block !important; }
+    .card { backdrop-filter: none !important; break-inside: avoid; box-shadow: none !important; }
+    .overflow-x-auto { overflow: visible !important; }
+    .min-w-\[860px\], .min-w-\[760px\] { min-width: 0 !important; }
+    section { padding-top: 0 !important; padding-bottom: 0 !important; border-top: 0 !important; }
+    #topology, .print-break { break-before: page; }
+    #tp { width: 82% !important; margin: 0 auto; display: block; }
+    .tp .flow { animation: none !important; filter: none !important; }
+    .tp .pk { display: none; }
+    .fade-in { animation: none !important; }
+    header { padding-top: 0 !important; }
+    footer > div { padding-bottom: 0 !important; }
+  }
+</style>
+<style>
+  :root { --accent: 34 211 238; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(34,211,238,.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(251,146,60,.08), transparent 60%),
+      #060a13;
+  }
+  html.light body { background: radial-gradient(1200px 600px at 10% -10%, rgba(34,211,238,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(251,146,60,.10), transparent 60%), #f1f5f9; }
+  .hero-grad { background-image: linear-gradient(90deg, #67e8f9, #bae6fd, #fdba74); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #0e7490, #0369a1, #c2410c); }
+
+  /* toggle switches */
+  .tg { display: inline-flex; align-items: center; gap: .6rem; padding: .45rem .55rem .45rem .9rem; border: 1px solid #334155; border-radius: 9999px; background: rgba(15,23,42,.8); transition: all .25s ease; }
+  .tg .nm { font-weight: 600; font-size: .9rem; color: #e2e8f0; }
+  .tg .ds { font-size: .7rem; color: #94a3b8; }
+  .tg .sw { width: 38px; height: 22px; border-radius: 9999px; background: #334155; position: relative; transition: background .25s ease; flex-shrink: 0; }
+  .tg .sw::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 9999px; background: #94a3b8; transition: all .25s ease; }
+  .tg[aria-pressed="true"] { border-color: rgb(var(--tc) / .7); background: rgb(var(--tc) / .10); }
+  .tg[aria-pressed="true"] .sw { background: rgb(var(--tc)); }
+  .tg[aria-pressed="true"] .sw::after { left: 19px; background: #020617; }
+  html.light .tg { background: #fff; border-color: #cbd5e1; }
+  html.light .tg .nm { color: #0f172a; }
+  html.light .tg .ds { color: #64748b; }
+  html.light .tg .sw { background: #cbd5e1; }
+  .btn-s { height: 34px; padding: 0 .8rem; border: 1px solid #334155; border-radius: .55rem; background: rgba(15,23,42,.8); font-size: .8rem; font-weight: 600; color: #e2e8f0; display: inline-flex; align-items: center; gap: .35rem; }
+  .btn-s:hover { background: rgba(51,65,85,.6); }
+  html.light .btn-s { background: #fff; border-color: #cbd5e1; color: #0f172a; }
+
+  /* sim svg */
+  .sim text { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
+  .sim .zone { fill: rgba(15,23,42,.35); stroke: rgba(100,116,139,.5); stroke-dasharray: 6 6; }
+  .sim .zone-t { fill: #94a3b8; font-size: 13px; font-weight: 600; letter-spacing: .08em; }
+  .sim .pill rect { fill: rgba(51,65,85,.35); stroke: rgba(100,116,139,.6); stroke-width: 1.5; transition: all .3s ease; }
+  .sim .pill .ico { color: #64748b; }
+  .sim .pill .num { fill: #64748b; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; }
+  .sim .pill .nm { fill: #94a3b8; font-size: 14px; font-weight: 700; }
+  .sim .pill .ds { fill: #64748b; font-size: 11px; }
+  .sim .pill .st { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; }
+  .sim .pill.on rect { fill: rgb(var(--pc) / .12); stroke: rgb(var(--pc) / .8); }
+  .sim .pill.on .ico { color: rgb(var(--pc)); }
+  .sim .pill.on .num { fill: rgb(var(--pc)); }
+  .sim .pill.on .nm { fill: #f1f5f9; }
+  .sim .pill.on .ds { fill: #94a3b8; }
+  .sim .pill.act rect { stroke-width: 3; filter: drop-shadow(0 0 12px rgb(var(--pc) / .85)); }
+  .sim .pill.hit rect { stroke: #f87171; stroke-width: 3; fill: rgba(248,113,113,.15); filter: drop-shadow(0 0 12px rgba(248,113,113,.8)); }
+  .sim .pill { cursor: pointer; }
+  .sim .end { cursor: pointer; }
+  .sim .end .ring { fill: #0b1222; stroke-width: 2.5; transition: all .3s ease; }
+  .sim .end .nm { fill: #f1f5f9; font-size: 17px; font-weight: 700; }
+  .sim .end .ds { fill: #94a3b8; font-size: 12px; }
+  .sim .end.dim { opacity: .4; }
+  .sim .end.sel .ring { stroke-width: 4; filter: drop-shadow(0 0 12px currentColor); }
+  .sim .run { fill: none; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 12 9; animation: dash 1.1s linear infinite; }
+  .sim .run.ok { stroke: #34d399; stroke-dasharray: none; filter: drop-shadow(0 0 5px rgba(52,211,153,.6)); }
+  .sim .run.risk { stroke: #fb923c; filter: drop-shadow(0 0 5px rgba(251,146,60,.6)); }
+  .sim .run.go { stroke: #22d3ee; filter: drop-shadow(0 0 5px rgba(34,211,238,.6)); }
+  .sim .seen { fill: none; stroke: #fbbf24; stroke-width: 2.5; stroke-dasharray: 2 6; stroke-linecap: round; }
+  .sim .ghost { fill: none; stroke: rgba(100,116,139,.3); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; }
+  @keyframes dash { to { stroke-dashoffset: -21; } }
+  html.light .sim .zone { fill: rgba(255,255,255,.6); stroke: #94a3b8; }
+  html.light .sim .zone-t { fill: #475569; }
+  html.light .sim .pill rect { fill: #eef2f7; stroke: #94a3b8; }
+  html.light .sim .pill.on .nm, html.light .sim .end .nm { fill: #0f172a; }
+  html.light .sim .end .ring { fill: #fff; }
+  html.light .sim .end .ds, html.light .sim .pill.on .ds { fill: #475569; }
+
+  .verdict { border-width: 1.5px; transition: all .3s ease; }
+  .v-ok { border-color: rgba(52,211,153,.6); background: rgba(52,211,153,.08); color: #6ee7b7; }
+  .v-block { border-color: rgba(34,211,238,.6); background: rgba(34,211,238,.08); color: #67e8f9; }
+  .v-risk { border-color: rgba(251,146,60,.7); background: rgba(251,146,60,.08); color: #fdba74; }
+  .v-run { border-color: rgba(100,116,139,.5); background: rgba(15,23,42,.5); color: #cbd5e1; }
+  html.light .v-ok { color: #047857; } html.light .v-block { color: #0e7490; } html.light .v-risk { color: #c2410c; } html.light .v-run { color: #334155; background: #fff; }
+  .log-line { animation: fadeIn .35s ease both; }
+</style>
+<style>
+  :root { --accent: 244 123 32; }
+  body { background: radial-gradient(1200px 600px at 10% -10%, rgba(244,123,32,.10), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(30,111,217,.12), transparent 60%), #060a13; }
+  html.light body { background: radial-gradient(1200px 600px at 10% -10%, rgba(244,123,32,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(30,111,217,.12), transparent 60%), #f1f5f9; }
+  .hero-grad { background-image: linear-gradient(90deg, #fdba74, #fed7aa, #93c5fd); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #c2410c, #b45309, #1d4ed8); }
+  .sim .box .base { fill: #0b1222; }
+  .sim .box .tint { fill: rgb(var(--c) / .06); stroke: rgb(var(--c) / .5); stroke-width: 1.5; transition: all .3s ease; }
+  .sim .box .ico { color: rgb(var(--c)); }
+  .sim .box .t1 { fill: #f1f5f9; font-size: 14.5px; font-weight: 700; }
+  .sim .box .t2 { fill: #94a3b8; font-size: 11.5px; }
+  .sim .box { cursor: pointer; transition: opacity .3s ease; }
+  .sim .box.off { opacity: .35; }
+  .sim .box.act .tint { stroke: rgb(var(--c)); stroke-width: 3; fill: rgb(var(--c) / .14); filter: drop-shadow(0 0 12px rgb(var(--c) / .8)); }
+  .sim .box.sel .tint { stroke: rgb(var(--c)); stroke-width: 2.5; }
+  .sim .box.hot .tint { stroke: #f87171; stroke-width: 3; fill: rgba(248,113,113,.12); filter: drop-shadow(0 0 12px rgba(248,113,113,.7)); }
+  .sim .box.warn .tint { stroke: #fbbf24; stroke-width: 3; fill: rgba(251,191,36,.12); filter: drop-shadow(0 0 12px rgba(251,191,36,.7)); }
+  .sim .box.good .tint { stroke: #34d399; stroke-width: 3; fill: rgba(52,211,153,.12); }
+  .sim .box.dim { opacity: .4; }
+  html.light .sim .box .base { fill: #fff; }
+  html.light .sim .box .t1 { fill: #0f172a; }
+  html.light .sim .box .t2 { fill: #475569; }
+  html.light .sim .box .ico { color: color-mix(in srgb, rgb(var(--c)) 70%, #000); }
+  .sim .flowp { fill: none; stroke: rgb(var(--fc)); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 11 8; animation: dash 1.1s linear infinite; filter: drop-shadow(0 0 5px rgb(var(--fc) / .6)); }
+  .mail { border-left: 4px solid #f47b20; }
+  .hdr { background: rgba(251,191,36,.12); border: 1px dashed rgba(251,191,36,.6); }
+</style>
+</head>
+<body class="font-sans antialiased min-h-screen">
+
+<nav class="sticky top-0 z-40 border-b border-slate-800/70 bg-slate-950/75 backdrop-blur">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+    <a href="index.html" class="flex items-center gap-2 min-w-0" title="Use Case Hub">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-400 to-blue-500 grid place-items-center shrink-0"><i data-lucide="shield-check" class="w-4 h-4 text-slate-950"></i></div>
+      <span class="font-semibold text-sm truncate">Email DLP</span>
+    </a>
+    <div class="hidden md:flex items-center gap-1 text-xs text-slate-400">
+      <a href="index.html" class="no-print px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100 inline-flex items-center gap-1"><i data-lucide="layout-grid" class="w-3.5 h-3.5"></i><span class="zh">Use Case 首頁</span><span class="en">Use Case Hub</span></a>
+      <a href="#sim" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">互動模擬</span><span class="en">Simulator</span></a>
+      <a href="#domain" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">網域感知</span><span class="en">Domain Policy</span></a>
+      <a href="#actions" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">處置動作</span><span class="en">Actions</span></a>
+    </div>
+  </div>
+</nav>
+
+<header class="grid-bg border-b border-slate-800/70">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
+    <div class="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-widest text-orange-300 mb-4"><i data-lucide="radio-tower" class="w-3.5 h-3.5"></i> Netskope One · Email DLP · SMTP Proxy</div>
+    <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+      <span class="zh"><span class="hero-grad">現代化 Email DLP</span>：外寄郵件的統一資料防護</span>
+      <span class="en"><span class="hero-grad">Modern Email DLP:</span> Unified Protection for Outbound Mail</span>
+    </h1>
+    <p class="mt-3 text-sm sm:text-base text-slate-400 max-w-3xl">
+      <span class="zh">只要在 Microsoft 365 或 Gmail（Google Workspace）設定外寄 Connector，外寄郵件就會先經過 NewEdge 上的 Netskope SMTP Proxy，檢查後再回送原郵件平台寄出。郵件內文與多層附件由同一套 DLP 引擎檢查，再依收件網域插入 X-DLP-Action Header 或剔除收件者；實際的阻擋與主管簽核由 Exchange（或 Gmail）依 Header 執行，並在 Outlook 通知寄件者。使用者不需安裝任何外掛。</span>
+      <span class="en">Configure an outbound connector in Microsoft 365 or Gmail (Google Workspace) and outbound mail passes through the Netskope SMTP Proxy on NewEdge, then loops back to the original platform for delivery. Body text and nested attachments are checked by the same DLP engine, then, by recipient domain, Netskope adds an X-DLP-Action header or removes recipients; Exchange (or Gmail) enforces the block or manager approval from the header and notifies the sender in Outlook. Users install nothing.</span>
+    </p>
+    <div class="mt-6 flex flex-wrap gap-2">
+      <span class="inline-flex items-center gap-2 rounded-full border border-orange-500/40 bg-orange-500/10 px-3 py-1 text-xs font-medium text-orange-300"><i data-lucide="mail" class="w-3.5 h-3.5"></i> SMTP Proxy · NewEdge</span>
+      <span class="inline-flex items-center gap-2 rounded-full border border-blue-500/40 bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-300"><i data-lucide="scan-search" class="w-3.5 h-3.5"></i> EDM · OCR · Nested Attachments</span>
+      <span class="inline-flex items-center gap-2 rounded-full border border-pink-500/40 bg-pink-500/10 px-3 py-1 text-xs font-medium text-pink-300"><i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Email AI Security · AI Guardrails</span>
+      <span class="inline-flex items-center gap-2 rounded-full border border-slate-600 bg-slate-800/60 px-3 py-1 text-xs font-medium text-slate-300"><i data-lucide="plug" class="w-3.5 h-3.5"></i> SIEM · Ticketing</span>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6">
+<section id="sim" class="py-10 scroll-mt-16">
+  <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-3 mb-4">
+    <div>
+      <div class="text-xs font-mono uppercase tracking-widest accent-text">01 · Interactive Simulator</div>
+      <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">一封外寄郵件，會被怎麼處理？</span><span class="en">What happens to an outbound email?</span></h2>
+    </div>
+    <div class="flex gap-2 no-print">
+      <button id="btnReplay" class="btn-s"><i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i><span class="zh">重播</span><span class="en">Replay</span></button>
+      <button id="btnAllOn" class="btn-s"><span class="zh">全開</span><span class="en">All on</span></button>
+      <button id="btnAllOff" class="btn-s"><span class="zh">全關</span><span class="en">All off</span></button>
+    </div>
+  </div>
+  <div class="flex flex-wrap items-center gap-2 no-print">
+    <span class="text-sm text-slate-400 mr-1"><span class="zh">功能</span><span class="en">Features</span></span>
+    <div id="toggles" class="flex flex-wrap gap-2"></div>
+  </div>
+  <div class="mt-3 flex flex-wrap items-center gap-x-5 gap-y-3 no-print">
+    <div class="flex items-center gap-2"><span class="text-sm text-slate-400"><span class="zh">收件者</span><span class="en">Recipient</span></span><div class="seg" id="segRcpt"></div></div>
+    <div class="flex items-center gap-2"><span class="text-sm text-slate-400"><span class="zh">內容</span><span class="en">Content</span></span><div class="seg" id="segContent"></div></div>
+    <div class="flex items-center gap-2"><span class="text-sm text-slate-400"><span class="zh">郵件平台</span><span class="en">Mail platform</span></span><div class="seg" id="segMode"></div></div>
+  </div>
+
+  <div class="mt-4 grid lg:grid-cols-3 gap-4 items-start">
+    <div class="lg:col-span-2">
+      <div class="card rounded-2xl grid-bg overflow-x-auto">
+        <div class="min-w-[720px] p-3 sm:p-4"><svg id="svg" class="sim w-full h-auto" viewBox="0 0 1100 470" role="img" aria-label="Email DLP flow"></svg></div>
+      </div>
+      <div id="verdict" class="verdict mt-3 rounded-xl border px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div id="verdictText" class="text-base sm:text-lg font-bold"></div>
+        <div id="counter" class="text-xs font-mono text-slate-400 shrink-0"></div>
+      </div>
+    </div>
+    <div class="lg:sticky lg:top-20 space-y-4">
+      <div id="mail"></div>
+      <div id="panel" class="card rounded-2xl p-5"></div>
+    </div>
+  </div>
+  <p class="mt-3 text-xs text-slate-500"><span class="zh">示意模擬，不代表實測數據；網域清單、處置動作與串接系統依客戶政策與環境而定。</span><span class="en">Illustrative simulation; domain lists, actions and integrations depend on the customer's policy and environment.</span></p>
+</section>
+
+<section id="domain" class="py-10 border-t border-slate-800/70 scroll-mt-16 print-break">
+  <div class="mb-6">
+    <div class="text-xs font-mono uppercase tracking-widest text-orange-300">02 · Domain-Aware Policy</div>
+    <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">同一份機敏資料，寄給誰決定處置</span><span class="en">Same sensitive data, different outcome by recipient</span></h2>
+  </div>
+  <div class="card rounded-2xl overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm min-w-[640px]">
+        <thead class="bg-slate-900/90 text-[11px] uppercase tracking-wider text-slate-400">
+          <tr><th class="text-left font-semibold px-5 py-3"><span class="zh">收件對象</span><span class="en">Recipient</span></th><th class="text-left font-semibold px-5 py-3"><span class="zh">範例</span><span class="en">Example</span></th><th class="text-left font-semibold px-5 py-3"><span class="zh">處置結果</span><span class="en">Outcome</span></th></tr>
+        </thead>
+        <tbody class="divide-y divide-slate-800/80 text-slate-300">
+          <tr><td class="px-5 py-3"><span class="zh">內部同仁</span><span class="en">Internal staff</span></td><td class="px-5 py-3 font-mono text-xs">@company.com</td><td class="px-5 py-3"><span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300 text-xs font-semibold"><span class="zh">允許</span><span class="en">Allow</span></span></td></tr>
+          <tr><td class="px-5 py-3"><span class="zh">授權合作夥伴</span><span class="en">Approved partner</span></td><td class="px-5 py-3 font-mono text-xs">@partner.com</td><td class="px-5 py-3"><span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300 text-xs font-semibold"><span class="zh">允許</span><span class="en">Allow</span></span></td></tr>
+          <tr><td class="px-5 py-3"><span class="zh">未信任網域</span><span class="en">Untrusted domain</span></td><td class="px-5 py-3 text-xs"><span class="zh">其他外部網域</span><span class="en">Other external domains</span></td><td class="px-5 py-3"><span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 text-xs font-semibold"><span class="zh">插入 RequireApproval Header，由 Exchange 送主管簽核</span><span class="en">RequireApproval header; Exchange routes to the manager</span></span></td></tr>
+          <tr><td class="px-5 py-3"><span class="zh">個人免費信箱</span><span class="en">Personal free mail</span></td><td class="px-5 py-3 text-xs">Gmail · Yahoo</td><td class="px-5 py-3"><span class="px-2 py-0.5 rounded bg-red-500/15 text-red-300 text-xs font-semibold"><span class="zh">插入 Block Header，由 Exchange 阻擋並以 Outlook 通知</span><span class="en">Block header; Exchange blocks and notifies in Outlook</span></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p class="mt-3 text-xs text-slate-500"><span class="zh">搭配「比對收件者」：同一封信有多位收件者時，只剔除未授權的外部收件者，其他人照常收信。</span><span class="en">With recipient matching, only unauthorized external recipients are removed; everyone else still receives the mail.</span></p>
+</section>
+
+<section id="actions" class="py-10 border-t border-slate-800/70 scroll-mt-16 print-break">
+  <div class="mb-6">
+    <div class="text-xs font-mono uppercase tracking-widest text-orange-300">03 · Remediation</div>
+    <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">Netskope 標記、郵件平台執行：四種處置</span><span class="en">Netskope marks, the mail platform enforces: four actions</span></h2>
+  </div>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <article class="card rounded-2xl p-5"><div class="w-10 h-10 rounded-lg bg-red-500/15 text-red-300 grid place-items-center"><i data-lucide="lock" class="w-5 h-5"></i></div><div class="mt-3 font-mono text-xs text-slate-500">X-DLP-Action: Block</div><h3 class="font-semibold text-slate-100"><span class="zh">Header 阻擋</span><span class="en">Block via header</span></h3><p class="mt-1 text-sm text-slate-300"><span class="zh">Netskope 不直接攔信，而是插入 Block Header，由 Exchange 傳輸規則依 Header 擋下郵件。</span><span class="en">Netskope does not drop the mail; it adds a Block header and an Exchange transport rule stops the email.</span></p></article>
+    <article class="card rounded-2xl p-5"><div class="w-10 h-10 rounded-lg bg-amber-500/15 text-amber-300 grid place-items-center"><i data-lucide="code" class="w-5 h-5"></i></div><div class="mt-3 font-mono text-xs text-slate-500">X-DLP-Action: RequireApproval</div><h3 class="font-semibold text-slate-100"><span class="zh">Header 主管簽核</span><span class="en">Manager approval via header</span></h3><p class="mt-1 text-sm text-slate-300"><span class="zh">插入 RequireApproval Header，Exchange 傳輸規則自動把郵件送給寄件者主管簽核，核准後才寄出。</span><span class="en">Adds a RequireApproval header; an Exchange transport rule automatically sends the mail to the sender's manager and releases it only once approved.</span></p></article>
+    <article class="card rounded-2xl p-5"><div class="w-10 h-10 rounded-lg bg-blue-500/15 text-blue-300 grid place-items-center"><i data-lucide="user-minus" class="w-5 h-5"></i></div><div class="mt-3 font-mono text-xs text-slate-500">REMOVE RECIPIENT</div><h3 class="font-semibold text-slate-100"><span class="zh">剔除收件者</span><span class="en">Remove recipient</span></h3><p class="mt-1 text-sm text-slate-300"><span class="zh">精準移除非法外部收件人，合規通訊不中斷。</span><span class="en">Removes only unauthorized external recipients; compliant communication continues.</span></p></article>
+    <article class="card rounded-2xl p-5"><div class="w-10 h-10 rounded-lg bg-emerald-500/15 text-emerald-300 grid place-items-center"><i data-lucide="graduation-cap" class="w-5 h-5"></i></div><div class="mt-3 font-mono text-xs text-slate-500">OUTLOOK NOTIFICATION</div><h3 class="font-semibold text-slate-100"><span class="zh">Outlook 即時通知</span><span class="en">Outlook notice</span></h3><p class="mt-1 text-sm text-slate-300"><span class="zh">郵件被阻擋或送審時，寄件者在 Outlook 收到通知，說明違反的原則，養成資安意識。</span><span class="en">When mail is blocked or held, the sender gets a notice in Outlook explaining the policy, building awareness.</span></p></article>
+  </div>
+</section>
+</main>
+
+<footer class="border-t border-slate-800/70 mt-4">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-28 text-xs text-slate-500 flex flex-col sm:flex-row gap-2 sm:justify-between">
+    <span>Netskope · Email DLP Use Case</span>
+    <span><span class="zh">示意模擬；實際功能依授權、版本與政策而定。</span><span class="en">Illustrative; actual capabilities depend on license, version and policy.</span></span>
+  </div>
+</footer>
+
+<div id="toolbar" class="fixed bottom-4 left-1/2 -translate-x-1/2 sm:left-auto sm:right-4 sm:translate-x-0 z-50 card rounded-xl px-2 py-2 flex items-center gap-2 shadow-2xl">
+  <a href="index.html" class="h-[34px] w-[34px] grid place-items-center rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800" title="Use Case Hub"><i data-lucide="layout-grid" class="w-4 h-4"></i></a>
+  <div class="seg tb" id="segLang"><button data-lang="zh" aria-pressed="true">中文</button><button data-lang="en" aria-pressed="false">EN</button></div>
+  <div class="seg tb" id="segTheme">
+    <button data-theme="dark" aria-pressed="true"><i data-lucide="moon" class="w-3.5 h-3.5"></i><span class="zh">深</span><span class="en">Dark</span></button>
+    <button data-theme="light" aria-pressed="false"><i data-lucide="sun" class="w-3.5 h-3.5"></i><span class="zh">淺</span><span class="en">Light</span></button>
+  </div>
+  <button id="btnPdf" class="h-[34px] px-3 inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800 text-[13px] font-medium"><i data-lucide="file-down" class="w-4 h-4"></i> PDF</button>
+</div>
+
+<script id="icon-shim">/* Inlined Lucide icons (ISC License, lucide.dev) — no CDN needed */
+window.lucide = (function () {
+  const ICONS = {"shield-check":[["path",{"d":"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"}],["path",{"d":"m9 12 2 2 4-4"}]],"layout-grid":[["rect",{"width":"7","height":"7","x":"3","y":"3","rx":"1"}],["rect",{"width":"7","height":"7","x":"14","y":"3","rx":"1"}],["rect",{"width":"7","height":"7","x":"14","y":"14","rx":"1"}],["rect",{"width":"7","height":"7","x":"3","y":"14","rx":"1"}]],"radio-tower":[["path",{"d":"M4.9 16.1C1 12.2 1 5.8 4.9 1.9"}],["path",{"d":"M7.8 4.7a6.14 6.14 0 0 0-.8 7.5"}],["circle",{"cx":"12","cy":"9","r":"2"}],["path",{"d":"M16.2 4.8c2 2 2.26 5.11.8 7.47"}],["path",{"d":"M19.1 1.9a9.96 9.96 0 0 1 0 14.1"}],["path",{"d":"M9.5 18h5"}],["path",{"d":"m8 22 4-11 4 11"}]],"mail":[["path",{"d":"m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"}],["rect",{"x":"2","y":"4","width":"20","height":"16","rx":"2"}]],"scan-search":[["path",{"d":"M3 7V5a2 2 0 0 1 2-2h2"}],["path",{"d":"M17 3h2a2 2 0 0 1 2 2v2"}],["path",{"d":"M21 17v2a2 2 0 0 1-2 2h-2"}],["path",{"d":"M7 21H5a2 2 0 0 1-2-2v-2"}],["circle",{"cx":"12","cy":"12","r":"3"}],["path",{"d":"m16 16-1.9-1.9"}]],"sparkles":[["path",{"d":"M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"}],["path",{"d":"M20 2v4"}],["path",{"d":"M22 4h-4"}],["circle",{"cx":"4","cy":"20","r":"2"}]],"plug":[["path",{"d":"M12 22v-5"}],["path",{"d":"M15 8V2"}],["path",{"d":"M17 8a1 1 0 0 1 1 1v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1z"}],["path",{"d":"M9 8V2"}]],"rotate-ccw":[["path",{"d":"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"}],["path",{"d":"M3 3v5h5"}]],"lock":[["rect",{"width":"18","height":"11","x":"3","y":"11","rx":"2","ry":"2"}],["path",{"d":"M7 11V7a5 5 0 0 1 10 0v4"}]],"code":[["path",{"d":"m16 18 6-6-6-6"}],["path",{"d":"m8 6-6 6 6 6"}]],"user-minus":[["path",{"d":"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"}],["circle",{"cx":"9","cy":"7","r":"4"}],["line",{"x1":"22","x2":"16","y1":"11","y2":"11"}]],"graduation-cap":[["path",{"d":"M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"}],["path",{"d":"M22 10v6"}],["path",{"d":"M6 12.5V16a6 3 0 0 0 12 0v-3.5"}]],"moon":[["path",{"d":"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"}]],"sun":[["circle",{"cx":"12","cy":"12","r":"4"}],["path",{"d":"M12 2v2"}],["path",{"d":"M12 20v2"}],["path",{"d":"m4.93 4.93 1.41 1.41"}],["path",{"d":"m17.66 17.66 1.41 1.41"}],["path",{"d":"M2 12h2"}],["path",{"d":"M20 12h2"}],["path",{"d":"m6.34 17.66-1.41 1.41"}],["path",{"d":"m19.07 4.93-1.41 1.41"}]],"file-down":[["path",{"d":"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"}],["path",{"d":"M14 2v5a1 1 0 0 0 1 1h5"}],["path",{"d":"M12 18v-6"}],["path",{"d":"m9 15 3 3 3-3"}]],"key":[["path",{"d":"m2 21 9.6-9.6"}],["path",{"d":"m7.5 15.5 2.3 2.3a1 1 0 0 1 0 1.4l-2.1 2.1a1 1 0 0 1-1.4 0L4 19"}],["circle",{"cx":"15.5","cy":"7.5","r":"5.5"}]],"user":[["path",{"d":"M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"}],["circle",{"cx":"12","cy":"7","r":"4"}]],"cloud":[["path",{"d":"M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"}]],"mail-check":[["path",{"d":"M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8"}],["path",{"d":"m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"}],["path",{"d":"m16 19 2 2 4-4"}]],"send":[["path",{"d":"M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"}],["path",{"d":"m21.854 2.147-10.94 10.939"}]],"building-2":[["path",{"d":"M10 12h4"}],["path",{"d":"M10 8h4"}],["path",{"d":"M14 21v-3a2 2 0 0 0-4 0v3"}],["path",{"d":"M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"}],["path",{"d":"M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"}]],"handshake":[["path",{"d":"m11 17 2 2a1 1 0 1 0 3-3"}],["path",{"d":"m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"}],["path",{"d":"m21 3 1 11h-2"}],["path",{"d":"M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"}],["path",{"d":"M3 4h8"}]],"globe":[["circle",{"cx":"12","cy":"12","r":"10"}],["path",{"d":"M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"}],["path",{"d":"M2 12h20"}]],"at-sign":[["circle",{"cx":"12","cy":"12","r":"4"}],["path",{"d":"M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"}]]};
+  const NS = 'http://www.w3.org/2000/svg';
+  function createIcons() {
+    document.querySelectorAll('i[data-lucide]').forEach(function (el) {
+      const name = el.getAttribute('data-lucide');
+      const node = ICONS[name];
+      if (!node) return;
+      const svg = document.createElementNS(NS, 'svg');
+      const base = { xmlns: NS, width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' };
+      Object.keys(base).forEach(function (k) { svg.setAttribute(k, base[k]); });
+      svg.setAttribute('class', ('lucide lucide-' + name + ' ' + (el.getAttribute('class') || '')).trim());
+      node.forEach(function (child) {
+        const c = document.createElementNS(NS, child[0]);
+        Object.keys(child[1]).forEach(function (k) { if (k !== 'key') c.setAttribute(k, child[1][k]); });
+        svg.appendChild(c);
+      });
+      el.replaceWith(svg);
+    });
+  }
+  return { createIcons: createIcons };
+})();
+</script>
+<script>
+let lang = document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'zh';
+const L = (zh, en) => ({ zh, en });
+const tr = (x) => (x && typeof x === 'object' && 'zh' in x) ? x[lang] : x;
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+/* ===================== DATA ===================== */
+const FEAT = [
+  { id: 'proxy', c: '244 123 32', nm: 'SMTP Proxy', ds: L('Mail Routing Connector', 'Mail routing connector') },
+  { id: 'dlp', c: '96 165 250', nm: 'DLP', ds: L('深層檢測', 'Deep inspection') },
+  { id: 'ai', c: '244 114 182', nm: 'Email AI Security', ds: 'AI Guardrails' },
+  { id: 'domain', c: '251 191 36', nm: L('網域感知', 'Domain-aware'), ds: L('依收件者處置', 'By recipient') },
+  { id: 'notify', c: '52 211 153', nm: L('寄件者通知', 'Sender notice'), ds: 'Outlook / Gmail' },
+  { id: 'api', c: '167 139 250', nm: L('API 整合', 'API integration'), ds: L('SIEM · 工單', 'SIEM · tickets') }
+];
+const RCPT = {
+  internal: { label: L('內部同仁', 'Internal'), addr: ['amy.lin@company.com'], node: ['r1'] },
+  partner: { label: L('合作夥伴', 'Partner'), addr: ['pm@partner.com'], node: ['r2'] },
+  untrusted: { label: L('未信任網域', 'Untrusted'), addr: ['sales@unknown-vendor.io'], node: ['r3'] },
+  gmail: { label: L('個人信箱', 'Free mail'), addr: ['amy.lin.home@gmail.com'], node: ['r4'] },
+  mixed: { label: L('同事 + 個人信箱', 'Colleague + free mail'), addr: ['amy.lin@company.com', 'amy.lin.home@gmail.com'], node: ['r1', 'r4'] }
+};
+const CONTENT = {
+  clean: { label: L('一般信件', 'Ordinary'), subject: L('下週會議時間確認', 'Confirming next week\'s meeting'), att: null, sensitive: false },
+  body: { label: L('內文含個資', 'PII in body'), subject: L('客戶聯絡清單', 'Customer contact list'), att: null, sensitive: true, how: L('內文命中：台灣身分證字號 × 42（EDM 比對客戶資料庫）', 'Body match: Taiwan national ID × 42 (EDM against customer DB)') },
+  zip: { label: L('巢狀附件', 'Nested attachment'), subject: L('Q4 報表', 'Q4 report'), att: 'Q4_reports.zip › finance/ › 客戶清冊.xlsx', sensitive: true, how: L('第 3 層附件命中：信用卡號 × 18（解開 ZIP 內的 Excel）', 'Match 3 levels deep: card numbers × 18 (Excel inside a ZIP)') },
+  ocr: { label: L('圖片截圖', 'Screenshot'), subject: L('系統畫面截圖', 'System screenshot'), att: 'screenshot_crm.png', sensitive: true, how: L('OCR 辨識圖片文字：身分證字號 × 6', 'OCR on the image: national IDs × 6') },
+  sem: { label: L('語意機密', 'Semantic secret'), subject: L('Project Falcon 評估摘要', 'Project Falcon summary'), att: null, sensitive: true, ai: true, how: L('Email AI Security 語意判讀：內容為未公開的併購評估（沒有固定格式，傳統 DLP 規則比對不到）', 'Email AI Security reads the meaning: an undisclosed acquisition review (no fixed pattern, so classic DLP rules miss it)') },
+};
+const MODE = { m365: { label: 'Microsoft 365' }, gws: { label: L('Gmail（Google Workspace）', 'Gmail (Google Workspace)') } };
+const PLAT = () => mode === 'm365' ? 'Microsoft 365' : 'Gmail';
+const CLIENT = () => mode === 'm365' ? 'Outlook' : 'Gmail';
+const RULE = () => mode === 'm365' ? L('Exchange 傳輸規則', 'an Exchange transport rule') : L('Gmail 路由規則', 'a Gmail routing rule');
+let on = { proxy: true, dlp: true, ai: true, domain: true, notify: true, api: true };
+let rcpt = 'gmail', content = 'body', mode = 'm365', sel = 'proxy';
+let step = 0, timer = null, R = null;
+let stats = { sent: 0, stopped: 0, leaked: 0 };
+
+/* ===================== ENGINE ===================== */
+// per-recipient outcome: deliver | review | block | remove | leak | friction
+function evaluate() {
+  const c = CONTENT[content], rc = RCPT[rcpt], log = [];
+  const add = (s, kind, msg) => log.push({ s, kind, msg });
+  add(1, 'pass', L(`寄件者以 ${mode === 'm365' ? 'Outlook' : 'Gmail'} 寄出「${tr(c.subject)}」給 ${rc.addr.join('、')}`, `Sender emails "${tr(c.subject)}" to ${rc.addr.join(', ')} from ${mode === 'm365' ? 'Outlook' : 'Gmail'}`));
+  const types = rc.node.map(n => ({ r1: 'internal', r2: 'partner', r3: 'untrusted', r4: 'gmail' }[n]));
+  const res = {};
+  let action = null, header = null, detected = false;
+  if (!on.proxy) {
+    add(2, 'off', L(`未設定 Connector，郵件直接由 ${PLAT()} 寄出，Netskope 看不到`, `No connector; mail leaves ${PLAT()} directly, unseen by Netskope`));
+    types.forEach((t, i) => res[rc.node[i]] = c.sensitive && t !== 'internal' ? 'leak' : 'deliver');
+    return finish(log, res, { header, detected, action, skipped: true });
+  }
+  add(2, 'pass', L(`${PLAT()} 的外寄 Connector 將郵件轉送到 NewEdge 上的 Netskope SMTP Proxy`, `The ${PLAT()} outbound connector forwards the email to the Netskope SMTP Proxy on NewEdge`));
+  if (!c.sensitive) { add(3, 'pass', L('內文、主旨與附件皆未命中 DLP', 'Body, subject and attachments match no DLP rule')); types.forEach((t, i) => res[rc.node[i]] = 'deliver'); return finish(log, res, { header, detected, action }); }
+  if (c.ai) {
+    if (!on.ai) { add(3, on.dlp ? 'seen' : 'off', on.dlp ? L('DLP 規則未命中：內容沒有個資、卡號等固定格式；Email AI Security 未啟用', 'No DLP rule matched: no fixed patterns like IDs or card numbers; Email AI Security is off') : L('DLP 與 Email AI Security 皆未啟用', 'DLP and Email AI Security are both off'));
+      types.forEach((t, i) => res[rc.node[i]] = t === 'internal' ? 'deliver' : 'leak'); return finish(log, res, { header, detected, action }); }
+  } else if (!on.dlp) { add(3, 'off', L('DLP 未啟用，未檢查內容', 'DLP off; content not inspected')); types.forEach((t, i) => res[rc.node[i]] = t === 'internal' ? 'deliver' : 'leak'); return finish(log, res, { header, detected, action }); }
+  detected = true;
+  add(3, 'block', c.how);
+  if (!on.domain) {
+    types.forEach((t, i) => res[rc.node[i]] = t === 'internal' ? 'deliver' : (t === 'partner' ? 'friction' : 'block'));
+    action = 'block'; header = 'Block';
+    add(4, 'block', L('未啟用網域感知：所有外部收件一律插入 X-DLP-Action: Block', 'Domain awareness off: every external recipient gets X-DLP-Action: Block'));
+  } else {
+    types.forEach((t, i) => res[rc.node[i]] = { internal: 'deliver', partner: 'deliver', untrusted: 'review', gmail: 'block' }[t]);
+    if (rcpt === 'mixed') { action = 'remove'; res.r4 = 'removed'; add(4, 'block', L('比對收件者：剔除個人信箱收件者，同事照常收信', 'Recipient matching: free-mail recipient removed, colleague still receives it')); }
+    else if (types[0] === 'untrusted') { action = 'header'; header = 'RequireApproval'; add(4, 'seen', L('未信任網域：插入 X-DLP-Action: RequireApproval', 'Untrusted domain: add X-DLP-Action: RequireApproval')); }
+    else if (types[0] === 'gmail') { action = 'block'; header = 'Block'; add(4, 'block', L('個人免費信箱：插入 X-DLP-Action: Block（Netskope 不直接攔信）', 'Free mail: add X-DLP-Action: Block (Netskope does not drop the mail itself)')); }
+    else add(4, 'pass', L(`${types[0] === 'internal' ? '內部同仁' : '授權合作夥伴'}：依政策允許`, `${types[0] === 'internal' ? 'Internal staff' : 'Approved partner'}: allowed by policy`));
+  }
+  return finish(log, res, { header, detected, action });
+}
+function finish(log, res, x) {
+  const vals = Object.values(res);
+  const leaked = vals.includes('leak'), friction = vals.includes('friction');
+  const stopped = vals.some(v => ['block', 'removed', 'review'].includes(v));
+  // step 5: delivery + notify + api
+  const deliverTo = Object.entries(res).filter(([, v]) => v === 'deliver' || v === 'leak').map(([k]) => k);
+  if (deliverTo.length && x.skipped) add5(log, L(`${PLAT()} 直接寄出，沒有經過任何檢查`, `${PLAT()} sends it directly, with no inspection`), leaked ? 'seen' : 'pass');
+  else if (deliverTo.length || x.header) add5(log, L(`檢查完成，郵件回送 ${PLAT()}`, `Inspection done; mail looped back to ${PLAT()}`), leaked ? 'seen' : 'pass');
+  if (x.header === 'RequireApproval') add5(log, mode === 'm365' ? L('Exchange 傳輸規則依 Header 自動將郵件送給寄件者主管簽核', 'An Exchange transport rule automatically sends the mail to the sender\'s manager for approval') : L('Gmail 路由規則依 Header 將郵件送入審核流程', 'A Gmail routing rule sends the mail into an approval flow by header'), 'seen');
+  if (x.header === 'Block') add5(log, L(`${tr(RULE())}依 Header 阻擋外部收件${deliverTo.length ? '（內部同仁照常收到）' : ''}`, `${tr(RULE())} blocks the external delivery by header${deliverTo.length ? ' (internal recipients still get it)' : ''}`), 'block');
+  if (deliverTo.length && !x.skipped) add5(log, L(`${PLAT()} 派送給${deliverTo.length > 1 ? '其餘' : ''}收件者`, `${PLAT()} delivers to the ${deliverTo.length > 1 ? 'remaining ' : ''}recipients`), leaked ? 'seen' : 'pass');
+  if (x.detected && on.notify && (x.action === 'block' || x.action === 'remove' || x.action === 'header')) add5(log, L(`寄件者在 ${CLIENT()} 收到通知，說明違反的原則`, `The sender gets a notice in ${CLIENT()} explaining the policy`), 'pass');
+  if (x.detected && on.api && on.proxy) add5(log, L('事件透過 API 送進 SIEM 與工單系統', 'The incident is sent to SIEM and ticketing via API'), 'pass');
+  let text, kind;
+  if (leaked && CONTENT[content].ai && on.proxy && on.dlp && !on.ai) { text = L('DLP 規則比對不到語意機密，沒有 Email AI Security，內容已寄到外部', 'DLP rules cannot see semantic secrets; without Email AI Security the content went out'); kind = 'risk'; }
+  else if (leaked) { text = x.skipped ? L('郵件未經檢查，機敏資料已寄到外部', 'Mail was never inspected; sensitive data reached an outside recipient') : L('機敏資料未被檢查，已寄到外部', 'Sensitive data was not inspected and reached an outside recipient'); kind = 'risk'; }
+  else if (friction) { text = L('合作夥伴收不到信：沒有網域感知，正常業務被誤擋', 'Partner never got it: without domain awareness, legitimate business is blocked'); kind = 'risk'; }
+  else if (x.action === 'remove') { text = L('已剔除個人信箱收件者，同事照常收到', 'Free-mail recipient removed; the colleague still got the mail'); kind = 'block'; }
+  else if (x.action === 'header') { text = mode === 'm365' ? L('已插入 RequireApproval Header，由 Microsoft 365 自動送主管簽核', 'RequireApproval header added; Microsoft 365 sends it to the manager for approval') : L('已插入 RequireApproval Header，由 Gmail 送入審核流程', 'RequireApproval header added; Gmail sends it for approval'); kind = 'block'; }
+  else if (x.action === 'block') { text = L(`已插入 Block Header，由 ${PLAT()} 阻擋，並在 ${CLIENT()} 通知寄件者`, `Block header added; ${PLAT()} blocks it and notifies the sender in ${CLIENT()}`); kind = 'block'; }
+  else if (x.detected) { text = L('命中 DLP，但收件者為授權對象，依政策允許', 'DLP matched, but the recipient is authorized; allowed by policy'); kind = 'ok'; }
+  else { text = L('檢查通過，郵件正常派送', 'Checked and delivered normally'); kind = 'ok'; }
+  return { log, res, ...x, text, kind, leaked, stopped };
+  function add5(l, m, k) { l.push({ s: 5, kind: k, msg: m }); }
+}
+
+/* ===================== DIAGRAM ===================== */
+const B = {
+  sender: { x: 25,  y: 185, w: 160, h: 80, c: '192 132 252', icon: 'user', t1: L('寄件者', 'Sender'), t2: L('Outlook · 行動 · Webmail', 'Outlook · mobile · webmail') },
+  cloud:  { x: 215, y: 185, w: 180, h: 80, c: '96 165 250', icon: 'cloud', t1: L('雲端郵件', 'Cloud mail'), t2: '' },
+  proxy:  { x: 430, y: 175, w: 220, h: 100, c: '244 123 32', icon: 'mail-check', t1: L('Netskope SMTP Proxy', 'Netskope SMTP Proxy'), t2: L('NewEdge · 即時檢測', 'NewEdge · real-time') },
+  ai:     { x: 690, y: 45,  w: 170, h: 80, c: '244 114 182', icon: 'sparkles', t1: L('Email AI Security', 'Email AI Security'), t2: L('AI Guardrails · 語意判讀', 'AI Guardrails · semantics') },
+  dlp:    { x: 430, y: 45,  w: 220, h: 80, c: '96 165 250', icon: 'scan-search', t1: L('統一 DLP 引擎', 'Unified DLP engine'), t2: L('EDM · OCR · 巢狀附件', 'EDM · OCR · nested files') },
+  api:    { x: 430, y: 355, w: 220, h: 75, c: '167 139 250', icon: 'plug', t1: L('API 整合', 'API integration'), t2: L('SIEM · 工單', 'SIEM · tickets') },
+  gw:     { x: 690, y: 185, w: 170, h: 80, c: '45 212 191', icon: 'send', t1: L('回送郵件平台', 'Back to mail platform'), t2: '' },
+  r1: { x: 900, y: 40,  w: 180, h: 70, c: '52 211 153', icon: 'building-2', t1: L('內部同仁', 'Internal'), t2: '@company.com' },
+  r2: { x: 900, y: 140, w: 180, h: 70, c: '52 211 153', icon: 'handshake', t1: L('授權合作夥伴', 'Approved partner'), t2: '@partner.com' },
+  r3: { x: 900, y: 240, w: 180, h: 70, c: '251 191 36', icon: 'globe', t1: L('未信任網域', 'Untrusted domain'), t2: L('其他外部網域', 'Other domains') },
+  r4: { x: 900, y: 340, w: 180, h: 70, c: '248 113 113', icon: 'at-sign', t1: L('個人免費信箱', 'Personal free mail'), t2: 'Gmail · Yahoo' }
+};
+const RY = { r1: 75, r2: 175, r3: 275, r4: 375 };
+const E = {
+  send: 'M185 225 H215', route: 'M395 225 H430', dlp: 'M540 175 V125', ai: 'M620 175 V150 H775 V125', gw: 'M650 225 H690',
+  notify: 'M775 265 V338 H105 V265', api: 'M600 275 V355',
+};
+const toR = (r) => `M860 225 H878 V${RY[r]} H900`;
+
+function buildSvg() {
+  const r = R, out = [];
+  out.push(`<rect class="zone" x="12" y="20" width="395" height="430" rx="14"/><text class="zone-t" x="28" y="38">${lang === 'en' ? 'SENDER & MAIL PLATFORM' : '寄件者與郵件平台'}</text>`);
+  out.push(`<rect class="zone" x="420" y="20" width="460" height="430" rx="14"/><text class="zone-t" x="436" y="46" style="opacity:0">.</text>`);
+  out.push(`<text class="zone-t" x="436" y="38">${lang === 'en' ? 'NETSKOPE & DELIVERY' : 'NETSKOPE 與派送'}</text>`);
+  out.push(`<rect class="zone" x="890" y="20" width="200" height="430" rx="14"/>`);
+  Object.values(E).forEach(d => out.push(`<path class="ghost" d="${d}"/>`));
+  ['r1', 'r2', 'r3', 'r4'].forEach(k => out.push(`<path class="ghost" d="${toR(k)}"/>`));
+  const act = [];
+  if (step >= 1) act.push([E.send, '192 132 252']);
+  if (step >= 2 && on.proxy) act.push([E.route, '244 123 32']);
+  const cc = CONTENT[content];
+  if (step >= 3 && on.proxy && on.dlp && cc.sensitive) act.push([E.dlp, r.detected && !cc.ai ? '248 113 113' : '96 165 250']);
+  if (step >= 3 && on.proxy && on.ai && cc.sensitive) act.push([E.ai, r.detected && cc.ai ? '248 113 113' : '244 114 182']);
+  if (step >= 5) {
+    const deliver = Object.entries(r.res).filter(([, v]) => v === 'deliver' || v === 'leak');
+    if (deliver.length || r.header) {
+      if (on.proxy) act.push([E.gw, '45 212 191']);
+      deliver.forEach(([k, v]) => act.push([on.proxy ? toR(k) : `M395 225 H415 V${RY[k] < 225 ? 22 : 445} H878 V${RY[k]} H900`, v === 'leak' ? '251 146 60' : '52 211 153']));
+    }
+    if (r.detected && on.notify && ['block', 'remove', 'header'].includes(r.action)) act.push([E.notify, '52 211 153']);
+    if (r.detected && on.api && on.proxy) act.push([E.api, '167 139 250']);
+  }
+  act.forEach(([d, c]) => {
+    out.push(`<path class="flowp" style="--fc:${c}" d="${d}"/>`);
+    out.push(`<circle class="pk" r="5" style="--fc:${c}"><animateMotion dur="1.6s" repeatCount="indefinite" path="${d}"/></circle>`);
+  });
+  const cur = { 1: 'cloud', 2: 'proxy', 3: CONTENT[content].ai ? 'ai' : 'dlp', 4: 'proxy', 5: 'gw' }[step];
+  Object.entries(B).forEach(([k, b]) => {
+    const isR = k.startsWith('r');
+    const involved = RCPT[rcpt].node.includes(k);
+    let cls = '';
+    if ((k === 'proxy' && !on.proxy) || (k === 'dlp' && !on.dlp) || (k === 'ai' && !on.ai) || (k === 'api' && !on.api)) cls += ' off';
+    if (isR && !involved) cls += ' dim';
+    if (isR && involved && step >= 5) { const v = r.res[k]; cls += v === 'deliver' ? ' good' : v === 'review' ? ' warn' : (v === 'leak' || v === 'friction') ? ' warn' : ' hot'; }
+    if (k === 'gw' && step >= 5 && r.header === 'Block' && !Object.values(r.res).some(v => v === 'deliver')) cls += ' hot';
+    if (k === 'gw' && step >= 5 && r.header === 'RequireApproval') cls += ' warn';
+    if (cur === k && step < 5) cls += ' act';
+    if (sel === k) cls += ' sel';
+    const t1 = k === 'cloud' ? PLAT() : k === 'gw' ? L(`回送 ${PLAT()}`, `Back to ${PLAT()}`) : b.t1;
+    const t2 = k === 'cloud' ? (mode === 'm365' ? 'Exchange Online' : 'Google Workspace') : k === 'gw' ? L(`依 Header 執行與派送`, `Enforces header & delivers`) : b.t2;
+    out.push(`<g class="box${cls}" data-node="${k}" style="--c:${b.c}">
+      <rect class="base" x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}" rx="12"/><rect class="tint" x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}" rx="12"/>
+      <foreignObject x="${b.x + 12}" y="${b.y + 12}" width="24" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="ico w-6 h-6 grid place-items-center"><i data-lucide="${b.icon}" class="w-5 h-5"></i></div></foreignObject>
+      <text class="t1" x="${b.x + 42}" y="${b.y + 29}">${esc(tr(t1))}</text>
+      <text class="t2" x="${b.x + 14}" y="${b.y + b.h - 16}">${esc(tr(t2))}</text>
+    </g>`);
+    if (isR && involved && step >= 5) {
+      const v = r.res[k];
+      const tag = { deliver: L('已送達', 'Delivered'), review: L('主管簽核中', 'Awaiting approval'), block: L('已阻擋', 'Blocked'), removed: L('已剔除', 'Removed'), leak: L('已外流', 'Leaked'), friction: L('誤擋', 'Wrongly blocked') }[v];
+      const col = { deliver: '#34d399', review: '#fbbf24', block: '#f87171', removed: '#f87171', leak: '#fb923c', friction: '#fbbf24' }[v];
+      out.push(`<g><rect x="${b.x + b.w - 74}" y="${b.y + b.h - 28}" width="66" height="20" rx="10" fill="${col}"/><text x="${b.x + b.w - 41}" y="${b.y + b.h - 14}" text-anchor="middle" fill="#0b1222" font-size="11" font-weight="800">${esc(tr(tag))}</text></g>`);
+    }
+  });
+  if (step >= 5 && r.header === 'Block' && !Object.values(r.res).some(v => v === 'deliver' || v === 'leak')) out.push(`<g><circle cx="860" cy="225" r="13" fill="#7f1d1d" stroke="#f87171" stroke-width="2"/><path d="M855 220 L865 230 M865 220 L855 230" stroke="#fecaca" stroke-width="2.5" stroke-linecap="round"/></g>`);
+  $('#svg').innerHTML = out.join('');
+  document.querySelectorAll('#svg [data-node]').forEach(el => el.addEventListener('click', () => { sel = el.dataset.node; buildSvg(); renderPanel(); lucide.createIcons(); }));
+}
+
+const INFO = {
+  sender: L('使用者照常用 Outlook、行動裝置或 Webmail 寄信，不需安裝外掛，也不改變習慣。', 'Users send as usual from Outlook, mobile or webmail, with no plug-in and no change in habits.'),
+  cloud: L('在 Microsoft 365（Exchange Online）設定外寄 Connector，或在 Gmail（Google Workspace）設定外寄路由，把外寄郵件導向 Netskope。', 'An outbound connector in Microsoft 365 (Exchange Online) or an outbound route in Gmail (Google Workspace) sends mail to Netskope.'),
+  proxy: L('位於 NewEdge 的 SMTP Proxy 即時檢查外寄郵件，依結果插入 X-DLP-Action Header 或剔除收件者，實際阻擋與簽核由郵件平台依 Header 執行。', 'The SMTP Proxy on NewEdge inspects outbound mail in real time and adds an X-DLP-Action header or removes recipients; the mail platform enforces block or approval from the header.'),
+  ai: L('Email AI Security 把 AI Guardrails 的能力用在外寄郵件上，以語意理解判斷內容是否機密。像併購計畫、未公開財報這類沒有固定格式的內容，傳統 DLP 規則比對不到，也能被辨識出來。', 'Email AI Security applies AI Guardrails to outbound mail, using semantic understanding to judge whether content is confidential. Content with no fixed pattern, like acquisition plans or unreleased financials, is caught even where classic DLP rules miss it.'),
+  dlp: L('與 Web、SaaS、端點共用同一套 DLP Profile：內建識別器、EDM 精準比對、檔案指紋、ML 分類、OCR，並能解開多層壓縮附件。', 'Shares one DLP profile set with web, SaaS and endpoint: built-in identifiers, EDM, fingerprinting, ML classifiers, OCR and nested archive inspection.'),
+  api: L('DLP 事件透過 API 送進既有的 SIEM 與工單系統，融入內部流程。', 'DLP incidents flow via API into the existing SIEM and ticketing systems.'),
+  gw: L('檢查完成的郵件回送到 Microsoft 365 或 Gmail。Netskope 不直接攔信，而是在郵件插入 X-DLP-Action Header，由 Exchange 傳輸規則或 Gmail 路由規則依 Header 阻擋、送主管簽核或派送，並在 Outlook / Gmail 通知寄件者。', 'Inspected mail loops back to Microsoft 365 or Gmail. Netskope does not drop mail itself; it adds an X-DLP-Action header and Exchange transport rules or Gmail routing rules block, route for approval or deliver accordingly, notifying the sender in Outlook / Gmail.'),
+  r1: L('內部同仁：依政策允許。', 'Internal staff: allowed by policy.'),
+  r2: L('授權合作夥伴：依政策允許，業務往來不受影響。', 'Approved partner: allowed, so business continues.'),
+  r3: L('未信任網域：插入 RequireApproval Header，由 Exchange 自動送主管簽核。', 'Untrusted domain: RequireApproval header added; Exchange routes it to the manager for approval.'),
+  r4: L('個人免費信箱：插入 Block Header，由郵件平台阻擋並通知寄件者。', 'Personal free mail: Block header added; the mail platform blocks and notifies the sender.')
+};
+
+function renderPanel() {
+  const r = R;
+  const lines = r.log.filter(l => l.s <= step).map(l => {
+    const col = l.kind === 'block' ? 'text-red-300' : l.kind === 'seen' ? 'text-amber-300' : l.kind === 'off' ? 'text-slate-400' : 'text-emerald-300';
+    return `<div class="log-line ${col}"><span class="font-mono text-slate-500">0${l.s}</span> ${esc(tr(l.msg))}</div>`;
+  }).join('');
+  const b = B[sel];
+  $('#panel').innerHTML = `
+    <div class="text-xs text-slate-500">${lang === 'en' ? 'Selected node' : '所選節點'}</div>
+    <div class="mt-1 text-xl font-bold text-slate-100">${esc(tr(sel === 'cloud' ? PLAT() : b.t1))}</div>
+    <p class="mt-2 text-sm text-slate-300 leading-relaxed">${tr(INFO[sel])}</p>
+    <div class="mt-4 pt-3 border-t border-slate-800 text-xs font-semibold text-slate-200">${lang === 'en' ? 'Processing log' : '處理紀錄'}</div>
+    <div class="mt-2 space-y-1.5 text-xs leading-relaxed">${lines || `<div class="text-slate-500">${lang === 'en' ? 'Waiting to send…' : '等待寄出…'}</div>`}</div>`;
+}
+
+function renderMail() {
+  const c = CONTENT[content], rc = RCPT[rcpt], r = R;
+  const removed = step >= 4 && r.action === 'remove';
+  const toHtml = rc.addr.map(a => removed && a.includes('gmail') ? `<s class="text-red-300">${a}</s>` : a).join(', ');
+  $('#mail').innerHTML = `<div class="card rounded-2xl p-4 mail">
+    <div class="flex items-center gap-2 text-xs text-slate-400"><i data-lucide="mail" class="w-4 h-4 text-orange-300"></i>${lang === 'en' ? 'Outbound email' : '外寄郵件'}</div>
+    <dl class="mt-2 text-xs space-y-1">
+      <div class="flex gap-2"><dt class="w-14 text-slate-500">From</dt><dd class="font-mono text-slate-200">amy.lin@company.com</dd></div>
+      <div class="flex gap-2"><dt class="w-14 text-slate-500">To</dt><dd class="font-mono text-slate-200 break-all">${toHtml}</dd></div>
+      <div class="flex gap-2"><dt class="w-14 text-slate-500">${lang === 'en' ? 'Subject' : '主旨'}</dt><dd class="text-slate-200">${esc(tr(c.subject))}</dd></div>
+      ${c.att ? `<div class="flex gap-2"><dt class="w-14 text-slate-500">${lang === 'en' ? 'Attach' : '附件'}</dt><dd class="font-mono text-slate-200 break-all">📎 ${esc(c.att)}</dd></div>` : ''}
+    </dl>
+    ${step >= 4 && r.header ? `<div class="hdr mt-2 rounded-md px-2 py-1 font-mono text-[11px] ${r.header === 'Block' ? 'text-red-300' : 'text-amber-300'}">X-DLP-Action: ${r.header}</div>` : ''}
+  </div>`;
+}
+
+function renderVerdict() {
+  const r = R, finished = step >= 5;
+  $('#verdict').className = 'verdict mt-3 rounded-xl border px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 ' + (!finished ? 'v-run' : r.kind === 'ok' ? 'v-ok' : r.kind === 'block' ? 'v-block' : 'v-risk');
+  $('#verdictText').textContent = finished ? tr(r.text) : (lang === 'en' ? 'Processing…' : '處理中…');
+  $('#counter').textContent = lang === 'en' ? `Sent ${stats.sent} | Stopped ${stats.stopped} | Leaked ${stats.leaked}` : `已寄出 ${stats.sent}｜已攔截 ${stats.stopped}｜外洩 ${stats.leaked}`;
+  return finished;
+}
+
+function renderControls() {
+  $('#toggles').innerHTML = FEAT.map(c => `<button class="tg" data-ctrl="${c.id}" aria-pressed="${on[c.id]}" style="--tc:${c.c}"><span class="nm">${esc(tr(c.nm))}</span><span class="ds">${esc(tr(c.ds))}</span><span class="sw"></span></button>`).join('');
+  document.querySelectorAll('.tg').forEach(b => b.addEventListener('click', () => { on[b.dataset.ctrl] = !on[b.dataset.ctrl]; run(); }));
+  const seg = (id, obj, cur, set) => {
+    $(id).innerHTML = Object.entries(obj).map(([k, v]) => `<button data-v="${k}" aria-pressed="${k === cur}" style="--bc:244 123 32">${tr(v.label)}</button>`).join('');
+    document.querySelectorAll(id + ' button').forEach(b => b.addEventListener('click', () => { set(b.dataset.v); run(); }));
+  };
+  seg('#segRcpt', RCPT, rcpt, v => rcpt = v);
+  seg('#segContent', CONTENT, content, v => content = v);
+  seg('#segMode', MODE, mode, v => mode = v);
+}
+
+function frame() { buildSvg(); renderPanel(); renderMail(); const f = renderVerdict(); lucide.createIcons(); return f; }
+function run() {
+  clearInterval(timer);
+  R = evaluate(); step = 0;
+  renderControls(); frame();
+  timer = setInterval(() => {
+    step++;
+    if (frame()) {
+      clearInterval(timer);
+      stats.sent++; if (R.stopped) stats.stopped++; if (R.leaked) stats.leaked++;
+      renderVerdict();
+    }
+  }, 750);
+}
+$('#btnReplay').addEventListener('click', run);
+$('#btnAllOn').addEventListener('click', () => { FEAT.forEach(c => on[c.id] = true); run(); });
+$('#btnAllOff').addEventListener('click', () => { FEAT.forEach(c => on[c.id] = false); run(); });
+
+function applyLang(l) {
+  lang = l;
+  document.documentElement.setAttribute('lang', l === 'en' ? 'en' : 'zh-Hant');
+  document.querySelectorAll('#segLang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
+  try { localStorage.setItem('nsk-poc-lang', l); } catch (e) {}
+  renderControls(); if (R) { R = evaluate(); frame(); }
+  lucide.createIcons();
+}
+function applyTheme(t) {
+  document.documentElement.classList.toggle('light', t === 'light');
+  document.querySelectorAll('#segTheme button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.theme === t)));
+  try { localStorage.setItem('nsk-poc-theme', t); } catch (e) {}
+}
+document.querySelectorAll('#segLang button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+document.querySelectorAll('#segTheme button').forEach(b => b.addEventListener('click', () => applyTheme(b.dataset.theme)));
+let themeBeforePrint = null;
+window.addEventListener('beforeprint', () => { themeBeforePrint = document.documentElement.classList.contains('light') ? 'light' : 'dark'; document.documentElement.classList.add('light'); clearInterval(timer); step = 5; frame(); });
+window.addEventListener('afterprint', () => { if (themeBeforePrint === 'dark') document.documentElement.classList.remove('light'); themeBeforePrint = null; });
+$('#btnPdf').addEventListener('click', () => window.print());
+
+applyTheme(document.documentElement.classList.contains('light') ? 'light' : 'dark');
+applyLang(lang);
+run();
+</script>
+</body>
+</html>
