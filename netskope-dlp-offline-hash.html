@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDM 與 Fingerprint 離線雜湊上傳</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+  (function () {
+    try {
+      if (localStorage.getItem('nsk-poc-theme') === 'light') document.documentElement.classList.add('light');
+      if (localStorage.getItem('nsk-poc-lang') === 'en') document.documentElement.setAttribute('lang', 'en');
+    } catch (e) {}
+  })();
+</script>
+<style id="tw-inline">*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:Inter,Noto Sans TC,system-ui,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:JetBrains Mono,ui-monospace,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.visible{visibility:visible}.static{position:static}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.bottom-4{bottom:1rem}.left-1\/2{left:50%}.top-0{top:0}.z-40{z-index:40}.z-50{z-index:50}.col-span-2{grid-column:span 2/span 2}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:.25rem}.mb-2{margin-bottom:.5rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.table{display:table}.grid{display:grid}.hidden{display:none}.h-14{height:3.5rem}.h-3\.5{height:.875rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-7{height:1.75rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-\[34px\]{height:34px}.h-auto{height:auto}.min-h-screen{min-height:100vh}.w-3\.5{width:.875rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-7{width:1.75rem}.w-8{width:2rem}.w-9{width:2.25rem}.w-\[34px\]{width:34px}.w-full{width:100%}.min-w-0{min-width:0}.min-w-\[520px\]{min-width:520px}.min-w-\[760px\]{min-width:760px}.max-w-3xl{max-width:48rem}.max-w-7xl{max-width:80rem}.flex-shrink{flex-shrink:1}.shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%}.-translate-x-1\/2,.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scroll-mt-16{scroll-margin-top:4rem}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.place-items-center{place-items:center}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.space-y-1>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.25rem*var(--tw-space-y-reverse))}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.divide-slate-800>:not([hidden])~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(30 41 59/var(--tw-divide-opacity,1))}.overflow-x-auto{overflow-x:auto}.truncate{overflow:hidden;text-overflow:ellipsis}.truncate,.whitespace-nowrap{white-space:nowrap}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85/var(--tw-border-opacity,1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59/var(--tw-border-opacity,1))}.border-slate-800\/70{border-color:rgba(30,41,59,.7)}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42/var(--tw-bg-opacity,1))}.bg-slate-950{--tw-bg-opacity:1;background-color:rgb(2 6 23/var(--tw-bg-opacity,1))}.bg-slate-950\/75{background-color:rgba(2,6,23,.75)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}.from-teal-400{--tw-gradient-from:#2dd4bf var(--tw-gradient-from-position);--tw-gradient-to:rgba(45,212,191,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.to-pink-400{--tw-gradient-to:#f472b6 var(--tw-gradient-to-position)}.p-3{padding:.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.px-1\.5{padding-left:.375rem;padding-right:.375rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.pb-28{padding-bottom:7rem}.pb-3{padding-bottom:.75rem}.pr-3{padding-right:.75rem}.pt-8{padding-top:2rem}.text-left{text-align:left}.font-mono{font-family:JetBrains Mono,ui-monospace,monospace}.font-sans{font-family:Inter,Noto Sans TC,system-ui,sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[13px\]{font-size:13px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-.025em}.tracking-widest{letter-spacing:.1em}.text-amber-300{--tw-text-opacity:1;color:rgb(252 211 77/var(--tw-text-opacity,1))}.text-blue-300{--tw-text-opacity:1;color:rgb(147 197 253/var(--tw-text-opacity,1))}.text-cyan-300{--tw-text-opacity:1;color:rgb(103 232 249/var(--tw-text-opacity,1))}.text-emerald-300{--tw-text-opacity:1;color:rgb(110 231 183/var(--tw-text-opacity,1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153/var(--tw-text-opacity,1))}.text-pink-300{--tw-text-opacity:1;color:rgb(249 168 212/var(--tw-text-opacity,1))}.text-red-300{--tw-text-opacity:1;color:rgb(252 165 165/var(--tw-text-opacity,1))}.text-rose-300{--tw-text-opacity:1;color:rgb(253 164 175/var(--tw-text-opacity,1))}.text-slate-100{--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240/var(--tw-text-opacity,1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105/var(--tw-text-opacity,1))}.text-slate-950{--tw-text-opacity:1;color:rgb(2 6 23/var(--tw-text-opacity,1))}.text-teal-300{--tw-text-opacity:1;color:rgb(94 234 212/var(--tw-text-opacity,1))}.text-violet-300{--tw-text-opacity:1;color:rgb(196 181 253/var(--tw-text-opacity,1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.ring{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.blur{--tw-blur:blur(8px)}.blur,.drop-shadow{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.drop-shadow{--tw-drop-shadow:drop-shadow(0 1px 2px rgba(0,0,0,.1)) drop-shadow(0 1px 1px rgba(0,0,0,.06))}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px)}.backdrop-blur,.backdrop-filter{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.hover\:bg-slate-800:hover{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.hover\:text-slate-100:hover{--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}@media (min-width:640px){.sm\:left-auto{left:auto}.sm\:right-4{right:1rem}.sm\:translate-x-0{--tw-translate-x:0px;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.sm\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.sm\:flex-row{flex-direction:row}.sm\:items-center{align-items:center}.sm\:justify-between{justify-content:space-between}.sm\:p-5{padding:1.25rem}.sm\:p-6{padding:1.5rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:py-12{padding-top:3rem;padding-bottom:3rem}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-base{font-size:1rem;line-height:1.5rem}}@media (min-width:768px){.md\:flex{display:flex}}@media (min-width:1024px){.lg\:col-span-2{grid-column:span 2/span 2}.lg\:col-span-3{grid-column:span 3/span 3}.lg\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.lg\:grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.lg\:flex-row{flex-direction:row}.lg\:items-center{align-items:center}.lg\:justify-between{justify-content:space-between}.lg\:text-5xl{font-size:3rem;line-height:1}}</style>
+<style>
+  :root { --accent: 52 211 153; }
+  html { scroll-behavior: smooth; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(96,165,250,.10), transparent 60%),
+      #060a13;
+    color: #e2e8f0;
+    transition: background-color .3s ease, color .3s ease;
+  }
+  html[lang="en"] .zh { display: none !important; }
+  html:not([lang="en"]) .en { display: none !important; }
+  .grid-bg {
+    background-image: linear-gradient(rgba(148,163,184,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .card { background: rgba(15,23,42,.65); border: 1px solid rgba(51,65,85,.6); backdrop-filter: blur(8px); }
+  .accent-text { color: rgb(var(--accent)); transition: color .4s ease; }
+  .accent-bg { background: rgb(var(--accent) / .12); border-color: rgb(var(--accent) / .4); transition: all .4s ease; }
+  .hero-grad { background-image: linear-gradient(90deg, #6ee7b7, #bae6fd, #93c5fd); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  .seg { display: inline-flex; flex-wrap: wrap; border: 1px solid #334155; border-radius: .6rem; overflow: hidden; background: rgba(15,23,42,.8); }
+  .seg button { padding: .45rem .85rem; font-size: .8rem; color: #cbd5e1; transition: all .25s ease; white-space: nowrap; display: inline-flex; align-items: center; gap: .4rem; }
+  .seg button + button { border-left: 1px solid #334155; }
+  .seg button:hover { background: rgba(51,65,85,.5); }
+  .seg button[aria-pressed="true"] { background: rgb(var(--bc, 52 211 153)); color: #020617; font-weight: 600; }
+  .seg .dot { width: 8px; height: 8px; border-radius: 9999px; background: rgb(var(--bc)); }
+  .seg button[aria-pressed="true"] .dot { background: #020617; }
+  .seg.tb button { padding: .4rem .75rem; }
+  .seg.tb button[aria-pressed="true"] { background: #22d3ee; color: #020617; }
+
+  /* ---------- topology ---------- */
+  .tp text { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
+  .tp .zone { fill: rgba(15,23,42,.35); stroke: rgba(100,116,139,.55); stroke-dasharray: 6 6; }
+  .tp .zone-t { fill: #94a3b8; font-size: 12px; font-weight: 600; letter-spacing: .06em; }
+  .tp .wire { fill: none; stroke: rgba(100,116,139,.55); stroke-width: 1.5; }
+  .tp .ghost { fill: none; stroke: rgba(100,116,139,.28); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; stroke-linejoin: round; }
+  .tp .flow { fill: none; stroke: rgb(var(--fc)); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 11 9; animation: dash 1.1s linear infinite; filter: drop-shadow(0 0 5px rgb(var(--fc) / .6)); }
+  .tp .flow.static { animation: none; stroke-dasharray: 6 6; stroke-width: 2.5; }
+  @keyframes dash { to { stroke-dashoffset: -20; } }
+  .tp .pk { fill: #fff; filter: drop-shadow(0 0 6px rgb(var(--fc))); }
+  .tp .fz { opacity: 0; transition: opacity .35s ease; }
+  .tp .fz.show { opacity: 1; }
+
+  .tp .node { cursor: pointer; transition: opacity .35s ease; }
+  .tp .node .base { fill: #0b1222; }
+  .tp .node .tint { fill: rgb(var(--c) / .06); stroke: rgb(var(--c) / .55); stroke-width: 1.5; transition: all .3s ease; }
+  .tp .node .ico { color: rgb(var(--c)); }
+  .tp .node .t1 { fill: #f1f5f9; font-size: 14px; font-weight: 700; }
+  .tp .node .t2 { fill: #94a3b8; font-size: 11px; }
+  .tp .node.sm .t1 { font-size: 12px; font-weight: 600; }
+  .tp .node:hover .tint { stroke: rgb(var(--c)); }
+  .tp .node.sel .tint { stroke: rgb(var(--c)); stroke-width: 3; filter: drop-shadow(0 0 10px rgb(var(--c) / .8)); fill: rgb(var(--c) / .14); }
+  .tp .node.dim > :not(.base) { opacity: .3; }
+  .tp .warn { transition: opacity .35s ease; }
+  .tp .xmark circle { fill: #7f1d1d; stroke: #f87171; stroke-width: 2; }
+  .tp .xmark path { stroke: #fecaca; stroke-width: 2.5; stroke-linecap: round; }
+
+  .fade-in { animation: fadeIn .45s ease both; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .pulse-dot { position: relative; }
+  .pulse-dot::after { content: ''; position: absolute; inset: 0; border-radius: 9999px; background: inherit; animation: ping 1.8s infinite; }
+  @keyframes ping { 0% { opacity: .7; transform: scale(1); } 100% { opacity: 0; transform: scale(2.2); } }
+  ::-webkit-scrollbar { height: 8px; width: 8px; }
+  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 8px; }
+  .print-only { display: none; }
+
+  /* =================== LIGHT =================== */
+  html.light body {
+    background: radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(96,165,250,.12), transparent 60%), #f1f5f9;
+    color: #0f172a;
+  }
+  html.light .grid-bg { background-image: linear-gradient(rgba(15,23,42,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,.05) 1px, transparent 1px); }
+  html.light .card { background: rgba(255,255,255,.9); border-color: #e2e8f0; box-shadow: 0 1px 2px rgba(15,23,42,.04); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #059669, #0284c7, #2563eb); }
+  html.light .accent-text { color: color-mix(in srgb, rgb(var(--accent)) 62%, #000); }
+  html.light .text-slate-100 { color: #0f172a; }
+  html.light .text-slate-200 { color: #1e293b; }
+  html.light .text-slate-300 { color: #334155; }
+  html.light .text-slate-400 { color: #475569; }
+  html.light .text-slate-500 { color: #64748b; }
+  html.light .text-slate-600 { color: #94a3b8; }
+  html.light .text-cyan-300, html.light .text-cyan-300\/90 { color: #0e7490; }
+  html.light .text-blue-300 { color: #1d4ed8; }
+  html.light .text-amber-300 { color: #b45309; }
+  html.light .text-red-300, html.light .text-rose-300 { color: #b91c1c; }
+  html.light .text-emerald-300 { color: #047857; }
+  html.light .text-emerald-400 { color: #059669; }
+  html.light .text-violet-300 { color: #6d28d9; }
+  html.light .hover\:text-slate-100:hover { color: #0f172a; }
+  html.light .bg-slate-950\/75 { background: rgba(255,255,255,.82); }
+  html.light .bg-slate-950\/70, html.light .bg-slate-950\/50 { background: #f8fafc; }
+  html.light .bg-slate-900 { background: #ffffff; }
+  html.light .bg-slate-900\/90 { background: #f1f5f9; }
+  html.light .bg-slate-800, html.light .bg-slate-800\/60 { background: #e2e8f0; }
+  html.light .hover\:bg-slate-800:hover { background: #e2e8f0; }
+  html.light .border-slate-600, html.light .border-slate-700 { border-color: #cbd5e1; }
+  html.light .border-slate-800, html.light .border-slate-800\/70 { border-color: #e2e8f0; }
+  html.light .divide-slate-800\/80 > :not([hidden]) ~ :not([hidden]) { border-color: #e2e8f0; }
+  html.light .seg { border-color: #cbd5e1; background: #fff; }
+  html.light .seg button { color: #334155; }
+  html.light .seg button + button { border-left-color: #cbd5e1; }
+  html.light .seg button:hover { background: #f1f5f9; }
+  html.light .seg button[aria-pressed="true"] { color: #020617; }
+  html.light .tp .zone { fill: rgba(255,255,255,.6); stroke: #94a3b8; }
+  html.light .tp .zone-t { fill: #475569; }
+  html.light .tp .wire { stroke: #94a3b8; }
+  html.light .tp .ghost { stroke: rgba(100,116,139,.45); }
+  html.light .tp .pk { fill: rgb(var(--fc)); stroke: #fff; stroke-width: 1.5; }
+  html.light .tp .node .base { fill: #ffffff; }
+  html.light .tp .node .t1 { fill: #0f172a; }
+  html.light .tp .node .t2 { fill: #475569; }
+  html.light .tp .node .ico { color: color-mix(in srgb, rgb(var(--c)) 70%, #000); }
+  html.light ::-webkit-scrollbar-thumb { background: #cbd5e1; }
+
+  /* =================== PRINT =================== */
+  @page { size: A4 landscape; margin: 10mm; }
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    html, body { background: #fff !important; }
+    body { zoom: .62; }
+    .no-print, nav, #toolbar { display: none !important; }
+    .print-only { display: block !important; }
+    .card { backdrop-filter: none !important; break-inside: avoid; box-shadow: none !important; }
+    .overflow-x-auto { overflow: visible !important; }
+    .min-w-\[860px\], .min-w-\[760px\] { min-width: 0 !important; }
+    section { padding-top: 0 !important; padding-bottom: 0 !important; border-top: 0 !important; }
+    #topology, .print-break { break-before: page; }
+    #tp { width: 82% !important; margin: 0 auto; display: block; }
+    .tp .flow { animation: none !important; filter: none !important; }
+    .tp .pk { display: none; }
+    .fade-in { animation: none !important; }
+    header { padding-top: 0 !important; }
+    footer > div { padding-bottom: 0 !important; }
+  }
+</style>
+<style>
+  :root { --accent: 34 211 238; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(34,211,238,.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(251,146,60,.08), transparent 60%),
+      #060a13;
+  }
+  html.light body { background: radial-gradient(1200px 600px at 10% -10%, rgba(34,211,238,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(251,146,60,.10), transparent 60%), #f1f5f9; }
+  .hero-grad { background-image: linear-gradient(90deg, #67e8f9, #bae6fd, #fdba74); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #0e7490, #0369a1, #c2410c); }
+
+  /* toggle switches */
+  .tg { display: inline-flex; align-items: center; gap: .6rem; padding: .45rem .55rem .45rem .9rem; border: 1px solid #334155; border-radius: 9999px; background: rgba(15,23,42,.8); transition: all .25s ease; }
+  .tg .nm { font-weight: 600; font-size: .9rem; color: #e2e8f0; }
+  .tg .ds { font-size: .7rem; color: #94a3b8; }
+  .tg .sw { width: 38px; height: 22px; border-radius: 9999px; background: #334155; position: relative; transition: background .25s ease; flex-shrink: 0; }
+  .tg .sw::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 9999px; background: #94a3b8; transition: all .25s ease; }
+  .tg[aria-pressed="true"] { border-color: rgb(var(--tc) / .7); background: rgb(var(--tc) / .10); }
+  .tg[aria-pressed="true"] .sw { background: rgb(var(--tc)); }
+  .tg[aria-pressed="true"] .sw::after { left: 19px; background: #020617; }
+  html.light .tg { background: #fff; border-color: #cbd5e1; }
+  html.light .tg .nm { color: #0f172a; }
+  html.light .tg .ds { color: #64748b; }
+  html.light .tg .sw { background: #cbd5e1; }
+  .btn-s { height: 34px; padding: 0 .8rem; border: 1px solid #334155; border-radius: .55rem; background: rgba(15,23,42,.8); font-size: .8rem; font-weight: 600; color: #e2e8f0; display: inline-flex; align-items: center; gap: .35rem; }
+  .btn-s:hover { background: rgba(51,65,85,.6); }
+  html.light .btn-s { background: #fff; border-color: #cbd5e1; color: #0f172a; }
+
+  /* sim svg */
+  .sim text { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
+  .sim .zone { fill: rgba(15,23,42,.35); stroke: rgba(100,116,139,.5); stroke-dasharray: 6 6; }
+  .sim .zone-t { fill: #94a3b8; font-size: 13px; font-weight: 600; letter-spacing: .08em; }
+  .sim .pill rect { fill: rgba(51,65,85,.35); stroke: rgba(100,116,139,.6); stroke-width: 1.5; transition: all .3s ease; }
+  .sim .pill .ico { color: #64748b; }
+  .sim .pill .num { fill: #64748b; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; }
+  .sim .pill .nm { fill: #94a3b8; font-size: 14px; font-weight: 700; }
+  .sim .pill .ds { fill: #64748b; font-size: 11px; }
+  .sim .pill .st { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; }
+  .sim .pill.on rect { fill: rgb(var(--pc) / .12); stroke: rgb(var(--pc) / .8); }
+  .sim .pill.on .ico { color: rgb(var(--pc)); }
+  .sim .pill.on .num { fill: rgb(var(--pc)); }
+  .sim .pill.on .nm { fill: #f1f5f9; }
+  .sim .pill.on .ds { fill: #94a3b8; }
+  .sim .pill.act rect { stroke-width: 3; filter: drop-shadow(0 0 12px rgb(var(--pc) / .85)); }
+  .sim .pill.hit rect { stroke: #f87171; stroke-width: 3; fill: rgba(248,113,113,.15); filter: drop-shadow(0 0 12px rgba(248,113,113,.8)); }
+  .sim .pill { cursor: pointer; }
+  .sim .end { cursor: pointer; }
+  .sim .end .ring { fill: #0b1222; stroke-width: 2.5; transition: all .3s ease; }
+  .sim .end .nm { fill: #f1f5f9; font-size: 17px; font-weight: 700; }
+  .sim .end .ds { fill: #94a3b8; font-size: 12px; }
+  .sim .end.dim { opacity: .4; }
+  .sim .end.sel .ring { stroke-width: 4; filter: drop-shadow(0 0 12px currentColor); }
+  .sim .run { fill: none; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 12 9; animation: dash 1.1s linear infinite; }
+  .sim .run.ok { stroke: #34d399; stroke-dasharray: none; filter: drop-shadow(0 0 5px rgba(52,211,153,.6)); }
+  .sim .run.risk { stroke: #fb923c; filter: drop-shadow(0 0 5px rgba(251,146,60,.6)); }
+  .sim .run.go { stroke: #22d3ee; filter: drop-shadow(0 0 5px rgba(34,211,238,.6)); }
+  .sim .seen { fill: none; stroke: #fbbf24; stroke-width: 2.5; stroke-dasharray: 2 6; stroke-linecap: round; }
+  .sim .ghost { fill: none; stroke: rgba(100,116,139,.3); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; }
+  @keyframes dash { to { stroke-dashoffset: -21; } }
+  html.light .sim .zone { fill: rgba(255,255,255,.6); stroke: #94a3b8; }
+  html.light .sim .zone-t { fill: #475569; }
+  html.light .sim .pill rect { fill: #eef2f7; stroke: #94a3b8; }
+  html.light .sim .pill.on .nm, html.light .sim .end .nm { fill: #0f172a; }
+  html.light .sim .end .ring { fill: #fff; }
+  html.light .sim .end .ds, html.light .sim .pill.on .ds { fill: #475569; }
+
+  .verdict { border-width: 1.5px; transition: all .3s ease; }
+  .v-ok { border-color: rgba(52,211,153,.6); background: rgba(52,211,153,.08); color: #6ee7b7; }
+  .v-block { border-color: rgba(34,211,238,.6); background: rgba(34,211,238,.08); color: #67e8f9; }
+  .v-risk { border-color: rgba(251,146,60,.7); background: rgba(251,146,60,.08); color: #fdba74; }
+  .v-run { border-color: rgba(100,116,139,.5); background: rgba(15,23,42,.5); color: #cbd5e1; }
+  html.light .v-ok { color: #047857; } html.light .v-block { color: #0e7490; } html.light .v-risk { color: #c2410c; } html.light .v-run { color: #334155; background: #fff; }
+  .log-line { animation: fadeIn .35s ease both; }
+</style>
+<style>
+  :root { --accent: 45 212 191; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(45,212,191,.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(244,114,182,.08), transparent 60%),
+      #060a13;
+  }
+  html.light body { background: radial-gradient(1200px 600px at 10% -10%, rgba(45,212,191,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(244,114,182,.10), transparent 60%), #f1f5f9; }
+  .hero-grad { background-image: linear-gradient(90deg, #5eead4, #7dd3fc, #f9a8d4); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #0f766e, #0369a1, #be185d); }
+
+  /* topology */
+  .tp .node.act .tint { stroke: rgb(var(--c)); stroke-width: 3; fill: rgb(var(--c) / .16); filter: drop-shadow(0 0 12px rgb(var(--c) / .8)); }
+  .tp .node.err .tint { stroke: #f87171; stroke-width: 3; fill: rgba(248,113,113,.15); filter: drop-shadow(0 0 12px rgba(248,113,113,.8)); }
+  .tp .node.ok .tint { stroke: #34d399; stroke-width: 2.5; fill: rgba(52,211,153,.12); }
+  .tp .lbl { fill: #94a3b8; font-size: 12px; font-weight: 600; }
+  .tp .lbl2 { fill: #64748b; font-size: 11px; }
+  .tp .chip rect { fill: rgba(15,23,42,.8); stroke: rgba(100,116,139,.5); stroke-width: 1.2; transition: all .3s ease; }
+  .tp .chip text { fill: #94a3b8; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; }
+  .tp .chip.on rect { fill: rgb(var(--c) / .18); stroke: rgb(var(--c)); filter: drop-shadow(0 0 6px rgb(var(--c) / .6)); }
+  .tp .chip.on text { fill: #f1f5f9; }
+  .tp .badge rect { fill: #0b1222; stroke: #2dd4bf; stroke-width: 1.5; }
+  .tp .badge text { fill: #5eead4; font-size: 11.5px; font-weight: 700; }
+  .tp .clock rect { fill: #0b1222; stroke: rgba(100,116,139,.6); stroke-width: 1.2; }
+  .tp .clock text { fill: #cbd5e1; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 600; }
+  .tp .clock.act rect { stroke: rgb(var(--c)); fill: rgb(var(--c) / .14); }
+  .tp .hpk rect { fill: #0b1222; stroke: rgb(var(--fc)); stroke-width: 2; }
+  .tp .hpk text { fill: rgb(var(--fc)); font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 800; }
+  .tp .xwire { fill: none; stroke: #f87171; stroke-width: 3; stroke-dasharray: 5 6; }
+  html.light .tp .lbl { fill: #475569; }
+  html.light .tp .chip rect, html.light .tp .badge rect, html.light .tp .clock rect, html.light .tp .hpk rect { fill: #fff; }
+  html.light .tp .chip text, html.light .tp .clock text { fill: #334155; }
+  html.light .tp .chip.on text { fill: #0f172a; }
+  html.light .tp .badge text { fill: #0f766e; }
+
+  .term { background: #020617; border: 1px solid #1e293b; border-radius: .9rem; padding: .85rem 1rem; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; line-height: 1.65; min-height: 260px; max-height: 360px; overflow-y: auto; }
+  .term .l { white-space: pre-wrap; word-break: break-all; animation: fadeIn .3s ease both; }
+  .term .cmd { color: #e2e8f0; } .term .cmd::before { content: '$ '; color: #2dd4bf; }
+  .term .info { color: #94a3b8; } .term .ok { color: #6ee7b7; } .term .err { color: #fca5a5; font-weight: 600; } .term .warn { color: #fcd34d; }
+  .term .ts { color: #475569; }
+  html.light .term { background: #0f172a; border-color: #0f172a; }
+
+  .datab { border: 1px solid rgba(51,65,85,.6); border-radius: .75rem; padding: .7rem .8rem; background: rgba(2,6,23,.45); font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.6; white-space: nowrap; overflow-x: auto; }
+  html.light .datab { background: #f8fafc; border-color: #e2e8f0; }
+
+  .chan { border: 1.5px solid rgba(100,116,139,.5); border-radius: .9rem; padding: 1rem; transition: all .3s ease; }
+  .chan.yes { border-color: rgba(52,211,153,.7); background: rgba(52,211,153,.07); }
+  .chan.no { border-color: rgba(248,113,113,.6); background: rgba(248,113,113,.06); }
+  .chan .bar { height: 8px; border-radius: 9999px; background: rgba(51,65,85,.7); overflow: hidden; position: relative; }
+  .chan .bar > div { height: 100%; border-radius: 9999px; transition: width .35s ease, background .35s ease; }
+  html.light .chan.yes { background: #ecfdf5; } html.light .chan.no { background: #fef2f2; }
+  input[type=range].rng { width: 100%; accent-color: #2dd4bf; }
+
+  .cron { position: relative; height: 54px; border-radius: .6rem; background: rgba(15,23,42,.7); border: 1px solid #334155; overflow: hidden; }
+  .cron .tick { position: absolute; top: 0; bottom: 0; width: 1px; background: rgba(100,116,139,.25); }
+  .cron .tl { position: absolute; bottom: 3px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #64748b; transform: translateX(-50%); }
+  .cron .job { position: absolute; top: 7px; height: 22px; border-radius: .35rem; font-size: 10.5px; font-weight: 700; display: flex; align-items: center; padding: 0 .4rem; white-space: nowrap; color: #020617; }
+  html.light .cron { background: #fff; border-color: #cbd5e1; }
+
+  .ts-row { border: 1px solid rgba(51,65,85,.6); border-radius: .75rem; transition: all .25s ease; }
+  .ts-row summary { cursor: pointer; list-style: none; padding: .7rem .9rem; display: flex; align-items: center; gap: .6rem; font-size: .875rem; font-weight: 600; }
+  .ts-row summary::-webkit-details-marker { display: none; }
+  .ts-row[open] { border-color: rgba(45,212,191,.6); background: rgba(45,212,191,.05); }
+  .ts-row .chev { transition: transform .25s ease; margin-left: auto; }
+  .ts-row[open] .chev { transform: rotate(90deg); }
+  html.light .ts-row { border-color: #e2e8f0; background: #fff; }
+  pre.code { background: #020617; color: #e2e8f0; border: 1px solid #1e293b; border-radius: .7rem; padding: .7rem .85rem; font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.6; overflow-x: auto; white-space: pre; }
+  pre.code .c { color: #64748b; }
+  html.light pre.code { background: #0f172a; }
+  .text-teal-300 { color: #5eead4; } html.light .text-teal-300 { color: #0f766e; }
+  .text-pink-300 { color: #f9a8d4; } html.light .text-pink-300 { color: #be185d; }
+  .v-red { border-color: rgba(248,113,113,.7); background: rgba(248,113,113,.08); color: #fca5a5; }
+  html.light .v-red { color: #b91c1c; }
+  @media print {
+    .term { max-height: none; }
+    .ts-row { break-inside: avoid; }
+    details.ts-row > :not(summary) { display: block !important; }
+  }
+</style>
+</head>
+<body class="font-sans antialiased min-h-screen">
+
+<nav class="sticky top-0 z-40 border-b border-slate-800/70 bg-slate-950/75 backdrop-blur">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+    <a href="index.html" class="flex items-center gap-2 min-w-0" title="Use Case Hub">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-400 to-pink-400 grid place-items-center shrink-0"><i data-lucide="fingerprint" class="w-4 h-4 text-slate-950"></i></div>
+      <span class="font-semibold text-sm truncate"><span class="zh">EDM 與 Fingerprint 離線雜湊上傳</span><span class="en">EDM & Fingerprint Offline Hash Upload</span></span>
+    </a>
+    <div class="hidden md:flex items-center gap-1 text-xs text-slate-400">
+      <a href="index.html" class="no-print px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100 inline-flex items-center gap-1"><i data-lucide="layout-grid" class="w-3.5 h-3.5"></i><span class="zh">Use Case 首頁</span><span class="en">Use Case Hub</span></a>
+      <a href="#sim" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">互動模擬</span><span class="en">Simulator</span></a>
+      <a href="#limits" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">上傳管道與限制</span><span class="en">Channels & Limits</span></a>
+      <a href="#ops" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">排程與維運</span><span class="en">Scheduling & Ops</span></a>
+    </div>
+  </div>
+</nav>
+
+<header class="grid-bg border-b border-slate-800/70">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
+    <div class="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-widest text-teal-300 mb-4"><i data-lucide="radio-tower" class="w-3.5 h-3.5"></i> Netskope One · DLP · EDM · Fingerprint 2.0 · REST API v2</div>
+    <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+      <span class="zh"><span class="hero-grad">機敏資料不出門</span>：地端產生雜湊，只把雜湊送上雲</span>
+      <span class="en"><span class="hero-grad">Sensitive data stays home:</span> hash on-prem, send only hashes</span>
+    </h1>
+    <p class="mt-3 text-sm sm:text-base text-slate-400 max-w-3xl">
+      <span class="zh">地端 Ubuntu 主機以唯讀方式掛載 File Server，在本機為客戶資料 CSV（EDM）或機敏文件與圖片（Fingerprint 2.0）產生雜湊，再透過 REST API 只把雜湊上傳到 Netskope。cron 排程每天自動同步，DLP 比對資料庫隨時保持最新，原始檔案從不離開企業。</span>
+      <span class="en">An on-prem Ubuntu server mounts the file server read-only, hashes customer-data CSVs (EDM) or sensitive documents and images (Fingerprint 2.0) locally, and uploads only the hashes to Netskope via REST API. cron keeps the DLP match data current every day, and the original files never leave the organization.</span>
+    </p>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6">
+
+<section id="sim" class="py-10 scroll-mt-16">
+  <div class="mb-5">
+    <div class="text-xs font-mono uppercase tracking-widest text-teal-300">01 · Offline Hash Pipeline</div>
+    <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">互動模擬：一次排程執行的完整流程</span><span class="en">Simulator: one scheduled run, end to end</span></h2>
+    <p class="mt-2 text-sm text-slate-400 max-w-3xl"><span class="zh">切換 EDM 或 Fingerprint 2.0，按「執行排程」觀察每一步；也可以選擇常見錯誤，看腳本在哪一步停下、該怎麼排除。</span><span class="en">Switch between EDM and Fingerprint 2.0 and press Run to watch each step. Pick a common failure to see where the script stops and how to fix it.</span></p>
+  </div>
+
+  <div class="card rounded-2xl p-4 sm:p-5">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+      <div class="flex flex-wrap items-center gap-3">
+        <div class="seg" id="segMode"></div>
+        <div class="flex items-center gap-2"><span class="text-xs text-slate-500"><span class="zh">情境</span><span class="en">Scenario</span></span><div class="seg" id="segFault"></div></div>
+      </div>
+      <div class="flex gap-2 no-print">
+        <button id="btnRun" class="btn-s" style="border-color:#2dd4bf"><i data-lucide="play" class="w-3.5 h-3.5"></i><span class="zh">執行排程</span><span class="en">Run</span></button>
+      </div>
+    </div>
+    <div class="mt-4 overflow-x-auto"><svg id="tp" class="tp w-full h-auto min-w-[760px]" viewBox="0 0 1080 400"></svg></div>
+  </div>
+
+  <div class="mt-4 grid lg:grid-cols-5 gap-4">
+    <div class="lg:col-span-3">
+      <div class="flex items-center justify-between mb-2 text-xs font-mono uppercase tracking-widest text-slate-500"><span id="termTitle"></span><span id="stepNo"></span></div>
+      <div id="term" class="term"></div>
+    </div>
+    <div class="lg:col-span-2 flex flex-col gap-4">
+      <div id="verdict" class="verdict rounded-2xl p-4"></div>
+      <div class="card rounded-2xl p-4">
+        <div class="text-xs font-mono uppercase tracking-widest text-slate-500 mb-2"><span class="zh">地端保留 vs 送上雲端</span><span class="en">Kept on-prem vs sent to cloud</span></div>
+        <div id="dataCmp" class="grid sm:grid-cols-2 gap-2"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="limits" class="py-10 border-t border-slate-800/70 scroll-mt-16 print-break">
+  <div class="mb-6">
+    <div class="text-xs font-mono uppercase tracking-widest text-teal-300">02 · Channels & Limits</div>
+    <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">上傳管道與服務限制</span><span class="en">Upload channels and service limits</span></h2>
+    <p class="mt-2 text-sm text-slate-400 max-w-3xl"><span class="zh">Fingerprint 2.0 的檔案可以從 WebUI、API 直接上傳，或離線產生雜湊後上傳。離線產生雜湊除了檔案不必送出企業，可處理的單檔大小也最大。拖動滑桿看看不同大小的檔案能走哪些管道。</span><span class="en">Fingerprint 2.0 files can go through the WebUI, a direct API upload, or offline hash generation. Offline hashing keeps files inside the organization and also accepts the largest files. Drag the slider to see which channels a file size can use.</span></p>
+  </div>
+  <div class="card rounded-2xl p-5 sm:p-6">
+    <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+      <div class="text-sm font-semibold shrink-0"><span class="zh">單檔大小</span><span class="en">File size</span> <span id="sizeVal" class="font-mono text-teal-300"></span></div>
+      <input id="sizeRng" class="rng" type="range" min="1" max="120" value="12">
+    </div>
+    <div id="chanGrid" class="mt-4 grid sm:grid-cols-3 gap-3"></div>
+  </div>
+  <div class="mt-4 grid lg:grid-cols-5 gap-4">
+    <div class="lg:col-span-2 card rounded-2xl p-5">
+      <div class="font-semibold flex items-center gap-2"><i data-lucide="gauge" class="w-4 h-4 text-teal-300"></i><span class="zh">Fingerprint 2.0 服務限制（每個租戶）</span><span class="en">Fingerprint 2.0 service limits (per tenant)</span></div>
+      <div id="limitTiles" class="mt-3 grid grid-cols-2 gap-2"></div>
+    </div>
+    <div class="lg:col-span-3 card rounded-2xl p-5">
+      <div class="font-semibold flex items-center gap-2"><i data-lucide="git-compare" class="w-4 h-4 text-teal-300"></i><span class="zh">EDM 與 Fingerprint 2.0 比較</span><span class="en">EDM vs Fingerprint 2.0</span></div>
+      <div class="mt-3 overflow-x-auto"><table id="cmpTable" class="w-full text-sm min-w-[520px]"></table></div>
+    </div>
+  </div>
+</section>
+
+<section id="ops" class="py-10 border-t border-slate-800/70 scroll-mt-16 print-break">
+  <div class="mb-6">
+    <div class="text-xs font-mono uppercase tracking-widest text-teal-300">03 · Scheduling & Operations</div>
+    <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">排程、前置需求與疑難排解</span><span class="en">Scheduling, prerequisites and troubleshooting</span></h2>
+  </div>
+  <div class="card rounded-2xl p-5 sm:p-6">
+    <div class="font-semibold flex items-center gap-2"><i data-lucide="calendar-clock" class="w-4 h-4 text-teal-300"></i><span class="zh">兩個排程錯開 30 分鐘，並以 flock 避免重疊執行</span><span class="en">Two jobs staggered by 30 minutes, with flock to prevent overlapping runs</span></div>
+    <p class="mt-1 text-sm text-slate-400"><span class="zh">兩個工作在同一台主機上執行，錯開時間可避免 CPU、記憶體與網路互搶；flock -n 讓同一個工作若上一輪還沒跑完，這一輪就直接略過。</span><span class="en">Both jobs run on the same server; staggering avoids CPU, memory and network contention. flock -n skips a run if the previous run of the same job is still going.</span></p>
+    <div id="cronBar" class="cron mt-4"></div>
+    <pre class="code mt-3"><span class="c"># crontab -e</span>
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+<span class="c"># 1. Netskope FP2 Sync (Daily at 18:37 with execution lock)</span>
+37 18 * * * flock -n /tmp/fp2.lock /root/netskope-fp2/fp2_auto.sh >> /var/log/netskope_fp2.log 2>&1
+<span class="c"># 2. Netskope EDM Sync (Daily at 19:07, 30-minute offset, with execution lock)</span>
+07 19 * * * flock -n /tmp/edm.lock /root/netskope-edm/edm_auto_processed.sh >> /var/log/netskope_edm.log 2>&1</pre>
+  </div>
+
+  <div class="mt-4 grid lg:grid-cols-2 gap-4">
+    <div class="card rounded-2xl p-5">
+      <div class="font-semibold flex items-center gap-2"><i data-lucide="list-checks" class="w-4 h-4 text-teal-300"></i><span class="zh">前置需求</span><span class="en">Prerequisites</span></div>
+      <div id="prereq" class="mt-3 space-y-3 text-sm"></div>
+    </div>
+    <div class="card rounded-2xl p-5">
+      <div class="font-semibold flex items-center gap-2"><i data-lucide="wrench" class="w-4 h-4 text-teal-300"></i><span class="zh">常見問題與排除</span><span class="en">Common issues</span></div>
+      <div id="tsList" class="mt-3 space-y-2"></div>
+      <pre class="code mt-3"><span class="c"># 摘要日誌 / summary log</span>
+tail -n 50 /var/log/netskope_edm.log
+tail -f /var/log/netskope_fp2.log
+<span class="c"># EDM 單次執行的詳細日誌 / per-run detail</span>
+ls -lt /root/netskope-edm/logs/
+<span class="c"># 手動測試 / manual run</span>
+/root/netskope-edm/edm_auto_processed.sh</pre>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="border-t border-slate-800/70 mt-4">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-28 text-xs text-slate-500 flex flex-col sm:flex-row gap-2 sm:justify-between">
+    <span>Netskope · DLP Offline Hash Upload (EDM & Fingerprint 2.0) Use Case</span>
+    <span><span class="zh">示意模擬；路徑、名稱與日誌為範例，實際依環境設定。</span><span class="en">Illustrative; paths, names and logs are examples and depend on your setup.</span></span>
+  </div>
+</footer>
+
+<div id="toolbar" class="fixed bottom-4 left-1/2 -translate-x-1/2 sm:left-auto sm:right-4 sm:translate-x-0 z-50 card rounded-xl px-2 py-2 flex items-center gap-2 shadow-2xl">
+  <a href="index.html" class="h-[34px] w-[34px] grid place-items-center rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800" title="Use Case Hub"><i data-lucide="layout-grid" class="w-4 h-4"></i></a>
+  <div class="seg tb" id="segLang"><button data-lang="zh" aria-pressed="true">中文</button><button data-lang="en" aria-pressed="false">EN</button></div>
+  <div class="seg tb" id="segTheme">
+    <button data-theme="dark" aria-pressed="true"><i data-lucide="moon" class="w-3.5 h-3.5"></i><span class="zh">深</span><span class="en">Dark</span></button>
+    <button data-theme="light" aria-pressed="false"><i data-lucide="sun" class="w-3.5 h-3.5"></i><span class="zh">淺</span><span class="en">Light</span></button>
+  </div>
+  <button id="btnPdf" class="h-[34px] px-3 inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800 text-[13px] font-medium"><i data-lucide="file-down" class="w-4 h-4"></i> PDF</button>
+</div>
+
+<script id="icon-shim">/* Inlined Lucide icons (ISC License, lucide.dev) — no CDN needed */
+window.lucide = (function () {
+  const ICONS = {"fingerprint":[["path",{"d":"M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"}],["path",{"d":"M14 13.12c0 2.38 0 6.38-1 8.88"}],["path",{"d":"M17.29 21.02c.12-.6.43-2.3.5-3.02"}],["path",{"d":"M2 12a10 10 0 0 1 18-6"}],["path",{"d":"M2 16h.01"}],["path",{"d":"M21.8 16c.2-2 .131-5.354 0-6"}],["path",{"d":"M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"}],["path",{"d":"M8.65 22c.21-.66.45-1.32.57-2"}],["path",{"d":"M9 6.8a6 6 0 0 1 9 5.2v2"}]],"layout-grid":[["rect",{"width":"7","height":"7","x":"3","y":"3","rx":"1"}],["rect",{"width":"7","height":"7","x":"14","y":"3","rx":"1"}],["rect",{"width":"7","height":"7","x":"14","y":"14","rx":"1"}],["rect",{"width":"7","height":"7","x":"3","y":"14","rx":"1"}]],"radio-tower":[["path",{"d":"M4.9 16.1C1 12.2 1 5.8 4.9 1.9"}],["path",{"d":"M7.8 4.7a6.14 6.14 0 0 0-.8 7.5"}],["circle",{"cx":"12","cy":"9","r":"2"}],["path",{"d":"M16.2 4.8c2 2 2.26 5.11.8 7.47"}],["path",{"d":"M19.1 1.9a9.96 9.96 0 0 1 0 14.1"}],["path",{"d":"M9.5 18h5"}],["path",{"d":"m8 22 4-11 4 11"}]],"play":[["path",{"d":"M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"}]],"gauge":[["path",{"d":"m12 14 4-4"}],["path",{"d":"M3.34 19a10 10 0 1 1 17.32 0"}]],"git-compare":[["circle",{"cx":"18","cy":"18","r":"3"}],["circle",{"cx":"6","cy":"6","r":"3"}],["path",{"d":"M13 6h3a2 2 0 0 1 2 2v7"}],["path",{"d":"M11 18H8a2 2 0 0 1-2-2V9"}]],"calendar-clock":[["path",{"d":"M16 14v2.2l1.6 1"}],["path",{"d":"M16 2v3"}],["path",{"d":"M21 7.338V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h2.338"}],["path",{"d":"M3 9h5.859"}],["path",{"d":"M8 2v3"}],["circle",{"cx":"16","cy":"16","r":"6"}]],"list-checks":[["path",{"d":"M13 5h8"}],["path",{"d":"M13 12h8"}],["path",{"d":"M13 19h8"}],["path",{"d":"m3 17 2 2 4-4"}],["path",{"d":"m3 7 2 2 4-4"}]],"wrench":[["path",{"d":"M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"}]],"moon":[["path",{"d":"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"}]],"sun":[["circle",{"cx":"12","cy":"12","r":"4"}],["path",{"d":"M12 2v2"}],["path",{"d":"M12 20v2"}],["path",{"d":"m4.93 4.93 1.41 1.41"}],["path",{"d":"m17.66 17.66 1.41 1.41"}],["path",{"d":"M2 12h2"}],["path",{"d":"M20 12h2"}],["path",{"d":"m6.34 17.66-1.41 1.41"}],["path",{"d":"m19.07 4.93-1.41 1.41"}]],"file-down":[["path",{"d":"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"}],["path",{"d":"M14 2v5a1 1 0 0 0 1 1h5"}],["path",{"d":"M12 18v-6"}],["path",{"d":"m9 15 3 3 3-3"}]],"loader":[["path",{"d":"M12 2v4"}],["path",{"d":"m16.2 7.8 2.9-2.9"}],["path",{"d":"M18 12h4"}],["path",{"d":"m16.2 16.2 2.9 2.9"}],["path",{"d":"M12 18v4"}],["path",{"d":"m4.9 19.1 2.9-2.9"}],["path",{"d":"M2 12h4"}],["path",{"d":"m4.9 4.9 2.9 2.9"}]],"circle-check":[["circle",{"cx":"12","cy":"12","r":"10"}],["path",{"d":"m16 9-5.5 5.5L8 12"}]],"circle-pause":[["circle",{"cx":"12","cy":"12","r":"10"}],["line",{"x1":"10","x2":"10","y1":"15","y2":"9"}],["line",{"x1":"14","x2":"14","y1":"15","y2":"9"}]],"circle-x":[["circle",{"cx":"12","cy":"12","r":"10"}],["path",{"d":"m15 9-6 6"}],["path",{"d":"m9 9 6 6"}]],"building-2":[["path",{"d":"M10 12h4"}],["path",{"d":"M10 8h4"}],["path",{"d":"M14 21v-3a2 2 0 0 0-4 0v3"}],["path",{"d":"M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"}],["path",{"d":"M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"}]],"cloud-upload":[["path",{"d":"M12 13v8"}],["path",{"d":"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"}],["path",{"d":"m8 17 4-4 4 4"}]],"chevron-right":[["path",{"d":"m9 18 6-6-6-6"}]],"key":[["path",{"d":"m2 21 9.6-9.6"}],["path",{"d":"m7.5 15.5 2.3 2.3a1 1 0 0 1 0 1.4l-2.1 2.1a1 1 0 0 1-1.4 0L4 19"}],["circle",{"cx":"15.5","cy":"7.5","r":"5.5"}]],"table-2":[["path",{"d":"M3 9h18"}],["path",{"d":"M9 3v18"}],["rect",{"x":"3","y":"3","width":"18","height":"18","rx":"2"}]],"info":[["circle",{"cx":"12","cy":"12","r":"10"}],["path",{"d":"M12 16v-4"}],["path",{"d":"M12 8h.01"}]],"file":[["path",{"d":"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"}],["path",{"d":"M14 2v5a1 1 0 0 0 1 1h5"}]],"cloud":[["path",{"d":"M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"}]],"hash":[["line",{"x1":"4","x2":"20","y1":"9","y2":"9"}],["line",{"x1":"4","x2":"20","y1":"15","y2":"15"}],["line",{"x1":"10","x2":"8","y1":"3","y2":"21"}],["line",{"x1":"16","x2":"14","y1":"3","y2":"21"}]],"server":[["rect",{"width":"20","height":"8","x":"2","y":"2","rx":"2","ry":"2"}],["rect",{"width":"20","height":"8","x":"2","y":"14","rx":"2","ry":"2"}],["line",{"x1":"6","x2":"6.01","y1":"6","y2":"6"}],["line",{"x1":"6","x2":"6.01","y1":"18","y2":"18"}]],"cpu":[["path",{"d":"M12 20v2"}],["path",{"d":"M12 2v2"}],["path",{"d":"M17 20v2"}],["path",{"d":"M17 2v2"}],["path",{"d":"M2 12h2"}],["path",{"d":"M2 17h2"}],["path",{"d":"M2 7h2"}],["path",{"d":"M20 12h2"}],["path",{"d":"M20 17h2"}],["path",{"d":"M20 7h2"}],["path",{"d":"M7 20v2"}],["path",{"d":"M7 2v2"}],["rect",{"x":"4","y":"4","width":"16","height":"16","rx":"2"}],["rect",{"x":"8","y":"8","width":"8","height":"8","rx":"1"}]],"monitor":[["rect",{"width":"20","height":"14","x":"2","y":"3","rx":"2"}],["line",{"x1":"8","x2":"16","y1":"21","y2":"21"}],["line",{"x1":"12","x2":"12","y1":"17","y2":"21"}]],"code":[["path",{"d":"m16 18 6-6-6-6"}],["path",{"d":"m8 6-6 6 6 6"}]],"shield-check":[["path",{"d":"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"}],["path",{"d":"m9 12 2 2 4-4"}]],"file-up":[["path",{"d":"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"}],["path",{"d":"M14 2v5a1 1 0 0 0 1 1h5"}],["path",{"d":"M12 12v6"}],["path",{"d":"m15 15-3-3-3 3"}]]};
+  const NS = 'http://www.w3.org/2000/svg';
+  function createIcons() {
+    document.querySelectorAll('i[data-lucide]').forEach(function (el) {
+      const name = el.getAttribute('data-lucide');
+      const node = ICONS[name];
+      if (!node) return;
+      const svg = document.createElementNS(NS, 'svg');
+      const base = { xmlns: NS, width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' };
+      Object.keys(base).forEach(function (k) { svg.setAttribute(k, base[k]); });
+      svg.setAttribute('class', ('lucide lucide-' + name + ' ' + (el.getAttribute('class') || '')).trim());
+      node.forEach(function (child) {
+        const c = document.createElementNS(NS, child[0]);
+        Object.keys(child[1]).forEach(function (k) { if (k !== 'key') c.setAttribute(k, child[1][k]); });
+        svg.appendChild(c);
+      });
+      el.replaceWith(svg);
+    });
+  }
+  return { createIcons: createIcons };
+})();
+</script>
+<script>
+let lang = document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'zh';
+const L = (zh, en) => ({ zh, en });
+const tr = (x) => (x && typeof x === 'object' && 'zh' in x) ? x[lang] : x;
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => document.querySelectorAll(s);
+const esc = (s) => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+/* ===================== DATA ===================== */
+const MODES = {
+  edm: {
+    nm: 'EDM', c: '56 189 248', icon: 'table-2', time: '19:07', lock: '/tmp/edm.lock',
+    label: L('EDM · 結構化資料', 'EDM · Structured data'),
+    src: L('CSV · 客戶個資', 'CSV · customer PII'), target: 'EDM Profile', targetName: 'Customer_PII',
+    chips: [['csv', 'csv_files/'], ['proc', 'processed/'], ['out', 'output/'], ['bak', 'backups/'], ['log', 'logs/']],
+    faults: { ok: L('正常', 'Normal'), nocsv: L('沒有新 CSV', 'No new CSV'), token: L('Token 空白', 'Empty token'), tool: L('用錯工具', 'Wrong tool'), profile: L('Profile 名稱不符', 'Profile mismatch') }
+  },
+  fp: {
+    nm: 'Fingerprint 2.0', c: '244 114 182', icon: 'fingerprint', time: '18:37', lock: '/tmp/fp2.lock',
+    label: L('Fingerprint 2.0 · 文件與圖片', 'Fingerprint 2.0 · Docs & images'),
+    src: L('文件 · 圖片', 'Documents · images'), target: 'Fingerprint Group', targetName: 'FP2_PoC',
+    chips: [['src', 'sensitive_files/'], ['out', 'output/'], ['ext', 'extract/'], ['log', 'netskope_fp2.log']],
+    faults: { ok: L('正常', 'Normal'), mount: L('File Server 未掛載', 'Share not mounted') }
+  }
+};
+const CSVS = ['customers_tw.csv', 'customers_hk.csv', 'vip_members.csv'];
+const FILES = ['product_design.png', 'contract_template.docx', 'quotation.xlsx', 'rd_spec.pdf'];
+const FIX = {
+  token: { cause: L('api_token.txt 不存在，或內容含有多餘的換行或空白。', 'api_token.txt is missing or contains stray line breaks or spaces.'), fix: L("確認檔案存在，並執行 tr -d '\\r\\n ' < api_token.txt 去除空白與換行。", "Make sure the file exists and run tr -d '\\r\\n ' < api_token.txt to strip whitespace.") },
+  tool: { cause: L('上傳時呼叫了錯誤的工具。', 'The wrong tool was invoked for the upload.'), fix: L('雜湊一律由 edm_hash_generator.py 處理，上傳一律由 edm_api_upload.py 處理。', 'Hash with edm_hash_generator.py and upload with edm_api_upload.py.') },
+  profile: { cause: L('腳本設定的 Profile 名稱與 Console 上的 EDM Profile 不一致。', 'The profile name in the script does not match the EDM profile in the console.'), fix: L('逐字核對大小寫、底線與拼字，必須和 Netskope Console 完全相同。', 'Check case, underscores and spelling: they must match the Netskope console exactly.') },
+  mount: { cause: L('File Server 沒有掛載成功，或掛載帳號沒有讀取權限，所以沒有產生雜湊檔。', 'The file server is not mounted, or the mount account cannot read it, so no hash file was produced.'), fix: L('檢查 CIFS 掛載狀態（mount | grep cifs）與帳號權限，必要時重新以 ro 參數掛載。', 'Check the CIFS mount (mount | grep cifs) and account permissions, and remount with ro if needed.') }
+};
+
+let mode = 'edm', fault = 'ok', step = -1, timer = null, steps = [];
+
+/* ===================== STEPS ===================== */
+function buildSteps() {
+  const S = [];
+  if (mode === 'edm') {
+    S.push({ node: 'srv', clock: true, chips: ['log'], lines: [['cmd', 'flock -n /tmp/edm.lock /root/netskope-edm/edm_auto_processed.sh'], ['info', L('cron 觸發，取得執行鎖，開始 EDM 同步', 'cron fired, lock acquired, EDM sync started')]] });
+    if (fault === 'nocsv') {
+      S.push({ node: 'srv', chips: ['csv'], lines: [['info', 'Scanning /root/netskope-edm/csv_files/*.csv ...'], ['warn', L('csv_files/ 沒有任何 CSV，記錄狀態後正常結束（exit 0）', 'No CSV files in csv_files/. Logged and exiting cleanly (exit 0)')]], end: 'idle' });
+      return S;
+    }
+    S.push({ node: 'fs', pkt: 'file', chips: ['csv'], lines: [['info', 'Scanning /root/netskope-edm/csv_files/*.csv ...'], ['ok', L(`找到 ${CSVS.length} 個 CSV：${CSVS.join(' ')}`, `Found ${CSVS.length} CSV file(s): ${CSVS.join(' ')}`)]] });
+    S.push({ node: 'srv', chips: ['csv', 'out'], lines: [...CSVS.map(f => ['info', `edm_hash_generator.py hash ${f} → ${tr(L('正規化、雜湊、產生 metadata', 'normalize, hash, metadata'))}`]), ['ok', L('output/：雜湊 BIN 與 metadata JSON 產生完成', 'output/: hash BIN and metadata JSON ready')]] });
+    S.push({ node: 'srv', chips: ['proc'], lines: CSVS.map(f => ['info', `mv ${f} → csv_files/processed/`]) });
+    S.push({ node: 'srv', chips: ['out', 'bak'], lines: [['ok', 'Packaged output/ → backups/edm_20261022_190704.tgz']] });
+    const up = { node: 'cloud', pkt: 'hash', chips: [], lines: [['info', L('edm_api_upload.py：讀取 api_token.txt，建立驗證連線', 'edm_api_upload.py: reading api_token.txt, authenticating')]] };
+    if (fault === 'token') { up.lines = [['err', 'ERROR: API token file is empty or missing']]; up.end = 'err'; up.pkt = null; S.push(up); return S; }
+    if (fault === 'tool') { up.lines = [['cmd', 'edm_hash_generator.py upload --profile Customer_PII ...'], ['err', 'error: unrecognized arguments: upload --profile Customer_PII']]; up.end = 'err'; up.pkt = null; S.push(up); return S; }
+    up.lines.push(['info', L('Staging 上傳雜湊封包 …', 'Staging bundle upload …')]);
+    if (fault === 'profile') { up.lines.push(['err', 'ERROR: Profile "Customer-PII" not found / upload validation failure']); up.end = 'err'; S.push(up); return S; }
+    up.lines.push(['ok', L('EDM Profile "Customer_PII" 已更新', 'EDM profile "Customer_PII" updated')]); up.cloud = 'upd';
+    S.push(up);
+    S.push({ node: 'srv', chips: ['bak', 'log'], lines: [['info', L('清除 7 天前的 .tgz 與 14 天前的日誌', 'Purging .tgz older than 7 days and logs older than 14 days')], ['ok', 'Done. Log: logs/edm_auto_20261022_190701.log']], cloud: 'upd', end: 'ok' });
+    return S;
+  }
+  // Fingerprint 2.0
+  S.push({ node: 'srv', clock: true, chips: ['log'], lines: [['cmd', 'flock -n /tmp/fp2.lock /root/netskope-fp2/fp2_auto.sh'], ['info', L('cron 觸發，取得執行鎖', 'cron fired, lock acquired')]] });
+  if (fault === 'mount') {
+    S.push({ node: 'fs', chips: ['src'], xfs: true, lines: [['warn', L('sensitive_files/ 讀不到檔案（File Server 未掛載）', 'sensitive_files/ is empty (file server not mounted)')]] });
+    S.push({ node: 'srv', chips: ['out', 'ext'], lines: [['info', '[Thu Oct 22 18:37:02 CST 2026] Starting Fingerprint 2.0 local hash calculation...'], ['cmd', '/opt/ns/bin/nsdlp/dlp-fingerprint20 -c "POC_Fingerprint_Group" -f "$SOURCE_DIR" -o "$OUTPUT_DIR" -e "$EXTRACT_DIR" -t "$TENANT_ID"'], ['err', 'Error: No hash file was generated. Please check the File Server mount status and permissions!']], end: 'err' });
+    return S;
+  }
+  S.push({ node: 'fs', pkt: 'file', chips: ['src'], lines: [['info', '//192.168.1.100/SensitiveDocs (cifs, ro) → /root/netskope-fp2/sensitive_files/'], ['ok', L(`讀取 ${FILES.length} 個檔案：${FILES.join(' ')}`, `${FILES.length} files: ${FILES.join(' ')}`)]] });
+  S.push({ node: 'srv', chips: ['out', 'ext'], lines: [['info', '[Thu Oct 22 18:37:02 CST 2026] Starting Fingerprint 2.0 local hash calculation...'], ['cmd', '/opt/ns/bin/nsdlp/dlp-fingerprint20 -c "POC_Fingerprint_Group" -f "$SOURCE_DIR" -o "$OUTPUT_DIR" -e "$EXTRACT_DIR" -t "$TENANT_ID"'], ['ok', 'Hash calculation completed: output/fingerprint20_<tenant_id>_20261022.json. Starting API upload to the Netskope Console...']] });
+  S.push({ node: 'cloud', pkt: 'hash', chips: ['out'], cloud: 'gen', lines: [['cmd', 'curl -i -X POST "https://<tenant>.goskope.com/api/v2/services/dlp/fingerprints/<GROUP_ID>/hashes?sessionend=true" -H "Authorization: Bearer ***" -H "x-netskope-user-email: admin@…" -F "upload=@fingerprint20_<tenant_id>_20261022.json"'], ['info', L('sessionend=true：上傳結束後觸發雜湊編譯', 'sessionend=true: triggers hash compilation after upload')]] });
+  S.push({ node: 'srv', chips: ['out', 'ext', 'log'], cloud: 'gen', lines: [['info', 'Upload completed. Cleaning up local temporary files...'], ['cmd', 'rm -f output/* extract/*']] });
+  S.push({ node: 'cloud', chips: [], cloud: 'done', lines: [['ok', L('[Console] Fingerprint Group "FP2_PoC" 狀態：Generating → Complete，可供 DLP Profile 使用', '[Console] Fingerprint group "FP2_PoC": Generating → Complete, ready for DLP profiles')]], end: 'ok' });
+  return S;
+}
+
+/* ===================== SVG ===================== */
+function nodeSvg(x, y, w, h, c, icon, t1, t2, cls) {
+  return `<g class="node ${cls}" style="--c:${c}">
+    <rect class="base" x="${x - w / 2}" y="${y - h / 2}" width="${w}" height="${h}" rx="14"/>
+    <rect class="tint" x="${x - w / 2}" y="${y - h / 2}" width="${w}" height="${h}" rx="14"/>
+    <foreignObject x="${x - w / 2 + 14}" y="${y - 18}" width="36" height="36"><div xmlns="http://www.w3.org/1999/xhtml" class="ico w-9 h-9 grid place-items-center"><i data-lucide="${icon}" class="w-7 h-7"></i></div></foreignObject>
+    <text class="t1" x="${x - w / 2 + 60}" y="${y - 3}">${esc(t1)}</text>
+    <text class="t2" x="${x - w / 2 + 60}" y="${y + 16}">${esc(t2)}</text></g>`;
+}
+function buildSvg() {
+  const M = MODES[mode], cur = steps[step] || null, done = step >= steps.length - 1 && steps.length && step >= 0;
+  const last = steps[Math.max(0, Math.min(step, steps.length - 1))];
+  const errEnd = done && last.end === 'err';
+  const cloudState = (() => { for (let i = Math.min(step, steps.length - 1); i >= 0; i--) if (steps[i].cloud) return steps[i].cloud; return null; })();
+  let s = `<rect class="zone" x="20" y="40" width="720" height="340" rx="18"/>
+    <text class="zone-t" x="42" y="66">${tr(L('客戶環境（地端）', 'CUSTOMER ENVIRONMENT (ON-PREM)'))}</text>
+    <text class="zone-t" x="790" y="66">NETSKOPE CLOUD</text>`;
+  // wires
+  s += `<path class="wire" d="M220 165 H365"/><path class="wire" d="M575 165 H780"/>`;
+  s += `<text class="lbl" x="292" y="148" text-anchor="middle">${tr(L('CIFS 唯讀掛載', 'CIFS read-only'))}</text><text class="lbl2" x="292" y="190" text-anchor="middle">mount -t cifs … ,ro</text>`;
+  s += `<text class="lbl" x="677" y="148" text-anchor="middle">REST API v2</text><text class="lbl2" x="677" y="190" text-anchor="middle">${tr(L('只上傳雜湊', 'hashes only'))}</text>`;
+  // active flow
+  if (cur && cur.pkt === 'file') s += `<path class="flow" style="--fc:${M.c}" d="M220 165 H365"/><circle class="pk" r="6" style="--fc:${M.c}"><animateMotion dur="1s" repeatCount="indefinite" path="M220 165 H365"/></circle>`;
+  if (cur && cur.pkt === 'hash') s += `<path class="flow" style="--fc:45 212 191" d="M575 165 H780"/><g class="hpk" style="--fc:45 212 191"><animateMotion dur="1.2s" repeatCount="indefinite" path="M575 165 H780"/><rect x="-13" y="-13" width="26" height="26" rx="6"/><text x="0" y="5" text-anchor="middle">#</text></g>`;
+  if (errEnd && last.node === 'cloud') s += `<path class="xwire" d="M575 165 H780"/><g class="xmark" transform="translate(677 165)"><circle r="13"/><path d="M-5 -5 L5 5 M5 -5 L-5 5"/></g>`;
+  if (cur && cur.xfs) s += `<path class="xwire" d="M220 165 H365"/><g class="xmark" transform="translate(292 165)"><circle r="13"/><path d="M-5 -5 L5 5 M5 -5 L-5 5"/></g>`;
+  // nodes
+  const st = (id) => {
+    if (!cur) return '';
+    if (errEnd && last.node === id) return 'err';
+    if (cur.node === id && !done) return 'act';
+    if (done && last.end === 'ok' && id === 'cloud') return 'ok';
+    return cur.node === id ? 'act' : '';
+  };
+  s += nodeSvg(125, 165, 190, 84, '148 163 184', 'server', 'File Server', tr(M.src), st('fs'));
+  s += nodeSvg(470, 165, 210, 84, M.c, 'cpu', 'Ubuntu Server', tr(L('本機雜湊', 'Local hashing')), st('srv'));
+  const cs = { null: '—', upd: tr(L('已更新', 'Updated')), gen: 'Generating…', done: 'Complete' }[cloudState];
+  s += nodeSvg(905, 165, 250, 96, '45 212 191', 'cloud', M.target, `${M.targetName} · ${errEnd && last.node === 'cloud' ? tr(L('上傳失敗', 'Upload failed')) : cs}`, st('cloud'));
+  // clock
+  s += `<g class="clock ${cur && cur.clock ? 'act' : ''}" style="--c:${M.c}"><rect x="345" y="80" width="250" height="26" rx="8"/><text x="470" y="97" text-anchor="middle">cron ${M.time} · flock ${M.lock}</text></g>`;
+  // chips
+  const on = new Set(cur ? cur.chips : []);
+  const n = M.chips.length, cw = mode === 'edm' ? 92 : 126, gap = 8, tot = n * cw + (n - 1) * gap, x0 = 470 - tot / 2;
+  s += `<path class="wire" d="M470 207 V258"/><path class="wire" d="M${x0 + cw / 2} 258 H${x0 + tot - cw / 2}"/>`;
+  M.chips.forEach(([id, t], i) => {
+    const x = x0 + i * (cw + gap);
+    s += `<path class="wire" d="M${x + cw / 2} 258 V268"/><g class="chip ${on.has(id) ? 'on' : ''}" style="--c:${M.c}"><rect x="${x}" y="268" width="${cw}" height="28" rx="7"/><text x="${x + cw / 2}" y="286" text-anchor="middle">${t}</text></g>`;
+  });
+  // boundary badge
+  s += `<g class="badge"><rect x="650" y="322" width="180" height="30" rx="15"/><text x="740" y="341" text-anchor="middle">🔒 ${tr(L('原始檔案不離開地端', 'Original files stay on-prem'))}</text></g>`;
+  $('#tp').innerHTML = s;
+}
+
+/* ===================== PANELS ===================== */
+function hhmmss(i) {
+  const [h, m] = MODES[mode].time.split(':').map(Number);
+  const t = new Date(2026, 9, 22, h, m, 1 + i * 2);
+  return t.toTimeString().slice(0, 8);
+}
+function renderTerm() {
+  const shown = steps.slice(0, step + 1);
+  $('#term').innerHTML = shown.map((st, i) => st.lines.map(([k, t]) => `<div class="l ${k}"><span class="ts">${hhmmss(i)} </span>${esc(tr(t))}</div>`).join('')).join('') || `<div class="l info">${tr(L('按「執行排程」開始', 'Press Run to start'))}</div>`;
+  const tm = $('#term'); tm.scrollTop = tm.scrollHeight;
+  $('#termTitle').textContent = mode === 'edm' ? '/var/log/netskope_edm.log' : '/var/log/netskope_fp2.log';
+  $('#stepNo').textContent = step >= 0 ? `${tr(L('步驟', 'Step'))} ${Math.min(step + 1, steps.length)} / ${steps.length}` : '';
+}
+function renderVerdict() {
+  const v = $('#verdict'), M = MODES[mode];
+  const done = step >= steps.length - 1 && step >= 0, last = steps[steps.length - 1];
+  if (!done) { v.className = 'verdict rounded-2xl p-4 v-run'; v.innerHTML = `<div class="flex items-center gap-2 font-semibold"><i data-lucide="loader" class="w-5 h-5"></i>${tr(L('排程執行中…', 'Scheduled run in progress…'))}</div>`; return false; }
+  if (last.end === 'ok') {
+    v.className = 'verdict rounded-2xl p-4 v-ok';
+    v.innerHTML = `<div class="flex items-center gap-2 text-lg font-bold"><i data-lucide="circle-check" class="w-5 h-5"></i>${mode === 'edm' ? tr(L('EDM Profile 已更新', 'EDM profile updated')) : tr(L('Fingerprint Group：Complete', 'Fingerprint group: Complete'))}</div>
+      <p class="mt-2 text-sm text-slate-300">${mode === 'edm'
+        ? tr(L(`${CSVS.length} 個 CSV 在地端完成雜湊，只有雜湊封包送到 Netskope；原始 CSV 已移到 processed/，下次不會重複處理。`, `${CSVS.length} CSVs were hashed on-prem and only the hash bundle went to Netskope; the CSVs moved to processed/ so they are not processed again.`))
+        : tr(L(`${FILES.length} 個檔案在地端產生指紋雜湊，只有 JSON 雜湊檔送到 Netskope；暫存檔已清除。`, `${FILES.length} files were fingerprinted on-prem and only the JSON hash file went to Netskope; temp files were cleaned up.`))}</p>
+      <p class="mt-2 text-sm text-slate-300">${mode === 'edm'
+        ? tr(L('之後使用者上傳、寄出或貼上含這些客戶資料的內容時，DLP 規則就能以 EDM 精準比對。', 'From now on, when users upload, send or paste content containing these customer records, DLP rules match them exactly with EDM.'))
+        : tr(L('之後這些文件或其修改版被上傳、分享時，DLP 規則可依相似度門檻比對指紋。', 'From now on, when these documents or edited versions are uploaded or shared, DLP rules match the fingerprints against a similarity threshold.'))}</p>`;
+    return true;
+  }
+  if (last.end === 'idle') {
+    v.className = 'verdict rounded-2xl p-4 v-run';
+    v.innerHTML = `<div class="flex items-center gap-2 text-lg font-bold"><i data-lucide="circle-pause" class="w-5 h-5"></i>${tr(L('沒有新資料，正常結束', 'Nothing new, exited cleanly'))}</div>
+      <p class="mt-2 text-sm text-slate-300">${tr(L('腳本直接掃描 csv_files/ 內所有 .csv，不依賴檔名中的日期；沒有檔案時記錄狀態並以 exit 0 結束，不會被當成錯誤。', 'The script scans every .csv in csv_files/ regardless of date strings in file names; with nothing to do it logs the status and exits 0, which is not an error.'))}</p>`;
+    return true;
+  }
+  const f = FIX[fault];
+  v.className = 'verdict rounded-2xl p-4 v-red';
+  v.innerHTML = `<div class="flex items-center gap-2 text-lg font-bold"><i data-lucide="circle-x" class="w-5 h-5"></i>${tr(L('執行失敗', 'Run failed'))} · ${esc(tr(M.faults[fault]))}</div>
+    <p class="mt-2 text-sm text-slate-300"><b>${tr(L('原因', 'Cause'))}：</b>${tr(f.cause)}</p>
+    <p class="mt-1 text-sm text-slate-300"><b>${tr(L('排除', 'Fix'))}：</b>${esc(tr(f.fix))}</p>`;
+  return true;
+}
+function renderData() {
+  const sentIdx = steps.findIndex(s => s.pkt === 'hash');
+  const sent = sentIdx >= 0 && step >= sentIdx;
+  const left = mode === 'edm'
+    ? `name,national_id,phone,email<br>王○明,A12•••789,0912•••678,w•••@mail.com<br>陳○華,F22•••456,0935•••112,c•••@mail.com<br><span class="text-slate-500">… 12,480 rows</span>`
+    : FILES.map(f => `📄 ${f}`).join('<br>');
+  const right = !sent
+    ? `<span class="text-slate-500">${tr(L('（尚未上傳）', '(not uploaded)'))}</span>`
+    : (mode === 'edm'
+      ? `edm_20261022_190704.tgz<br>├ *.bin <span class="text-slate-500">9f2c41…e81a</span><br>└ *metadata.json`
+      : `fingerprint20_&lt;tenant_id&gt;_20261022.json<br><span class="text-slate-500">"hash": "3be07a…c90d"<br>"hash": "a41f2e…07b3"<br>…</span>`);
+  $('#dataCmp').innerHTML = `<div><div class="text-xs font-semibold text-slate-300 mb-1 flex items-center gap-1"><i data-lucide="building-2" class="w-3.5 h-3.5"></i>${tr(L('地端保留（原始資料）', 'On-prem (original data)'))}</div><div class="datab text-slate-300">${left}</div></div>
+    <div><div class="text-xs font-semibold text-teal-300 mb-1 flex items-center gap-1"><i data-lucide="cloud-upload" class="w-3.5 h-3.5"></i>${tr(L('送上 Netskope（只有雜湊）', 'To Netskope (hashes only)'))}</div><div class="datab text-slate-300">${right}</div></div>`;
+}
+function renderControls() {
+  $('#segMode').innerHTML = Object.entries(MODES).map(([k, v]) => `<button data-v="${k}" aria-pressed="${k === mode}" style="--bc:${v.c}"><i data-lucide="${v.icon}" class="w-3.5 h-3.5"></i>${tr(v.label)}</button>`).join('');
+  $$('#segMode button').forEach(b => b.addEventListener('click', () => { mode = b.dataset.v; fault = 'ok'; run(); }));
+  $('#segFault').innerHTML = Object.entries(MODES[mode].faults).map(([k, v]) => `<button data-v="${k}" aria-pressed="${k === fault}" style="--bc:${k === 'ok' ? '52 211 153' : '248 113 113'}">${tr(v)}</button>`).join('');
+  $$('#segFault button').forEach(b => b.addEventListener('click', () => { fault = b.dataset.v; run(); }));
+}
+function frame() {
+  buildSvg(); renderTerm(); renderData();
+  const done = renderVerdict();
+  lucide.createIcons();
+  return done;
+}
+function run() {
+  clearInterval(timer);
+  steps = buildSteps(); step = 0;
+  renderControls(); frame();
+  timer = setInterval(() => { step++; if (frame()) clearInterval(timer); }, 1100);
+}
+function finishNow() { clearInterval(timer); step = steps.length - 1; frame(); }
+$('#btnRun').addEventListener('click', run);
+
+/* ===================== 02 LIMITS ===================== */
+const CHANS = [
+  { icon: 'monitor', nm: L('WebUI 上傳檔案', 'WebUI file upload'), max: 8, leaves: true },
+  { icon: 'code', nm: L('API 直接上傳檔案', 'Direct API file upload'), max: 16, leaves: true },
+  { icon: 'shield-check', nm: L('離線產生雜湊後上傳', 'Offline hash generation'), max: 100, leaves: false }
+];
+function renderChannels() {
+  const mb = +$('#sizeRng').value;
+  $('#sizeVal').textContent = `${mb} MB`;
+  $('#chanGrid').innerHTML = CHANS.map(c => {
+    const ok = mb <= c.max, w = Math.min(100, (c.max / 120) * 100), m = Math.min(100, (mb / 120) * 100);
+    return `<div class="chan ${ok ? 'yes' : 'no'}">
+      <div class="flex items-center justify-between gap-2"><div class="flex items-center gap-2 font-semibold text-slate-100"><i data-lucide="${c.icon}" class="w-4 h-4"></i>${tr(c.nm)}</div>
+        <span class="text-xs font-bold ${ok ? 'text-emerald-300' : 'text-red-300'}">${ok ? tr(L('可上傳', 'OK')) : tr(L('超過上限', 'Too large'))}</span></div>
+      <div class="mt-3 bar"><div style="width:${w}%;background:${ok ? '#34d399' : '#f87171'}"></div><span style="position:absolute;top:-3px;left:calc(${m}% - 1px);width:2px;height:14px;background:#e2e8f0"></span></div>
+      <div class="mt-2 text-xs text-slate-400">${tr(L('上限', 'Limit'))} ${c.max} MB</div>
+      <div class="mt-2 text-xs flex items-center gap-1.5 ${c.leaves ? 'text-amber-300' : 'text-teal-300'}"><i data-lucide="${c.leaves ? 'file-up' : 'hash'}" class="w-3.5 h-3.5"></i>${c.leaves ? tr(L('原始檔案會送到雲端', 'The file itself goes to the cloud')) : tr(L('只送雜湊，檔案留在地端', 'Only hashes leave; the file stays'))}</div></div>`;
+  }).join('');
+  lucide.createIcons();
+}
+$('#sizeRng').addEventListener('input', renderChannels);
+const LIMITS = [
+  ['100', L('指紋群組（Fingerprint Group）', 'Fingerprint groups')],
+  ['10K', L('圖片檔', 'Image files')],
+  ['1,000,000', L('總檔案數（含圖片、文字與排除檔）', 'Total files (image, text and exclusion)')],
+  ['100×100', L('圖片最小尺寸（像素）', 'Minimum image size (px)')],
+  ['20 bytes', L('文字檔最小大小（不建議只指紋短句）', 'Minimum text file (short sentences not recommended)')]
+];
+function renderLimits() {
+  $('#limitTiles').innerHTML = LIMITS.map(([n, t], i) => `<div class="rounded-xl border border-slate-700 p-3 ${i === 2 ? 'col-span-2' : ''}"><div class="font-mono font-bold text-teal-300 text-lg">${n}</div><div class="text-xs text-slate-400 mt-0.5">${tr(t)}</div></div>`).join('');
+  const rows = [
+    [L('資料類型', 'Data type'), L('結構化資料：CSV（欄位一致）', 'Structured: CSV (consistent columns)'), L('非結構化：文件、圖片', 'Unstructured: documents, images')],
+    [L('地端工具', 'On-prem tools'), 'edm_hash_generator.py + edm_api_upload.py', 'dlp-fingerprint20 + curl (REST API v2)'],
+    [L('送上雲的內容', 'What is uploaded'), L('雜湊 BIN + metadata JSON（打包為 .tgz）', 'Hash BIN + metadata JSON (.tgz bundle)'), 'fingerprint20_<tenant_id>_*.json'],
+    [L('雲端目標', 'Cloud target'), 'EDM Profile', L('Fingerprint Group（以 Group ID 指定）', 'Fingerprint group (by group ID)')],
+    [L('偵測方式', 'Detection'), L('精準比對特定資料值', 'Exact match on specific values'), L('依相似度門檻比對文件與圖片', 'Similarity-threshold match on docs and images')],
+    [L('排程範例', 'Schedule example'), L('每天 19:07', 'Daily 19:07'), L('每天 18:37（簡報範例也可每週日 02:00）', 'Daily 18:37 (or Sundays 02:00 in the deck example)')]
+  ];
+  $('#cmpTable').innerHTML = `<thead><tr class="text-left text-xs font-mono uppercase tracking-widest text-slate-500"><th class="py-2 pr-3"></th><th class="py-2 pr-3" style="color:rgb(56 189 248)">EDM</th><th class="py-2" style="color:rgb(244 114 182)">Fingerprint 2.0</th></tr></thead>
+    <tbody>${rows.map(r => `<tr class="border-t border-slate-800"><td class="py-2 pr-3 text-slate-400 text-xs font-semibold whitespace-nowrap">${tr(r[0])}</td><td class="py-2 pr-3 text-slate-200">${esc(tr(r[1]))}</td><td class="py-2 text-slate-200">${esc(tr(r[2]))}</td></tr>`).join('')}</tbody>`;
+}
+
+/* ===================== 03 OPS ===================== */
+function renderCron() {
+  const start = 17 * 60, end = 21 * 60, pct = (h, m) => ((h * 60 + m - start) / (end - start)) * 100;
+  let s = '';
+  for (let t = start; t <= end; t += 30) {
+    const p = ((t - start) / (end - start)) * 100;
+    s += `<div class="tick" style="left:${p}%"></div>${t % 60 === 0 ? `<div class="tl" style="left:${Math.min(97, Math.max(3, p))}%">${String(t / 60).padStart(2, '0')}:00</div>` : ''}`;
+  }
+  s += `<div class="job" style="left:${pct(18, 37)}%;background:rgb(244 114 182)">FP2 18:37</div>`;
+  s += `<div class="job" style="left:${pct(19, 7)}%;background:rgb(56 189 248)">EDM 19:07</div>`;
+  $('#cronBar').innerHTML = s;
+}
+function renderPrereq() {
+  const pk = ['keyview.ns_134.0.9.898_amd64.deb', 'dlpcicontent.ns_134.0.9.898_amd64.deb', 'dlpdata.ns_134.0.9.898_amd64.deb', 'dplib.ns_134.0.9.898_amd64.deb', 'dlptools.ns_134.0.8.3068_amd64.deb'];
+  $('#prereq').innerHTML = `
+    <div><div class="text-xs font-bold" style="color:rgb(56 189 248)">EDM</div>
+      <ul class="mt-1 space-y-1 text-slate-300">
+        <li>• ${tr(L('csv_files/ 內所有 CSV 的欄位名稱、順序與欄位數必須完全一致，並對應 EDM Profile 的欄位定義。', 'Every CSV in csv_files/ must have identical header names, column order and column count, matching the EDM profile definition.'))}</li>
+        <li>• ${tr(L('REST API Token 存放在 api_token.txt。', 'The REST API token is stored in api_token.txt.'))}</li>
+      </ul>
+      <pre class="code mt-2">/root/netskope-edm/
+├── edm_auto_processed.sh   <span class="c"># ${tr(L('主腳本', 'orchestrator'))}</span>
+├── edm_hash_generator.py   <span class="c"># ${tr(L('本機雜湊', 'local hashing'))}</span>
+├── edm_api_upload.py       <span class="c"># ${tr(L('API 上傳', 'API upload'))}</span>
+├── api_token.txt
+├── csv_files/ └── processed/
+├── output/
+├── backups/                <span class="c"># .tgz ${tr(L('保留 7 天', 'kept 7 days'))}</span>
+└── logs/                   <span class="c"># ${tr(L('保留 14 天', 'kept 14 days'))}</span></pre></div>
+    <div><div class="text-xs font-bold" style="color:rgb(244 114 182)">Fingerprint 2.0</div>
+      <ul class="mt-1 space-y-1 text-slate-300">
+        <li>• ${tr(L('租戶已啟用 Fingerprint 2.0（洽 Netskope 窗口）。', 'Fingerprint 2.0 enabled on the tenant (contact your Netskope representative).'))}</li>
+        <li>• ${tr(L('具 DLP 功能權限的 REST API Token。', 'A REST API token with DLP permissions.'))}</li>
+        <li>• ${tr(L('Ubuntu 20.04 以上（簡報以 22.04 測試），安裝 cifs-utils 並以唯讀（ro）掛載 File Server。', 'Ubuntu 20.04 or later (tested on 22.04), with cifs-utils and the file server mounted read-only (ro).'))}</li>
+        <li>• ${tr(L('向 Netskope 索取以下套件，並依序安裝：', 'Request these packages from Netskope and install them in this order:'))}</li>
+      </ul>
+      <pre class="code mt-2">${pk.map((p, i) => `${i + 1}. sudo dpkg -i --force-overwrite ${p}`).join('\n')}</pre>
+      <div class="mt-2 text-slate-300">• ${tr(L('以 API 取得 Fingerprint Group ID：', 'Get the fingerprint group ID via API:'))}</div>
+      <pre class="code mt-1">curl -s -X GET "https://&lt;tenant&gt;.goskope.com/api/v2/services/dlp/fingerprints" \\
+     -H "Authorization: Bearer &lt;API Token&gt;"</pre></div>`;
+}
+const TS = [
+  { m: 'EDM', q: 'ERROR: API token file is empty or missing', k: 'token' },
+  { m: 'EDM', q: 'unrecognized arguments', k: 'tool' },
+  { m: 'EDM', q: L('Profile not found／上傳驗證失敗', 'Profile not found / upload validation failure'), k: 'profile' },
+  { m: 'EDM', q: L('磁碟空間不足', 'Disk space depletion'), cause: L('封存檔或日誌累積。', 'Archives or logs piling up.'), fix: L('確認清理機制有運作：自動刪除 7 天前的 .tgz 與 14 天前的日誌。', 'Check the cleanup policy: .tgz older than 7 days and logs older than 14 days are purged automatically.') },
+  { m: 'FP2', q: 'Error: No hash file was generated', k: 'mount' }
+];
+function renderTs() {
+  $('#tsList').innerHTML = TS.map(t => {
+    const f = t.k ? FIX[t.k] : t;
+    return `<details class="ts-row"><summary><span class="text-[10px] font-mono font-bold px-1.5 rounded" style="color:${t.m === 'EDM' ? 'rgb(56 189 248)' : 'rgb(244 114 182)'};border:1px solid currentColor">${t.m}</span><span class="min-w-0 truncate font-mono text-xs text-slate-200">${esc(tr(t.q))}</span><i data-lucide="chevron-right" class="chev w-4 h-4 text-slate-500"></i></summary>
+      <div class="px-4 pb-3 text-sm text-slate-300 space-y-1"><div><b>${tr(L('原因', 'Cause'))}：</b>${tr(f.cause)}</div><div><b>${tr(L('排除', 'Fix'))}：</b>${esc(tr(f.fix))}</div></div></details>`;
+  }).join('');
+}
+
+/* ===================== LANG / THEME / PRINT ===================== */
+function applyLang(l) {
+  lang = l;
+  document.documentElement.setAttribute('lang', l === 'en' ? 'en' : 'zh-Hant');
+  document.title = l === 'en' ? 'EDM & Fingerprint Offline Hash Upload' : 'EDM 與 Fingerprint 離線雜湊上傳';
+  $$('#segLang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
+  try { localStorage.setItem('nsk-poc-lang', l); } catch (e) {}
+  renderControls(); if (steps.length) { steps = buildSteps(); frame(); }
+  renderChannels(); renderLimits(); renderCron(); renderPrereq(); renderTs();
+  lucide.createIcons();
+}
+function applyTheme(t) {
+  document.documentElement.classList.toggle('light', t === 'light');
+  $$('#segTheme button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.theme === t)));
+  try { localStorage.setItem('nsk-poc-theme', t); } catch (e) {}
+}
+$$('#segLang button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+$$('#segTheme button').forEach(b => b.addEventListener('click', () => applyTheme(b.dataset.theme)));
+let themeBeforePrint = null;
+window.addEventListener('beforeprint', () => { themeBeforePrint = document.documentElement.classList.contains('light') ? 'light' : 'dark'; document.documentElement.classList.add('light'); finishNow(); $$('details.ts-row').forEach(d => d.open = true); });
+window.addEventListener('afterprint', () => { if (themeBeforePrint === 'dark') document.documentElement.classList.remove('light'); themeBeforePrint = null; });
+$('#btnPdf').addEventListener('click', () => window.print());
+
+applyTheme(document.documentElement.classList.contains('light') ? 'light' : 'dark');
+steps = buildSteps();
+applyLang(lang);
+run();
+</script>
+</body>
+</html>
