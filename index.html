@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Netskope SASE Use Case 展示中心</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+  // shared with the use-case pages: same storage keys
+  (function () {
+    try {
+      if (localStorage.getItem('nsk-poc-theme') === 'light') document.documentElement.classList.add('light');
+      if (localStorage.getItem('nsk-poc-lang') === 'en') document.documentElement.setAttribute('lang', 'en');
+    } catch (e) {}
+  })();
+</script>
+<style id="tw-inline">*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:Inter,Noto Sans TC,system-ui,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:JetBrains Mono,ui-monospace,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.left-3{left:.75rem}.top-0{top:0}.top-1{top:.25rem}.top-1\/2{top:50%}.z-40{z-index:40}.mx-auto{margin-left:auto;margin-right:auto}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mt-1{margin-top:.25rem}.mt-10{margin-top:2.5rem}.mt-12{margin-top:3rem}.mt-2{margin-top:.5rem}.mt-4{margin-top:1rem}.mt-8{margin-top:2rem}.mt-auto{margin-top:auto}.inline{display:inline}.flex{display:flex}.inline-flex{display:inline-flex}.table{display:table}.grid{display:grid}.hidden{display:none}.h-1{height:.25rem}.h-1\.5{height:.375rem}.h-11{height:2.75rem}.h-12{height:3rem}.h-14{height:3.5rem}.h-3{height:.75rem}.h-3\.5{height:.875rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-full{height:100%}.min-h-screen{min-height:100vh}.w-1{width:.25rem}.w-1\.5{width:.375rem}.w-11{width:2.75rem}.w-12{width:3rem}.w-3{width:.75rem}.w-3\.5{width:.875rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-8{width:2rem}.w-full{width:100%}.min-w-0{min-width:0}.max-w-3xl{max-width:48rem}.max-w-4xl{max-width:56rem}.max-w-7xl{max-width:80rem}.max-w-xl{max-width:36rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.-translate-y-1{--tw-translate-y:-0.25rem}.-translate-y-1,.-translate-y-1\/2{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-y-1\/2{--tw-translate-y:-50%}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.place-items-center{place-items:center}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85/var(--tw-border-opacity,1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59/var(--tw-border-opacity,1))}.border-slate-800\/70{border-color:rgba(30,41,59,.7)}.bg-emerald-400{--tw-bg-opacity:1;background-color:rgb(52 211 153/var(--tw-bg-opacity,1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42/var(--tw-bg-opacity,1))}.bg-slate-950{--tw-bg-opacity:1;background-color:rgb(2 6 23/var(--tw-bg-opacity,1))}.bg-slate-950\/75{background-color:rgba(2,6,23,.75)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}.from-cyan-400{--tw-gradient-from:#22d3ee var(--tw-gradient-from-position);--tw-gradient-to:rgba(34,211,238,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.to-orange-400{--tw-gradient-to:#fb923c var(--tw-gradient-to-position)}.p-10{padding:2.5rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.py-0{padding-top:0;padding-bottom:0}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pl-10{padding-left:2.5rem}.pr-4{padding-right:1rem}.pt-5{padding-top:1.25rem}.text-center{text-align:center}.font-mono{font-family:JetBrains Mono,ui-monospace,monospace}.font-sans{font-family:Inter,Noto Sans TC,system-ui,sans-serif}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-.025em}.tracking-widest{letter-spacing:.1em}.text-cyan-300{--tw-text-opacity:1;color:rgb(103 232 249/var(--tw-text-opacity,1))}.text-emerald-300{--tw-text-opacity:1;color:rgb(110 231 183/var(--tw-text-opacity,1))}.text-slate-100{--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240/var(--tw-text-opacity,1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-slate-950{--tw-text-opacity:1;color:rgb(2 6 23/var(--tw-text-opacity,1))}.text-violet-300{--tw-text-opacity:1;color:rgb(196 181 253/var(--tw-text-opacity,1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.shadow{--tw-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color),0 1px 2px -1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.outline-none{outline:2px solid transparent;outline-offset:2px}.blur{--tw-blur:blur(8px)}.blur,.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px)}.backdrop-blur,.backdrop-filter{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.hover\:bg-slate-800:hover{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.focus\:border-cyan-400:focus{--tw-border-opacity:1;border-color:rgb(34 211 238/var(--tw-border-opacity,1))}@media (min-width:640px){.sm\:inline{display:inline}.sm\:hidden{display:none}.sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.sm\:flex-row{flex-direction:row}.sm\:items-center{align-items:center}.sm\:justify-between{justify-content:space-between}.sm\:p-6{padding:1.5rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:py-16{padding-top:4rem;padding-bottom:4rem}.sm\:text-5xl{font-size:3rem;line-height:1}.sm\:text-lg{font-size:1.125rem;line-height:1.75rem}}@media (min-width:768px){.md\:flex-row{flex-direction:row}.md\:items-center{align-items:center}}@media (min-width:1024px){.lg\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}}</style>
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    background:
+      radial-gradient(1100px 600px at 0% -10%, rgba(34,211,238,.12), transparent 60%),
+      radial-gradient(900px 520px at 100% 0%, rgba(251,146,60,.10), transparent 60%),
+      radial-gradient(800px 500px at 50% 110%, rgba(167,139,250,.10), transparent 60%),
+      #060a13;
+    color: #e2e8f0;
+    transition: background-color .3s ease, color .3s ease;
+  }
+  html[lang="en"] .zh { display: none !important; }
+  html:not([lang="en"]) .en { display: none !important; }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(148,163,184,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148,163,184,.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .card { background: rgba(15,23,42,.65); border: 1px solid rgba(51,65,85,.6); backdrop-filter: blur(8px); }
+  .hero-grad { background-image: linear-gradient(90deg, #67e8f9, #bae6fd, #fdba74); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  /* use case cards */
+  .uc { --c: 34 211 238; position: relative; transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
+  .uc::before { content: ''; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(500px 220px at 0% 0%, rgb(var(--c) / .14), transparent 70%); opacity: .7; transition: opacity .3s ease; pointer-events: none; }
+  .uc .uc-ico { background: rgb(var(--c) / .14); color: rgb(var(--c)); border: 1px solid rgb(var(--c) / .35); }
+  .uc .uc-accent { color: rgb(var(--c)); }
+  .uc .uc-tag { border-color: rgb(var(--c) / .35); color: rgb(var(--c)); background: rgb(var(--c) / .08); }
+  a.uc:hover { transform: translateY(-4px); border-color: rgb(var(--c) / .7); box-shadow: 0 18px 50px -20px rgb(var(--c) / .7); }
+  a.uc:hover::before { opacity: 1; }
+  a.uc:hover .uc-arrow { transform: translateX(4px); }
+  .uc-arrow { transition: transform .3s ease; }
+  .uc.soon { cursor: default; }
+  .uc.soon .uc-body { opacity: .7; }
+  .uc.hide { display: none; }
+
+  .seg { display: inline-flex; border: 1px solid #334155; border-radius: .6rem; overflow: hidden; background: rgba(15,23,42,.8); }
+  .seg button { padding: .4rem .75rem; font-size: .8rem; color: #cbd5e1; transition: all .25s ease; white-space: nowrap; }
+  .seg button + button { border-left: 1px solid #334155; }
+  .seg button:hover { background: rgba(51,65,85,.5); }
+  .seg button[aria-pressed="true"] { background: #22d3ee; color: #020617; font-weight: 600; }
+
+  .chip { transition: all .25s ease; }
+  .chip[aria-pressed="true"] { background: #22d3ee; color: #020617; border-color: #22d3ee; font-weight: 600; }
+
+  .pulse-dot { position: relative; }
+  .pulse-dot::after { content: ''; position: absolute; inset: 0; border-radius: 9999px; background: inherit; animation: ping 1.8s infinite; }
+  @keyframes ping { 0% { opacity: .7; transform: scale(1); } 100% { opacity: 0; transform: scale(2.2); } }
+  .fade-in { animation: fadeIn .5s ease both; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  /* ---------- light theme ---------- */
+  html.light body {
+    background:
+      radial-gradient(1100px 600px at 0% -10%, rgba(34,211,238,.14), transparent 60%),
+      radial-gradient(900px 520px at 100% 0%, rgba(251,146,60,.12), transparent 60%),
+      #f1f5f9;
+    color: #0f172a;
+  }
+  html.light .grid-bg { background-image: linear-gradient(rgba(15,23,42,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,.05) 1px, transparent 1px); }
+  html.light .card { background: rgba(255,255,255,.9); border-color: #e2e8f0; box-shadow: 0 1px 2px rgba(15,23,42,.04); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #0891b2, #0284c7, #ea580c); }
+  html.light .uc .uc-ico, html.light .uc .uc-accent, html.light .uc .uc-tag { color: color-mix(in srgb, rgb(var(--c)) 65%, #000); }
+  html.light .text-slate-100 { color: #0f172a; }
+  html.light .text-slate-200 { color: #1e293b; }
+  html.light .text-slate-300 { color: #334155; }
+  html.light .text-slate-400 { color: #475569; }
+  html.light .text-slate-500 { color: #64748b; }
+  html.light .text-violet-300 { color: #6d28d9; }
+  html.light .text-cyan-300 { color: #0e7490; }
+  html.light .text-emerald-300 { color: #047857; }
+  html.light .border-slate-700 { border-color: #cbd5e1; }
+  html.light .border-slate-800, html.light .border-slate-800\/70 { border-color: #e2e8f0; }
+  html.light .bg-slate-900 { background: #fff; }
+  html.light .bg-slate-900\/60 { background: #f1f5f9; }
+  html.light .bg-slate-950\/75 { background: rgba(255,255,255,.82); }
+  html.light .hover\:bg-slate-800:hover { background: #e2e8f0; }
+  html.light .seg { border-color: #cbd5e1; background: #fff; }
+  html.light .seg button { color: #334155; }
+  html.light .seg button + button { border-left-color: #cbd5e1; }
+  html.light .seg button:hover { background: #f1f5f9; }
+  html.light .seg button[aria-pressed="true"], html.light .chip[aria-pressed="true"] { color: #020617; }
+  html.light .chip[aria-pressed="true"] { background: #22d3ee; border-color: #22d3ee; }
+  html.light input::placeholder { color: #94a3b8; }
+</style>
+</head>
+<body class="font-sans antialiased min-h-screen">
+
+<!-- ============ NAV ============ -->
+<nav class="sticky top-0 z-40 border-b border-slate-800/70 bg-slate-950/75 backdrop-blur">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+    <a href="index.html" class="flex items-center gap-2 min-w-0">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-orange-400 grid place-items-center shrink-0">
+        <i data-lucide="shield-check" class="w-4 h-4 text-slate-950"></i>
+      </div>
+      <span class="font-semibold text-sm truncate">Netskope SASE · Use Case Hub</span>
+    </a>
+    <div class="flex items-center gap-2">
+      <div class="seg" id="segLang" role="group" aria-label="Language">
+        <button data-lang="zh" aria-pressed="true">中文</button>
+        <button data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <div class="seg" id="segTheme" role="group" aria-label="Theme">
+        <button data-theme="dark" aria-pressed="true" title="Dark"><span class="inline-flex items-center gap-1"><i data-lucide="moon" class="w-3.5 h-3.5"></i><span class="hidden sm:inline"><span class="zh">深</span><span class="en">Dark</span></span></span></button>
+        <button data-theme="light" aria-pressed="false" title="Light"><span class="inline-flex items-center gap-1"><i data-lucide="sun" class="w-3.5 h-3.5"></i><span class="hidden sm:inline"><span class="zh">淺</span><span class="en">Light</span></span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="grid-bg border-b border-slate-800/70">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+    <div class="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-widest text-cyan-300 mb-4">
+      <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> Netskope One · Use Case Library
+    </div>
+    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight max-w-4xl">
+      <span class="zh"><span class="hero-grad">Netskope SASE</span><br class="sm:hidden"> Use Case 展示中心</span>
+      <span class="en"><span class="hero-grad">Netskope SASE</span><br class="sm:hidden"> Use Case Hub</span>
+    </h1>
+    <p class="mt-4 text-base sm:text-lg text-slate-400 max-w-3xl">
+      <span class="zh">依主題整理的互動式架構說明與 POC 驗證指南。選一個情境，查看流量路徑、技術重點、SkopeIT 驗證方式與後台配置清單。</span>
+      <span class="en">Interactive architecture walkthroughs and PoC guides, organized by topic. Pick a scenario to see the traffic path, key design points, SkopeIT verification and configuration checklist.</span>
+    </p>
+
+    <div class="mt-8 flex flex-col md:flex-row md:items-center gap-3">
+      <label class="relative flex-1 max-w-xl">
+        <i data-lucide="search" class="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+        <input id="q" type="search" autocomplete="off"
+          class="w-full h-11 pl-10 pr-4 rounded-xl border border-slate-700 bg-slate-900 text-sm text-slate-100 outline-none focus:border-cyan-400 transition"
+          placeholder="搜尋 Use Case（例如 GenAI、MCP、IPsec）">
+      </label>
+      <div id="chips" class="flex flex-wrap gap-2"></div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+  <div class="flex items-center justify-between mb-5">
+    <h2 class="text-lg font-semibold"><span class="zh">所有 Use Case</span><span class="en">All Use Cases</span></h2>
+    <span id="count" class="text-xs font-mono text-slate-500"></span>
+  </div>
+  <div id="grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  <div id="empty" class="hidden card rounded-2xl p-10 text-center text-sm text-slate-400">
+    <span class="zh">找不到符合的 Use Case，換個關鍵字試試。</span><span class="en">No use cases match. Try another keyword.</span>
+  </div>
+
+  <section id="guides" class="mt-12">
+    <div class="flex items-center justify-between mb-5">
+      <div>
+        <h2 class="text-lg font-semibold flex items-center gap-2"><i data-lucide="book-open-check" class="w-5 h-5 text-violet-300"></i><span class="zh">最佳實務</span><span class="en">Best Practices</span></h2>
+        <p class="mt-1 text-xs text-slate-500"><span class="zh">不針對特定客戶情境，適用於所有部署的設定原則與指南。</span><span class="en">Configuration principles and guides that apply to every deployment, not tied to one customer scenario.</span></p>
+      </div>
+      <span id="gcount" class="text-xs font-mono text-slate-500"></span>
+    </div>
+    <div id="guideGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </section>
+
+  <div class="mt-10 card rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-4">
+    <div class="w-11 h-11 rounded-xl bg-slate-900 border border-slate-700 grid place-items-center shrink-0 text-cyan-300"><i data-lucide="folder-plus" class="w-5 h-5"></i></div>
+    <div class="text-sm text-slate-400">
+      <span class="zh">新增主題：把新的 HTML 放在與本頁同一個資料夾，並在本頁程式碼最上方的 <code class="font-mono text-slate-200">USE_CASES</code> 清單填入檔名（<code class="font-mono text-slate-200">href</code>），卡片就會從「規劃中」變為可點擊。</span>
+      <span class="en">To add a topic: put the new HTML file in the same folder as this page and set its file name (<code class="font-mono text-slate-200">href</code>) in the <code class="font-mono text-slate-200">USE_CASES</code> list at the top of this page's script. The card switches from "Planned" to clickable.</span>
+    </div>
+  </div>
+</main>
+
+<footer class="border-t border-slate-800/70">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 text-xs text-slate-500 flex flex-col sm:flex-row gap-2 sm:justify-between">
+    <span>Netskope SASE · Use Case Hub</span>
+    <span><span class="zh">內容為架構示意與 POC 參考，實際效果依授權、部署與政策設定而定。</span><span class="en">Content is illustrative for architecture and PoC reference; actual results depend on licensing, deployment and policy.</span></span>
+  </div>
+</footer>
+
+<script id="icon-shim">/* Inlined Lucide icons (ISC License, lucide.dev) — no CDN needed */
+window.lucide = (function () {
+  const ICONS = {"shield-check":[["path",{"d":"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"}],["path",{"d":"m9 12 2 2 4-4"}]],"moon":[["path",{"d":"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"}]],"sun":[["circle",{"cx":"12","cy":"12","r":"4"}],["path",{"d":"M12 2v2"}],["path",{"d":"M12 20v2"}],["path",{"d":"m4.93 4.93 1.41 1.41"}],["path",{"d":"m17.66 17.66 1.41 1.41"}],["path",{"d":"M2 12h2"}],["path",{"d":"M20 12h2"}],["path",{"d":"m6.34 17.66-1.41 1.41"}],["path",{"d":"m19.07 4.93-1.41 1.41"}]],"layout-grid":[["rect",{"width":"7","height":"7","x":"3","y":"3","rx":"1"}],["rect",{"width":"7","height":"7","x":"14","y":"3","rx":"1"}],["rect",{"width":"7","height":"7","x":"14","y":"14","rx":"1"}],["rect",{"width":"7","height":"7","x":"3","y":"14","rx":"1"}]],"search":[["path",{"d":"m21 21-4.34-4.34"}],["circle",{"cx":"11","cy":"11","r":"8"}]],"book-open-check":[["path",{"d":"M12 5v16"}],["path",{"d":"m16 12 2 2 4-4"}],["path",{"d":"M22 6V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2h4.001A2 2 0 0022 17v-1.344"}]],"folder-plus":[["path",{"d":"M12 10v6"}],["path",{"d":"M9 13h6"}],["path",{"d":"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"}]],"arrow-right":[["path",{"d":"M5 12h14"}],["path",{"d":"m12 5 7 7-7 7"}]],"clock":[["circle",{"cx":"12","cy":"12","r":"10"}],["path",{"d":"M12 6v6l4 2"}]],"key":[["path",{"d":"m2 21 9.6-9.6"}],["path",{"d":"m7.5 15.5 2.3 2.3a1 1 0 0 1 0 1.4l-2.1 2.1a1 1 0 0 1-1.4 0L4 19"}],["circle",{"cx":"15.5","cy":"7.5","r":"5.5"}]],"route":[["circle",{"cx":"6","cy":"19","r":"3"}],["path",{"d":"M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"}],["circle",{"cx":"18","cy":"5","r":"3"}]],"network":[["rect",{"x":"16","y":"16","width":"6","height":"6","rx":"1"}],["rect",{"x":"2","y":"16","width":"6","height":"6","rx":"1"}],["rect",{"x":"9","y":"2","width":"6","height":"6","rx":"1"}],["path",{"d":"M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"}],["path",{"d":"M12 12V8"}]],"building-2":[["path",{"d":"M10 12h4"}],["path",{"d":"M10 8h4"}],["path",{"d":"M14 21v-3a2 2 0 0 0-4 0v3"}],["path",{"d":"M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"}],["path",{"d":"M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"}]],"file-lock":[["path",{"d":"M4 9.8V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2h-3"}],["path",{"d":"M14 2v5a1 1 0 0 0 1 1h5"}],["path",{"d":"M9 17v-2a2 2 0 0 0-4 0v2"}],["rect",{"width":"8","height":"5","x":"3","y":"17","rx":"1"}]],"sparkles":[["path",{"d":"M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"}],["path",{"d":"M20 2v4"}],["path",{"d":"M22 4h-4"}],["circle",{"cx":"4","cy":"20","r":"2"}]],"bot":[["path",{"d":"M12 8V4H8"}],["rect",{"width":"16","height":"12","x":"4","y":"8","rx":"2"}],["path",{"d":"M2 14h2"}],["path",{"d":"M20 14h2"}],["path",{"d":"M15 13v2"}],["path",{"d":"M9 13v2"}]],"key-round":[["path",{"d":"M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"}],["circle",{"cx":"16.5","cy":"7.5","r":".5","fill":"currentColor"}]],"mail-check":[["path",{"d":"M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8"}],["path",{"d":"m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"}],["path",{"d":"m16 19 2 2 4-4"}]],"database":[["ellipse",{"cx":"12","cy":"5","rx":"9","ry":"3"}],["path",{"d":"M3 5V19A9 3 0 0 0 21 19V5"}],["path",{"d":"M3 12A9 3 0 0 0 21 12"}]],"fingerprint":[["path",{"d":"M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"}],["path",{"d":"M14 13.12c0 2.38 0 6.38-1 8.88"}],["path",{"d":"M17.29 21.02c.12-.6.43-2.3.5-3.02"}],["path",{"d":"M2 12a10 10 0 0 1 18-6"}],["path",{"d":"M2 16h.01"}],["path",{"d":"M21.8 16c.2-2 .131-5.354 0-6"}],["path",{"d":"M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"}],["path",{"d":"M8.65 22c.21-.66.45-1.32.57-2"}],["path",{"d":"M9 6.8a6 6 0 0 1 9 5.2v2"}]],"mail-search":[["path",{"d":"M22 12.5V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h7.5"}],["path",{"d":"m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"}],["path",{"d":"M18 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"}],["circle",{"cx":"18","cy":"18","r":"3"}],["path",{"d":"m22 22-1.5-1.5"}]],"cross":[["path",{"d":"M4 9a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h4a1 1 0 0 1 1 1v4a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-4a1 1 0 0 1 1-1h4a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-4a1 1 0 0 1-1-1V4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4a1 1 0 0 1-1 1z"}]],"globe":[["circle",{"cx":"12","cy":"12","r":"10"}],["path",{"d":"M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"}],["path",{"d":"M2 12h20"}]],"list-ordered":[["path",{"d":"M11 5h10"}],["path",{"d":"M11 12h10"}],["path",{"d":"M11 19h10"}],["path",{"d":"M4 4h1v5"}],["path",{"d":"M4 9h2"}],["path",{"d":"M6.5 20H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02"}]]};
+  const NS = 'http://www.w3.org/2000/svg';
+  function createIcons() {
+    document.querySelectorAll('i[data-lucide]').forEach(function (el) {
+      const name = el.getAttribute('data-lucide');
+      const node = ICONS[name];
+      if (!node) return;
+      const svg = document.createElementNS(NS, 'svg');
+      const base = { xmlns: NS, width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' };
+      Object.keys(base).forEach(function (k) { svg.setAttribute(k, base[k]); });
+      svg.setAttribute('class', ('lucide lucide-' + name + ' ' + (el.getAttribute('class') || '')).trim());
+      node.forEach(function (child) {
+        const c = document.createElementNS(NS, child[0]);
+        Object.keys(child[1]).forEach(function (k) { if (k !== 'key') c.setAttribute(k, child[1][k]); });
+        svg.appendChild(c);
+      });
+      el.replaceWith(svg);
+    });
+  }
+  return { createIcons: createIcons };
+})();
+</script>
+<script>
+/* =====================================================================
+   USE_CASES — 在這裡新增或修改主題。
+   href 留空字串 = 顯示為「規劃中」；填入檔名 = 可點擊開啟。
+   color 為 RGB（空白分隔），icon 為 Lucide 圖示名稱。
+   ===================================================================== */
+const USE_CASES = [
+  {
+    id: 'bwan',
+    href: 'netskope-bwan-hybrid-poc.html',
+    icon: 'route', color: '34 211 238', cat: 'network',
+    title: { zh: 'Endpoint SD-WAN 混合分流', en: 'Endpoint SD-WAN Hybrid Steering' },
+    desc:  { zh: '中國境內網站走 China Premium POP；Microsoft 365 / GenAI 經 BWAN One-Arm NSG 與自動 IPsec 從 TPE1 / SIN1 出口。', en: 'China sites egress via the China Premium POP; Microsoft 365 / GenAI go through a BWAN One-Arm NSG and auto-IPsec to TPE1 / SIN1.' },
+    tags: ['BWAN', 'One-Arm NSG', 'IPsec', 'China Premium'],
+    keywords: 'sd-wan bwan nsg ipsec one-arm china premium tpe1 sin1 m365 steering 分流'
+  },
+  {
+    id: 'housing',
+    href: 'netskope-bwan-multisite.html',
+    icon: 'building-2', color: '52 211 153', cat: 'network',
+    title: { zh: '多據點 SASE 現代化轉型', en: 'Multi-Site SASE Modernization' },
+    desc:  { zh: '各分點與 HQ 防火牆置換為 Netskope BWAN：Internet 直送雲端檢查、分點到 HQ 系統走 Overlay、第三方系統固定出口 IP、分點內 IoT 以 Zone 隔離；小型分點也可改用 Netskope Client。', en: 'Replace site and HQ firewalls with Netskope BWAN: Internet goes direct to cloud inspection, site-to-HQ rides the overlay, third-party systems get a fixed egress IP, and on-site IoT is zoned off; small sites can use the Netskope Client instead.' },
+    tags: ['BWAN', 'Hub & Spoke', 'SSE', 'Zone FW'],
+    keywords: 'bwan sd-wan multi-site 多據點 分點 branch hub spoke overlay 第三方 third-party iot zone ztp'
+  },
+  {
+    id: 'edlp',
+    href: 'netskope-endpoint-dlp-share.html',
+    icon: 'file-lock', color: '248 113 113', cat: 'data',
+    title: { zh: 'Endpoint DLP：網路共享防護', en: 'Endpoint DLP for Network Shares' },
+    desc:  { zh: '檔案寫入 \\\\server\\share 前由本機驅動攔截暫存、送雲端 DLP 比對；命中就刪除暫存檔不落地，通過才寫入，事件非同步上傳 SkopeIT。', en: 'Files bound for \\\\server\\share are held locally by the driver and checked by cloud DLP; matches are deleted before landing, clean files are written, and events go to SkopeIT asynchronously.' },
+    tags: ['Endpoint DLP', 'epdlpdrv', 'SMB', 'SkopeIT'],
+    keywords: 'endpoint dlp 端點 網路共享 network share smb unc epdlpdrv 個資 信用卡 pii pci 資料外洩'
+  },
+  {
+    id: 'genai',
+    href: 'netskope-genai-instance-control.html',
+    icon: 'sparkles', color: '34 211 238', cat: 'ai',
+    title: { zh: 'GenAI 實例管控', en: 'GenAI Instance Control' },
+    desc:  { zh: '瀏覽器與桌面 App 經 Netskope Client 導流，以 Instance Awareness 阻擋個人版 AI，只放行企業帳號，並由 NG SWG、CASB、DLP 與 AI Guardrails 逐關檢查。', en: 'Browser and desktop-app traffic is steered by the Netskope Client; instance awareness blocks personal AI accounts and only corporate accounts pass, checked by NG SWG, CASB, DLP and AI Guardrails.' },
+    tags: ['Instance Awareness', 'NG SWG', 'CASB', 'DLP', 'Guardrails'],
+    keywords: 'genai chatgpt claude copilot gemini instance awareness 個人版 企業版 shadow ai 影子 dlp guardrails jailbreak 越獄 swg casb native app'
+  },
+  {
+    id: 'aigov',
+    href: '',  // 待 review 完成後改回 'netskope-ai-agent-governance.html'
+    icon: 'bot', color: '167 139 250', cat: 'ai',
+    title: { zh: 'AI Agent 治理', en: 'AI Agent Governance' },
+    desc:  { zh: '以 9 大控管面向治理 AI Agent 與 MCP：盤點准入、身分、執行期護欄、人機協同分級、稽核與 FinOps，23 項測試目標中 20 項原生支援。', en: 'Govern AI agents and MCP across nine control domains: discovery, identity, runtime guardrails, human-in-the-loop tiers, audit and FinOps; 20 of 23 objectives supported natively.' },
+    tags: ['AI Agent', 'MCP', 'DLP', 'HITL', 'CCI'],
+    keywords: 'ai agent mcp governance 治理 skill shadow ai hitl hotl dlp mip pii finops ueba claude genai'
+  },
+  {
+    id: 'ztna',
+    href: '',
+    icon: 'key-round', color: '52 211 153', cat: 'network',
+    title: { zh: 'ZTNA 私有應用存取', en: 'ZTNA Private Access' },
+    desc:  { zh: '以 Netskope Private Access 取代 VPN，依身分與裝置狀態逐一授權內部應用，不暴露整個網段。', en: 'Replace VPN with Netskope Private Access: per-app access by identity and device posture, without exposing whole networks.' },
+    tags: ['NPA', 'ZTNA', 'VPN Replacement'],
+    keywords: 'ztna npa private access vpn 零信任'
+  },
+  {
+    id: 'emaildlp',
+    href: 'netskope-email-dlp.html',
+    icon: 'mail-check', color: '244 123 32', cat: 'data',
+    title: { zh: 'Email DLP', en: 'Email DLP' },
+    desc:  { zh: 'Microsoft 365 與 Gmail 的外寄郵件經 Connector 導向 Netskope SMTP Proxy，以 DLP 深層檢測內文與巢狀附件，依收件網域插入 Header 交由 Exchange 阻擋或送主管簽核，並以 Outlook 通知寄件者。', en: 'Outbound mail from Microsoft 365 and Gmail goes through the Netskope SMTP Proxy for DLP inspection of body and nested attachments; by recipient domain it adds a header so Exchange blocks or routes for manager approval, with the sender notified in Outlook.' },
+    tags: ['SMTP Proxy', 'Microsoft 365', 'Gmail', 'EDM', 'OCR'],
+    keywords: 'email dlp 郵件 smtp proxy microsoft 365 exchange online gmail google workspace connector edm ocr 附件 header 外寄'
+  },
+  {
+    id: 'casb',
+    href: 'netskope-casb-api-onedrive.html',
+    icon: 'database', color: '56 189 248', cat: 'data',
+    title: { zh: 'SaaS 資料保護（CASB API）', en: 'SaaS Data Protection (CASB API)' },
+    desc:  { zh: '不需安裝 Client，CASB API 與 OneDrive 整合：偵測到機敏或惡意檔案即移至隔離資料夾，並透過 Cloud Exchange 的 Teams plug-in 請主管同意（還原）或拒絕（刪除），全程記錄日誌。', en: 'No Client needed: CASB API integrates with OneDrive, moves sensitive or malicious files to a quarantine folder, and asks managers in Teams via the Cloud Exchange plug-in to approve (restore) or reject (delete), with every action logged.' },
+    tags: ['CASB API', 'OneDrive', 'Quarantine', 'Cloud Exchange', 'Teams'],
+    keywords: 'casb api onedrive sharepoint microsoft 365 quarantine 隔離 dlp malware 惡意 cloud exchange teams plug-in agentless 無代理'
+  },
+  {
+    id: 'offhash',
+    href: 'netskope-dlp-offline-hash.html',
+    icon: 'fingerprint', color: '45 212 191', cat: 'data',
+    title: { zh: 'EDM 與 Fingerprint 離線雜湊上傳', en: 'EDM & Fingerprint Offline Hash Upload' },
+    desc:  { zh: '地端 Ubuntu 以唯讀方式掛載 File Server，在本機為客戶資料 CSV（EDM）與機敏文件、圖片（Fingerprint 2.0）產生雜湊，透過 REST API 只上傳雜湊，cron 每日自動同步，原始檔案不出門。', en: 'An on-prem Ubuntu server mounts the file server read-only, hashes customer-data CSVs (EDM) and sensitive documents and images (Fingerprint 2.0) locally, uploads only hashes via REST API, and syncs daily with cron; original files never leave.' },
+    tags: ['EDM', 'Fingerprint 2.0', 'REST API', 'CIFS', 'cron'],
+    keywords: 'edm exact data match fingerprint 2.0 fp2 指紋 雜湊 hash offline 離線 csv 個資 cifs file server nas ubuntu cron flock rest api dlp'
+  },
+  {
+    id: 'gmailapi',
+    href: 'netskope-gmail-casb-api.html',
+    icon: 'mail-search', color: '56 189 248', cat: 'data',
+    title: { zh: 'Gmail 資料保護（CASB API）', en: 'Gmail Data Protection (CASB API)' },
+    desc:  { zh: '不改郵件路由、不裝 Client：Gmail 經 Pub/Sub 發出信箱通知，Netskope 以全網域委派的服務帳號透過 Gmail API 讀取郵件，交給 DLP 與 Email AI Security 檢查；違規的來信與內部郵件以 gmail.modify 移至垃圾桶，外寄郵件只能事後告警。附完整設定步驟。', en: 'No routing change, no Client: Gmail sends mailbox notifications via Pub/Sub, Netskope reads mail through the Gmail API with a domain-wide-delegated service account, checks it with DLP and Email AI Security; violating inbound and internal email is moved to trash with gmail.modify, while outbound email can only be alerted on. Includes the full setup steps.' },
+    tags: ['CASB API', 'Gmail', 'Pub/Sub', 'DWD', 'Email AI Security'],
+    keywords: 'gmail google workspace casb api next generation api data protection pub/sub service account domain-wide delegation dwd oauth scopes gmail.modify email ai security dlp 郵件 服務帳號'
+  },
+  {
+    id: 'cross',
+    href: '',
+    icon: 'globe', color: '251 191 36', cat: 'network',
+    title: { zh: '跨境連線與多 POP 出口', en: 'Cross-Border & Multi-POP Egress' },
+    desc:  { zh: '跨中港台多區域分點的出口規劃：在地 POP、指定 POP 與備援策略，以及 SkopeIT 驗證方式。', en: 'Egress design for multi-region branches across China, Hong Kong and Taiwan: local POPs, pinned POPs, failover and SkopeIT verification.' },
+    tags: ['NewEdge', 'GSLB', 'Multi-POP'],
+    keywords: 'cross border 跨境 pop gslb newedge hong kong china taiwan'
+  }
+];
+
+/* GUIDES — 最佳實務／設定指南（非客戶情境），顯示在首頁下方獨立區塊 */
+const GUIDES = [
+  {
+    id: 'rtp',
+    href: 'netskope-rtp-best-practices.html',
+    icon: 'list-ordered', color: '168 85 247', cat: 'guide',
+    title: { zh: '即時防護政策最佳實務', en: 'Real-time Protection Policy Best Practices' },
+    desc:  { zh: '政策由上而下比對、命中即停止（DLP Alert & Continue 除外），未命中預設允許。用互動模擬器調整順序並套用，看例外放錯位置的後果，並依 Threat → Utility → RBI → CASB → Web → NPA 分層。', en: 'Policies are evaluated top-down and the first match wins (except DLP Alert & Continue); no match means allow. Reorder and apply in the simulator to see what a misplaced exception does, and layer policies Threat → Utility → RBI → CASB → Web → NPA.' },
+    tags: ['Real-time Protection', 'Policy Order', 'RBI', 'CASB', 'NPA'],
+    keywords: 'real-time protection policy 政策 順序 order best practice 最佳實務 threat utility rbi casb web npa inline api out of band dynamic url 例外 exception'
+  }
+];
+
+const CATS = [
+  { id: 'all',     zh: '全部',      en: 'All' },
+  { id: 'network', zh: 'SASE 網路', en: 'SASE Network' },
+  { id: 'ai',      zh: 'AI 安全',   en: 'AI Security' },
+  { id: 'data',    zh: '資料安全',  en: 'Data Security' }
+];
+
+/* ===================== RENDER ===================== */
+let lang = document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'zh';
+let cat = 'all';
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function renderChips() {
+  $('#chips').innerHTML = CATS.map(c => `
+    <button class="chip h-9 px-3 rounded-lg border border-slate-700 bg-slate-900 text-xs text-slate-300 hover:bg-slate-800" data-cat="${c.id}" aria-pressed="${c.id === cat}">${c[lang]}</button>`).join('');
+  document.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () => { cat = b.dataset.cat; renderChips(); filter(); }));
+}
+
+function cardHtml(u, i, guide) {
+  {
+    const ready = !!u.href;
+    const catName = guide ? (lang === 'en' ? 'Best Practice' : '最佳實務') : ((CATS.find(c => c.id === u.cat) || {})[lang] || '');
+    const status = ready
+      ? `<span class="inline-flex items-center gap-1.5 text-[11px] font-medium text-emerald-300"><span class="pulse-dot w-1.5 h-1.5 rounded-full bg-emerald-400"></span>${lang === 'en' ? 'Available' : '已上線'}</span>`
+      : `<span class="text-[11px] font-medium text-slate-500">${lang === 'en' ? 'Planned' : '規劃中'}</span>`;
+    const tag = ready ? 'a' : 'div';
+    const attrs = ready ? `href="${esc(u.href)}"` : 'aria-disabled="true"';
+    return `
+      <${tag} ${attrs} class="uc ${ready ? '' : 'soon'} card rounded-2xl p-6 flex flex-col fade-in" style="--c:${u.color};animation-delay:${i * 60}ms" data-id="${u.id}">
+        <div class="uc-body relative flex flex-col h-full">
+          <div class="flex items-start justify-between gap-3">
+            <div class="uc-ico w-12 h-12 rounded-xl grid place-items-center"><i data-lucide="${u.icon}" class="w-6 h-6"></i></div>
+            ${status}
+          </div>
+          <div class="mt-4 text-[11px] font-mono uppercase tracking-widest uc-accent">${esc(catName)}</div>
+          <h3 class="mt-1 text-lg font-semibold text-slate-100 leading-snug">${esc(u.title[lang])}</h3>
+          <p class="mt-2 text-sm text-slate-400 leading-relaxed">${esc(u.desc[lang])}</p>
+          <div class="mt-4 flex flex-wrap gap-1.5">${u.tags.map(t => `<span class="uc-tag text-[11px] font-mono px-2 py-0.5 rounded-md border">${esc(t)}</span>`).join('')}</div>
+          <div class="mt-auto pt-5 flex items-center justify-between text-sm">
+            ${ready
+              ? `<span class="font-medium uc-accent">${guide ? (lang === 'en' ? 'Open guide' : '開啟指南') : (lang === 'en' ? 'Open use case' : '開啟 Use Case')}</span><i data-lucide="arrow-right" class="uc-arrow w-4 h-4 uc-accent"></i>`
+              : `<span class="text-slate-500">${lang === 'en' ? 'Coming soon' : '即將推出'}</span><i data-lucide="clock" class="w-4 h-4 text-slate-500"></i>`}
+          </div>
+        </div>
+      </${tag}>`;
+  }
+}
+function renderCards() {
+  $('#grid').innerHTML = USE_CASES.map((u, i) => cardHtml(u, i, false)).join('');
+  $('#guideGrid').innerHTML = GUIDES.map((u, i) => cardHtml(u, i, true)).join('');
+  lucide.createIcons();
+  filter();
+}
+
+function filter() {
+  const q = $('#q').value.trim().toLowerCase();
+  let shown = 0;
+  USE_CASES.forEach(u => {
+    const hay = [u.title.zh, u.title.en, u.desc.zh, u.desc.en, u.tags.join(' '), u.keywords].join(' ').toLowerCase();
+    const ok = (cat === 'all' || u.cat === cat) && (!q || hay.includes(q));
+    const el = document.querySelector(`.uc[data-id="${u.id}"]`);
+    if (el) el.classList.toggle('hide', !ok);
+    if (ok) shown++;
+  });
+  let gshown = 0;
+  GUIDES.forEach(u => {
+    const hay = [u.title.zh, u.title.en, u.desc.zh, u.desc.en, u.tags.join(' '), u.keywords].join(' ').toLowerCase();
+    const ok = cat === 'all' && (!q || hay.includes(q));
+    const el = document.querySelector(`#guideGrid .uc[data-id="${u.id}"]`);
+    if (el) el.classList.toggle('hide', !ok);
+    if (ok) gshown++;
+  });
+  $('#guides').classList.toggle('hidden', gshown === 0);
+  $('#gcount').textContent = lang === 'en' ? `${GUIDES.length} guide${GUIDES.length > 1 ? 's' : ''}` : `共 ${GUIDES.length} 篇`;
+  $('#empty').classList.toggle('hidden', shown + gshown > 0);
+  const ready = USE_CASES.filter(u => u.href).length;
+  $('#count').textContent = lang === 'en'
+    ? `${shown} shown · ${ready} available · ${USE_CASES.length - ready} planned`
+    : `顯示 ${shown} 個 · 已上線 ${ready} · 規劃中 ${USE_CASES.length - ready}`;
+}
+
+function applyLang(l) {
+  lang = l;
+  document.documentElement.setAttribute('lang', l === 'en' ? 'en' : 'zh-Hant');
+  document.title = l === 'en' ? 'Netskope SASE Use Case Hub' : 'Netskope SASE Use Case 展示中心';
+  $('#q').placeholder = l === 'en' ? 'Search use cases (e.g. GenAI, MCP, IPsec)' : '搜尋 Use Case（例如 GenAI、MCP、IPsec）';
+  document.querySelectorAll('#segLang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
+  try { localStorage.setItem('nsk-poc-lang', l); } catch (e) {}
+  renderChips();
+  renderCards();
+}
+
+function applyTheme(t) {
+  document.documentElement.classList.toggle('light', t === 'light');
+  document.querySelectorAll('#segTheme button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.theme === t)));
+  try { localStorage.setItem('nsk-poc-theme', t); } catch (e) {}
+}
+
+document.querySelectorAll('#segLang button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+document.querySelectorAll('#segTheme button').forEach(b => b.addEventListener('click', () => applyTheme(b.dataset.theme)));
+$('#q').addEventListener('input', filter);
+
+applyTheme(document.documentElement.classList.contains('light') ? 'light' : 'dark');
+applyLang(lang);
+</script>
+</body>
+</html>
