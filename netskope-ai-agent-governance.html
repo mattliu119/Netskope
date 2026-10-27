@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agent 治理</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+  (function () {
+    try {
+      if (localStorage.getItem('nsk-poc-theme') === 'light') document.documentElement.classList.add('light');
+      if (localStorage.getItem('nsk-poc-lang') === 'en') document.documentElement.setAttribute('lang', 'en');
+    } catch (e) {}
+  })();
+</script>
+<style id="tw-inline">*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:Inter,Noto Sans TC,system-ui,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:JetBrains Mono,ui-monospace,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.visible{visibility:visible}.static{position:static}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.bottom-4{bottom:1rem}.left-1{left:.25rem}.left-1\/2{left:50%}.top-0{top:0}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mr-1{margin-right:.25rem}.mt-0{margin-top:0}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.block{display:block}.inline{display:inline}.flex{display:flex}.inline-flex{display:inline-flex}.table{display:table}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-11{height:2.75rem}.h-14{height:3.5rem}.h-3{height:.75rem}.h-3\.5{height:.875rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-8{height:2rem}.h-\[34px\]{height:34px}.h-auto{height:auto}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-11{width:2.75rem}.w-3{width:.75rem}.w-3\.5{width:.875rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-8{width:2rem}.w-\[34px\]{width:34px}.w-full{width:100%}.min-w-0{min-width:0}.min-w-\[760px\]{min-width:760px}.max-w-3xl{max-width:48rem}.max-w-7xl{max-width:80rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.-translate-x-1{--tw-translate-x:-0.25rem}.-translate-x-1,.-translate-x-1\/2{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-x-1\/2{--tw-translate-x:-50%}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scroll-mt-16{scroll-margin-top:4rem}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.place-items-center{place-items:center}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-x-5{-moz-column-gap:1.25rem;column-gap:1.25rem}.gap-y-1{row-gap:.25rem}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.divide-y>:not([hidden])~:not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px*(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px*var(--tw-divide-y-reverse))}.divide-slate-800>:not([hidden])~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(30 41 59/var(--tw-divide-opacity,1))}.divide-slate-800\/80>:not([hidden])~:not([hidden]){border-color:rgba(30,41,59,.8)}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-cyan-500{--tw-border-opacity:1;border-color:rgb(6 182 212/var(--tw-border-opacity,1))}.border-cyan-500\/40{border-color:rgba(6,182,212,.4)}.border-red-500\/40{border-color:rgba(239,68,68,.4)}.border-slate-600{--tw-border-opacity:1;border-color:rgb(71 85 105/var(--tw-border-opacity,1))}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85/var(--tw-border-opacity,1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59/var(--tw-border-opacity,1))}.border-slate-800\/70{border-color:rgba(30,41,59,.7)}.border-violet-500{--tw-border-opacity:1;border-color:rgb(139 92 246/var(--tw-border-opacity,1))}.border-violet-500\/40{border-color:rgba(139,92,246,.4)}.bg-amber-500{--tw-bg-opacity:1;background-color:rgb(245 158 11/var(--tw-bg-opacity,1))}.bg-amber-500\/15{background-color:rgba(245,158,11,.15)}.bg-cyan-500{--tw-bg-opacity:1;background-color:rgb(6 182 212/var(--tw-bg-opacity,1))}.bg-cyan-500\/10{background-color:rgba(6,182,212,.1)}.bg-cyan-500\/15{background-color:rgba(6,182,212,.15)}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129/var(--tw-bg-opacity,1))}.bg-emerald-500\/15{background-color:rgba(16,185,129,.15)}.bg-orange-500{--tw-bg-opacity:1;background-color:rgb(249 115 22/var(--tw-bg-opacity,1))}.bg-orange-500\/15{background-color:rgba(249,115,22,.15)}.bg-red-500{--tw-bg-opacity:1;background-color:rgb(239 68 68/var(--tw-bg-opacity,1))}.bg-red-500\/10{background-color:rgba(239,68,68,.1)}.bg-red-500\/15{background-color:rgba(239,68,68,.15)}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.bg-slate-800\/60{background-color:rgba(30,41,59,.6)}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42/var(--tw-bg-opacity,1))}.bg-slate-900\/90{background-color:rgba(15,23,42,.9)}.bg-slate-950{--tw-bg-opacity:1;background-color:rgb(2 6 23/var(--tw-bg-opacity,1))}.bg-slate-950\/50{background-color:rgba(2,6,23,.5)}.bg-slate-950\/75{background-color:rgba(2,6,23,.75)}.bg-violet-500{--tw-bg-opacity:1;background-color:rgb(139 92 246/var(--tw-bg-opacity,1))}.bg-violet-500\/10{background-color:rgba(139,92,246,.1)}.bg-violet-500\/15{background-color:rgba(139,92,246,.15)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}.from-violet-400{--tw-gradient-from:#a78bfa var(--tw-gradient-from-position);--tw-gradient-to:rgba(167,139,250,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.to-cyan-400{--tw-gradient-to:#22d3ee var(--tw-gradient-to-position)}.p-3{padding:.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-0{padding-top:0;padding-bottom:0}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pb-28{padding-bottom:7rem}.pt-8{padding-top:2rem}.text-left{text-align:left}.font-mono{font-family:JetBrains Mono,ui-monospace,monospace}.font-sans{font-family:Inter,Noto Sans TC,system-ui,sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\[11px\]{font-size:11px}.text-\[13px\]{font-size:13px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-.025em}.tracking-wider{letter-spacing:.05em}.tracking-widest{letter-spacing:.1em}.text-amber-300{--tw-text-opacity:1;color:rgb(252 211 77/var(--tw-text-opacity,1))}.text-blue-300{--tw-text-opacity:1;color:rgb(147 197 253/var(--tw-text-opacity,1))}.text-cyan-300{--tw-text-opacity:1;color:rgb(103 232 249/var(--tw-text-opacity,1))}.text-emerald-300{--tw-text-opacity:1;color:rgb(110 231 183/var(--tw-text-opacity,1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153/var(--tw-text-opacity,1))}.text-orange-300{--tw-text-opacity:1;color:rgb(253 186 116/var(--tw-text-opacity,1))}.text-red-300{--tw-text-opacity:1;color:rgb(252 165 165/var(--tw-text-opacity,1))}.text-rose-300{--tw-text-opacity:1;color:rgb(253 164 175/var(--tw-text-opacity,1))}.text-slate-100{--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240/var(--tw-text-opacity,1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105/var(--tw-text-opacity,1))}.text-slate-950{--tw-text-opacity:1;color:rgb(2 6 23/var(--tw-text-opacity,1))}.text-violet-300{--tw-text-opacity:1;color:rgb(196 181 253/var(--tw-text-opacity,1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.shadow{--tw-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color),0 1px 2px -1px var(--tw-shadow-color)}.shadow,.shadow-2xl{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color)}.blur{--tw-blur:blur(8px)}.blur,.drop-shadow{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.drop-shadow{--tw-drop-shadow:drop-shadow(0 1px 2px rgba(0,0,0,.1)) drop-shadow(0 1px 1px rgba(0,0,0,.06))}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px)}.backdrop-blur,.backdrop-filter{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.hover\:bg-slate-800:hover{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.hover\:text-slate-100:hover{--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}@media (min-width:640px){.sm\:left-auto{left:auto}.sm\:right-4{right:1rem}.sm\:translate-x-0{--tw-translate-x:0px;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.sm\:flex-row{flex-direction:row}.sm\:justify-between{justify-content:space-between}.sm\:p-4{padding:1rem}.sm\:p-6{padding:1.5rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:py-14{padding-top:3.5rem;padding-bottom:3.5rem}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-lg{font-size:1.125rem;line-height:1.75rem}}@media (min-width:768px){.md\:flex{display:flex}}@media (min-width:1024px){.lg\:sticky{position:sticky}.lg\:top-20{top:5rem}.lg\:col-span-2{grid-column:span 2/span 2}.lg\:col-span-3{grid-column:span 3/span 3}.lg\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.lg\:grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.lg\:text-5xl{font-size:3rem;line-height:1}}</style>
+<style>
+  :root { --accent: 52 211 153; }
+  html { scroll-behavior: smooth; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(96,165,250,.10), transparent 60%),
+      #060a13;
+    color: #e2e8f0;
+    transition: background-color .3s ease, color .3s ease;
+  }
+  html[lang="en"] .zh { display: none !important; }
+  html:not([lang="en"]) .en { display: none !important; }
+  .grid-bg {
+    background-image: linear-gradient(rgba(148,163,184,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .card { background: rgba(15,23,42,.65); border: 1px solid rgba(51,65,85,.6); backdrop-filter: blur(8px); }
+  .accent-text { color: rgb(var(--accent)); transition: color .4s ease; }
+  .accent-bg { background: rgb(var(--accent) / .12); border-color: rgb(var(--accent) / .4); transition: all .4s ease; }
+  .hero-grad { background-image: linear-gradient(90deg, #6ee7b7, #bae6fd, #93c5fd); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  .seg { display: inline-flex; flex-wrap: wrap; border: 1px solid #334155; border-radius: .6rem; overflow: hidden; background: rgba(15,23,42,.8); }
+  .seg button { padding: .45rem .85rem; font-size: .8rem; color: #cbd5e1; transition: all .25s ease; white-space: nowrap; display: inline-flex; align-items: center; gap: .4rem; }
+  .seg button + button { border-left: 1px solid #334155; }
+  .seg button:hover { background: rgba(51,65,85,.5); }
+  .seg button[aria-pressed="true"] { background: rgb(var(--bc, 52 211 153)); color: #020617; font-weight: 600; }
+  .seg .dot { width: 8px; height: 8px; border-radius: 9999px; background: rgb(var(--bc)); }
+  .seg button[aria-pressed="true"] .dot { background: #020617; }
+  .seg.tb button { padding: .4rem .75rem; }
+  .seg.tb button[aria-pressed="true"] { background: #22d3ee; color: #020617; }
+
+  /* ---------- topology ---------- */
+  .tp text { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
+  .tp .zone { fill: rgba(15,23,42,.35); stroke: rgba(100,116,139,.55); stroke-dasharray: 6 6; }
+  .tp .zone-t { fill: #94a3b8; font-size: 12px; font-weight: 600; letter-spacing: .06em; }
+  .tp .wire { fill: none; stroke: rgba(100,116,139,.55); stroke-width: 1.5; }
+  .tp .ghost { fill: none; stroke: rgba(100,116,139,.28); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; stroke-linejoin: round; }
+  .tp .flow { fill: none; stroke: rgb(var(--fc)); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 11 9; animation: dash 1.1s linear infinite; filter: drop-shadow(0 0 5px rgb(var(--fc) / .6)); }
+  .tp .flow.static { animation: none; stroke-dasharray: 6 6; stroke-width: 2.5; }
+  @keyframes dash { to { stroke-dashoffset: -20; } }
+  .tp .pk { fill: #fff; filter: drop-shadow(0 0 6px rgb(var(--fc))); }
+  .tp .fz { opacity: 0; transition: opacity .35s ease; }
+  .tp .fz.show { opacity: 1; }
+
+  .tp .node { cursor: pointer; transition: opacity .35s ease; }
+  .tp .node .base { fill: #0b1222; }
+  .tp .node .tint { fill: rgb(var(--c) / .06); stroke: rgb(var(--c) / .55); stroke-width: 1.5; transition: all .3s ease; }
+  .tp .node .ico { color: rgb(var(--c)); }
+  .tp .node .t1 { fill: #f1f5f9; font-size: 14px; font-weight: 700; }
+  .tp .node .t2 { fill: #94a3b8; font-size: 11px; }
+  .tp .node.sm .t1 { font-size: 12px; font-weight: 600; }
+  .tp .node:hover .tint { stroke: rgb(var(--c)); }
+  .tp .node.sel .tint { stroke: rgb(var(--c)); stroke-width: 3; filter: drop-shadow(0 0 10px rgb(var(--c) / .8)); fill: rgb(var(--c) / .14); }
+  .tp .node.dim > :not(.base) { opacity: .3; }
+  .tp .warn { transition: opacity .35s ease; }
+  .tp .xmark circle { fill: #7f1d1d; stroke: #f87171; stroke-width: 2; }
+  .tp .xmark path { stroke: #fecaca; stroke-width: 2.5; stroke-linecap: round; }
+
+  .fade-in { animation: fadeIn .45s ease both; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .pulse-dot { position: relative; }
+  .pulse-dot::after { content: ''; position: absolute; inset: 0; border-radius: 9999px; background: inherit; animation: ping 1.8s infinite; }
+  @keyframes ping { 0% { opacity: .7; transform: scale(1); } 100% { opacity: 0; transform: scale(2.2); } }
+  ::-webkit-scrollbar { height: 8px; width: 8px; }
+  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 8px; }
+  .print-only { display: none; }
+
+  /* =================== LIGHT =================== */
+  html.light body {
+    background: radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(96,165,250,.12), transparent 60%), #f1f5f9;
+    color: #0f172a;
+  }
+  html.light .grid-bg { background-image: linear-gradient(rgba(15,23,42,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,.05) 1px, transparent 1px); }
+  html.light .card { background: rgba(255,255,255,.9); border-color: #e2e8f0; box-shadow: 0 1px 2px rgba(15,23,42,.04); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #059669, #0284c7, #2563eb); }
+  html.light .accent-text { color: color-mix(in srgb, rgb(var(--accent)) 62%, #000); }
+  html.light .text-slate-100 { color: #0f172a; }
+  html.light .text-slate-200 { color: #1e293b; }
+  html.light .text-slate-300 { color: #334155; }
+  html.light .text-slate-400 { color: #475569; }
+  html.light .text-slate-500 { color: #64748b; }
+  html.light .text-slate-600 { color: #94a3b8; }
+  html.light .text-cyan-300, html.light .text-cyan-300\/90 { color: #0e7490; }
+  html.light .text-blue-300 { color: #1d4ed8; }
+  html.light .text-amber-300 { color: #b45309; }
+  html.light .text-red-300, html.light .text-rose-300 { color: #b91c1c; }
+  html.light .text-emerald-300 { color: #047857; }
+  html.light .text-emerald-400 { color: #059669; }
+  html.light .text-violet-300 { color: #6d28d9; }
+  html.light .hover\:text-slate-100:hover { color: #0f172a; }
+  html.light .bg-slate-950\/75 { background: rgba(255,255,255,.82); }
+  html.light .bg-slate-950\/70, html.light .bg-slate-950\/50 { background: #f8fafc; }
+  html.light .bg-slate-900 { background: #ffffff; }
+  html.light .bg-slate-900\/90 { background: #f1f5f9; }
+  html.light .bg-slate-800, html.light .bg-slate-800\/60 { background: #e2e8f0; }
+  html.light .hover\:bg-slate-800:hover { background: #e2e8f0; }
+  html.light .border-slate-600, html.light .border-slate-700 { border-color: #cbd5e1; }
+  html.light .border-slate-800, html.light .border-slate-800\/70 { border-color: #e2e8f0; }
+  html.light .divide-slate-800\/80 > :not([hidden]) ~ :not([hidden]) { border-color: #e2e8f0; }
+  html.light .seg { border-color: #cbd5e1; background: #fff; }
+  html.light .seg button { color: #334155; }
+  html.light .seg button + button { border-left-color: #cbd5e1; }
+  html.light .seg button:hover { background: #f1f5f9; }
+  html.light .seg button[aria-pressed="true"] { color: #020617; }
+  html.light .tp .zone { fill: rgba(255,255,255,.6); stroke: #94a3b8; }
+  html.light .tp .zone-t { fill: #475569; }
+  html.light .tp .wire { stroke: #94a3b8; }
+  html.light .tp .ghost { stroke: rgba(100,116,139,.45); }
+  html.light .tp .pk { fill: rgb(var(--fc)); stroke: #fff; stroke-width: 1.5; }
+  html.light .tp .node .base { fill: #ffffff; }
+  html.light .tp .node .t1 { fill: #0f172a; }
+  html.light .tp .node .t2 { fill: #475569; }
+  html.light .tp .node .ico { color: color-mix(in srgb, rgb(var(--c)) 70%, #000); }
+  html.light ::-webkit-scrollbar-thumb { background: #cbd5e1; }
+
+  /* =================== PRINT =================== */
+  @page { size: A4 landscape; margin: 10mm; }
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    html, body { background: #fff !important; }
+    body { zoom: .62; }
+    .no-print, nav, #toolbar { display: none !important; }
+    .print-only { display: block !important; }
+    .card { backdrop-filter: none !important; break-inside: avoid; box-shadow: none !important; }
+    .overflow-x-auto { overflow: visible !important; }
+    .min-w-\[860px\], .min-w-\[760px\] { min-width: 0 !important; }
+    section { padding-top: 0 !important; padding-bottom: 0 !important; border-top: 0 !important; }
+    #topology, .print-break { break-before: page; }
+    #tp { width: 82% !important; margin: 0 auto; display: block; }
+    .tp .flow { animation: none !important; filter: none !important; }
+    .tp .pk { display: none; }
+    .fade-in { animation: none !important; }
+    header { padding-top: 0 !important; }
+    footer > div { padding-bottom: 0 !important; }
+  }
+</style>
+<style>
+  :root { --accent: 167 139 250; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(167,139,250,.12), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(34,211,238,.09), transparent 60%),
+      #060a13;
+  }
+  html.light body {
+    background: radial-gradient(1200px 600px at 10% -10%, rgba(167,139,250,.14), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(34,211,238,.10), transparent 60%), #f1f5f9;
+  }
+  .hero-grad { background-image: linear-gradient(90deg, #c4b5fd, #a5f3fc, #f9a8d4); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #6d28d9, #0e7490, #be185d); }
+
+  /* domain cards */
+  .dm { transition: all .25s ease; cursor: pointer; }
+  .dm:hover { border-color: rgb(var(--dc) / .6); }
+  .dm[aria-pressed="true"] { border-color: rgb(var(--dc)); box-shadow: 0 0 0 1px rgb(var(--dc) / .55), 0 12px 30px -16px rgb(var(--dc) / .9); background: rgb(var(--dc) / .08); }
+  .dm .dm-ico { background: rgb(var(--dc) / .14); color: rgb(var(--dc)); }
+  .dm .dm-no { color: rgb(var(--dc)); }
+  html.light .dm .dm-ico, html.light .dm .dm-no { color: color-mix(in srgb, rgb(var(--dc)) 65%, #000); }
+  html.light .dm[aria-pressed="true"] { border-color: rgb(var(--dc)); background: rgb(var(--dc) / .08); }
+  .dm.hide { display: none; }
+  .cov-full { color: #34d399; }
+  .cov-part { color: #fbbf24; }
+  html.light .cov-full { color: #059669; }
+  html.light .cov-part { color: #b45309; }
+  .stage-dot { width: 8px; height: 8px; border-radius: 9999px; display: inline-block; background: rgb(var(--sc)); }
+  .tier-row td:first-child { border-left: 3px solid rgb(var(--tc)); }
+  .tp .ctrl .t1 { font-size: 15px; }
+  .tp .edge { fill: none; stroke: rgba(100,116,139,.4); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; }
+  .tp .edge-log { fill: none; stroke: rgba(100,116,139,.35); stroke-width: 1.5; stroke-dasharray: 3 5; }
+  .tp .lane { fill: rgba(248,113,113,.04); stroke: rgba(248,113,113,.35); stroke-dasharray: 6 6; }
+  .tp .lane-t { fill: #fca5a5; font-size: 11px; font-weight: 700; letter-spacing: .08em; }
+  .tp .lane-l { fill: #64748b; font-size: 10.5px; font-weight: 600; text-anchor: middle; }
+  html.light .tp .lane-t { fill: #b91c1c; }
+  html.light .tp .edge { stroke: rgba(100,116,139,.55); }
+  @media print { #map { break-before: page; } .dm.hide { display: block !important; } }
+</style>
+</head>
+<body class="font-sans antialiased min-h-screen">
+
+<!-- ============ NAV ============ -->
+<nav class="sticky top-0 z-40 border-b border-slate-800/70 bg-slate-950/75 backdrop-blur">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+    <a href="index.html" class="flex items-center gap-2 min-w-0" title="Use Case Hub">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-400 to-cyan-400 grid place-items-center shrink-0">
+        <i data-lucide="shield-check" class="w-4 h-4 text-slate-950"></i>
+      </div>
+      <span class="font-semibold text-sm truncate"><span class="zh">AI Agent 治理</span><span class="en">AI Agent Governance</span></span>
+    </a>
+    <div class="hidden md:flex items-center gap-1 text-xs text-slate-400">
+      <a href="index.html" class="no-print px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100 inline-flex items-center gap-1"><i data-lucide="layout-grid" class="w-3.5 h-3.5"></i><span class="zh">Use Case 首頁</span><span class="en">Use Case Hub</span></a>
+      <a href="#map" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">治理全景</span><span class="en">Governance Map</span></a>
+      <a href="#tiers" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">人機協同分級</span><span class="en">HITL Tiers</span></a>
+      <a href="#design" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">關鍵設計</span><span class="en">Key Design</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HEADER ============ -->
+<header class="grid-bg border-b border-slate-800/70">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+    <div class="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-widest text-violet-300 mb-4">
+      <i data-lucide="radio-tower" class="w-3.5 h-3.5"></i> Netskope One · SSE · AI Security
+    </div>
+    <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+      <span class="zh"><span class="hero-grad">AI Agent 治理</span>：9 大控管面向的 Netskope 落地</span>
+      <span class="en"><span class="hero-grad">AI Agent Governance:</span> Nine Control Domains with Netskope</span>
+    </h1>
+    <p class="mt-3 text-base sm:text-lg text-slate-400 max-w-3xl">
+      <span class="zh">從盤點、身分、執行期防護到稽核營運，讓 AI Agent 像數位員工一樣可管、可控、可追溯</span>
+      <span class="en">From discovery and identity to runtime protection and audit, govern AI agents like digital employees</span>
+    </p>
+    <p class="mt-2 text-sm text-slate-500 max-w-3xl">
+      <span class="zh">AICC 先找出所有 AI 應用與 Shadow AI；GenAI 應用由 CASB Inline 管控，AI Agent 的工具呼叫由 Agent Action Control（原 Agentic Broker）控制與檢查；呼叫 Claude 與地端 LLM 的 API 流量（例如在 PowerShell 執行的 Claude Code）則獨立經過 AI Gateway，以 AI Guardrail（CPU-based）與 DLPoD 在地端檢查。CASB API 巡檢 Skill 庫，所有活動集中記錄於 SkopeIT。</span>
+      <span class="en">AICC first finds every AI app, including shadow AI. GenAI apps are governed by CASB Inline, and AI agents' tool calls are controlled and inspected by Agent Action Control (formerly Agentic Broker). API traffic to Claude and on-prem LLMs (for example Claude Code run from PowerShell) takes a separate path through the AI Gateway, checked on-prem by AI Guardrail (CPU-based) and DLPoD. CASB API scans the skill repository, and every activity is logged in SkopeIT.</span>
+    </p>
+    <div class="mt-6 flex flex-wrap gap-2">
+      <span class="inline-flex items-center gap-2 rounded-full border border-violet-500/40 bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-300"><i data-lucide="bot" class="w-3.5 h-3.5"></i> AI Agent · MCP · GenAI</span>
+      <span class="inline-flex items-center gap-2 rounded-full border border-cyan-500/40 bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-300"><i data-lucide="shield" class="w-3.5 h-3.5"></i> CASB Inline · Agent Action Control · DLP</span>
+      <span class="inline-flex items-center gap-2 rounded-full border border-red-500/40 bg-red-500/10 px-3 py-1 text-xs font-medium text-red-300"><i data-lucide="server-cog" class="w-3.5 h-3.5"></i> AI Gateway · AI Guardrail · DLPoD</span>
+      <span class="inline-flex items-center gap-2 rounded-full border border-slate-600 bg-slate-800/60 px-3 py-1 text-xs font-medium text-slate-300"><i data-lucide="scroll-text" class="w-3.5 h-3.5"></i> AICC · SkopeIT · UEBA</span>
+    </div>
+    <div class="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <div class="card rounded-xl p-4">
+        <div class="text-[11px] uppercase tracking-wider text-slate-500"><span class="zh">控管面向</span><span class="en">Control domains</span></div>
+        <div class="mt-1 font-mono text-2xl font-semibold text-violet-300">9</div>
+        <div class="text-xs text-slate-400"><span class="zh">分為 4 個治理階段</span><span class="en">In 4 governance stages</span></div>
+      </div>
+      <div class="card rounded-xl p-4">
+        <div class="text-[11px] uppercase tracking-wider text-slate-500"><span class="zh">測試目標</span><span class="en">Test objectives</span></div>
+        <div class="mt-1 font-mono text-2xl font-semibold text-cyan-300">23</div>
+        <div class="text-xs text-slate-400"><span class="zh">皆已實機驗證</span><span class="en">All demonstrated live</span></div>
+      </div>
+      <div class="card rounded-xl p-4">
+        <div class="text-[11px] uppercase tracking-wider text-slate-500"><span class="zh">已支援</span><span class="en">Supported</span></div>
+        <div class="mt-1 font-mono text-2xl font-semibold text-emerald-300">20 <span class="text-sm text-slate-500">/ 23</span></div>
+        <div class="text-xs text-slate-400">● <span class="zh">原生功能涵蓋</span><span class="en">Covered natively</span></div>
+      </div>
+      <div class="card rounded-xl p-4">
+        <div class="text-[11px] uppercase tracking-wider text-slate-500"><span class="zh">部分支援</span><span class="en">Partial</span></div>
+        <div class="mt-1 font-mono text-2xl font-semibold text-amber-300">3 <span class="text-sm text-slate-500">/ 23</span></div>
+        <div class="text-xs text-slate-400">⦾ <span class="zh">需搭配流程或討論</span><span class="en">Needs process or discussion</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6">
+
+<!-- ============ MAP ============ -->
+<section id="map" class="py-12 scroll-mt-16">
+  <div class="mb-5">
+    <div class="text-xs font-mono uppercase tracking-widest accent-text">01 · Governance Map</div>
+    <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">互動式治理全景</span><span class="en">Interactive Governance Map</span></h2>
+    <p class="mt-1 text-sm text-slate-400 no-print">
+      <span class="zh">先選治理階段，再點任一控管面向，架構圖會亮起負責的 Netskope 元件，右側列出測試目標與覆蓋情況。</span>
+      <span class="en">Pick a governance stage, then click any control domain: the diagram lights up the Netskope components involved and the panel lists its objectives and coverage.</span>
+    </p>
+    <p id="printState" class="print-only mt-1 text-sm text-slate-500"></p>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-3 no-print">
+    <span class="text-sm text-slate-400"><span class="zh">治理階段</span><span class="en">Stage</span></span>
+    <div class="seg" id="segStage"></div>
+  </div>
+
+  <div class="mt-4 card rounded-2xl grid-bg overflow-x-auto">
+    <div class="min-w-[760px] p-3 sm:p-4">
+      <svg id="tp" class="tp w-full h-auto" viewBox="0 0 1200 690" role="img" aria-label="Governance architecture"></svg>
+    </div>
+  </div>
+
+  <div class="mt-4 grid lg:grid-cols-5 gap-4 items-start">
+    <div id="domains" class="lg:col-span-3 grid sm:grid-cols-2 gap-3"></div>
+    <div id="detail" class="lg:col-span-2 card rounded-2xl p-5 sm:p-6 lg:sticky lg:top-20"></div>
+  </div>
+  <div class="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-xs text-slate-500">
+    <span><span class="cov-full font-bold">●</span> <span class="zh">已支援</span><span class="en">Supported</span></span>
+    <span><span class="cov-part font-bold">⦾</span> <span class="zh">部分支援（需搭配流程或進一步討論）</span><span class="en">Partial (needs process or further discussion)</span></span>
+  </div>
+</section>
+
+<!-- ============ TIERS ============ -->
+<section id="tiers" class="py-12 border-t border-slate-800/70 scroll-mt-16 print-break">
+  <div class="mb-6">
+    <div class="text-xs font-mono uppercase tracking-widest text-violet-300">02 · Human-in-the-Loop Tiers</div>
+    <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">Agent 動作風險分級與人類介入</span><span class="en">Agent Action Risk Tiers &amp; Human Involvement</span></h2>
+    <p class="mt-1 text-sm text-slate-400"><span class="zh">依 Agent 動作的風險決定人類介入程度：低風險由人在旁監看（HOTL），中高風險需要人確認或直接阻擋（HITL）。</span><span class="en">Human involvement follows the risk of the agent's action: low risk is watched from the side (HOTL); medium and high risk need a human decision or are blocked (HITL).</span></p>
+  </div>
+  <div class="card rounded-2xl overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm min-w-[760px]">
+        <thead class="bg-slate-900/90 text-[11px] uppercase tracking-wider text-slate-400">
+          <tr>
+            <th class="text-left font-semibold px-5 py-3">Tier</th>
+            <th class="text-left font-semibold px-5 py-3"><span class="zh">風險</span><span class="en">Risk</span></th>
+            <th class="text-left font-semibold px-5 py-3"><span class="zh">Agent 動作</span><span class="en">Agent action</span></th>
+            <th class="text-left font-semibold px-5 py-3"><span class="zh">對應活動 / MCP 工具呼叫</span><span class="en">Activities / MCP tool calls</span></th>
+            <th class="text-left font-semibold px-5 py-3"><span class="zh">政策動作</span><span class="en">Policy action</span></th>
+            <th class="text-left font-semibold px-5 py-3"><span class="zh">人類介入</span><span class="en">Human role</span></th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-800/80 text-slate-300">
+          <tr class="tier-row" style="--tc:52 211 153">
+            <td class="px-5 py-4 font-mono font-semibold text-emerald-300">Tier 1</td>
+            <td class="px-5 py-4"><span class="zh">低</span><span class="en">Low</span></td>
+            <td class="px-5 py-4"><span class="zh">查詢、搜尋</span><span class="en">Query, search</span></td>
+            <td class="px-5 py-4 font-mono text-xs">Browse · Response · List_files · Search</td>
+            <td class="px-5 py-4"><span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300 font-mono text-xs">Allow</span></td>
+            <td class="px-5 py-4 text-xs">HOTL · <span class="zh">記錄監看</span><span class="en">logged &amp; watched</span></td>
+          </tr>
+          <tr class="tier-row" style="--tc:251 191 36">
+            <td class="px-5 py-4 font-mono font-semibold text-amber-300">Tier 2</td>
+            <td class="px-5 py-4"><span class="zh">中</span><span class="en">Medium</span></td>
+            <td class="px-5 py-4"><span class="zh">上傳、貼文、建立 / 更新</span><span class="en">Upload, post, create / update</span></td>
+            <td class="px-5 py-4 font-mono text-xs">Upload · Post · Create_file · Update_record</td>
+            <td class="px-5 py-4"><span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 font-mono text-xs">User Alert</span></td>
+            <td class="px-5 py-4 text-xs">HITL · <span class="zh">使用者填寫理由後放行</span><span class="en">user gives a justification to proceed</span></td>
+          </tr>
+          <tr class="tier-row" style="--tc:251 146 60">
+            <td class="px-5 py-4 font-mono font-semibold text-orange-300">Tier 3</td>
+            <td class="px-5 py-4"><span class="zh">高</span><span class="en">High</span></td>
+            <td class="px-5 py-4"><span class="zh">分享、連接外部服務</span><span class="en">Share, connect external services</span></td>
+            <td class="px-5 py-4 font-mono text-xs">Share · Connect · Merge_pull_request</td>
+            <td class="px-5 py-4"><span class="px-2 py-0.5 rounded bg-orange-500/15 text-orange-300 font-mono text-xs">Block</span></td>
+            <td class="px-5 py-4 text-xs">HITL · <span class="zh">需經人工核可</span><span class="en">needs human approval</span></td>
+          </tr>
+          <tr class="tier-row" style="--tc:248 113 113">
+            <td class="px-5 py-4 font-mono font-semibold text-red-300">Tier 4</td>
+            <td class="px-5 py-4"><span class="zh">嚴重</span><span class="en">Critical</span></td>
+            <td class="px-5 py-4"><span class="zh">刪除、大量操作</span><span class="en">Delete, bulk operations</span></td>
+            <td class="px-5 py-4 font-mono text-xs">Delete · Delete_repo</td>
+            <td class="px-5 py-4"><span class="px-2 py-0.5 rounded bg-red-500/15 text-red-300 font-mono text-xs">Block + Alert</span></td>
+            <td class="px-5 py-4 text-xs"><span class="zh">阻擋並通知管理員</span><span class="en">blocked, admin notified</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p class="mt-3 text-xs text-slate-500"><span class="zh">風險等級為手動定義，可依組織需求調整；此面向標示為部分支援，實際分級需與客戶討論後定案。</span><span class="en">Tiers are defined manually and can be adjusted; this domain is marked partial and the final tiering should be agreed with the customer.</span></p>
+</section>
+
+<!-- ============ DESIGN ============ -->
+<section id="design" class="py-12 border-t border-slate-800/70 scroll-mt-16 print-break">
+  <div class="mb-6">
+    <div class="text-xs font-mono uppercase tracking-widest text-violet-300">03 · Key Design</div>
+    <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">關鍵設計</span><span class="en">Key Design</span></h2>
+  </div>
+  <div class="grid lg:grid-cols-3 gap-4">
+    <article class="card rounded-2xl p-6">
+      <div class="w-11 h-11 rounded-xl bg-cyan-500/15 text-cyan-300 grid place-items-center"><i data-lucide="layers" class="w-5 h-5"></i></div>
+      <h3 class="mt-4 text-lg font-semibold"><span class="zh">三條流量，各有控制點</span><span class="en">Three paths, three control points</span></h3>
+      <p class="mt-2 text-sm text-slate-300 leading-relaxed"><span class="zh">使用者用 GenAI 走 CASB Inline；AI Agent 呼叫工具走 Agent Action Control；應用以 API 呼叫 Claude 或地端 LLM 則獨立走 AI Gateway，由 AI Guardrail（CPU-based）與 DLPoD 在地端檢查，資料不必送出企業。CASB API 再無代理巡檢 Skill 庫，補上落地後的檢查。</span><span class="en">GenAI use goes through CASB Inline; agent tool calls go through Agent Action Control; API calls to Claude or on-prem LLMs take a separate path through the AI Gateway, checked on-prem by AI Guardrail (CPU-based) and DLPoD without sending data out. CASB API scans the skill repository agentlessly to cover what lands later.</span></p>
+    </article>
+    <article class="card rounded-2xl p-6">
+      <div class="w-11 h-11 rounded-xl bg-violet-500/15 text-violet-300 grid place-items-center"><i data-lucide="list-checks" class="w-5 h-5"></i></div>
+      <h3 class="mt-4 text-lg font-semibold"><span class="zh">發現 → 評估 → 核可 → 監控</span><span class="en">Discover → assess → approve → monitor</span></h3>
+      <p class="mt-2 text-sm text-slate-300 leading-relaxed"><span class="zh">由 AICC 自動發現所有 AI 應用、Agent 與 Shadow AI，以 CCI 與 MCP Server 風險分數評估。低風險自動核准、高風險送資安委員會審批；上架後以即時政策管控並持續監控，未核可的 Agent 直接阻擋。</span><span class="en">AICC discovers every AI app, agent and shadow AI automatically, scored with CCI and MCP server risk. Low risk is auto-approved, high risk goes to the security committee; once onboarded, real-time policy and monitoring apply, and unapproved agents are blocked.</span></p>
+    </article>
+    <article class="card rounded-2xl p-6">
+      <div class="w-11 h-11 rounded-xl bg-emerald-500/15 text-emerald-300 grid place-items-center"><i data-lucide="file-code-2" class="w-5 h-5"></i></div>
+      <h3 class="mt-4 text-lg font-semibold"><span class="zh">提示詞即程式碼</span><span class="en">Prompt as code</span></h3>
+      <p class="mt-2 text-sm text-slate-300 leading-relaxed"><span class="zh">Skill 與 Agent 設定檔集中在單一來源（如 OneDrive），禁止私設工具庫。檔案落地前經 Netskope 掃描，確保沒有機敏金鑰殘留，審核結果可串接 Teams 通知，不拖慢開發。</span><span class="en">Skills and agent configs live in one source of truth (e.g. OneDrive) with no private tool libraries. Netskope scans files as they land to make sure no secrets are left behind, and review results can flow to Teams without slowing developers.</span></p>
+    </article>
+  </div>
+</section>
+</main>
+
+<footer class="border-t border-slate-800/70 mt-4">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-28 text-xs text-slate-500 flex flex-col sm:flex-row gap-2 sm:justify-between">
+    <span>Netskope · AI Agent Governance Use Case</span>
+    <span><span class="zh">覆蓋情況依 PoC 實測結果整理；實際功能依授權與版本而定。</span><span class="en">Coverage reflects PoC results; actual capabilities depend on license and version.</span></span>
+  </div>
+</footer>
+
+<!-- ============ TOOLBAR ============ -->
+<div id="toolbar" class="fixed bottom-4 left-1/2 -translate-x-1/2 sm:left-auto sm:right-4 sm:translate-x-0 z-50 card rounded-xl px-2 py-2 flex items-center gap-2 shadow-2xl">
+  <a href="index.html" class="h-[34px] w-[34px] grid place-items-center rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800" title="Use Case Hub"><i data-lucide="layout-grid" class="w-4 h-4"></i></a>
+  <div class="seg tb" id="segLang" role="group" aria-label="Language">
+    <button data-lang="zh" aria-pressed="true">中文</button>
+    <button data-lang="en" aria-pressed="false">EN</button>
+  </div>
+  <div class="seg tb" id="segTheme" role="group" aria-label="Theme">
+    <button data-theme="dark" aria-pressed="true" title="Dark"><i data-lucide="moon" class="w-3.5 h-3.5"></i><span class="zh">深</span><span class="en">Dark</span></button>
+    <button data-theme="light" aria-pressed="false" title="Light"><i data-lucide="sun" class="w-3.5 h-3.5"></i><span class="zh">淺</span><span class="en">Light</span></button>
+  </div>
+  <button id="btnPdf" class="h-[34px] px-3 inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800 text-[13px] font-medium"><i data-lucide="file-down" class="w-4 h-4"></i> PDF</button>
+</div>
+
+<script id="icon-shim">/* Inlined Lucide icons (ISC License, lucide.dev) — no CDN needed */
+window.lucide = (function () {
+  const ICONS = {"shield-check":[["path",{"d":"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"}],["path",{"d":"m9 12 2 2 4-4"}]],"layout-grid":[["rect",{"width":"7","height":"7","x":"3","y":"3","rx":"1"}],["rect",{"width":"7","height":"7","x":"14","y":"3","rx":"1"}],["rect",{"width":"7","height":"7","x":"14","y":"14","rx":"1"}],["rect",{"width":"7","height":"7","x":"3","y":"14","rx":"1"}]],"radio-tower":[["path",{"d":"M4.9 16.1C1 12.2 1 5.8 4.9 1.9"}],["path",{"d":"M7.8 4.7a6.14 6.14 0 0 0-.8 7.5"}],["circle",{"cx":"12","cy":"9","r":"2"}],["path",{"d":"M16.2 4.8c2 2 2.26 5.11.8 7.47"}],["path",{"d":"M19.1 1.9a9.96 9.96 0 0 1 0 14.1"}],["path",{"d":"M9.5 18h5"}],["path",{"d":"m8 22 4-11 4 11"}]],"bot":[["path",{"d":"M12 8V4H8"}],["rect",{"width":"16","height":"12","x":"4","y":"8","rx":"2"}],["path",{"d":"M2 14h2"}],["path",{"d":"M20 14h2"}],["path",{"d":"M15 13v2"}],["path",{"d":"M9 13v2"}]],"shield":[["path",{"d":"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"}]],"server-cog":[["path",{"d":"m10.852 14.772-.383.923"}],["path",{"d":"M13.148 14.772a3 3 0 1 0-2.296-5.544l-.383-.923"}],["path",{"d":"m13.148 9.228.383-.923"}],["path",{"d":"m13.53 15.696-.382-.924a3 3 0 1 1-2.296-5.544"}],["path",{"d":"m14.772 10.852.923-.383"}],["path",{"d":"m14.772 13.148.923.383"}],["path",{"d":"M4.5 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-.5"}],["path",{"d":"M4.5 14H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-.5"}],["path",{"d":"M6 18h.01"}],["path",{"d":"M6 6h.01"}],["path",{"d":"m9.228 10.852-.923-.383"}],["path",{"d":"m9.228 13.148-.923.383"}]],"scroll-text":[["path",{"d":"M15 12h-5"}],["path",{"d":"M15 8h-5"}],["path",{"d":"M19 17V5a2 2 0 0 0-2-2H4"}],["path",{"d":"M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"}]],"layers":[["path",{"d":"M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"}],["path",{"d":"M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"}],["path",{"d":"M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"}]],"list-checks":[["path",{"d":"M13 5h8"}],["path",{"d":"M13 12h8"}],["path",{"d":"M13 19h8"}],["path",{"d":"m3 17 2 2 4-4"}],["path",{"d":"m3 7 2 2 4-4"}]],"file-code-2":[["path",{"d":"M4 12.15V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2h-3.35"}],["path",{"d":"M14 2v5a1 1 0 0 0 1 1h5"}],["path",{"d":"m5 16-3 3 3 3"}],["path",{"d":"m9 22 3-3-3-3"}]],"moon":[["path",{"d":"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"}]],"sun":[["circle",{"cx":"12","cy":"12","r":"4"}],["path",{"d":"M12 2v2"}],["path",{"d":"M12 20v2"}],["path",{"d":"m4.93 4.93 1.41 1.41"}],["path",{"d":"m17.66 17.66 1.41 1.41"}],["path",{"d":"M2 12h2"}],["path",{"d":"M20 12h2"}],["path",{"d":"m6.34 17.66-1.41 1.41"}],["path",{"d":"m19.07 4.93-1.41 1.41"}]],"file-down":[["path",{"d":"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"}],["path",{"d":"M14 2v5a1 1 0 0 0 1 1h5"}],["path",{"d":"M12 18v-6"}],["path",{"d":"m9 15 3 3 3-3"}]],"key":[["path",{"d":"m2 21 9.6-9.6"}],["path",{"d":"m7.5 15.5 2.3 2.3a1 1 0 0 1 0 1.4l-2.1 2.1a1 1 0 0 1-1.4 0L4 19"}],["circle",{"cx":"15.5","cy":"7.5","r":"5.5"}]],"radar":[["path",{"d":"M19.07 4.93A10 10 0 0 0 6.99 3.34"}],["path",{"d":"M4 6h.01"}],["path",{"d":"M2.29 9.62A10 10 0 1 0 21.31 8.35"}],["path",{"d":"M16.24 7.76A6 6 0 1 0 8.23 16.67"}],["path",{"d":"M12 18h.01"}],["path",{"d":"M17.99 11.66A6 6 0 0 1 15.77 16.67"}],["circle",{"cx":"12","cy":"12","r":"2"}],["path",{"d":"m13.41 10.59 5.66-5.66"}]],"wrench":[["path",{"d":"M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"}]],"id-card":[["path",{"d":"M13 19a4 4 0 00-8 0"}],["path",{"d":"M16 10h2"}],["path",{"d":"M16 14h2"}],["circle",{"cx":"9","cy":"12","r":"3"}],["rect",{"x":"2","y":"5","width":"20","height":"14","rx":"2"}]],"database":[["ellipse",{"cx":"12","cy":"5","rx":"9","ry":"3"}],["path",{"d":"M3 5V19A9 3 0 0 0 21 19V5"}],["path",{"d":"M3 12A9 3 0 0 0 21 12"}]],"shield-alert":[["path",{"d":"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"}],["path",{"d":"M12 8v4"}],["path",{"d":"M12 16h.01"}]],"users":[["path",{"d":"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"}],["path",{"d":"M16 3.128a4 4 0 0 1 0 7.744"}],["path",{"d":"M22 21v-2a4 4 0 0 0-3-3.87"}],["circle",{"cx":"9","cy":"7","r":"4"}]],"file-search":[["path",{"d":"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"}],["path",{"d":"M14 2v5a1 1 0 0 0 1 1h5"}],["circle",{"cx":"11.5","cy":"14.5","r":"2.5"}],["path",{"d":"M13.3 16.3 15 18"}]],"chart-column":[["path",{"d":"M3 3v16a2 2 0 0 0 2 2h16"}],["path",{"d":"M18 17V9"}],["path",{"d":"M13 17V5"}],["path",{"d":"M8 17v-3"}]],"power":[["path",{"d":"M12 2v10"}],["path",{"d":"M18.4 6.6a9 9 0 1 1-12.77.04"}]],"laptop":[["path",{"d":"M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"}],["path",{"d":"M20.054 15.987H3.946"}]],"code-xml":[["path",{"d":"m18 16 4-4-4-4"}],["path",{"d":"m6 8-4 4 4 4"}],["path",{"d":"m14.5 4-5 16"}]],"workflow":[["rect",{"width":"8","height":"8","x":"3","y":"3","rx":"2"}],["path",{"d":"M7 11v4a2 2 0 0 0 2 2h4"}],["rect",{"width":"8","height":"8","x":"13","y":"13","rx":"2"}]],"scan-search":[["path",{"d":"M3 7V5a2 2 0 0 1 2-2h2"}],["path",{"d":"M17 3h2a2 2 0 0 1 2 2v2"}],["path",{"d":"M21 17v2a2 2 0 0 1-2 2h-2"}],["path",{"d":"M7 21H5a2 2 0 0 1-2-2v-2"}],["circle",{"cx":"12","cy":"12","r":"3"}],["path",{"d":"m16 16-1.9-1.9"}]],"cloud-cog":[["path",{"d":"m10.852 19.772-.383.924"}],["path",{"d":"m13.148 14.228.383-.923"}],["path",{"d":"M13.148 19.772a3 3 0 1 0-2.296-5.544l-.383-.923"}],["path",{"d":"m13.53 20.696-.382-.924a3 3 0 1 1-2.296-5.544"}],["path",{"d":"m14.772 15.852.923-.383"}],["path",{"d":"m14.772 18.148.923.383"}],["path",{"d":"M4.2 15.1a7 7 0 1 1 9.93-9.858A7 7 0 0 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.2"}],["path",{"d":"m9.228 15.852-.923-.383"}],["path",{"d":"m9.228 18.148-.923.383"}]],"sparkles":[["path",{"d":"M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"}],["path",{"d":"M20 2v4"}],["path",{"d":"M22 4h-4"}],["circle",{"cx":"4","cy":"20","r":"2"}]],"plug":[["path",{"d":"M12 22v-5"}],["path",{"d":"M15 8V2"}],["path",{"d":"M17 8a1 1 0 0 1 1 1v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1z"}],["path",{"d":"M9 8V2"}]],"folder-git-2":[["path",{"d":"M18 19a5 5 0 0 1-5-5v8"}],["path",{"d":"M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v5"}],["circle",{"cx":"13","cy":"12","r":"2"}],["circle",{"cx":"20","cy":"19","r":"2"}]],"cpu":[["path",{"d":"M12 20v2"}],["path",{"d":"M12 2v2"}],["path",{"d":"M17 20v2"}],["path",{"d":"M17 2v2"}],["path",{"d":"M2 12h2"}],["path",{"d":"M2 17h2"}],["path",{"d":"M2 7h2"}],["path",{"d":"M20 12h2"}],["path",{"d":"M20 17h2"}],["path",{"d":"M20 7h2"}],["path",{"d":"M7 20v2"}],["path",{"d":"M7 2v2"}],["rect",{"x":"4","y":"4","width":"16","height":"16","rx":"2"}],["rect",{"x":"8","y":"8","width":"8","height":"8","rx":"1"}]],"server":[["rect",{"width":"20","height":"8","x":"2","y":"2","rx":"2","ry":"2"}],["rect",{"width":"20","height":"8","x":"2","y":"14","rx":"2","ry":"2"}],["line",{"x1":"6","x2":"6.01","y1":"6","y2":"6"}],["line",{"x1":"6","x2":"6.01","y1":"18","y2":"18"}]]};
+  const NS = 'http://www.w3.org/2000/svg';
+  function createIcons() {
+    document.querySelectorAll('i[data-lucide]').forEach(function (el) {
+      const name = el.getAttribute('data-lucide');
+      const node = ICONS[name];
+      if (!node) return;
+      const svg = document.createElementNS(NS, 'svg');
+      const base = { xmlns: NS, width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' };
+      Object.keys(base).forEach(function (k) { svg.setAttribute(k, base[k]); });
+      svg.setAttribute('class', ('lucide lucide-' + name + ' ' + (el.getAttribute('class') || '')).trim());
+      node.forEach(function (child) {
+        const c = document.createElementNS(NS, child[0]);
+        Object.keys(child[1]).forEach(function (k) { if (k !== 'key') c.setAttribute(k, child[1][k]); });
+        svg.appendChild(c);
+      });
+      el.replaceWith(svg);
+    });
+  }
+  return { createIcons: createIcons };
+})();
+</script>
+<script>
+let lang = document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'zh';
+const L = (zh, en) => ({ zh, en });
+const tr = (x) => (x && typeof x === 'object' && 'zh' in x) ? x[lang] : x;
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+/* ===================== STAGES ===================== */
+const STAGES = [
+  { id: 'all', c: '167 139 250', label: L('全部', 'All') },
+  { id: 'onboard', c: '34 211 238', label: L('① 盤點與准入', '① Discover & onboard') },
+  { id: 'identity', c: '96 165 250', label: L('② 身分與存取', '② Identity & access') },
+  { id: 'runtime', c: '244 114 182', label: L('③ 執行期防護', '③ Runtime protection') },
+  { id: 'audit', c: '52 211 153', label: L('④ 稽核與營運', '④ Audit & operations') }
+];
+
+/* ===================== DOMAINS ===================== */
+const F = 'full', P = 'part';
+const DOMAINS = [
+  { n: 7, stage: 'onboard', icon: 'radar', c: '34 211 238',
+    title: L('影子代理管控', 'Shadow agent control'), goal: L('未經登記的 Agent 不得上線', 'No unregistered agent goes live'),
+    nodes: ['agent', 'client', 'aicc', 'casb', 'aac', 'genai', 'mcp', 'log'], edges: ['ac', 'c_aicc', 'c_casb', 'c_aac', 'casb_g', 'aac_m', 'clog'],
+    items: [
+      ['7-1', F, L('AI Agent 與 Shadow AI 自動發現', 'AI agent & shadow AI discovery'), L('AICC 依流量自動識別所有 AI 應用與 Agent，包含未經核可的 Shadow AI', 'AICC identifies every AI app and agent from traffic, including unsanctioned shadow AI')],
+      ['7-2', F, L('風險評估與核可上架', 'Risk assessment & approval'), L('以 CCI 與 MCP Server 風險分數評估；未核可的 GenAI 由 CASB Inline、未核可的 Agent 由 Agent Action Control 阻擋', 'Scored with CCI and MCP server risk; unapproved GenAI is blocked by CASB Inline and unapproved agents by Agent Action Control')] ] },
+  { n: 4, stage: 'onboard', icon: 'wrench', c: '45 212 191',
+    title: L('Skill / 工具治理', 'Skill & tool governance'), goal: L('Agent 可用的工具需經審查流程', 'Tools available to agents go through review'),
+    nodes: ['agent', 'client', 'aac', 'dlp', 'api', 'mcp', 'repo'], edges: ['ac', 'c_aac', 'aac_m', 'aac_d', 'dlp_api', 'api_repo'],
+    items: [
+      ['4-1', P, L('Skill Repo 管理與核可上架', 'Skill repo management & approval'), L('Agent Action Control 管控 MCP / Tool 呼叫的放行名單；上架流程需搭配外部簽核', 'Agent Action Control governs which MCP / tool calls are allowed; the approval workflow runs alongside')],
+      ['4-2', F, L('Skill 測試', 'Skill testing'), L('Agent 呼叫 Skill 時，Agent Action Control 檢查內容是否含敏感資訊', 'When an agent calls a skill, Agent Action Control checks the content for sensitive data')],
+      ['4-3', F, L('Agent 設定檔（agent.md）管理', 'Agent config (agent.md) management'), L('DLP 與檔案 Hash 檢查，確保無機敏金鑰殘留', 'DLP and file-hash checks make sure no secrets remain')],
+      ['4-4', F, L('Skill 風險審核機制', 'Skill risk review'), L('Agent Action Control 即時攔截，加上 CASB API 深度掃描 Skill 庫的混合模式', 'Hybrid of real-time Agent Action Control and deep CASB API scanning of the skill repo')] ] },
+  { n: 2, stage: 'identity', icon: 'id-card', c: '96 165 250',
+    title: L('IAM 信任邊界', 'Identity trust boundary'), goal: L('Agent 視為數位員工：獨立身分與動態憑證', 'Agents are digital employees with their own identity and dynamic credentials'),
+    nodes: ['agent', 'client', 'casb', 'genai'], edges: ['ac', 'c_casb', 'casb_g'],
+    items: [
+      ['2-1', F, L('Agent 使用登入工作站的帳號', 'Agent uses the workstation sign-in'), L('Client 綁定 AD / Entra ID，活動對應到使用者', 'Client is bound to AD / Entra ID so activity maps to a user')],
+      ['2-2', F, L('短生命週期 API Key', 'Short-lived API keys'), L('API 呼叫可視並做 DLP；金鑰生命週期由 AI 平台管理', 'API calls are visible and DLP-scanned; key lifecycle stays with the AI platform')],
+      ['2-3', F, L('Entra ID 授權與時間限制', 'Entra ID authorization & time limits'), L('依群組與時段放行，例如僅上班時間可用', 'Allowed by group and time window, e.g. office hours only')] ] },
+  { n: 1, stage: 'runtime', icon: 'database', c: '167 139 250',
+    title: L('資料主權', 'Data sovereignty'), goal: L('依敏感度分級（A / B / C），機敏資料不外流到 AI', 'Classify by sensitivity (A / B / C) so sensitive data stays out of AI'),
+    nodes: ['agent', 'client', 'casb', 'aac', 'dlp', 'genai', 'mcp', 'app', 'aigw', 'claude', 'onprem'], edges: ['ac', 'c_casb', 'c_aac', 'casb_g', 'aac_m', 'casb_d', 'aac_d', 'u_app', 'app_gw', 'gw_claude', 'gw_onprem'],
+    items: [
+      ['1-1', F, L('MIP 標籤識別與上傳阻擋', 'MIP label detection & upload blocking'), L('帶 MIP 標籤（如 Confidential）的檔案上傳 GenAI 即由 CASB Inline 阻擋', 'Files with MIP labels such as Confidential are blocked by CASB Inline from GenAI uploads')],
+      ['1-2', F, L('資料新增／異動／刪除權限控管', 'Create / modify / delete controls'), L('依活動分別 Allow、Block 或 Notify', 'Allow, block or notify per activity')],
+      ['1-3', F, L('定義 AI 安全工作場域', 'Define the secured AI workspace'), L('GenAI、AI Agent、MCP 與 LLM API 都納入政策；送往 Claude 與地端 LLM 的內容由 AI Gateway 的 DLPoD 在地端掃描', 'GenAI, AI agents, MCP and LLM APIs all fall under policy; content bound for Claude and on-prem LLMs is scanned on-prem by DLPoD at the AI Gateway')] ] },
+  { n: 5, stage: 'runtime', icon: 'shield-alert', c: '244 114 182',
+    title: L('運行時護欄', 'Runtime guardrails'), goal: L('Pre / In / Post 三層即時攔截', 'Real-time enforcement before, during and after'),
+    nodes: ['agent', 'client', 'casb', 'dlp', 'genai', 'app', 'aigw', 'claude', 'onprem', 'log'], edges: ['ac', 'c_casb', 'casb_g', 'casb_d', 'u_app', 'app_gw', 'gw_claude', 'gw_onprem', 'clog', 'gwlog'],
+    items: [
+      ['5-1', F, L('禁用關鍵字與 Prompt 過濾', 'Banned keywords & prompt filtering'), L('GenAI 由 CASB Inline 套用自訂關鍵字字典；LLM API 由 AI Gateway 的 AI Guardrail 過濾', 'Custom keyword dictionaries via CASB Inline for GenAI; AI Guardrail at the AI Gateway for LLM APIs')],
+      ['5-2', F, L('依 MIP 標籤阻擋上傳', 'Block uploads by MIP label'), L('帶標籤檔案上傳到任何 GenAI 應用都會被擋', 'Labeled files are blocked from any GenAI app')],
+      ['5-3', F, L('PII / PHI 偵測與遮罩', 'PII / PHI detection & redaction'), L('阻擋送出，稽核報告中敏感值會被遮罩；LLM API 流量由 DLPoD 在地端檢查', 'Blocked before sending with values redacted in audit reports; LLM API traffic is checked on-prem by DLPoD')],
+      ['5-4', F, L('異常行為告警與阻擋', 'Anomaly alerting & blocking'), L('UEBA 行為分數低於門檻即告警或阻擋', 'UEBA alerts or blocks when a user\'s score drops below a threshold')] ] },
+  { n: 6, stage: 'runtime', icon: 'users', c: '251 146 60',
+    title: L('人機協同分級', 'Human-in-the-loop tiers'), goal: L('依風險高低決定人類介入程度', 'Human involvement scales with risk'),
+    nodes: ['agent', 'client', 'aac', 'mcp', 'casb', 'genai'], edges: ['ac', 'c_aac', 'aac_m', 'c_casb', 'casb_g'],
+    items: [
+      ['6-1', P, L('Agent 動作風險定義', 'Agent action risk tiers'), L('Agent Action Control 依工具動作分 Tier 1–4，對應 Allow、User Alert、Block（見下方分級表）', 'Agent Action Control maps tool actions to Tiers 1–4: Allow, User Alert, Block (see table below)')],
+      ['6-2', P, L('HITL / HOTL 機制', 'HITL / HOTL mechanism'), L('User Alert 要求使用者填寫理由後放行或阻擋', 'User Alert asks for a justification, then allows or blocks')] ] },
+  { n: 3, stage: 'audit', icon: 'file-search', c: '52 211 153',
+    title: L('審計可追溯', 'Auditability'), goal: L('完整推理軌跡與防篡改日誌', 'Full reasoning trail and tamper-resistant logs'),
+    nodes: ['agent', 'client', 'casb', 'aac', 'dlp', 'genai', 'mcp', 'aigw', 'log'], edges: ['ac', 'c_casb', 'c_aac', 'casb_g', 'aac_m', 'clog', 'gwlog'],
+    items: [
+      ['3-1', F, L('Prompt、回應與上傳檔案的稽核軌跡', 'Audit trail for prompts, responses & uploads'), L('SkopeIT 記錄 GenAI 的 Post / Upload / Response、Agent 的工具呼叫，以及 AI Gateway 的檢查結果', 'SkopeIT records GenAI posts, uploads and responses, agent tool calls, and AI Gateway results')],
+      ['3-2', F, L('資料新增／異動／刪除的稽核軌跡', 'Audit trail for create / modify / delete'), L('閘道日誌加上端點 DLP 的檔案操作紀錄', 'Gateway logs plus endpoint DLP file activity')] ] },
+  { n: 8, stage: 'audit', icon: 'chart-column', c: '250 204 21',
+    title: L('AI FinOps', 'AI FinOps'), goal: L('AI 使用成本透明化，按部門分攤', 'Transparent AI usage cost, charged back by department'),
+    nodes: ['agent', 'client', 'casb', 'app', 'aigw', 'claude', 'onprem', 'log'], edges: ['ac', 'c_casb', 'u_app', 'app_gw', 'gw_claude', 'gw_onprem', 'clog', 'gwlog'],
+    items: [
+      ['8-1', F, L('AI 使用量統計', 'AI usage statistics'), L('依使用者與部門統計 GenAI 與 LLM API 的活動數與資料量，以報表與儀表板呈現', 'GenAI and LLM API activity and data volume by user and department in reports and dashboards')] ] },
+  { n: 9, stage: 'audit', icon: 'power', c: '248 113 113',
+    title: L('可靠性與降級', 'Reliability & degradation'), goal: L('不確定時降級，而不是讓 Agent 瞎猜', 'Degrade when unsure instead of letting the agent guess'),
+    nodes: ['agent', 'client', 'aac', 'app', 'aigw', 'claude', 'onprem', 'log'], edges: ['ac', 'c_aac', 'u_app', 'app_gw', 'gw_claude', 'gw_onprem', 'gwlog'],
+    items: [
+      ['9-1', F, L('執行期安全參數', 'Runtime safety parameters'), L('AI Gateway 的 AI Guardrail（CPU-based）攔截 Prompt Injection / Jailbreak，並設定限流門檻', 'AI Guardrail (CPU-based) on the AI Gateway blocks prompt injection / jailbreaks and enforces rate limits')],
+      ['9-2', F, L('異常時阻斷 Agent 連線', 'Cut off an agent on anomalies'), L('用量爆衝或行為異常時，由 Agent Action Control 或 AI Gateway 阻斷連線以控制損害', 'On usage spikes or abnormal behavior, Agent Action Control or the AI Gateway cuts the connection to limit damage')] ] }
+];
+
+/* ===================== DIAGRAM ===================== */
+const NODES = {
+  agent:  { x: 30,  y: 150, w: 210, h: 90, c: '167 139 250', icon: 'bot', t1: L('使用者 / AI Agent', 'Users / AI agents'), t2: L('Chat · Coding Agent · 瀏覽器', 'Chat · coding agent · browser') },
+  client: { x: 300, y: 150, w: 190, h: 90, c: '96 165 250', icon: 'laptop', t1: L('Netskope Client', 'Netskope Client'), t2: L('身分 · Entra ID · 導流', 'Identity · Entra ID · steering') },
+  app:    { x: 30,  y: 478, w: 210, h: 80, c: '148 163 184', icon: 'code-xml', t1: L('AI 應用 / Agent 後端', 'AI apps / back ends'), t2: L('Claude Code（PowerShell）· API', 'Claude Code (PowerShell) · API') },
+  aicc:   { x: 550, y: 20,  w: 240, h: 66, c: '34 211 238', icon: 'radar', t1: 'AICC', t2: L('Shadow AI 發現', 'Shadow AI discovery') },
+  casb:   { x: 550, y: 100, w: 240, h: 80, c: '56 189 248', icon: 'shield', t1: 'CASB Inline', t2: L('GenAI 應用 · Instance · 活動', 'GenAI apps · instance · activity') },
+  aac:    { x: 550, y: 195, w: 240, h: 80, c: '251 146 60', icon: 'workflow', t1: 'Agent Action Control', t2: L('原 Agentic Broker · 工具呼叫', 'formerly Agentic Broker · tool calls') },
+  dlp:    { x: 550, y: 290, w: 240, h: 66, c: '244 114 182', icon: 'scan-search', t1: L('DLP 引擎', 'DLP engine'), t2: L('MIP · PII/PHI · 關鍵字', 'MIP · PII/PHI · keywords') },
+  api:    { x: 550, y: 370, w: 240, h: 66, c: '45 212 191', icon: 'cloud-cog', t1: 'CASB API', t2: L('無代理巡檢 Skill 庫', 'Agentless skill-repo scans') },
+  aigw:   { x: 550, y: 470, w: 240, h: 96, c: '248 113 113', icon: 'server-cog', t1: 'AI Gateway', t2: L('AI Guardrail（CPU）· DLPoD 地端掃描', 'AI Guardrail (CPU) · DLPoD on-prem') },
+  genai:  { x: 870, y: 105, w: 300, h: 70, c: '56 189 248', icon: 'sparkles', t1: L('GenAI 應用', 'GenAI apps'), t2: 'ChatGPT · Copilot · Gemini' },
+  mcp:    { x: 870, y: 200, w: 300, h: 70, c: '250 204 21', icon: 'plug', t1: L('MCP Server / Skill', 'MCP servers / skills'), t2: L('Agent 工具呼叫', 'Agent tool calls') },
+  repo:   { x: 870, y: 370, w: 300, h: 66, c: '52 211 153', icon: 'folder-git-2', t1: L('企業 Skill 庫', 'Enterprise skill repo'), t2: L('如 OneDrive · 單一來源', 'e.g. OneDrive · single source') },
+  claude: { x: 870, y: 462, w: 300, h: 66, c: '217 119 87', icon: 'cpu', t1: L('Claude LLM（API）', 'Claude LLM (API)'), t2: L('雲端 LLM', 'Cloud LLM') },
+  onprem: { x: 870, y: 540, w: 300, h: 66, c: '148 163 184', icon: 'server', t1: L('地端 LLM', 'On-premises LLM'), t2: 'On-premises' },
+  log:    { x: 300, y: 625, w: 490, h: 50, c: '148 163 184', icon: 'scroll-text', t1: L('SkopeIT · UEBA · 報表', 'SkopeIT · UEBA · reports'), t2: null }
+};
+const EDGES = {
+  ac: 'M240 195 H300', c_aicc: 'M490 175 H520 V53 H550', c_casb: 'M490 190 H520 V140 H550', c_aac: 'M490 205 H520 V235 H550',
+  casb_g: 'M790 140 H870', aac_m: 'M790 235 H870', casb_d: 'M550 165 H535 V323 H550', aac_d: 'M670 275 V290',
+  dlp_api: 'M670 356 V370', api_repo: 'M790 403 H870',
+  u_app: 'M135 240 V478', app_gw: 'M240 518 H550', gw_claude: 'M790 505 H830 V495 H870', gw_onprem: 'M790 530 H830 V573 H870',
+  clog: 'M395 240 V625', gwlog: 'M670 566 V625'
+};
+const LOG_EDGES = [];
+
+let stage = 'all', sel = 1;
+const dom = () => DOMAINS.find(d => d.n === sel);
+
+function nodeSvg(k, n, on) {
+  const tint = `<rect class="base" x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}" rx="12"/><rect class="tint" x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}" rx="12"/>`;
+  return `<g class="node ctrl ${on ? 'sel' : 'dim'}" style="--c:${n.c}">${tint}
+    <foreignObject x="${n.x + 14}" y="${n.y + (n.t2 ? (n.h < 75 ? 10 : 14) : 13)}" width="24" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="ico w-6 h-6 grid place-items-center"><i data-lucide="${n.icon}" class="w-5 h-5"></i></div></foreignObject>
+    <text class="t1" x="${n.x + 46}" y="${n.y + (n.t2 ? (n.h < 75 ? 28 : 32) : 31)}">${esc(tr(n.t1))}</text>
+    ${n.t2 ? `<text class="t2" x="${n.x + 14}" y="${n.y + n.h - (n.h < 75 ? 12 : 16)}">${esc(tr(n.t2))}</text>` : ''}</g>`;
+}
+
+function buildDiagram() {
+  const d = dom();
+  const out = [];
+  out.push(`<text class="zone-t" x="30" y="30">${lang === 'en' ? 'USERS & AGENTS' : '使用者與 AGENT'}</text>`);
+  out.push(`<text class="zone-t" x="300" y="30">${lang === 'en' ? 'NETSKOPE CONTROL POINTS' : 'NETSKOPE 控制點'}</text>`);
+  out.push(`<text class="zone-t" x="870" y="30">${lang === 'en' ? 'AI SERVICES & TOOLS' : 'AI 服務與工具'}</text>`);
+  out.push(`<rect class="lane" x="20" y="455" width="1160" height="160" rx="14"/><text class="lane-t" x="36" y="472">${lang === 'en' ? 'LLM API · SEPARATE PATH' : 'LLM API · 獨立路徑'}</text>`);
+  out.push(`<text class="lane-l" x="830" y="130">GenAI</text><text class="lane-l" x="190" y="360">${lang === 'en' ? 'CLI / API' : 'CLI / API'}</text><text class="lane-l" x="830" y="225">Agent / MCP</text>`);
+  Object.values(EDGES).forEach(p => out.push(`<path class="edge" d="${p}"/>`));
+  LOG_EDGES.forEach(p => out.push(`<path class="edge-log" d="${p}"/>`));
+  d.edges.forEach((e, i) => {
+    out.push(`<path class="flow" style="--fc:${d.c}" d="${EDGES[e]}"/>`);
+    out.push(`<circle class="pk" r="5" style="--fc:${d.c}"><animateMotion dur="${1.6 + (i % 3) * .3}s" repeatCount="indefinite" path="${EDGES[e]}"/></circle>`);
+  });
+  Object.entries(NODES).forEach(([k, n]) => out.push(nodeSvg(k, n, d.nodes.includes(k))));
+  $('#tp').innerHTML = out.join('');
+}
+
+function renderStages() {
+  $('#segStage').innerHTML = STAGES.map(s => `<button data-stage="${s.id}" aria-pressed="${s.id === stage}" style="--bc:${s.c}">${s.id === 'all' ? '' : '<span class="dot"></span>'}${tr(s.label)}</button>`).join('');
+  document.querySelectorAll('#segStage button').forEach(b => b.addEventListener('click', () => setStage(b.dataset.stage)));
+}
+
+function covIcon(c) { return c === F ? '<span class="cov-full font-bold">●</span>' : '<span class="cov-part font-bold">⦾</span>'; }
+
+function renderDomains() {
+  $('#domains').innerHTML = DOMAINS.map(d => {
+    const st = STAGES.find(s => s.id === d.stage);
+    const full = d.items.filter(i => i[1] === F).length, part = d.items.length - full;
+    return `<button class="dm card rounded-xl p-4 text-left ${stage !== 'all' && d.stage !== stage ? 'hide' : ''}" data-n="${d.n}" aria-pressed="${d.n === sel}" style="--dc:${d.c}">
+      <div class="flex items-start gap-3">
+        <div class="dm-ico w-10 h-10 rounded-lg grid place-items-center shrink-0"><i data-lucide="${d.icon}" class="w-5 h-5"></i></div>
+        <div class="min-w-0 flex-1">
+          <div class="flex items-center justify-between gap-2">
+            <span class="dm-no font-mono text-xs font-semibold">${String(d.n).padStart(2, '0')}</span>
+            <span class="text-[11px] font-mono text-slate-500">${full ? full + ' <span class="cov-full">●</span>' : ''}${full && part ? ' · ' : ''}${part ? part + ' <span class="cov-part">⦾</span>' : ''}</span>
+          </div>
+          <div class="font-semibold text-slate-100 leading-snug">${tr(d.title)}</div>
+          <div class="text-xs text-slate-400 mt-0.5">${tr(d.goal)}</div>
+          <div class="mt-2 flex items-center gap-1.5 text-[11px] text-slate-500"><span class="stage-dot" style="--sc:${st.c}"></span>${tr(st.label)}</div>
+        </div>
+      </div>
+    </button>`;
+  }).join('');
+  document.querySelectorAll('.dm').forEach(b => b.addEventListener('click', () => setDomain(+b.dataset.n)));
+}
+
+function renderDetail() {
+  const d = dom();
+  const st = STAGES.find(s => s.id === d.stage);
+  document.documentElement.style.setProperty('--accent', d.c);
+  $('#detail').innerHTML = `<div class="fade-in">
+    <div class="flex items-center gap-3">
+      <div class="w-11 h-11 rounded-xl grid place-items-center accent-bg border"><i data-lucide="${d.icon}" class="w-5 h-5 accent-text"></i></div>
+      <div class="min-w-0">
+        <div class="text-[11px] font-mono uppercase tracking-widest accent-text">${lang === 'en' ? 'Domain' : '控管面向'} ${String(d.n).padStart(2, '0')} · ${tr(st.label)}</div>
+        <div class="font-semibold text-lg leading-tight text-slate-100">${tr(d.title)}</div>
+      </div>
+    </div>
+    <p class="mt-3 text-sm text-slate-300">${tr(d.goal)}</p>
+    <ul class="mt-4 space-y-3">
+      ${d.items.map(i => `<li class="rounded-lg border border-slate-800 bg-slate-950/50 p-3">
+        <div class="flex items-start gap-2">
+          <span class="mt-0.5">${covIcon(i[1])}</span>
+          <div class="min-w-0">
+            <div class="text-sm font-medium text-slate-100"><span class="font-mono text-xs text-slate-500 mr-1">${i[0]}</span>${tr(i[2])}</div>
+            <div class="text-xs text-slate-400 mt-0.5">${tr(i[3])}</div>
+          </div>
+        </div></li>`).join('')}
+    </ul>
+  </div>`;
+  $('#printState').textContent = (lang === 'en' ? 'Highlighted: ' : '目前顯示：') + tr(d.title);
+}
+
+function renderAll() { renderStages(); renderDomains(); buildDiagram(); renderDetail(); lucide.createIcons(); }
+function setStage(s) {
+  stage = s;
+  if (s !== 'all' && dom().stage !== s) sel = DOMAINS.find(d => d.stage === s).n;
+  renderAll();
+}
+function setDomain(n) { sel = n; renderAll(); }
+
+/* ===================== TOOLBAR ===================== */
+function applyLang(l) {
+  lang = l;
+  document.documentElement.setAttribute('lang', l === 'en' ? 'en' : 'zh-Hant');
+  document.title = l === 'en' ? 'AI Agent Governance' : 'AI Agent 治理';
+  document.querySelectorAll('#segLang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
+  try { localStorage.setItem('nsk-poc-lang', l); } catch (e) {}
+  renderAll();
+}
+function applyTheme(t) {
+  document.documentElement.classList.toggle('light', t === 'light');
+  document.querySelectorAll('#segTheme button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.theme === t)));
+  try { localStorage.setItem('nsk-poc-theme', t); } catch (e) {}
+}
+document.querySelectorAll('#segLang button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+document.querySelectorAll('#segTheme button').forEach(b => b.addEventListener('click', () => applyTheme(b.dataset.theme)));
+let themeBeforePrint = null;
+window.addEventListener('beforeprint', () => { themeBeforePrint = document.documentElement.classList.contains('light') ? 'light' : 'dark'; document.documentElement.classList.add('light'); });
+window.addEventListener('afterprint', () => { if (themeBeforePrint === 'dark') document.documentElement.classList.remove('light'); themeBeforePrint = null; });
+$('#btnPdf').addEventListener('click', () => window.print());
+
+applyTheme(document.documentElement.classList.contains('light') ? 'light' : 'dark');
+applyLang(lang);
+</script>
+</body>
+</html>
