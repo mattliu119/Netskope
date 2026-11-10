@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZTNA 私有應用存取</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+  (function () {
+    try {
+      if (localStorage.getItem('nsk-poc-theme') === 'light') document.documentElement.classList.add('light');
+      if (localStorage.getItem('nsk-poc-lang') === 'en') document.documentElement.setAttribute('lang', 'en');
+    } catch (e) {}
+  })();
+</script>
+<style id="tw-inline">*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:Inter,Noto Sans TC,system-ui,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:JetBrains Mono,ui-monospace,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.visible{visibility:visible}.invisible{visibility:hidden}.static{position:static}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.bottom-4{bottom:1rem}.left-1\/2{left:50%}.top-0{top:0}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-2{margin-bottom:.5rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-1\.5{margin-top:.375rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.table{display:table}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-14{height:3.5rem}.h-3\.5{height:.875rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-8{height:2rem}.h-\[34px\]{height:34px}.h-auto{height:auto}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-3\.5{width:.875rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-8{width:2rem}.w-\[34px\]{width:34px}.w-full{width:100%}.min-w-0{min-width:0}.min-w-\[620px\]{min-width:620px}.min-w-\[760px\]{min-width:760px}.max-w-3xl{max-width:48rem}.max-w-7xl{max-width:80rem}.flex-shrink,.shrink{flex-shrink:1}.shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%}.-translate-x-1\/2,.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scroll-mt-16{scroll-margin-top:4rem}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.place-items-center{place-items:center}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-4{gap:1rem}.gap-x-5{-moz-column-gap:1.25rem;column-gap:1.25rem}.gap-y-2{row-gap:.5rem}.divide-slate-800>:not([hidden])~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(30 41 59/var(--tw-divide-opacity,1))}.overflow-x-auto{overflow-x:auto}.truncate{overflow:hidden;text-overflow:ellipsis}.truncate,.whitespace-nowrap{white-space:nowrap}.rounded-2xl{border-radius:1rem}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85/var(--tw-border-opacity,1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59/var(--tw-border-opacity,1))}.border-slate-800\/70{border-color:rgba(30,41,59,.7)}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42/var(--tw-bg-opacity,1))}.bg-slate-950{--tw-bg-opacity:1;background-color:rgb(2 6 23/var(--tw-bg-opacity,1))}.bg-slate-950\/75{background-color:rgba(2,6,23,.75)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}.from-emerald-400{--tw-gradient-from:#34d399 var(--tw-gradient-from-position);--tw-gradient-to:rgba(52,211,153,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.to-sky-400{--tw-gradient-to:#38bdf8 var(--tw-gradient-to-position)}.p-3{padding:.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.pb-28{padding-bottom:7rem}.pt-8{padding-top:2rem}.font-mono{font-family:JetBrains Mono,ui-monospace,monospace}.font-sans{font-family:Inter,Noto Sans TC,system-ui,sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\[11px\]{font-size:11px}.text-\[13px\]{font-size:13px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-.025em}.tracking-widest{letter-spacing:.1em}.text-amber-300{--tw-text-opacity:1;color:rgb(252 211 77/var(--tw-text-opacity,1))}.text-blue-300{--tw-text-opacity:1;color:rgb(147 197 253/var(--tw-text-opacity,1))}.text-cyan-300{--tw-text-opacity:1;color:rgb(103 232 249/var(--tw-text-opacity,1))}.text-emerald-300{--tw-text-opacity:1;color:rgb(110 231 183/var(--tw-text-opacity,1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153/var(--tw-text-opacity,1))}.text-rose-300{--tw-text-opacity:1;color:rgb(253 164 175/var(--tw-text-opacity,1))}.text-slate-100{--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240/var(--tw-text-opacity,1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105/var(--tw-text-opacity,1))}.text-slate-950{--tw-text-opacity:1;color:rgb(2 6 23/var(--tw-text-opacity,1))}.text-violet-300{--tw-text-opacity:1;color:rgb(196 181 253/var(--tw-text-opacity,1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.ring{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.blur{--tw-blur:blur(8px)}.blur,.drop-shadow{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.drop-shadow{--tw-drop-shadow:drop-shadow(0 1px 2px rgba(0,0,0,.1)) drop-shadow(0 1px 1px rgba(0,0,0,.06))}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px)}.backdrop-blur,.backdrop-filter{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.hover\:bg-slate-800:hover{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.hover\:text-slate-100:hover{--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}.hover\:underline:hover{text-decoration-line:underline}@media (min-width:640px){.sm\:left-auto{left:auto}.sm\:right-4{right:1rem}.sm\:translate-x-0{--tw-translate-x:0px;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.sm\:flex-row{flex-direction:row}.sm\:justify-between{justify-content:space-between}.sm\:p-4{padding:1rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:py-12{padding-top:3rem;padding-bottom:3rem}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-base{font-size:1rem;line-height:1.5rem}}@media (min-width:768px){.md\:flex{display:flex}}@media (min-width:1024px){.lg\:col-span-2{grid-column:span 2/span 2}.lg\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.lg\:flex-row{flex-direction:row}.lg\:items-end{align-items:flex-end}.lg\:justify-between{justify-content:space-between}.lg\:text-5xl{font-size:3rem;line-height:1}}</style>
+<style>
+  :root { --accent: 52 211 153; }
+  html { scroll-behavior: smooth; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(96,165,250,.10), transparent 60%),
+      #060a13;
+    color: #e2e8f0;
+    transition: background-color .3s ease, color .3s ease;
+  }
+  html[lang="en"] .zh { display: none !important; }
+  html:not([lang="en"]) .en { display: none !important; }
+  .grid-bg {
+    background-image: linear-gradient(rgba(148,163,184,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .card { background: rgba(15,23,42,.65); border: 1px solid rgba(51,65,85,.6); backdrop-filter: blur(8px); }
+  .accent-text { color: rgb(var(--accent)); transition: color .4s ease; }
+  .accent-bg { background: rgb(var(--accent) / .12); border-color: rgb(var(--accent) / .4); transition: all .4s ease; }
+  .hero-grad { background-image: linear-gradient(90deg, #6ee7b7, #bae6fd, #93c5fd); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  .seg { display: inline-flex; flex-wrap: wrap; border: 1px solid #334155; border-radius: .6rem; overflow: hidden; background: rgba(15,23,42,.8); }
+  .seg button { padding: .45rem .85rem; font-size: .8rem; color: #cbd5e1; transition: all .25s ease; white-space: nowrap; display: inline-flex; align-items: center; gap: .4rem; }
+  .seg button + button { border-left: 1px solid #334155; }
+  .seg button:hover { background: rgba(51,65,85,.5); }
+  .seg button[aria-pressed="true"] { background: rgb(var(--bc, 52 211 153)); color: #020617; font-weight: 600; }
+  .seg .dot { width: 8px; height: 8px; border-radius: 9999px; background: rgb(var(--bc)); }
+  .seg button[aria-pressed="true"] .dot { background: #020617; }
+  .seg.tb button { padding: .4rem .75rem; }
+  .seg.tb button[aria-pressed="true"] { background: #22d3ee; color: #020617; }
+
+  /* ---------- topology ---------- */
+  .tp text { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
+  .tp .zone { fill: rgba(15,23,42,.35); stroke: rgba(100,116,139,.55); stroke-dasharray: 6 6; }
+  .tp .zone-t { fill: #94a3b8; font-size: 12px; font-weight: 600; letter-spacing: .06em; }
+  .tp .wire { fill: none; stroke: rgba(100,116,139,.55); stroke-width: 1.5; }
+  .tp .ghost { fill: none; stroke: rgba(100,116,139,.28); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; stroke-linejoin: round; }
+  .tp .flow { fill: none; stroke: rgb(var(--fc)); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 11 9; animation: dash 1.1s linear infinite; filter: drop-shadow(0 0 5px rgb(var(--fc) / .6)); }
+  .tp .flow.static { animation: none; stroke-dasharray: 6 6; stroke-width: 2.5; }
+  @keyframes dash { to { stroke-dashoffset: -20; } }
+  .tp .pk { fill: #fff; filter: drop-shadow(0 0 6px rgb(var(--fc))); }
+  .tp .fz { opacity: 0; transition: opacity .35s ease; }
+  .tp .fz.show { opacity: 1; }
+
+  .tp .node { cursor: pointer; transition: opacity .35s ease; }
+  .tp .node .base { fill: #0b1222; }
+  .tp .node .tint { fill: rgb(var(--c) / .06); stroke: rgb(var(--c) / .55); stroke-width: 1.5; transition: all .3s ease; }
+  .tp .node .ico { color: rgb(var(--c)); }
+  .tp .node .t1 { fill: #f1f5f9; font-size: 14px; font-weight: 700; }
+  .tp .node .t2 { fill: #94a3b8; font-size: 11px; }
+  .tp .node.sm .t1 { font-size: 12px; font-weight: 600; }
+  .tp .node:hover .tint { stroke: rgb(var(--c)); }
+  .tp .node.sel .tint { stroke: rgb(var(--c)); stroke-width: 3; filter: drop-shadow(0 0 10px rgb(var(--c) / .8)); fill: rgb(var(--c) / .14); }
+  .tp .node.dim > :not(.base) { opacity: .3; }
+  .tp .warn { transition: opacity .35s ease; }
+  .tp .xmark circle { fill: #7f1d1d; stroke: #f87171; stroke-width: 2; }
+  .tp .xmark path { stroke: #fecaca; stroke-width: 2.5; stroke-linecap: round; }
+
+  .fade-in { animation: fadeIn .45s ease both; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .pulse-dot { position: relative; }
+  .pulse-dot::after { content: ''; position: absolute; inset: 0; border-radius: 9999px; background: inherit; animation: ping 1.8s infinite; }
+  @keyframes ping { 0% { opacity: .7; transform: scale(1); } 100% { opacity: 0; transform: scale(2.2); } }
+  ::-webkit-scrollbar { height: 8px; width: 8px; }
+  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 8px; }
+  .print-only { display: none; }
+
+  /* =================== LIGHT =================== */
+  html.light body {
+    background: radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(96,165,250,.12), transparent 60%), #f1f5f9;
+    color: #0f172a;
+  }
+  html.light .grid-bg { background-image: linear-gradient(rgba(15,23,42,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,.05) 1px, transparent 1px); }
+  html.light .card { background: rgba(255,255,255,.9); border-color: #e2e8f0; box-shadow: 0 1px 2px rgba(15,23,42,.04); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #059669, #0284c7, #2563eb); }
+  html.light .accent-text { color: color-mix(in srgb, rgb(var(--accent)) 62%, #000); }
+  html.light .text-slate-100 { color: #0f172a; }
+  html.light .text-slate-200 { color: #1e293b; }
+  html.light .text-slate-300 { color: #334155; }
+  html.light .text-slate-400 { color: #475569; }
+  html.light .text-slate-500 { color: #64748b; }
+  html.light .text-slate-600 { color: #94a3b8; }
+  html.light .text-cyan-300, html.light .text-cyan-300\/90 { color: #0e7490; }
+  html.light .text-blue-300 { color: #1d4ed8; }
+  html.light .text-amber-300 { color: #b45309; }
+  html.light .text-red-300, html.light .text-rose-300 { color: #b91c1c; }
+  html.light .text-emerald-300 { color: #047857; }
+  html.light .text-emerald-400 { color: #059669; }
+  html.light .text-violet-300 { color: #6d28d9; }
+  html.light .hover\:text-slate-100:hover { color: #0f172a; }
+  html.light .bg-slate-950\/75 { background: rgba(255,255,255,.82); }
+  html.light .bg-slate-950\/70, html.light .bg-slate-950\/50 { background: #f8fafc; }
+  html.light .bg-slate-900 { background: #ffffff; }
+  html.light .bg-slate-900\/90 { background: #f1f5f9; }
+  html.light .bg-slate-800, html.light .bg-slate-800\/60 { background: #e2e8f0; }
+  html.light .hover\:bg-slate-800:hover { background: #e2e8f0; }
+  html.light .border-slate-600, html.light .border-slate-700 { border-color: #cbd5e1; }
+  html.light .border-slate-800, html.light .border-slate-800\/70 { border-color: #e2e8f0; }
+  html.light .divide-slate-800\/80 > :not([hidden]) ~ :not([hidden]) { border-color: #e2e8f0; }
+  html.light .seg { border-color: #cbd5e1; background: #fff; }
+  html.light .seg button { color: #334155; }
+  html.light .seg button + button { border-left-color: #cbd5e1; }
+  html.light .seg button:hover { background: #f1f5f9; }
+  html.light .seg button[aria-pressed="true"] { color: #020617; }
+  html.light .tp .zone { fill: rgba(255,255,255,.6); stroke: #94a3b8; }
+  html.light .tp .zone-t { fill: #475569; }
+  html.light .tp .wire { stroke: #94a3b8; }
+  html.light .tp .ghost { stroke: rgba(100,116,139,.45); }
+  html.light .tp .pk { fill: rgb(var(--fc)); stroke: #fff; stroke-width: 1.5; }
+  html.light .tp .node .base { fill: #ffffff; }
+  html.light .tp .node .t1 { fill: #0f172a; }
+  html.light .tp .node .t2 { fill: #475569; }
+  html.light .tp .node .ico { color: color-mix(in srgb, rgb(var(--c)) 70%, #000); }
+  html.light ::-webkit-scrollbar-thumb { background: #cbd5e1; }
+
+  /* =================== PRINT =================== */
+  @page { size: A4 landscape; margin: 10mm; }
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    html, body { background: #fff !important; }
+    body { zoom: .62; }
+    .no-print, nav, #toolbar { display: none !important; }
+    .print-only { display: block !important; }
+    .card { backdrop-filter: none !important; break-inside: avoid; box-shadow: none !important; }
+    .overflow-x-auto { overflow: visible !important; }
+    .min-w-\[860px\], .min-w-\[760px\] { min-width: 0 !important; }
+    section { padding-top: 0 !important; padding-bottom: 0 !important; border-top: 0 !important; }
+    #topology, .print-break { break-before: page; }
+    #tp { width: 82% !important; margin: 0 auto; display: block; }
+    .tp .flow { animation: none !important; filter: none !important; }
+    .tp .pk { display: none; }
+    .fade-in { animation: none !important; }
+    header { padding-top: 0 !important; }
+    footer > div { padding-bottom: 0 !important; }
+  }
+</style>
+<style>
+  :root { --accent: 34 211 238; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(34,211,238,.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(251,146,60,.08), transparent 60%),
+      #060a13;
+  }
+  html.light body { background: radial-gradient(1200px 600px at 10% -10%, rgba(34,211,238,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(251,146,60,.10), transparent 60%), #f1f5f9; }
+  .hero-grad { background-image: linear-gradient(90deg, #67e8f9, #bae6fd, #fdba74); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #0e7490, #0369a1, #c2410c); }
+
+  /* toggle switches */
+  .tg { display: inline-flex; align-items: center; gap: .6rem; padding: .45rem .55rem .45rem .9rem; border: 1px solid #334155; border-radius: 9999px; background: rgba(15,23,42,.8); transition: all .25s ease; }
+  .tg .nm { font-weight: 600; font-size: .9rem; color: #e2e8f0; }
+  .tg .ds { font-size: .7rem; color: #94a3b8; }
+  .tg .sw { width: 38px; height: 22px; border-radius: 9999px; background: #334155; position: relative; transition: background .25s ease; flex-shrink: 0; }
+  .tg .sw::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 9999px; background: #94a3b8; transition: all .25s ease; }
+  .tg[aria-pressed="true"] { border-color: rgb(var(--tc) / .7); background: rgb(var(--tc) / .10); }
+  .tg[aria-pressed="true"] .sw { background: rgb(var(--tc)); }
+  .tg[aria-pressed="true"] .sw::after { left: 19px; background: #020617; }
+  html.light .tg { background: #fff; border-color: #cbd5e1; }
+  html.light .tg .nm { color: #0f172a; }
+  html.light .tg .ds { color: #64748b; }
+  html.light .tg .sw { background: #cbd5e1; }
+  .btn-s { height: 34px; padding: 0 .8rem; border: 1px solid #334155; border-radius: .55rem; background: rgba(15,23,42,.8); font-size: .8rem; font-weight: 600; color: #e2e8f0; display: inline-flex; align-items: center; gap: .35rem; }
+  .btn-s:hover { background: rgba(51,65,85,.6); }
+  html.light .btn-s { background: #fff; border-color: #cbd5e1; color: #0f172a; }
+
+  /* sim svg */
+  .sim text { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
+  .sim .zone { fill: rgba(15,23,42,.35); stroke: rgba(100,116,139,.5); stroke-dasharray: 6 6; }
+  .sim .zone-t { fill: #94a3b8; font-size: 13px; font-weight: 600; letter-spacing: .08em; }
+  .sim .pill rect { fill: rgba(51,65,85,.35); stroke: rgba(100,116,139,.6); stroke-width: 1.5; transition: all .3s ease; }
+  .sim .pill .ico { color: #64748b; }
+  .sim .pill .num { fill: #64748b; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; }
+  .sim .pill .nm { fill: #94a3b8; font-size: 14px; font-weight: 700; }
+  .sim .pill .ds { fill: #64748b; font-size: 11px; }
+  .sim .pill .st { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; }
+  .sim .pill.on rect { fill: rgb(var(--pc) / .12); stroke: rgb(var(--pc) / .8); }
+  .sim .pill.on .ico { color: rgb(var(--pc)); }
+  .sim .pill.on .num { fill: rgb(var(--pc)); }
+  .sim .pill.on .nm { fill: #f1f5f9; }
+  .sim .pill.on .ds { fill: #94a3b8; }
+  .sim .pill.act rect { stroke-width: 3; filter: drop-shadow(0 0 12px rgb(var(--pc) / .85)); }
+  .sim .pill.hit rect { stroke: #f87171; stroke-width: 3; fill: rgba(248,113,113,.15); filter: drop-shadow(0 0 12px rgba(248,113,113,.8)); }
+  .sim .pill { cursor: pointer; }
+  .sim .end { cursor: pointer; }
+  .sim .end .ring { fill: #0b1222; stroke-width: 2.5; transition: all .3s ease; }
+  .sim .end .nm { fill: #f1f5f9; font-size: 17px; font-weight: 700; }
+  .sim .end .ds { fill: #94a3b8; font-size: 12px; }
+  .sim .end.dim { opacity: .4; }
+  .sim .end.sel .ring { stroke-width: 4; filter: drop-shadow(0 0 12px currentColor); }
+  .sim .run { fill: none; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 12 9; animation: dash 1.1s linear infinite; }
+  .sim .run.ok { stroke: #34d399; stroke-dasharray: none; filter: drop-shadow(0 0 5px rgba(52,211,153,.6)); }
+  .sim .run.risk { stroke: #fb923c; filter: drop-shadow(0 0 5px rgba(251,146,60,.6)); }
+  .sim .run.go { stroke: #22d3ee; filter: drop-shadow(0 0 5px rgba(34,211,238,.6)); }
+  .sim .seen { fill: none; stroke: #fbbf24; stroke-width: 2.5; stroke-dasharray: 2 6; stroke-linecap: round; }
+  .sim .ghost { fill: none; stroke: rgba(100,116,139,.3); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; }
+  @keyframes dash { to { stroke-dashoffset: -21; } }
+  html.light .sim .zone { fill: rgba(255,255,255,.6); stroke: #94a3b8; }
+  html.light .sim .zone-t { fill: #475569; }
+  html.light .sim .pill rect { fill: #eef2f7; stroke: #94a3b8; }
+  html.light .sim .pill.on .nm, html.light .sim .end .nm { fill: #0f172a; }
+  html.light .sim .end .ring { fill: #fff; }
+  html.light .sim .end .ds, html.light .sim .pill.on .ds { fill: #475569; }
+
+  .verdict { border-width: 1.5px; transition: all .3s ease; }
+  .v-ok { border-color: rgba(52,211,153,.6); background: rgba(52,211,153,.08); color: #6ee7b7; }
+  .v-block { border-color: rgba(34,211,238,.6); background: rgba(34,211,238,.08); color: #67e8f9; }
+  .v-risk { border-color: rgba(251,146,60,.7); background: rgba(251,146,60,.08); color: #fdba74; }
+  .v-run { border-color: rgba(100,116,139,.5); background: rgba(15,23,42,.5); color: #cbd5e1; }
+  html.light .v-ok { color: #047857; } html.light .v-block { color: #0e7490; } html.light .v-risk { color: #c2410c; } html.light .v-run { color: #334155; background: #fff; }
+  .log-line { animation: fadeIn .35s ease both; }
+</style>
+<style>
+  :root { --accent: 52 211 153; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(56,189,248,.08), transparent 60%),
+      #060a13;
+  }
+  html.light body { background: radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(56,189,248,.10), transparent 60%), #f1f5f9; }
+  .hero-grad { background-image: linear-gradient(90deg, #6ee7b7, #7dd3fc, #a5b4fc); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #047857, #0369a1, #4338ca); }
+  .text-emerald-300 { color: #6ee7b7; } html.light .text-emerald-300 { color: #047857; }
+
+  .tp .node.act .tint { stroke: rgb(var(--c)); stroke-width: 3; fill: rgb(var(--c) / .16); filter: drop-shadow(0 0 12px rgb(var(--c) / .8)); }
+  .tp .node.ok .tint { stroke: #34d399; stroke-width: 2.5; fill: rgba(52,211,153,.14); }
+  .tp .node.exp .tint { stroke: #f87171; stroke-width: 2.5; fill: rgba(248,113,113,.14); filter: drop-shadow(0 0 10px rgba(248,113,113,.6)); }
+  .tp .node.hid { opacity: .22; }
+  .tp .node.hid .tint { stroke-dasharray: 5 5; }
+  .tp .node.blk .tint { stroke: #fb923c; stroke-width: 2.5; fill: rgba(251,146,60,.12); }
+  .tp .bus { stroke: rgba(248,113,113,.75); stroke-width: 4; fill: none; }
+  .tp .bus.off { stroke: rgba(100,116,139,.35); stroke-width: 2; stroke-dasharray: 4 6; }
+  .tp .tag rect { stroke-width: 1.3; }
+  .tp .tag text { font-size: 11px; font-weight: 700; }
+  .tp .lbl { fill: #94a3b8; font-size: 11px; font-weight: 600; }
+  .tp .hosts text { fill: #fca5a5; font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+  .tp .hosts.off text { fill: #64748b; }
+  html.light .tp .lbl { fill: #475569; }
+
+  .appc { border: 1.5px solid rgba(100,116,139,.45); border-radius: .8rem; padding: .7rem .8rem; transition: all .3s ease; }
+  .appc.ok { border-color: rgba(52,211,153,.7); background: rgba(52,211,153,.07); }
+  .appc.exp { border-color: rgba(248,113,113,.7); background: rgba(248,113,113,.07); }
+  .appc.hid { opacity: .5; border-style: dashed; }
+  .appc.blk { border-color: rgba(251,146,60,.7); background: rgba(251,146,60,.07); }
+  html.light .appc { background: #fff; }
+  html.light .appc.ok { background: #ecfdf5; } html.light .appc.exp { background: #fef2f2; } html.light .appc.blk { background: #fff7ed; }
+
+  .term { background: #020617; border: 1px solid #1e293b; border-radius: .9rem; padding: .8rem 1rem; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; line-height: 1.65; min-height: 170px; }
+  .term .l { white-space: pre-wrap; animation: fadeIn .25s ease both; }
+  .term .cmd { color: #e2e8f0; } .term .cmd::before { content: '$ '; color: #34d399; }
+  .term .hit { color: #fca5a5; } .term .ok { color: #6ee7b7; } .term .dim { color: #64748b; }
+  html.light .term { background: #0f172a; }
+
+  .cmp td, .cmp th { padding: .55rem .6rem; border-top: 1px solid rgba(51,65,85,.55); vertical-align: top; }
+  .cmp th { text-align: left; font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: #64748b; border-top: 0; }
+  html.light .cmp td { border-color: #e2e8f0; }
+  .stp { border: 1px solid rgba(51,65,85,.6); border-radius: .9rem; padding: 1rem; }
+  html.light .stp { border-color: #e2e8f0; background: #fff; }
+  .v-red { border-color: rgba(248,113,113,.7); background: rgba(248,113,113,.08); color: #fca5a5; }
+  html.light .v-red { color: #b91c1c; }
+  html.light .tg[aria-pressed="true"] .sw { background: rgb(var(--tc)); }
+</style>
+</head>
+<body class="font-sans antialiased min-h-screen">
+
+<nav class="sticky top-0 z-40 border-b border-slate-800/70 bg-slate-950/75 backdrop-blur">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+    <a href="index.html" class="flex items-center gap-2 min-w-0" title="Use Case Hub">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-400 to-sky-400 grid place-items-center shrink-0"><i data-lucide="key-round" class="w-4 h-4 text-slate-950"></i></div>
+      <span class="font-semibold text-sm truncate"><span class="zh">ZTNA 私有應用存取</span><span class="en">ZTNA Private Access</span></span>
+    </a>
+    <div class="hidden md:flex items-center gap-1 text-xs text-slate-400">
+      <a href="index.html" class="no-print px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100 inline-flex items-center gap-1"><i data-lucide="layout-grid" class="w-3.5 h-3.5"></i><span class="zh">Use Case 首頁</span><span class="en">Use Case Hub</span></a>
+      <a href="#sim" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">VPN vs NPA</span><span class="en">VPN vs NPA</span></a>
+      <a href="#concepts" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">關鍵設計</span><span class="en">Key Design</span></a>
+      <a href="#rollout" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">導入步驟</span><span class="en">Rollout</span></a>
+    </div>
+  </div>
+</nav>
+
+<header class="grid-bg border-b border-slate-800/70">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
+    <div class="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-widest text-emerald-300 mb-4"><i data-lucide="radio-tower" class="w-3.5 h-3.5"></i> Netskope One · Netskope Private Access (NPA) · ZTNA</div>
+    <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+      <span class="zh"><span class="hero-grad">ZTNA 取代 VPN</span>：連到應用，而不是連進網路</span>
+      <span class="en"><span class="hero-grad">ZTNA replaces VPN:</span> connect to apps, not to the network</span>
+    </h1>
+    <p class="mt-3 text-sm sm:text-base text-slate-400 max-w-3xl">
+      <span class="zh">VPN 一連上就等於進到內網，使用者與被入侵的裝置都能看到整個網段。Netskope Private Access 依身分與裝置狀態，逐一授權個別應用；沒被授權的主機根本看不到，連線內容還能用 TP 與 DLP 檢查。資料中心的 Publisher 只往外連線，不必在防火牆開放任何對外服務埠。</span>
+      <span class="en">Once a VPN connects, the user is on the internal network, and so is any compromised device. Netskope Private Access authorizes individual apps by identity and device posture; unauthorized hosts are simply invisible, and what flows through can be inspected with TP and DLP. The Publisher in the data center only connects outbound, so no inbound ports open on the firewall.</span>
+    </p>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6">
+
+<section id="sim" class="py-10 scroll-mt-16">
+  <div class="mb-5 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+    <div>
+      <div class="text-xs font-mono uppercase tracking-widest text-emerald-300">01 · VPN vs NPA</div>
+      <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">同一個人、同一台電腦，看到的內網差多少？</span><span class="en">Same user, same laptop: how much of the network do they see?</span></h2>
+      <p class="mt-2 text-sm text-slate-400 max-w-3xl"><span class="zh">切換存取方式與身分，看哪些內部系統碰得到；再打開「裝置遭入侵」並按「模擬橫向掃描」，比較攻擊者能找到什麼。也可以選「使用者動作」，看 TP 與 DLP 如何檢查私有應用的流量。</span><span class="en">Switch access method and persona to see which internal systems are reachable; then turn on "Device compromised" and run a lateral scan to compare what an attacker finds. Pick a user action to see TP and DLP inspect private-app traffic.</span></p>
+    </div>
+    <button id="btnScan" class="btn-s no-print" style="border-color:#f87171"><i data-lucide="scan-search" class="w-3.5 h-3.5"></i><span class="zh">模擬橫向掃描</span><span class="en">Run lateral scan</span></button>
+  </div>
+  <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+    <div class="flex items-center gap-2"><span class="text-xs text-slate-500"><span class="zh">存取方式</span><span class="en">Access</span></span><div class="seg" id="segMode"></div></div>
+    <div class="flex items-center gap-2"><span class="text-xs text-slate-500"><span class="zh">身分</span><span class="en">Persona</span></span><div class="seg" id="segUser"></div></div>
+    <div id="toggles" class="flex flex-wrap gap-2"></div>
+  </div>
+  <div class="mt-3 flex items-center gap-2"><span class="text-xs text-slate-500"><span class="zh">使用者動作</span><span class="en">User action</span></span><div class="seg" id="segAct"></div></div>
+  <div class="mt-4 grid lg:grid-cols-3 gap-4">
+    <div class="lg:col-span-2 flex flex-col gap-4">
+      <div class="card rounded-2xl p-3 sm:p-4 overflow-x-auto"><svg id="tp" class="tp w-full h-auto min-w-[760px]" viewBox="0 0 1100 460"></svg></div>
+      <div id="verdict" class="verdict rounded-2xl p-4"></div>
+    </div>
+    <div class="flex flex-col gap-4">
+      <div class="card rounded-2xl p-4">
+        <div class="text-xs font-mono uppercase tracking-widest text-slate-500 mb-2"><span class="zh">內部系統可見性</span><span class="en">Internal app visibility</span></div>
+        <div id="appList" class="grid gap-2"></div>
+      </div>
+      <div>
+        <div class="text-xs font-mono uppercase tracking-widest text-slate-500 mb-2"><span class="zh">橫向掃描結果</span><span class="en">Lateral scan</span></div>
+        <div id="term" class="term"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="concepts" class="py-10 border-t border-slate-800/70 scroll-mt-16 print-break">
+  <div class="mb-6">
+    <div class="text-xs font-mono uppercase tracking-widest text-emerald-300">02 · Key Design</div>
+    <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">關鍵設計與 VPN 比較</span><span class="en">Key design and VPN comparison</span></h2>
+  </div>
+  <div id="cards" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+  <div class="mt-4 card rounded-2xl p-5 overflow-x-auto"><table id="cmp" class="cmp w-full text-sm min-w-[620px]"></table></div>
+</section>
+
+<section id="rollout" class="py-10 border-t border-slate-800/70 scroll-mt-16 print-break">
+  <div class="mb-6">
+    <div class="text-xs font-mono uppercase tracking-widest text-emerald-300">03 · Rollout</div>
+    <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">導入步驟：依官方 8 步驟，可與 VPN 並行逐步汰換</span><span class="en">Rollout: the official 8 steps, alongside VPN until it retires</span></h2>
+  </div>
+  <div id="steps" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+</section>
+</main>
+
+<footer class="border-t border-slate-800/70 mt-4">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-28 text-xs text-slate-500 flex flex-col sm:flex-row gap-2 sm:justify-between">
+    <span>Netskope · ZTNA Private Access (NPA) Use Case</span>
+    <span><span class="zh">依 Netskope 文件「Netskope Private Access」整理；示意模擬，主機、群組與政策為範例。</span><span class="en">Based on Netskope's "Netskope Private Access" documentation; illustrative, hosts, groups and policies are examples.</span></span>
+  </div>
+</footer>
+
+<div id="toolbar" class="fixed bottom-4 left-1/2 -translate-x-1/2 sm:left-auto sm:right-4 sm:translate-x-0 z-50 card rounded-xl px-2 py-2 flex items-center gap-2 shadow-2xl">
+  <a href="index.html" class="h-[34px] w-[34px] grid place-items-center rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800" title="Use Case Hub"><i data-lucide="layout-grid" class="w-4 h-4"></i></a>
+  <div class="seg tb" id="segLang"><button data-lang="zh" aria-pressed="true">中文</button><button data-lang="en" aria-pressed="false">EN</button></div>
+  <div class="seg tb" id="segTheme">
+    <button data-theme="dark" aria-pressed="true"><i data-lucide="moon" class="w-3.5 h-3.5"></i><span class="zh">深</span><span class="en">Dark</span></button>
+    <button data-theme="light" aria-pressed="false"><i data-lucide="sun" class="w-3.5 h-3.5"></i><span class="zh">淺</span><span class="en">Light</span></button>
+  </div>
+  <button id="btnPdf" class="h-[34px] px-3 inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800 text-[13px] font-medium"><i data-lucide="file-down" class="w-4 h-4"></i> PDF</button>
+</div>
+
+<script id="icon-shim">/* Inlined Lucide icons (ISC License, lucide.dev) — no CDN needed */
+window.lucide = (function () {
+  const ICONS = {"key-round":[["path",{"d":"M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"}],["circle",{"cx":"16.5","cy":"7.5","r":".5","fill":"currentColor"}]],"layout-grid":[["rect",{"width":"7","height":"7","x":"3","y":"3","rx":"1"}],["rect",{"width":"7","height":"7","x":"14","y":"3","rx":"1"}],["rect",{"width":"7","height":"7","x":"14","y":"14","rx":"1"}],["rect",{"width":"7","height":"7","x":"3","y":"14","rx":"1"}]],"radio-tower":[["path",{"d":"M4.9 16.1C1 12.2 1 5.8 4.9 1.9"}],["path",{"d":"M7.8 4.7a6.14 6.14 0 0 0-.8 7.5"}],["circle",{"cx":"12","cy":"9","r":"2"}],["path",{"d":"M16.2 4.8c2 2 2.26 5.11.8 7.47"}],["path",{"d":"M19.1 1.9a9.96 9.96 0 0 1 0 14.1"}],["path",{"d":"M9.5 18h5"}],["path",{"d":"m8 22 4-11 4 11"}]],"scan-search":[["path",{"d":"M3 7V5a2 2 0 0 1 2-2h2"}],["path",{"d":"M17 3h2a2 2 0 0 1 2 2v2"}],["path",{"d":"M21 17v2a2 2 0 0 1-2 2h-2"}],["path",{"d":"M7 21H5a2 2 0 0 1-2-2v-2"}],["circle",{"cx":"12","cy":"12","r":"3"}],["path",{"d":"m16 16-1.9-1.9"}]],"moon":[["path",{"d":"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"}]],"sun":[["circle",{"cx":"12","cy":"12","r":"4"}],["path",{"d":"M12 2v2"}],["path",{"d":"M12 20v2"}],["path",{"d":"m4.93 4.93 1.41 1.41"}],["path",{"d":"m17.66 17.66 1.41 1.41"}],["path",{"d":"M2 12h2"}],["path",{"d":"M20 12h2"}],["path",{"d":"m6.34 17.66-1.41 1.41"}],["path",{"d":"m19.07 4.93-1.41 1.41"}]],"file-down":[["path",{"d":"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"}],["path",{"d":"M14 2v5a1 1 0 0 0 1 1h5"}],["path",{"d":"M12 18v-6"}],["path",{"d":"m9 15 3 3 3-3"}]],"arrow-right":[["path",{"d":"M5 12h14"}],["path",{"d":"m12 5 7 7-7 7"}]],"key":[["path",{"d":"m2 21 9.6-9.6"}],["path",{"d":"m7.5 15.5 2.3 2.3a1 1 0 0 1 0 1.4l-2.1 2.1a1 1 0 0 1-1.4 0L4 19"}],["circle",{"cx":"15.5","cy":"7.5","r":"5.5"}]],"app-window":[["rect",{"x":"2","y":"4","width":"20","height":"16","rx":"2"}],["path",{"d":"M10 4v4"}],["path",{"d":"M2 8h20"}],["path",{"d":"M6 4v4"}]],"folder-open":[["path",{"d":"m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"}]],"monitor":[["rect",{"width":"20","height":"14","x":"2","y":"3","rx":"2"}],["line",{"x1":"8","x2":"16","y1":"21","y2":"21"}],["line",{"x1":"12","x2":"12","y1":"17","y2":"21"}]],"database":[["ellipse",{"cx":"12","cy":"5","rx":"9","ry":"3"}],["path",{"d":"M3 5V19A9 3 0 0 0 21 19V5"}],["path",{"d":"M3 12A9 3 0 0 0 21 12"}]],"files":[["path",{"d":"M15 2h-4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8"}],["path",{"d":"M16.706 2.706A2.4 2.4 0 0 0 15 2v5a1 1 0 0 0 1 1h5a2.4 2.4 0 0 0-.706-1.706z"}],["path",{"d":"M5 7a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 1.732-1"}]],"bug":[["path",{"d":"M12 20v-9"}],["path",{"d":"M14 7a4 4 0 0 1 4 4v3a6 6 0 0 1-12 0v-3a4 4 0 0 1 4-4z"}],["path",{"d":"M14.12 3.88 16 2"}],["path",{"d":"M21 21a4 4 0 0 0-3.81-4"}],["path",{"d":"M21 5a4 4 0 0 1-3.55 3.97"}],["path",{"d":"M22 13h-4"}],["path",{"d":"M3 21a4 4 0 0 1 3.81-4"}],["path",{"d":"M3 5a4 4 0 0 0 3.55 3.97"}],["path",{"d":"M6 13H2"}],["path",{"d":"m8 2 1.88 1.88"}],["path",{"d":"M9 7.13V6a3 3 0 1 1 6 0v1.13"}]],"laptop":[["path",{"d":"M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"}],["path",{"d":"M20.054 15.987H3.946"}]],"globe":[["circle",{"cx":"12","cy":"12","r":"10"}],["path",{"d":"M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"}],["path",{"d":"M2 12h20"}]],"door-open":[["path",{"d":"M10 21H2"}],["path",{"d":"M10 3H7a2 2 0 00-2 2v16"}],["path",{"d":"M14 12h.01"}],["path",{"d":"M19 21V5a2 2 0 00-1.675-1.974l-6.163-1.013A1 1 0 0010 3v18a1 1 0 001.124.992z"}],["path",{"d":"M22 21h-3"}]],"cloud":[["path",{"d":"M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"}]],"server":[["rect",{"width":"20","height":"8","x":"2","y":"2","rx":"2","ry":"2"}],["rect",{"width":"20","height":"8","x":"2","y":"14","rx":"2","ry":"2"}],["line",{"x1":"6","x2":"6.01","y1":"6","y2":"6"}],["line",{"x1":"6","x2":"6.01","y1":"18","y2":"18"}]],"triangle-alert":[["path",{"d":"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"}],["path",{"d":"M12 9v4"}],["path",{"d":"M12 17h.01"}]],"shield-alert":[["path",{"d":"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"}],["path",{"d":"M12 8v4"}],["path",{"d":"M12 16h.01"}]],"shrink":[["path",{"d":"m15 15 6 6m-6-6v4.8m0-4.8h4.8"}],["path",{"d":"M9 19.8V15m0 0H4.2M9 15l-6 6"}],["path",{"d":"M15 4.2V9m0 0h4.8M15 9l6-6"}],["path",{"d":"M9 4.2V9m0 0H4.2M9 9 3 3"}]],"circle-check":[["circle",{"cx":"12","cy":"12","r":"10"}],["path",{"d":"m16 9-5.5 5.5L8 12"}]],"eye-off":[["path",{"d":"M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"}],["path",{"d":"M14.084 14.158a3 3 0 0 1-4.242-4.242"}],["path",{"d":"M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"}],["path",{"d":"m2 2 20 20"}]],"shield-check":[["path",{"d":"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"}],["path",{"d":"m9 12 2 2 4-4"}]],"arrow-up-right":[["path",{"d":"M7 7h10v10"}],["path",{"d":"M7 17 17 7"}]],"plus-circle":[["circle",{"cx":"12","cy":"12","r":"10"}],["path",{"d":"M8 12h8"}],["path",{"d":"M12 8v8"}]],"route":[["circle",{"cx":"6","cy":"19","r":"3"}],["path",{"d":"M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"}],["circle",{"cx":"18","cy":"5","r":"3"}]],"users":[["path",{"d":"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"}],["path",{"d":"M16 3.128a4 4 0 0 1 0 7.744"}],["path",{"d":"M22 21v-2a4 4 0 0 0-3-3.87"}],["circle",{"cx":"9","cy":"7","r":"4"}]],"list-checks":[["path",{"d":"M13 5h8"}],["path",{"d":"M13 12h8"}],["path",{"d":"M13 19h8"}],["path",{"d":"m3 17 2 2 4-4"}],["path",{"d":"m3 7 2 2 4-4"}]],"scroll-text":[["path",{"d":"M15 12h-5"}],["path",{"d":"M15 8h-5"}],["path",{"d":"M19 17V5a2 2 0 0 0-2-2H4"}],["path",{"d":"M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"}]],"loader":[["path",{"d":"M12 2v4"}],["path",{"d":"m16.2 7.8 2.9-2.9"}],["path",{"d":"M18 12h4"}],["path",{"d":"m16.2 16.2 2.9 2.9"}],["path",{"d":"M12 18v4"}],["path",{"d":"m4.9 19.1 2.9-2.9"}],["path",{"d":"M2 12h4"}],["path",{"d":"m4.9 4.9 2.9 2.9"}]]};
+  const NS = 'http://www.w3.org/2000/svg';
+  function createIcons() {
+    document.querySelectorAll('i[data-lucide]').forEach(function (el) {
+      const name = el.getAttribute('data-lucide');
+      const node = ICONS[name];
+      if (!node) return;
+      const svg = document.createElementNS(NS, 'svg');
+      const base = { xmlns: NS, width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' };
+      Object.keys(base).forEach(function (k) { svg.setAttribute(k, base[k]); });
+      svg.setAttribute('class', ('lucide lucide-' + name + ' ' + (el.getAttribute('class') || '')).trim());
+      node.forEach(function (child) {
+        const c = document.createElementNS(NS, child[0]);
+        Object.keys(child[1]).forEach(function (k) { if (k !== 'key') c.setAttribute(k, child[1][k]); });
+        svg.appendChild(c);
+      });
+      el.replaceWith(svg);
+    });
+  }
+  return { createIcons: createIcons };
+})();
+</script>
+<script>
+let lang = document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'zh';
+const L = (zh, en) => ({ zh, en });
+const tr = (x) => (x && typeof x === 'object' && 'zh' in x) ? x[lang] : x;
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => document.querySelectorAll(s);
+const esc = (s) => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+/* ===================== DATA ===================== */
+const APPS = {
+  erp:   { y: 70,  icon: 'app-window', nm: L('ERP 系統', 'ERP'), host: 'erp.corp.local:443', ip: '10.1.1.10', port: '443/tcp' },
+  files: { y: 178, icon: 'folder-open', nm: L('檔案伺服器', 'File server'), host: 'files.corp.local:445', ip: '10.1.2.20', port: '445/tcp (SMB)' },
+  rdp:   { y: 286, icon: 'monitor', nm: L('跳板機（RDP）', 'Jump host (RDP)'), host: 'jump01.corp.local:3389', ip: '10.1.3.5', port: '3389/tcp' },
+  db:    { y: 394, icon: 'database', nm: L('財務資料庫', 'Finance database'), host: 'findb.corp.local:1433', ip: '10.1.4.8', port: '1433/tcp' }
+};
+const USERS = {
+  fin: { nm: L('Remote User', 'Remote user'), dev: L('公司筆電 · 遠端辦公', 'Company laptop · remote'), managed: true, allow: ['erp', 'files'] },
+  it:  { nm: L('IT 管理員', 'IT admin'), dev: L('公司筆電 · 受管裝置', 'Company laptop · managed'), managed: true, allow: ['erp', 'files', 'rdp', 'db'] },
+  ctr: { nm: L('外包廠商', 'Contractor'), dev: L('自有電腦 · 非受管裝置', 'Own PC · unmanaged'), managed: false, allow: ['erp'] }
+};
+const MODES = { vpn: { nm: 'VPN', c: '248 113 113' }, npa: { nm: 'NPA (ZTNA)', c: '52 211 153' } };
+const CFG = [
+  { id: 'insp', c: '167 139 250', nm: 'TP + DLP', ds: L('NPA 流量內容檢查', 'NPA content inspection') },
+  { id: 'nc', c: '251 146 60', nm: L('裝置不合規', 'Non-compliant device'), ds: L('例如 EDR 未執行', 'e.g. EDR not running') },
+  { id: 'comp', c: '248 113 113', nm: L('裝置遭入侵', 'Device compromised'), ds: L('惡意程式在內網找目標', 'Malware hunts the network') }
+];
+let mode = 'vpn', user = 'fin', on = { insp: true, nc: false, comp: false }, scanned = false, act = 'none';
+const ACTS = {
+  none: { nm: L('一般存取', 'Normal access') },
+  mal:  { nm: L('上傳惡意檔案', 'Upload malware'), app: 'files' },
+  dlp:  { nm: L('下載客戶個資', 'Download customer PII'), app: 'erp' }
+};
+
+/* ===================== ENGINE ===================== */
+function status() {
+  const u = USERS[user], out = {};
+  Object.keys(APPS).forEach(k => {
+    const allowed = u.allow.includes(k);
+    if (mode === 'vpn') out[k] = on.comp ? 'exp' : (allowed ? 'ok' : 'exp');
+    else if (!u.managed) out[k] = allowed ? 'ok' : 'hid';
+    else if (on.nc) out[k] = allowed ? 'blk' : 'hid';
+    else out[k] = allowed ? 'ok' : 'hid';
+  });
+  return out;
+}
+const ST = {
+  ok:  { c: '52 211 153', t: L('可存取', 'Accessible') },
+  exp: { c: '248 113 113', t: L('連得到（不在授權範圍）', 'Reachable (not authorized)') },
+  hid: { c: '100 116 139', t: L('看不到', 'Invisible') },
+  blk: { c: '251 146 60', t: L('暫時阻擋', 'Blocked for now') }
+};
+
+/* ===================== DIAGRAM ===================== */
+function node(x, y, w, h, c, icon, t1, t2, cls) {
+  const x0 = x - w / 2, y0 = y - h / 2;
+  return `<g class="node ${cls}" style="--c:${c}"><rect class="base" x="${x0}" y="${y0}" width="${w}" height="${h}" rx="14"/><rect class="tint" x="${x0}" y="${y0}" width="${w}" height="${h}" rx="14"/>
+    <foreignObject x="${x0 + 12}" y="${y - 16}" width="32" height="32"><div xmlns="http://www.w3.org/1999/xhtml" class="ico w-8 h-8 grid place-items-center"><i data-lucide="${icon}" class="w-6 h-6"></i></div></foreignObject>
+    <text class="t1" x="${x0 + 52}" y="${y - 3}">${esc(t1)}</text><text class="t2" x="${x0 + 52}" y="${y + 15}">${esc(t2)}</text></g>`;
+}
+function tag(x, y, w, ok, txt) {
+  return `<g class="tag"><rect x="${x - w / 2}" y="${y - 11}" width="${w}" height="22" rx="11" fill="${ok ? 'rgba(52,211,153,.15)' : 'rgba(248,113,113,.15)'}" stroke="${ok ? '#34d399' : '#f87171'}"/><text x="${x}" y="${y + 4}" text-anchor="middle" fill="${ok ? '#6ee7b7' : '#fca5a5'}">${esc(txt)}</text></g>`;
+}
+function flow(d, c, live) { return `<path class="flow" style="--fc:${c}" d="${d}"/>` + (live ? `<circle class="pk" r="5" style="--fc:${c}"><animateMotion dur="1.4s" repeatCount="indefinite" path="${d}"/></circle>` : ''); }
+function buildSvg() {
+  const S = status(), u = USERS[user];
+  let s = `<rect class="zone" x="12" y="20" width="225" height="420" rx="16"/><text class="zone-t" x="30" y="44">${tr(L('使用者', 'USERS'))}</text>
+    <rect class="zone" x="252" y="20" width="300" height="420" rx="16"/><text class="zone-t" x="270" y="44">${mode === 'vpn' ? 'INTERNET' : 'NETSKOPE NEWEDGE'}</text>
+    <rect class="zone" x="567" y="20" width="520" height="420" rx="16"/><text class="zone-t" x="585" y="44">${tr(L('資料中心', 'DATA CENTER'))}</text>`;
+  const red = '248 113 113', grn = '52 211 153';
+  const viaBrowser = mode === 'npa' && !u.managed;
+  s += node(125, 230, 200, 92, user === 'ctr' ? '251 191 36' : '96 165 250', on.comp ? 'bug' : 'laptop', tr(u.nm), tr(u.dev), on.comp ? 'exp' : '');
+  if (mode === 'vpn') {
+    s += `<path class="ghost" d="M225 230 H335"/><path class="ghost" d="M465 230 H575"/>`;
+    s += flow('M225 230 H335', red, true) + flow('M465 230 H575', red, true);
+    s += node(400, 230, 130, 70, '148 163 184', 'globe', 'Internet', tr(L('加密通道', 'Tunnel')), '');
+    s += node(655, 230, 160, 84, red, 'door-open', tr(L('VPN 閘道', 'VPN gateway')), tr(L('對外開放服務埠', 'Inbound port open')), 'exp');
+    s += tag(655, 170, 170, false, tr(L('暴露在網際網路', 'Exposed to internet')));
+    s += `<path class="bus" d="M820 50 V420"/><text class="lbl" x="812" y="62" text-anchor="end">${tr(L('扁平內網 10.1.0.0/16', 'Flat network 10.1.0.0/16'))}</text>`;
+    s += flow('M735 230 H820', red, false);
+    Object.entries(APPS).forEach(([k, a]) => s += flow(`M820 ${a.y} H855`, S[k] === 'ok' ? grn : red, false));
+    s += `<g class="hosts"><text x="826" y="436">+248 hosts · 37 open ports</text></g>`;
+  } else {
+    s += `<path class="ghost" d="M225 230 H285"/><path class="ghost" d="M595 230 H515"/>`;
+    s += node(400, 230, 230, 96, grn, 'cloud', 'Private Access', viaBrowser ? 'NewEdge · Browser Access' : tr(L('NewEdge · 身分 · 裝置狀態', 'NewEdge · identity · posture')), on.nc && u.managed ? 'blk' : 'act');
+    s += node(680, 230, 170, 84, grn, 'server', 'Publisher', tr(L('僅對外連線', 'Outbound only')), '');
+    s += tag(680, 170, 190, true, tr(L('不需開放 inbound port', 'No inbound ports')));
+    s += flow('M225 230 H285', on.nc && u.managed ? '251 146 60' : grn, !(on.nc && u.managed));
+    s += flow('M595 230 H515', grn, true);
+    s += `<text class="lbl" x="555" y="258" text-anchor="middle">outbound 443</text>`;
+    s += `<path class="bus off" d="M820 50 V420"/>`;
+    Object.entries(APPS).forEach(([k, a]) => { if (S[k] === 'ok') s += flow(`M765 230 H800 V${a.y} H855`, grn, true); });
+    s += `<g class="hosts off"><text x="826" y="436">${tr(L('其他主機：不可見', 'Other hosts: invisible'))}</text></g>`;
+    if (viaBrowser) s += tag(125, 165, 170, true, tr(L('免 Client · 瀏覽器存取', 'Clientless · browser')));
+    if (on.nc && u.managed) s += tag(400, 165, 190, false, tr(L('裝置狀態檢查未通過', 'Posture check failed')));
+  }
+  Object.entries(APPS).forEach(([k, a]) => s += node(965, a.y, 210, 70, ST[S[k]].c, a.icon, tr(a.nm), a.host, S[k]));
+  if (mode === 'npa' && on.insp) s += tag(400, 300, 150, true, tr(L('TP · DLP 檢查', 'TP · DLP inspection')));
+  if (act !== 'none') {
+    const A = ACTS[act], a = APPS[A.app], st = S[A.app];
+    if (st === 'ok' || st === 'exp') {
+      const stop = mode === 'npa' && on.insp;
+      s += tag(965, a.y - 46, 150, stop, stop ? (act === 'mal' ? tr(L('TP 已阻擋', 'Blocked by TP')) : tr(L('DLP 已阻擋', 'Blocked by DLP'))) : tr(L('未檢查即放行', 'Passed uninspected')));
+    }
+  }
+  $('#tp').innerHTML = s;
+}
+
+/* ===================== PANELS ===================== */
+function renderApps() {
+  const S = status();
+  $('#appList').innerHTML = Object.entries(APPS).map(([k, a]) => `<div class="appc ${S[k]}"><div class="flex items-center justify-between gap-2"><span class="flex items-center gap-2 font-semibold text-slate-100"><i data-lucide="${a.icon}" class="w-4 h-4"></i>${tr(a.nm)}</span><span class="text-xs font-semibold" style="color:rgb(${ST[S[k]].c})">${tr(ST[S[k]].t)}</span></div><div class="mt-0.5 font-mono text-[11px] text-slate-500">${a.host}</div></div>`).join('');
+}
+function renderVerdict() {
+  const S = status(), u = USERS[user], v = $('#verdict');
+  const n = (st) => Object.values(S).filter(x => x === st).length;
+  const extra = Object.keys(APPS).filter(k => !u.allow.includes(k)).map(k => tr(APPS[k].nm)).join(tr(L('、', ', ')));
+  let cls, icon, t, d;
+  if (mode === 'vpn') {
+    if (on.comp) { cls = 'v-red'; icon = 'bug'; t = L('入侵者跟著進到整個內網', 'The attacker is on the whole network too'); d = L('VPN 給的是網路層存取。裝置被入侵後，惡意程式可以掃描整個網段、橫向移動到任何開放服務的主機。', 'VPN grants network-level access. Once the device is compromised, malware can scan the whole range and move laterally to any host with an open service.'); }
+    else { cls = 'v-risk'; icon = 'triangle-alert'; t = L('連上 VPN 等於進到整個內網', 'Connecting to VPN puts you on the whole network'); d = extra ? L(`${tr(u.nm)} 只需要 ${u.allow.length} 個系統，卻連得到全部 4 個，包括${extra}，以及網段裡的其他主機。`, `${tr(u.nm)} needs ${u.allow.length} systems but can reach all 4, including ${extra}, plus every other host in the range.`) : L('IT 管理員本來就需要這 4 個系統，但 VPN 同時開放了網段裡的其他所有主機。', 'IT admins need these 4 systems, but VPN also opens every other host in the range.'); }
+    if (!u.managed) d = L(tr(d) + '外包廠商還得在自己的電腦裝 VPN 軟體，公司無法管理那台電腦。', tr(d) + ' The contractor must also install VPN software on a PC the company cannot manage.');
+    if (on.nc) d = L(tr(d) + '傳統 VPN 通常只在連線時驗證身分，裝置不合規也照樣連得上。', tr(d) + ' Traditional VPN usually only checks identity at connect time, so a non-compliant device still connects.');
+  } else if (!u.managed) {
+    cls = 'v-ok'; icon = 'globe'; t = L('非受管裝置：只開放 ERP 網頁', 'Unmanaged device: ERP web only'); d = L('外包廠商不必安裝任何軟體，經 Browser Access 只能開啟被授權的 ERP 網頁，其他系統完全看不到。若需要 RDP／SSH，可搭配 PRA 並全程錄影。', 'The contractor installs nothing and, via Browser Access, opens only the authorized ERP web app; everything else is invisible. For RDP/SSH, add PRA with full session recording.');
+  } else if (on.nc) {
+    cls = 'v-risk'; icon = 'shield-alert'; t = L('裝置不合規：授權的應用也暫時阻擋', 'Non-compliant device: even authorized apps are blocked'); d = L('NPA 每次連線都會檢查裝置狀態。恢復合規（例如 EDR 重新執行）後，存取自動恢復。', 'NPA checks device posture on every connection. Access returns automatically once the device is compliant again (for example EDR running).');
+  } else if (on.comp) {
+    cls = 'v-risk'; icon = 'shrink'; t = L(`影響範圍縮小到 ${n('ok')} 個授權應用`, `Blast radius limited to ${n('ok')} authorized apps`); d = L('裝置不在內網上，惡意程式掃不到任何主機，只能碰到這位使用者被授權的應用。若裝置狀態檢查偵測到異常（例如 EDR 被關閉），連授權應用也會被擋下。', 'The device is not on the network, so malware finds no hosts and can only reach this user\'s authorized apps. If posture detects trouble (for example EDR disabled), even those are blocked.');
+  } else {
+    cls = 'v-ok'; icon = 'circle-check'; t = L(`只看得到被授權的 ${n('ok')} 個應用`, `Only the ${n('ok')} authorized apps are visible`); d = extra ? L(`${extra}對這位使用者完全不可見，連主機是否存在都無從得知。`, `${extra} are completely invisible to this user, who cannot even tell they exist.`) : L('IT 管理員可以存取全部 4 個系統，但網段裡其他沒定義成私有應用的主機一樣看不到。', 'IT admins reach all 4 systems, but other hosts not defined as private apps stay invisible.');
+  }
+  if (act !== 'none') {
+    const A = ACTS[act], ap = APPS[A.app], an = tr(ap.nm), st = S[A.app];
+    if (st !== 'ok' && st !== 'exp') { cls = 'v-run'; icon = 'eye-off'; t = L(`這個身分碰不到${an}，動作不會發生`, `This persona cannot reach the ${an}, so the action never happens`); d = L('NPA 只放行被授權的應用；先決條件是要能存取，才談得上內容檢查。', 'NPA only lets authorized apps through; content inspection applies once access is granted.'); }
+    else if (mode === 'vpn') { cls = 'v-red'; icon = 'triangle-alert'; t = act === 'mal' ? L(`惡意檔案直接進到${an}`, `The malware lands on the ${an}`) : L('1,200 筆客戶個資被下載到筆電', '1,200 customer records downloaded to the laptop'); d = L('VPN 只負責建立連線，不檢查內容；要防護得另外在內網部署 IPS、DLP。', 'VPN only builds the tunnel and does not inspect content; protection needs separate internal IPS and DLP.'); }
+    else if (on.insp) { cls = 'v-ok'; icon = 'shield-check'; t = act === 'mal' ? L(`Threat Protection 攔下惡意檔案，沒進到${an}`, `Threat Protection stops the malware before the ${an}`) : L('DLP 偵測到 1,200 筆客戶個資，阻擋下載', 'DLP detects 1,200 customer records and blocks the download'); d = act === 'mal' ? L('NPA 的私有應用流量同樣經過 Netskope 的威脅防護（IPS 與惡意程式掃描），不必在內網另外部署。', 'Private-app traffic through NPA gets Netskope threat protection (IPS and malware scanning) with nothing extra deployed internally.') : L('同一套 DLP 規則也套用在私有應用：使用者有權限開 ERP，不代表能把大量個資帶走。事件記錄在 Skope IT。', 'The same DLP rules apply to private apps: having ERP access does not mean bulk PII can leave. Incidents are logged in Skope IT.'); }
+    else { cls = 'v-risk'; icon = 'triangle-alert'; t = act === 'mal' ? L(`未啟用 TP：惡意檔案進到${an}`, `TP off: the malware reaches the ${an}`) : L('未啟用 DLP：客戶個資被下載', 'DLP off: customer PII is downloaded'); d = L('存取控制只決定「能不能連」；打開 TP + DLP，才能檢查連線裡傳的內容。', 'Access control only decides whether you can connect; turn on TP + DLP to inspect what flows through.'); }
+  }
+  v.className = `verdict rounded-2xl p-4 ${cls}`;
+  v.innerHTML = `<div class="flex items-center gap-2 text-lg font-bold"><i data-lucide="${icon}" class="w-5 h-5"></i>${esc(tr(t))}</div><p class="mt-1.5 text-sm text-slate-300">${esc(tr(d))}</p>`;
+}
+function renderTerm() {
+  if (!scanned) { $('#term').innerHTML = `<div class="l dim">${tr(L('按「模擬橫向掃描」，從入侵者的角度看這台電腦能找到什麼。', 'Run a lateral scan to see what an attacker on this laptop can find.'))}</div>`; return; }
+  const S = status(), u = USERS[user];
+  let lines = [['cmd', 'nmap -sT -p 22,443,445,1433,3389 10.1.0.0/16']];
+  if (mode === 'vpn') {
+    Object.values(APPS).forEach(a => lines.push(['hit', `${a.ip.padEnd(11)} ${a.port.padEnd(15)} open`]));
+    lines.push(['hit', tr(L('… 另有 248 台主機、37 個開放埠', '… plus 248 more hosts, 37 open ports'))]);
+    lines.push(['dim', tr(L('→ 入侵者取得完整的內網地圖', '→ The attacker now has a full map of the network'))]);
+  } else {
+    lines.push(['ok', tr(L('0 hosts up：這台電腦不在內網上', '0 hosts up: this device is not on the network'))]);
+    const reach = Object.keys(APPS).filter(k => S[k] === 'ok');
+    if (reach.length) lines.push(['dim', tr(L(`只能透過已定義的私有應用存取：${reach.map(k => APPS[k].host).join('、')}`, `Reachable only as defined private apps: ${reach.map(k => APPS[k].host).join(', ')}`))]);
+    else lines.push(['ok', tr(L('沒有任何可存取的應用', 'No reachable apps'))]);
+    lines.push(['dim', tr(L('→ 每次連線都記錄在 Skope IT › Network Events', '→ Every connection is logged in Skope IT › Network Events'))]);
+  }
+  $('#term').innerHTML = lines.map(([k, t]) => `<div class="l ${k}">${esc(t)}</div>`).join('');
+}
+function renderControls() {
+  $('#segMode').innerHTML = Object.entries(MODES).map(([k, v]) => `<button data-v="${k}" aria-pressed="${k === mode}" style="--bc:${v.c}">${v.nm}</button>`).join('');
+  $$('#segMode button').forEach(b => b.addEventListener('click', () => { mode = b.dataset.v; renderSim(); }));
+  $('#segUser').innerHTML = Object.entries(USERS).map(([k, v]) => `<button data-v="${k}" aria-pressed="${k === user}" style="--bc:56 189 248">${tr(v.nm)}</button>`).join('');
+  $$('#segUser button').forEach(b => b.addEventListener('click', () => { user = b.dataset.v; renderSim(); }));
+  $('#segAct').innerHTML = Object.entries(ACTS).map(([k, v]) => `<button data-v="${k}" aria-pressed="${k === act}" style="--bc:167 139 250">${tr(v.nm)}</button>`).join('');
+  $$('#segAct button').forEach(b => b.addEventListener('click', () => { act = b.dataset.v; renderSim(); }));
+  $('#toggles').innerHTML = CFG.map(c => `<button class="tg" data-ctrl="${c.id}" aria-pressed="${on[c.id]}" style="--tc:${c.c}"><span class="nm">${esc(tr(c.nm))}</span><span class="ds">${esc(tr(c.ds))}</span><span class="sw"></span></button>`).join('');
+  $$('#toggles .tg').forEach(b => b.addEventListener('click', () => { on[b.dataset.ctrl] = !on[b.dataset.ctrl]; if (!on.comp) scanned = false; renderSim(); }));
+}
+function renderSim() { renderControls(); buildSvg(); renderApps(); renderVerdict(); renderTerm(); lucide.createIcons(); }
+$('#btnScan').addEventListener('click', () => { on.comp = true; scanned = true; renderSim(); });
+
+/* ===================== 02 / 03 ===================== */
+function renderStatic() {
+  const C = [
+    { icon: 'arrow-up-right', c: '52 211 153', t: L('Publisher 只往外連', 'Publisher connects outbound only'), d: L('輕量的 Publisher 部署在地端或雲端，主動往外連線，使用者到應用之間以 TLS 1.2 加密。防火牆不必開對外服務埠，內部應用不再暴露在網際網路上。', 'A lightweight Publisher on-prem or in the cloud dials out, and user-to-app traffic is encrypted with TLS 1.2. No inbound ports open on the firewall, so internal apps leave the internet\'s view.') },
+    { icon: 'app-window', c: '56 189 248', t: L('以應用為單位授權', 'Authorize per app'), d: L('私有應用以「主機＋連接埠」定義，政策授權的是單一應用，不是整個網段；沒被授權的主機連存在都看不到。', 'Private apps are defined as host plus port; policy authorizes a single app, not a subnet, and unauthorized hosts are not even visible.') },
+    { icon: 'shield-check', c: '167 139 250', t: L('身分＋裝置狀態', 'Identity plus device posture'), d: L('Private Access 在放行前檢查身分、裝置狀態與存取政策；流量還能套用威脅防護（IPS、惡意程式掃描）與 DLP。', 'Private Access checks identity, device posture and access policy before granting access, and traffic can also get threat protection (IPS, malware scanning) and DLP.') },
+    { icon: 'globe', c: '251 191 36', t: L('外包走 Browser Access', 'Contractors use Browser Access'), d: L('非受管裝置不用安裝軟體，用瀏覽器開啟授權的網頁應用；需要 RDP／SSH 時搭配 PRA，可全程錄影。', 'Unmanaged devices install nothing and open authorized web apps in a browser; for RDP/SSH add PRA with full session recording.'), link: 'netskope-pra.html' }
+  ];
+  $('#cards').innerHTML = C.map(c => `<div class="card rounded-2xl p-5"><div class="w-10 h-10 rounded-lg grid place-items-center" style="background:rgb(${c.c} / .14);color:rgb(${c.c})"><i data-lucide="${c.icon}" class="w-5 h-5"></i></div>
+    <div class="mt-3 font-semibold text-slate-100">${tr(c.t)}</div><p class="mt-1.5 text-sm text-slate-300 leading-relaxed">${tr(c.d)}</p>
+    ${c.link ? `<a href="${c.link}" class="no-print mt-2 inline-flex items-center gap-1 text-sm font-semibold text-emerald-300 hover:underline">${tr(L('看 PRA use case', 'See the PRA use case'))}<i data-lucide="arrow-right" class="w-4 h-4"></i></a>` : ''}</div>`).join('');
+  const R = [
+    [L('存取範圍', 'Access scope'), L('整個網段（網路層）', 'Whole network (network layer)'), L('個別應用（主機＋連接埠）', 'Individual apps (host + port)')],
+    [L('對外暴露', 'Internet exposure'), L('VPN 閘道須開放對外服務埠', 'VPN gateway needs inbound ports'), L('Publisher 只往外連，不開 inbound port', 'Publisher dials out; no inbound ports')],
+    [L('裝置檢查', 'Device checks'), L('通常只在連線時驗證身分', 'Usually identity only, at connect time'), L('每次連線檢查身分與裝置狀態', 'Identity and posture on every connection')],
+    [L('外包／非受管裝置', 'Contractors / unmanaged'), L('需在對方電腦安裝 VPN 軟體', 'VPN software on their PC'), L('Browser Access 免安裝；RDP／SSH 搭配 PRA', 'Clientless Browser Access; PRA for RDP/SSH')],
+    [L('入侵後的影響', 'After a compromise'), L('可掃描整個網段、橫向移動', 'Scan the whole range, move laterally'), L('只碰得到授權的應用', 'Only the authorized apps')],
+    [L('內容檢查', 'Content inspection'), L('不檢查，需另建 IPS／DLP', 'None; separate IPS / DLP needed'), L('同一平台套用 TP（IPS、惡意程式）與 DLP', 'TP (IPS, malware) and DLP on the same platform')],
+    [L('可視性', 'Visibility'), L('多半只知道誰連上 VPN', 'Mostly who connected'), L('每個應用連線都記錄在 Skope IT', 'Every app connection logged in Skope IT')]
+  ];
+  $('#cmp').innerHTML = `<thead><tr><th></th><th style="color:#f87171">VPN</th><th style="color:#34d399">NPA (ZTNA)</th></tr></thead><tbody>${R.map(r => `<tr><td class="text-xs font-semibold text-slate-400 whitespace-nowrap">${tr(r[0])}</td><td class="text-slate-300">${tr(r[1])}</td><td class="text-slate-100">${tr(r[2])}</td></tr>`).join('')}</tbody>`;
+  const S = [
+    { icon: 'plus-circle', t: L('建立 Publisher', 'Create a publisher'), d: L('在 Netskope 管理介面建立 Publisher，取得註冊 Token。', 'Create the publisher in the Netskope console and get its registration token.') },
+    { icon: 'server', t: L('部署 Publisher', 'Deploy the publisher'), d: L('部署在地端或雲端，與應用同一個網路。一台可服務同網段多個應用；彼此不互通的網段各需一台，建議備援。', 'Deploy on-prem or in the cloud on the app\'s network. One publisher serves many apps on that network; networks that cannot route to each other each need their own. Plan redundancy.') },
+    { icon: 'app-window', t: L('建立私有應用', 'Create the private app'), d: L('收集應用的主機與連接埠，以及所在網路，建立私有應用。', 'Gather the app\'s host, port(s) and network, then create the private app.') },
+    { icon: 'route', t: L('導流私有應用', 'Steer the private app'), d: L('設定讓這個私有應用的流量導向 NPA。', 'Configure steering so this private app\'s traffic goes to NPA.') },
+    { icon: 'users', t: L('加入使用者', 'Add users'), d: L('從 Entra ID 等身分來源同步使用者與群組。', 'Provision users and groups from Entra ID or another identity source.') },
+    { icon: 'list-checks', t: L('建立存取政策', 'Create access policies'), d: L('依身分、裝置狀態與應用權限授權；非受管裝置另開 Browser Access。', 'Authorize by identity, device posture and app permission; add Browser Access for unmanaged devices.') },
+    { icon: 'laptop', t: L('部署 Netskope Client', 'Deploy the Netskope Client'), d: L('已用 SWG 的環境沿用同一個 Client，使用者不必再手動撥 VPN。', 'Where SWG is in use, the same Client carries NPA, so users stop dialing a VPN.') },
+    { icon: 'scroll-text', t: L('在 Skope IT 檢視', 'Review in Skope IT'), d: L('在 Skope IT 查看私有應用與 Network Events，確認後依應用逐批轉移，最後關閉 VPN。', 'Check private apps and network events in Skope IT, move apps over in batches, then shut down the VPN.') }
+  ];
+  $('#steps').innerHTML = S.map((s, i) => `<div class="stp"><div class="flex items-center gap-2"><span class="font-mono text-xs font-bold text-emerald-300">0${i + 1}</span><i data-lucide="${s.icon}" class="w-4 h-4 text-emerald-300"></i><span class="font-semibold text-slate-100">${tr(s.t)}</span></div><p class="mt-2 text-sm text-slate-300 leading-relaxed">${tr(s.d)}</p></div>`).join('');
+}
+
+/* ===================== LANG / THEME / PRINT ===================== */
+function applyLang(l) {
+  lang = l;
+  document.documentElement.setAttribute('lang', l === 'en' ? 'en' : 'zh-Hant');
+  document.title = l === 'en' ? 'ZTNA Private Access' : 'ZTNA 私有應用存取';
+  $$('#segLang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
+  try { localStorage.setItem('nsk-poc-lang', l); } catch (e) {}
+  renderSim(); renderStatic(); lucide.createIcons();
+}
+function applyTheme(t) {
+  document.documentElement.classList.toggle('light', t === 'light');
+  $$('#segTheme button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.theme === t)));
+  try { localStorage.setItem('nsk-poc-theme', t); } catch (e) {}
+}
+$$('#segLang button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+$$('#segTheme button').forEach(b => b.addEventListener('click', () => applyTheme(b.dataset.theme)));
+let themeBeforePrint = null;
+window.addEventListener('beforeprint', () => { themeBeforePrint = document.documentElement.classList.contains('light') ? 'light' : 'dark'; document.documentElement.classList.add('light'); });
+window.addEventListener('afterprint', () => { if (themeBeforePrint === 'dark') document.documentElement.classList.remove('light'); themeBeforePrint = null; });
+$('#btnPdf').addEventListener('click', () => window.print());
+
+applyTheme(document.documentElement.classList.contains('light') ? 'light' : 'dark');
+applyLang(lang);
+</script>
+</body>
+</html>
