@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT 遠端連入（延伸情境）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+  (function () {
+    try {
+      if (localStorage.getItem('nsk-poc-theme') === 'light') document.documentElement.classList.add('light');
+      if (localStorage.getItem('nsk-poc-lang') === 'en') document.documentElement.setAttribute('lang', 'en');
+    } catch (e) {}
+  })();
+</script>
+<style id="tw-inline">*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:Inter,Noto Sans TC,system-ui,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:JetBrains Mono,ui-monospace,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.visible{visibility:visible}.invisible{visibility:hidden}.static{position:static}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.bottom-4{bottom:1rem}.left-1\/2{left:50%}.top-0{top:0}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-2{margin-bottom:.5rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-1\.5{margin-top:.375rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.table{display:table}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-14{height:3.5rem}.h-3\.5{height:.875rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-8{height:2rem}.h-\[34px\]{height:34px}.h-auto{height:auto}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-3\.5{width:.875rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-8{width:2rem}.w-\[34px\]{width:34px}.w-full{width:100%}.min-w-0{min-width:0}.min-w-\[620px\]{min-width:620px}.min-w-\[760px\]{min-width:760px}.max-w-3xl{max-width:48rem}.max-w-7xl{max-width:80rem}.flex-shrink,.shrink{flex-shrink:1}.shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%}.-translate-x-1\/2,.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scroll-mt-16{scroll-margin-top:4rem}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.place-items-center{place-items:center}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-4{gap:1rem}.gap-x-5{-moz-column-gap:1.25rem;column-gap:1.25rem}.gap-y-2{row-gap:.5rem}.divide-slate-800>:not([hidden])~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(30 41 59/var(--tw-divide-opacity,1))}.overflow-x-auto{overflow-x:auto}.truncate{overflow:hidden;text-overflow:ellipsis}.truncate,.whitespace-nowrap{white-space:nowrap}.rounded-2xl{border-radius:1rem}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85/var(--tw-border-opacity,1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59/var(--tw-border-opacity,1))}.border-slate-800\/70{border-color:rgba(30,41,59,.7)}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42/var(--tw-bg-opacity,1))}.bg-slate-950{--tw-bg-opacity:1;background-color:rgb(2 6 23/var(--tw-bg-opacity,1))}.bg-slate-950\/75{background-color:rgba(2,6,23,.75)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}.from-emerald-400{--tw-gradient-from:#34d399 var(--tw-gradient-from-position);--tw-gradient-to:rgba(52,211,153,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.to-sky-400{--tw-gradient-to:#38bdf8 var(--tw-gradient-to-position)}.p-3{padding:.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.pb-28{padding-bottom:7rem}.pt-8{padding-top:2rem}.font-mono{font-family:JetBrains Mono,ui-monospace,monospace}.font-sans{font-family:Inter,Noto Sans TC,system-ui,sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\[11px\]{font-size:11px}.text-\[13px\]{font-size:13px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-.025em}.tracking-widest{letter-spacing:.1em}.text-amber-300{--tw-text-opacity:1;color:rgb(252 211 77/var(--tw-text-opacity,1))}.text-blue-300{--tw-text-opacity:1;color:rgb(147 197 253/var(--tw-text-opacity,1))}.text-cyan-300{--tw-text-opacity:1;color:rgb(103 232 249/var(--tw-text-opacity,1))}.text-emerald-300{--tw-text-opacity:1;color:rgb(110 231 183/var(--tw-text-opacity,1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153/var(--tw-text-opacity,1))}.text-rose-300{--tw-text-opacity:1;color:rgb(253 164 175/var(--tw-text-opacity,1))}.text-slate-100{--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240/var(--tw-text-opacity,1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105/var(--tw-text-opacity,1))}.text-slate-950{--tw-text-opacity:1;color:rgb(2 6 23/var(--tw-text-opacity,1))}.text-violet-300{--tw-text-opacity:1;color:rgb(196 181 253/var(--tw-text-opacity,1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.ring{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.blur{--tw-blur:blur(8px)}.blur,.drop-shadow{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.drop-shadow{--tw-drop-shadow:drop-shadow(0 1px 2px rgba(0,0,0,.1)) drop-shadow(0 1px 1px rgba(0,0,0,.06))}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px)}.backdrop-blur,.backdrop-filter{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.hover\:bg-slate-800:hover{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.hover\:text-slate-100:hover{--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}.hover\:underline:hover{text-decoration-line:underline}@media (min-width:640px){.sm\:left-auto{left:auto}.sm\:right-4{right:1rem}.sm\:translate-x-0{--tw-translate-x:0px;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.sm\:flex-row{flex-direction:row}.sm\:justify-between{justify-content:space-between}.sm\:p-4{padding:1rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:py-12{padding-top:3rem;padding-bottom:3rem}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-base{font-size:1rem;line-height:1.5rem}}@media (min-width:768px){.md\:flex{display:flex}}@media (min-width:1024px){.lg\:col-span-2{grid-column:span 2/span 2}.lg\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.lg\:flex-row{flex-direction:row}.lg\:items-end{align-items:flex-end}.lg\:justify-between{justify-content:space-between}.lg\:text-5xl{font-size:3rem;line-height:1}}</style>
+<style>
+  :root { --accent: 52 211 153; }
+  html { scroll-behavior: smooth; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(96,165,250,.10), transparent 60%),
+      #060a13;
+    color: #e2e8f0;
+    transition: background-color .3s ease, color .3s ease;
+  }
+  html[lang="en"] .zh { display: none !important; }
+  html:not([lang="en"]) .en { display: none !important; }
+  .grid-bg {
+    background-image: linear-gradient(rgba(148,163,184,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .card { background: rgba(15,23,42,.65); border: 1px solid rgba(51,65,85,.6); backdrop-filter: blur(8px); }
+  .accent-text { color: rgb(var(--accent)); transition: color .4s ease; }
+  .accent-bg { background: rgb(var(--accent) / .12); border-color: rgb(var(--accent) / .4); transition: all .4s ease; }
+  .hero-grad { background-image: linear-gradient(90deg, #6ee7b7, #bae6fd, #93c5fd); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  .seg { display: inline-flex; flex-wrap: wrap; border: 1px solid #334155; border-radius: .6rem; overflow: hidden; background: rgba(15,23,42,.8); }
+  .seg button { padding: .45rem .85rem; font-size: .8rem; color: #cbd5e1; transition: all .25s ease; white-space: nowrap; display: inline-flex; align-items: center; gap: .4rem; }
+  .seg button + button { border-left: 1px solid #334155; }
+  .seg button:hover { background: rgba(51,65,85,.5); }
+  .seg button[aria-pressed="true"] { background: rgb(var(--bc, 52 211 153)); color: #020617; font-weight: 600; }
+  .seg .dot { width: 8px; height: 8px; border-radius: 9999px; background: rgb(var(--bc)); }
+  .seg button[aria-pressed="true"] .dot { background: #020617; }
+  .seg.tb button { padding: .4rem .75rem; }
+  .seg.tb button[aria-pressed="true"] { background: #22d3ee; color: #020617; }
+
+  /* ---------- topology ---------- */
+  .tp text { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
+  .tp .zone { fill: rgba(15,23,42,.35); stroke: rgba(100,116,139,.55); stroke-dasharray: 6 6; }
+  .tp .zone-t { fill: #94a3b8; font-size: 12px; font-weight: 600; letter-spacing: .06em; }
+  .tp .wire { fill: none; stroke: rgba(100,116,139,.55); stroke-width: 1.5; }
+  .tp .ghost { fill: none; stroke: rgba(100,116,139,.28); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; stroke-linejoin: round; }
+  .tp .flow { fill: none; stroke: rgb(var(--fc)); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 11 9; animation: dash 1.1s linear infinite; filter: drop-shadow(0 0 5px rgb(var(--fc) / .6)); }
+  .tp .flow.static { animation: none; stroke-dasharray: 6 6; stroke-width: 2.5; }
+  @keyframes dash { to { stroke-dashoffset: -20; } }
+  .tp .pk { fill: #fff; filter: drop-shadow(0 0 6px rgb(var(--fc))); }
+  .tp .fz { opacity: 0; transition: opacity .35s ease; }
+  .tp .fz.show { opacity: 1; }
+
+  .tp .node { cursor: pointer; transition: opacity .35s ease; }
+  .tp .node .base { fill: #0b1222; }
+  .tp .node .tint { fill: rgb(var(--c) / .06); stroke: rgb(var(--c) / .55); stroke-width: 1.5; transition: all .3s ease; }
+  .tp .node .ico { color: rgb(var(--c)); }
+  .tp .node .t1 { fill: #f1f5f9; font-size: 14px; font-weight: 700; }
+  .tp .node .t2 { fill: #94a3b8; font-size: 11px; }
+  .tp .node.sm .t1 { font-size: 12px; font-weight: 600; }
+  .tp .node:hover .tint { stroke: rgb(var(--c)); }
+  .tp .node.sel .tint { stroke: rgb(var(--c)); stroke-width: 3; filter: drop-shadow(0 0 10px rgb(var(--c) / .8)); fill: rgb(var(--c) / .14); }
+  .tp .node.dim > :not(.base) { opacity: .3; }
+  .tp .warn { transition: opacity .35s ease; }
+  .tp .xmark circle { fill: #7f1d1d; stroke: #f87171; stroke-width: 2; }
+  .tp .xmark path { stroke: #fecaca; stroke-width: 2.5; stroke-linecap: round; }
+
+  .fade-in { animation: fadeIn .45s ease both; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .pulse-dot { position: relative; }
+  .pulse-dot::after { content: ''; position: absolute; inset: 0; border-radius: 9999px; background: inherit; animation: ping 1.8s infinite; }
+  @keyframes ping { 0% { opacity: .7; transform: scale(1); } 100% { opacity: 0; transform: scale(2.2); } }
+  ::-webkit-scrollbar { height: 8px; width: 8px; }
+  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 8px; }
+  .print-only { display: none; }
+
+  /* =================== LIGHT =================== */
+  html.light body {
+    background: radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(96,165,250,.12), transparent 60%), #f1f5f9;
+    color: #0f172a;
+  }
+  html.light .grid-bg { background-image: linear-gradient(rgba(15,23,42,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,.05) 1px, transparent 1px); }
+  html.light .card { background: rgba(255,255,255,.9); border-color: #e2e8f0; box-shadow: 0 1px 2px rgba(15,23,42,.04); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #059669, #0284c7, #2563eb); }
+  html.light .accent-text { color: color-mix(in srgb, rgb(var(--accent)) 62%, #000); }
+  html.light .text-slate-100 { color: #0f172a; }
+  html.light .text-slate-200 { color: #1e293b; }
+  html.light .text-slate-300 { color: #334155; }
+  html.light .text-slate-400 { color: #475569; }
+  html.light .text-slate-500 { color: #64748b; }
+  html.light .text-slate-600 { color: #94a3b8; }
+  html.light .text-cyan-300, html.light .text-cyan-300\/90 { color: #0e7490; }
+  html.light .text-blue-300 { color: #1d4ed8; }
+  html.light .text-amber-300 { color: #b45309; }
+  html.light .text-red-300, html.light .text-rose-300 { color: #b91c1c; }
+  html.light .text-emerald-300 { color: #047857; }
+  html.light .text-emerald-400 { color: #059669; }
+  html.light .text-violet-300 { color: #6d28d9; }
+  html.light .hover\:text-slate-100:hover { color: #0f172a; }
+  html.light .bg-slate-950\/75 { background: rgba(255,255,255,.82); }
+  html.light .bg-slate-950\/70, html.light .bg-slate-950\/50 { background: #f8fafc; }
+  html.light .bg-slate-900 { background: #ffffff; }
+  html.light .bg-slate-900\/90 { background: #f1f5f9; }
+  html.light .bg-slate-800, html.light .bg-slate-800\/60 { background: #e2e8f0; }
+  html.light .hover\:bg-slate-800:hover { background: #e2e8f0; }
+  html.light .border-slate-600, html.light .border-slate-700 { border-color: #cbd5e1; }
+  html.light .border-slate-800, html.light .border-slate-800\/70 { border-color: #e2e8f0; }
+  html.light .divide-slate-800\/80 > :not([hidden]) ~ :not([hidden]) { border-color: #e2e8f0; }
+  html.light .seg { border-color: #cbd5e1; background: #fff; }
+  html.light .seg button { color: #334155; }
+  html.light .seg button + button { border-left-color: #cbd5e1; }
+  html.light .seg button:hover { background: #f1f5f9; }
+  html.light .seg button[aria-pressed="true"] { color: #020617; }
+  html.light .tp .zone { fill: rgba(255,255,255,.6); stroke: #94a3b8; }
+  html.light .tp .zone-t { fill: #475569; }
+  html.light .tp .wire { stroke: #94a3b8; }
+  html.light .tp .ghost { stroke: rgba(100,116,139,.45); }
+  html.light .tp .pk { fill: rgb(var(--fc)); stroke: #fff; stroke-width: 1.5; }
+  html.light .tp .node .base { fill: #ffffff; }
+  html.light .tp .node .t1 { fill: #0f172a; }
+  html.light .tp .node .t2 { fill: #475569; }
+  html.light .tp .node .ico { color: color-mix(in srgb, rgb(var(--c)) 70%, #000); }
+  html.light ::-webkit-scrollbar-thumb { background: #cbd5e1; }
+
+  /* =================== PRINT =================== */
+  @page { size: A4 landscape; margin: 10mm; }
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    html, body { background: #fff !important; }
+    body { zoom: .62; }
+    .no-print, nav, #toolbar { display: none !important; }
+    .print-only { display: block !important; }
+    .card { backdrop-filter: none !important; break-inside: avoid; box-shadow: none !important; }
+    .overflow-x-auto { overflow: visible !important; }
+    .min-w-\[860px\], .min-w-\[760px\] { min-width: 0 !important; }
+    section { padding-top: 0 !important; padding-bottom: 0 !important; border-top: 0 !important; }
+    #topology, .print-break { break-before: page; }
+    #tp { width: 82% !important; margin: 0 auto; display: block; }
+    .tp .flow { animation: none !important; filter: none !important; }
+    .tp .pk { display: none; }
+    .fade-in { animation: none !important; }
+    header { padding-top: 0 !important; }
+    footer > div { padding-bottom: 0 !important; }
+  }
+</style>
+<style>
+  :root { --accent: 34 211 238; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(34,211,238,.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(251,146,60,.08), transparent 60%),
+      #060a13;
+  }
+  html.light body { background: radial-gradient(1200px 600px at 10% -10%, rgba(34,211,238,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(251,146,60,.10), transparent 60%), #f1f5f9; }
+  .hero-grad { background-image: linear-gradient(90deg, #67e8f9, #bae6fd, #fdba74); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #0e7490, #0369a1, #c2410c); }
+
+  /* toggle switches */
+  .tg { display: inline-flex; align-items: center; gap: .6rem; padding: .45rem .55rem .45rem .9rem; border: 1px solid #334155; border-radius: 9999px; background: rgba(15,23,42,.8); transition: all .25s ease; }
+  .tg .nm { font-weight: 600; font-size: .9rem; color: #e2e8f0; }
+  .tg .ds { font-size: .7rem; color: #94a3b8; }
+  .tg .sw { width: 38px; height: 22px; border-radius: 9999px; background: #334155; position: relative; transition: background .25s ease; flex-shrink: 0; }
+  .tg .sw::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 9999px; background: #94a3b8; transition: all .25s ease; }
+  .tg[aria-pressed="true"] { border-color: rgb(var(--tc) / .7); background: rgb(var(--tc) / .10); }
+  .tg[aria-pressed="true"] .sw { background: rgb(var(--tc)); }
+  .tg[aria-pressed="true"] .sw::after { left: 19px; background: #020617; }
+  html.light .tg { background: #fff; border-color: #cbd5e1; }
+  html.light .tg .nm { color: #0f172a; }
+  html.light .tg .ds { color: #64748b; }
+  html.light .tg .sw { background: #cbd5e1; }
+  .btn-s { height: 34px; padding: 0 .8rem; border: 1px solid #334155; border-radius: .55rem; background: rgba(15,23,42,.8); font-size: .8rem; font-weight: 600; color: #e2e8f0; display: inline-flex; align-items: center; gap: .35rem; }
+  .btn-s:hover { background: rgba(51,65,85,.6); }
+  html.light .btn-s { background: #fff; border-color: #cbd5e1; color: #0f172a; }
+
+  /* sim svg */
+  .sim text { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
+  .sim .zone { fill: rgba(15,23,42,.35); stroke: rgba(100,116,139,.5); stroke-dasharray: 6 6; }
+  .sim .zone-t { fill: #94a3b8; font-size: 13px; font-weight: 600; letter-spacing: .08em; }
+  .sim .pill rect { fill: rgba(51,65,85,.35); stroke: rgba(100,116,139,.6); stroke-width: 1.5; transition: all .3s ease; }
+  .sim .pill .ico { color: #64748b; }
+  .sim .pill .num { fill: #64748b; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; }
+  .sim .pill .nm { fill: #94a3b8; font-size: 14px; font-weight: 700; }
+  .sim .pill .ds { fill: #64748b; font-size: 11px; }
+  .sim .pill .st { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; }
+  .sim .pill.on rect { fill: rgb(var(--pc) / .12); stroke: rgb(var(--pc) / .8); }
+  .sim .pill.on .ico { color: rgb(var(--pc)); }
+  .sim .pill.on .num { fill: rgb(var(--pc)); }
+  .sim .pill.on .nm { fill: #f1f5f9; }
+  .sim .pill.on .ds { fill: #94a3b8; }
+  .sim .pill.act rect { stroke-width: 3; filter: drop-shadow(0 0 12px rgb(var(--pc) / .85)); }
+  .sim .pill.hit rect { stroke: #f87171; stroke-width: 3; fill: rgba(248,113,113,.15); filter: drop-shadow(0 0 12px rgba(248,113,113,.8)); }
+  .sim .pill { cursor: pointer; }
+  .sim .end { cursor: pointer; }
+  .sim .end .ring { fill: #0b1222; stroke-width: 2.5; transition: all .3s ease; }
+  .sim .end .nm { fill: #f1f5f9; font-size: 17px; font-weight: 700; }
+  .sim .end .ds { fill: #94a3b8; font-size: 12px; }
+  .sim .end.dim { opacity: .4; }
+  .sim .end.sel .ring { stroke-width: 4; filter: drop-shadow(0 0 12px currentColor); }
+  .sim .run { fill: none; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 12 9; animation: dash 1.1s linear infinite; }
+  .sim .run.ok { stroke: #34d399; stroke-dasharray: none; filter: drop-shadow(0 0 5px rgba(52,211,153,.6)); }
+  .sim .run.risk { stroke: #fb923c; filter: drop-shadow(0 0 5px rgba(251,146,60,.6)); }
+  .sim .run.go { stroke: #22d3ee; filter: drop-shadow(0 0 5px rgba(34,211,238,.6)); }
+  .sim .seen { fill: none; stroke: #fbbf24; stroke-width: 2.5; stroke-dasharray: 2 6; stroke-linecap: round; }
+  .sim .ghost { fill: none; stroke: rgba(100,116,139,.3); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; }
+  @keyframes dash { to { stroke-dashoffset: -21; } }
+  html.light .sim .zone { fill: rgba(255,255,255,.6); stroke: #94a3b8; }
+  html.light .sim .zone-t { fill: #475569; }
+  html.light .sim .pill rect { fill: #eef2f7; stroke: #94a3b8; }
+  html.light .sim .pill.on .nm, html.light .sim .end .nm { fill: #0f172a; }
+  html.light .sim .end .ring { fill: #fff; }
+  html.light .sim .end .ds, html.light .sim .pill.on .ds { fill: #475569; }
+
+  .verdict { border-width: 1.5px; transition: all .3s ease; }
+  .v-ok { border-color: rgba(52,211,153,.6); background: rgba(52,211,153,.08); color: #6ee7b7; }
+  .v-block { border-color: rgba(34,211,238,.6); background: rgba(34,211,238,.08); color: #67e8f9; }
+  .v-risk { border-color: rgba(251,146,60,.7); background: rgba(251,146,60,.08); color: #fdba74; }
+  .v-run { border-color: rgba(100,116,139,.5); background: rgba(15,23,42,.5); color: #cbd5e1; }
+  html.light .v-ok { color: #047857; } html.light .v-block { color: #0e7490; } html.light .v-risk { color: #c2410c; } html.light .v-run { color: #334155; background: #fff; }
+  .log-line { animation: fadeIn .35s ease both; }
+</style>
+<style>
+  :root { --accent: 52 211 153; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(56,189,248,.08), transparent 60%),
+      #060a13;
+  }
+  html.light body { background: radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(56,189,248,.10), transparent 60%), #f1f5f9; }
+  .hero-grad { background-image: linear-gradient(90deg, #6ee7b7, #7dd3fc, #a5b4fc); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #047857, #0369a1, #4338ca); }
+  .text-emerald-300 { color: #6ee7b7; } html.light .text-emerald-300 { color: #047857; }
+
+  .tp .node.act .tint { stroke: rgb(var(--c)); stroke-width: 3; fill: rgb(var(--c) / .16); filter: drop-shadow(0 0 12px rgb(var(--c) / .8)); }
+  .tp .node.ok .tint { stroke: #34d399; stroke-width: 2.5; fill: rgba(52,211,153,.14); }
+  .tp .node.exp .tint { stroke: #f87171; stroke-width: 2.5; fill: rgba(248,113,113,.14); filter: drop-shadow(0 0 10px rgba(248,113,113,.6)); }
+  .tp .node.hid { opacity: .22; }
+  .tp .node.hid .tint { stroke-dasharray: 5 5; }
+  .tp .node.blk .tint { stroke: #fb923c; stroke-width: 2.5; fill: rgba(251,146,60,.12); }
+  .tp .bus { stroke: rgba(248,113,113,.75); stroke-width: 4; fill: none; }
+  .tp .bus.off { stroke: rgba(100,116,139,.35); stroke-width: 2; stroke-dasharray: 4 6; }
+  .tp .tag rect { stroke-width: 1.3; }
+  .tp .tag text { font-size: 11px; font-weight: 700; }
+  .tp .lbl { fill: #94a3b8; font-size: 11px; font-weight: 600; }
+  .tp .hosts text { fill: #fca5a5; font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+  .tp .hosts.off text { fill: #64748b; }
+  html.light .tp .lbl { fill: #475569; }
+
+  .appc { border: 1.5px solid rgba(100,116,139,.45); border-radius: .8rem; padding: .7rem .8rem; transition: all .3s ease; }
+  .appc.ok { border-color: rgba(52,211,153,.7); background: rgba(52,211,153,.07); }
+  .appc.exp { border-color: rgba(248,113,113,.7); background: rgba(248,113,113,.07); }
+  .appc.hid { opacity: .5; border-style: dashed; }
+  .appc.blk { border-color: rgba(251,146,60,.7); background: rgba(251,146,60,.07); }
+  html.light .appc { background: #fff; }
+  html.light .appc.ok { background: #ecfdf5; } html.light .appc.exp { background: #fef2f2; } html.light .appc.blk { background: #fff7ed; }
+
+  .term { background: #020617; border: 1px solid #1e293b; border-radius: .9rem; padding: .8rem 1rem; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; line-height: 1.65; min-height: 170px; }
+  .term .l { white-space: pre-wrap; animation: fadeIn .25s ease both; }
+  .term .cmd { color: #e2e8f0; } .term .cmd::before { content: '$ '; color: #34d399; }
+  .term .hit { color: #fca5a5; } .term .ok { color: #6ee7b7; } .term .dim { color: #64748b; }
+  html.light .term { background: #0f172a; }
+
+  .cmp td, .cmp th { padding: .55rem .6rem; border-top: 1px solid rgba(51,65,85,.55); vertical-align: top; }
+  .cmp th { text-align: left; font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: #64748b; border-top: 0; }
+  html.light .cmp td { border-color: #e2e8f0; }
+  .stp { border: 1px solid rgba(51,65,85,.6); border-radius: .9rem; padding: 1rem; }
+  html.light .stp { border-color: #e2e8f0; background: #fff; }
+  .v-red { border-color: rgba(248,113,113,.7); background: rgba(248,113,113,.08); color: #fca5a5; }
+  html.light .v-red { color: #b91c1c; }
+  html.light .tg[aria-pressed="true"] .sw { background: rgb(var(--tc)); }
+</style>
+<style>
+  :root { --accent: 96 165 250; }
+  body { background: radial-gradient(1200px 600px at 10% -10%, rgba(96,165,250,.11), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(167,139,250,.09), transparent 60%), #060a13; }
+  html.light body { background: radial-gradient(1200px 600px at 10% -10%, rgba(96,165,250,.13), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(167,139,250,.10), transparent 60%), #f1f5f9; }
+  .hero-grad { background-image: linear-gradient(90deg, #93c5fd, #a5f3fc, #c4b5fd); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #1d4ed8, #0e7490, #6d28d9); }
+  .gap-3 { gap: .75rem; } .text-left { text-align: left; }
+  @media (min-width: 1024px) { .lg-grid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  .tp .gz { fill: rgba(96,165,250,.04); stroke: rgba(96,165,250,.35); stroke-dasharray: 4 5; }
+  .tp .gz-t { fill: #93c5fd; font-size: 11px; font-weight: 700; letter-spacing: .06em; }
+  html.light .tp .gz { fill: rgba(96,165,250,.05); stroke: rgba(37,99,235,.4); }
+  html.light .tp .gz-t { fill: #1d4ed8; }
+  .tp .dci { stroke: rgba(167,139,250,.7); stroke-width: 3; fill: none; }
+  .tp .tag text { font-family: 'JetBrains Mono', monospace; }
+  .role { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 5px; border: 1px solid currentColor; }
+  .appc { cursor: pointer; display: block; }
+  .btn-s:disabled { cursor: not-allowed; }
+  .inp { height: 38px; padding: 0 .75rem; border: 1px solid #334155; border-radius: .55rem; background: rgba(2,6,23,.6); color: #e2e8f0; font-family: 'JetBrains Mono', monospace; font-size: .9rem; width: 100%; display: block; }
+  .inp:focus { outline: 2px solid rgba(96,165,250,.6); outline-offset: 1px; }
+  html.light .inp { background: #fff; border-color: #cbd5e1; color: #0f172a; }
+  .stat { border: 1px solid rgba(51,65,85,.6); border-radius: .9rem; padding: .8rem .95rem; background: rgba(15,23,42,.65); }
+  html.light .stat { border-color: #e2e8f0; background: #fff; }
+  .stat .k { font-size: 11px; color: #94a3b8; font-weight: 600; }
+  .stat .v { margin-top: .2rem; font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 700; line-height: 1.2; }
+  .stat .s { margin-top: .2rem; font-size: 11px; color: #64748b; }
+  html.light .stat .k { color: #475569; }
+  html.light .stat .v { filter: brightness(.7); }
+  .mb-2 { margin-bottom: .5rem; }
+  html.light .tp .tag text { filter: brightness(.55); }
+  .term .sel { color: #e2e8f0; font-weight: 600; }
+  .tp .itn circle { fill: rgba(251,191,36,.15); stroke: #fbbf24; stroke-width: 2.5; }
+  .tp .itn text { fill: #fcd34d; font-size: 13px; font-weight: 800; font-family: 'JetBrains Mono', monospace; }
+  html.light .tp .itn text { fill: #b45309; }
+  .xbadge { display: inline-flex; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 9999px; border: 1px dashed rgba(251,191,36,.7); color: #fcd34d; }
+  html.light .xbadge { color: #b45309; }
+  html.light .tp .gz-t, html.light .tp .lbl { filter: none; }
+</style>
+<style>
+  :root { --accent: 251 191 36; }
+  body { background: radial-gradient(1200px 600px at 10% -10%, rgba(251,191,36,.09), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(96,165,250,.09), transparent 60%), #060a13; }
+  html.light body { background: radial-gradient(1200px 600px at 10% -10%, rgba(251,191,36,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(96,165,250,.10), transparent 60%), #f1f5f9; }
+  .hero-grad { background-image: linear-gradient(90deg, #fcd34d, #fdba74, #93c5fd); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #b45309, #c2410c, #1d4ed8); }
+  .tp .itn circle { fill: rgba(100,116,139,.12); stroke: rgba(100,116,139,.6); stroke-width: 2; }
+  .tp .itn text { fill: #64748b; }
+  .tp .itn.on circle { fill: rgba(251,191,36,.18); stroke: #fbbf24; stroke-width: 3; filter: drop-shadow(0 0 8px rgba(251,191,36,.6)); }
+  .tp .itn.on text { fill: #fcd34d; }
+  html.light .tp .itn.on text { fill: #b45309; }
+  .stepi { display: flex; gap: .7rem; text-align: left; width: 100%; padding: .65rem .75rem; border: 1.5px solid rgba(100,116,139,.4); border-radius: .8rem; transition: all .25s ease; }
+  .stepi:hover { border-color: rgba(251,191,36,.6); }
+  .stepi.on { border-color: #fbbf24; background: rgba(251,191,36,.08); }
+  .stepi .num { flex-shrink: 0; width: 24px; height: 24px; border-radius: 9999px; display: grid; place-items: center; font: 700 12px 'JetBrains Mono', monospace; background: rgba(100,116,139,.25); color: #cbd5e1; }
+  .stepi.on .num { background: #fbbf24; color: #020617; }
+  html.light .stepi { background: #fff; }
+  html.light .stepi.on { background: #fffbeb; }
+  html.light .stepi .num { color: #334155; }
+  .btn-s:disabled { opacity: .4; }
+</style>
+
+</head>
+<body class="font-sans antialiased min-h-screen">
+
+<nav class="sticky top-0 z-40 border-b border-slate-800/70 bg-slate-950/75 backdrop-blur">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+    <a href="#" class="flex items-center gap-2 min-w-0">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-400 to-sky-400 grid place-items-center shrink-0"><i data-lucide="headset" class="w-4 h-4 text-slate-950"></i></div>
+      <span class="font-semibold text-sm truncate"><span class="zh">IT 遠端連入（延伸情境）</span><span class="en">IT Remote Access (extension)</span></span>
+    </a>
+    <div class="hidden md:flex items-center gap-1 text-xs text-slate-400">
+      <a href="netskope-hub-groups.html" class="no-print px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100 inline-flex items-center gap-1"><i data-lucide="network" class="w-3.5 h-3.5"></i><span class="zh">Hub Groups 主頁</span><span class="en">Hub Groups page</span></a>
+      <a href="#regional" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">連錯與延遲</span><span class="en">Wrong IP &amp; latency</span></a>
+      <a href="#summary" class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-slate-100"><span class="zh">重點整理</span><span class="en">Takeaways</span></a>
+    </div>
+  </div>
+</nav>
+
+<header class="grid-bg border-b border-slate-800/70">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
+    <div class="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-widest text-amber-300 mb-4"><i data-lucide="radio-tower" class="w-3.5 h-3.5"></i> Netskope Borderless WAN · Hub Groups · Extension</div>
+    <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+      <span class="zh"><span class="hero-grad">IT 遠端連入</span>：IP 換了之後用哪個 IP、由哪一區協助</span>
+      <span class="en"><span class="hero-grad">IT remote access:</span> which IP to use once it changes, and which region should help</span>
+    </h1>
+    <p class="mt-3 text-sm sm:text-base text-slate-400 max-w-3xl">
+      <span class="zh">遠端使用者的電腦出問題時，IT 要從機房端連進去協助。這一頁依 Hub Groups 文件裡的路由規則推論：Client 的 IP 來自它連上的那台 Hub、Hub 用 BGP 宣告 Pool 路由，以及 Failover 或使用者移動到其他地區時，Client 會連到另一台 Hub、換成另一個 IP。</span>
+      <span class="en">When a remote user's laptop has a problem, IT connects in from the data center. This page infers from the routing rules in the Hub Groups document: the Client's IP comes from the Hub it joined, Hubs advertise pool routes via BGP, and on failover or when the user moves to another region the Client joins another Hub and gets another IP.</span>
+    </p>
+    <div class="mt-4 xbadge"><span class="zh">延伸情境 · 非文件原有內容 · 依文件路由規則推論</span><span class="en">Extension · not part of the document · inferred from its routing rules</span></div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6">
+
+<section id="regional" class="py-10 scroll-mt-16">
+  <div class="mb-5">
+    <div class="text-xs font-mono uppercase tracking-widest text-amber-300">01 · Regional DCs</div>
+    <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">區域 DC：IP 換了之後連錯，以及該由哪一區的 IT 協助</span><span class="en">Regional DCs: the wrong IP once it changes, and which region's IT should help</span></h2>
+    <p class="mt-2 text-sm text-slate-400 max-w-3xl"><span class="zh">架構採用文件的 Use Case 4：美洲、歐洲、亞太各兩台 Hub，同一個 Hub Group、開啟 Geo IP。使用者平常在亞太。選「Failover」或「出差」情境，照步驟 1～5 按下去，或直接調整下方設定。</span><span class="en">The layout is the document's Use Case 4: two Hubs each in the Americas, EMEA and APAC, one Hub Group with Geo IP on. The user is normally in APAC. Pick the Failover or Travel scenario and walk through steps 1 to 5, or change the settings directly.</span></p>
+  </div>
+  <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+    <div class="flex items-center gap-2"><span class="text-xs text-slate-500"><span class="zh">情境</span><span class="en">Scenario</span></span><div class="seg" id="segScen"></div></div>
+    <div class="flex items-center gap-2"><span class="text-xs text-slate-500"><span class="zh">步驟</span><span class="en">Step</span></span><div class="seg" id="segStep"></div></div>
+  </div>
+  <div class="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
+    <div class="flex items-center gap-2"><span class="text-xs text-slate-500"><span class="zh">使用者所在地</span><span class="en">User location</span></span><div class="seg" id="segUser"></div></div>
+    <div id="tgDownWrap"></div>
+    <div class="flex items-center gap-2"><span class="text-xs text-slate-500"><span class="zh">IT 位置</span><span class="en">IT location</span></span><div class="seg" id="segIt"></div></div>
+    <div class="flex items-center gap-2"><span class="text-xs text-slate-500"><span class="zh">IT 用哪個 IP 連</span><span class="en">IP IT dials</span></span><div class="seg" id="segIp"></div></div>
+  </div>
+  <div class="mt-4 grid lg:grid-cols-3 gap-4">
+    <div class="lg:col-span-2 flex flex-col gap-4">
+      <div class="card rounded-2xl p-3 sm:p-4 overflow-x-auto"><svg id="svgA" class="tp w-full h-auto min-w-[760px]" viewBox="0 0 1100 470"></svg></div>
+      <div id="verdictA" class="verdict rounded-2xl p-4"></div>
+    </div>
+    <div class="flex flex-col gap-4">
+      <div class="card rounded-2xl p-4">
+        <div class="text-xs font-mono uppercase tracking-widest text-slate-500 mb-2"><span class="zh">示範步驟</span><span class="en">Walkthrough</span></div>
+        <div id="stepList" class="grid gap-2"></div>
+        <div class="mt-3 flex items-center justify-between gap-2 no-print">
+          <button id="btnPrev" class="btn-s"><i data-lucide="chevron-left" class="w-3.5 h-3.5"></i><span class="zh">上一步</span><span class="en">Back</span></button>
+          <button id="btnNext" class="btn-s" style="border-color:#fbbf24"><span class="zh">下一步</span><span class="en">Next</span><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></button>
+        </div>
+      </div>
+      <div>
+        <div class="text-xs font-mono uppercase tracking-widest text-slate-500 mb-2"><span class="zh">連線過程</span><span class="en">Connection steps</span></div>
+        <div id="termA" class="term"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="summary" class="py-10 border-t border-slate-800/70 scroll-mt-16 print-break">
+  <div class="mb-6">
+    <div class="text-xs font-mono uppercase tracking-widest text-amber-300">02 · Takeaways</div>
+    <h2 class="mt-1 text-2xl sm:text-3xl font-bold"><span class="zh">重點整理</span><span class="en">Takeaways</span></h2>
+  </div>
+  <div id="cards" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+  <div id="gap" class="mt-4 card rounded-2xl p-5"></div>
+</section>
+</main>
+
+<footer class="border-t border-slate-800/70 mt-4">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-28 text-xs text-slate-500 flex flex-col sm:flex-row gap-2 sm:justify-between">
+    <span>Netskope · Borderless WAN · IT Remote Access (extension)</span>
+    <span><span class="zh">延伸情境：依 Netskope「Hub Groups and Hub Scaling」文件的路由規則推論，非文件原有內容；Hub、IP 與使用率為示範數值。</span><span class="en">Extension inferred from the routing rules in Netskope's "Hub Groups and Hub Scaling"; not part of the document. Hubs, IPs and utilization are examples.</span></span>
+  </div>
+</footer>
+
+<div id="toolbar" class="fixed bottom-4 left-1/2 -translate-x-1/2 sm:left-auto sm:right-4 sm:translate-x-0 z-50 card rounded-xl px-2 py-2 flex items-center gap-2 shadow-2xl">
+  <a href="netskope-hub-groups.html" class="h-[34px] w-[34px] grid place-items-center rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800" title="Hub Groups"><i data-lucide="network" class="w-4 h-4"></i></a>
+  <div class="seg tb" id="segLang"><button data-lang="zh" aria-pressed="true">中文</button><button data-lang="en" aria-pressed="false">EN</button></div>
+  <div class="seg tb" id="segTheme">
+    <button data-theme="dark" aria-pressed="true"><i data-lucide="moon" class="w-3.5 h-3.5"></i><span class="zh">深</span><span class="en">Dark</span></button>
+    <button data-theme="light" aria-pressed="false"><i data-lucide="sun" class="w-3.5 h-3.5"></i><span class="zh">淺</span><span class="en">Light</span></button>
+  </div>
+  <button id="btnPdf" class="h-[34px] px-3 inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800 text-[13px] font-medium"><i data-lucide="file-down" class="w-4 h-4"></i> PDF</button>
+</div>
+
+<script id="icon-shim">/* Inlined Lucide icons (ISC License, lucide.dev) — no CDN needed */
+window.lucide = (function () {
+  const ICONS = {"key-round":[["path",{"d":"M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"}],["circle",{"cx":"16.5","cy":"7.5","r":".5","fill":"currentColor"}]],"layout-grid":[["rect",{"width":"7","height":"7","x":"3","y":"3","rx":"1"}],["rect",{"width":"7","height":"7","x":"14","y":"3","rx":"1"}],["rect",{"width":"7","height":"7","x":"14","y":"14","rx":"1"}],["rect",{"width":"7","height":"7","x":"3","y":"14","rx":"1"}]],"radio-tower":[["path",{"d":"M4.9 16.1C1 12.2 1 5.8 4.9 1.9"}],["path",{"d":"M7.8 4.7a6.14 6.14 0 0 0-.8 7.5"}],["circle",{"cx":"12","cy":"9","r":"2"}],["path",{"d":"M16.2 4.8c2 2 2.26 5.11.8 7.47"}],["path",{"d":"M19.1 1.9a9.96 9.96 0 0 1 0 14.1"}],["path",{"d":"M9.5 18h5"}],["path",{"d":"m8 22 4-11 4 11"}]],"scan-search":[["path",{"d":"M3 7V5a2 2 0 0 1 2-2h2"}],["path",{"d":"M17 3h2a2 2 0 0 1 2 2v2"}],["path",{"d":"M21 17v2a2 2 0 0 1-2 2h-2"}],["path",{"d":"M7 21H5a2 2 0 0 1-2-2v-2"}],["circle",{"cx":"12","cy":"12","r":"3"}],["path",{"d":"m16 16-1.9-1.9"}]],"moon":[["path",{"d":"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"}]],"sun":[["circle",{"cx":"12","cy":"12","r":"4"}],["path",{"d":"M12 2v2"}],["path",{"d":"M12 20v2"}],["path",{"d":"m4.93 4.93 1.41 1.41"}],["path",{"d":"m17.66 17.66 1.41 1.41"}],["path",{"d":"M2 12h2"}],["path",{"d":"M20 12h2"}],["path",{"d":"m6.34 17.66-1.41 1.41"}],["path",{"d":"m19.07 4.93-1.41 1.41"}]],"file-down":[["path",{"d":"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"}],["path",{"d":"M14 2v5a1 1 0 0 0 1 1h5"}],["path",{"d":"M12 18v-6"}],["path",{"d":"m9 15 3 3 3-3"}]],"arrow-right":[["path",{"d":"M5 12h14"}],["path",{"d":"m12 5 7 7-7 7"}]],"key":[["path",{"d":"m2 21 9.6-9.6"}],["path",{"d":"m7.5 15.5 2.3 2.3a1 1 0 0 1 0 1.4l-2.1 2.1a1 1 0 0 1-1.4 0L4 19"}],["circle",{"cx":"15.5","cy":"7.5","r":"5.5"}]],"app-window":[["rect",{"x":"2","y":"4","width":"20","height":"16","rx":"2"}],["path",{"d":"M10 4v4"}],["path",{"d":"M2 8h20"}],["path",{"d":"M6 4v4"}]],"folder-open":[["path",{"d":"m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"}]],"monitor":[["rect",{"width":"20","height":"14","x":"2","y":"3","rx":"2"}],["line",{"x1":"8","x2":"16","y1":"21","y2":"21"}],["line",{"x1":"12","x2":"12","y1":"17","y2":"21"}]],"database":[["ellipse",{"cx":"12","cy":"5","rx":"9","ry":"3"}],["path",{"d":"M3 5V19A9 3 0 0 0 21 19V5"}],["path",{"d":"M3 12A9 3 0 0 0 21 12"}]],"files":[["path",{"d":"M15 2h-4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8"}],["path",{"d":"M16.706 2.706A2.4 2.4 0 0 0 15 2v5a1 1 0 0 0 1 1h5a2.4 2.4 0 0 0-.706-1.706z"}],["path",{"d":"M5 7a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 1.732-1"}]],"bug":[["path",{"d":"M12 20v-9"}],["path",{"d":"M14 7a4 4 0 0 1 4 4v3a6 6 0 0 1-12 0v-3a4 4 0 0 1 4-4z"}],["path",{"d":"M14.12 3.88 16 2"}],["path",{"d":"M21 21a4 4 0 0 0-3.81-4"}],["path",{"d":"M21 5a4 4 0 0 1-3.55 3.97"}],["path",{"d":"M22 13h-4"}],["path",{"d":"M3 21a4 4 0 0 1 3.81-4"}],["path",{"d":"M3 5a4 4 0 0 0 3.55 3.97"}],["path",{"d":"M6 13H2"}],["path",{"d":"m8 2 1.88 1.88"}],["path",{"d":"M9 7.13V6a3 3 0 1 1 6 0v1.13"}]],"laptop":[["path",{"d":"M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"}],["path",{"d":"M20.054 15.987H3.946"}]],"globe":[["circle",{"cx":"12","cy":"12","r":"10"}],["path",{"d":"M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"}],["path",{"d":"M2 12h20"}]],"door-open":[["path",{"d":"M10 21H2"}],["path",{"d":"M10 3H7a2 2 0 00-2 2v16"}],["path",{"d":"M14 12h.01"}],["path",{"d":"M19 21V5a2 2 0 00-1.675-1.974l-6.163-1.013A1 1 0 0010 3v18a1 1 0 001.124.992z"}],["path",{"d":"M22 21h-3"}]],"cloud":[["path",{"d":"M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"}]],"server":[["rect",{"width":"20","height":"8","x":"2","y":"2","rx":"2","ry":"2"}],["rect",{"width":"20","height":"8","x":"2","y":"14","rx":"2","ry":"2"}],["line",{"x1":"6","x2":"6.01","y1":"6","y2":"6"}],["line",{"x1":"6","x2":"6.01","y1":"18","y2":"18"}]],"triangle-alert":[["path",{"d":"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"}],["path",{"d":"M12 9v4"}],["path",{"d":"M12 17h.01"}]],"shield-alert":[["path",{"d":"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"}],["path",{"d":"M12 8v4"}],["path",{"d":"M12 16h.01"}]],"shrink":[["path",{"d":"m15 15 6 6m-6-6v4.8m0-4.8h4.8"}],["path",{"d":"M9 19.8V15m0 0H4.2M9 15l-6 6"}],["path",{"d":"M15 4.2V9m0 0h4.8M15 9l6-6"}],["path",{"d":"M9 4.2V9m0 0H4.2M9 9 3 3"}]],"circle-check":[["circle",{"cx":"12","cy":"12","r":"10"}],["path",{"d":"m16 9-5.5 5.5L8 12"}]],"eye-off":[["path",{"d":"M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"}],["path",{"d":"M14.084 14.158a3 3 0 0 1-4.242-4.242"}],["path",{"d":"M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"}],["path",{"d":"m2 2 20 20"}]],"shield-check":[["path",{"d":"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"}],["path",{"d":"m9 12 2 2 4-4"}]],"arrow-up-right":[["path",{"d":"M7 7h10v10"}],["path",{"d":"M7 17 17 7"}]],"plus-circle":[["circle",{"cx":"12","cy":"12","r":"10"}],["path",{"d":"M8 12h8"}],["path",{"d":"M12 8v8"}]],"route":[["circle",{"cx":"6","cy":"19","r":"3"}],["path",{"d":"M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"}],["circle",{"cx":"18","cy":"5","r":"3"}]],"users":[["path",{"d":"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"}],["path",{"d":"M16 3.128a4 4 0 0 1 0 7.744"}],["path",{"d":"M22 21v-2a4 4 0 0 0-3-3.87"}],["circle",{"cx":"9","cy":"7","r":"4"}]],"list-checks":[["path",{"d":"M13 5h8"}],["path",{"d":"M13 12h8"}],["path",{"d":"M13 19h8"}],["path",{"d":"m3 17 2 2 4-4"}],["path",{"d":"m3 7 2 2 4-4"}]],"scroll-text":[["path",{"d":"M15 12h-5"}],["path",{"d":"M15 8h-5"}],["path",{"d":"M19 17V5a2 2 0 0 0-2-2H4"}],["path",{"d":"M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"}]],"loader":[["path",{"d":"M12 2v4"}],["path",{"d":"m16.2 7.8 2.9-2.9"}],["path",{"d":"M18 12h4"}],["path",{"d":"m16.2 16.2 2.9 2.9"}],["path",{"d":"M12 18v4"}],["path",{"d":"m4.9 19.1 2.9-2.9"}],["path",{"d":"M2 12h4"}],["path",{"d":"m4.9 4.9 2.9 2.9"}]],"chevron-left":[["path",{"d":"m15 18-6-6 6-6"}]],"chevron-right":[["path",{"d":"m9 18 6-6-6-6"}]],"headset":[["path",{"d":"M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"}],["path",{"d":"M21 16v2a4 4 0 0 1-4 4h-5"}]],"info":[["circle",{"cx":"12","cy":"12","r":"10"}],["path",{"d":"M12 16v-4"}],["path",{"d":"M12 8h.01"}]],"network":[["rect",{"x":"16","y":"16","width":"6","height":"6","rx":"1"}],["rect",{"x":"2","y":"16","width":"6","height":"6","rx":"1"}],["rect",{"x":"9","y":"2","width":"6","height":"6","rx":"1"}],["path",{"d":"M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"}],["path",{"d":"M12 12V8"}]],"map-pin":[["path",{"d":"M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"}],["circle",{"cx":"12","cy":"10","r":"3"}]],"layers":[["path",{"d":"M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"}],["path",{"d":"m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"}],["path",{"d":"m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"}]],"power":[["path",{"d":"M12 2v10"}],["path",{"d":"M18.4 6.6a9 9 0 1 1-12.77.04"}]],"rotate-ccw":[["path",{"d":"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"}],["path",{"d":"M3 3v5h5"}]],"refresh-cw":[["path",{"d":"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"}],["path",{"d":"M21 3v5h-5"}],["path",{"d":"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"}],["path",{"d":"M8 16H3v5"}]]};
+  const NS = 'http://www.w3.org/2000/svg';
+  function createIcons() {
+    document.querySelectorAll('i[data-lucide]').forEach(function (el) {
+      const name = el.getAttribute('data-lucide');
+      const node = ICONS[name];
+      if (!node) return;
+      const svg = document.createElementNS(NS, 'svg');
+      const base = { xmlns: NS, width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' };
+      Object.keys(base).forEach(function (k) { svg.setAttribute(k, base[k]); });
+      svg.setAttribute('class', ('lucide lucide-' + name + ' ' + (el.getAttribute('class') || '')).trim());
+      node.forEach(function (child) {
+        const c = document.createElementNS(NS, child[0]);
+        Object.keys(child[1]).forEach(function (k) { if (k !== 'key') c.setAttribute(k, child[1][k]); });
+        svg.appendChild(c);
+      });
+      el.replaceWith(svg);
+    });
+  }
+  return { createIcons: createIcons };
+})();
+</script>
+<script>
+let lang = document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'zh';
+const L = (zh, en) => ({ zh, en });
+const tr = (x) => (x && typeof x === 'object' && 'zh' in x) ? x[lang] : x;
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => document.querySelectorAll(s);
+const esc = (s) => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+/* ===================== SHARED DRAWING ===================== */
+function node(x, y, w, h, c, icon, t1, t2, cls) {
+  const x0 = x - w / 2, y0 = y - h / 2, isz = h < 58 ? 26 : 32;
+  return `<g class="node ${cls}" style="--c:${c}"><rect class="base" x="${x0}" y="${y0}" width="${w}" height="${h}" rx="12"/><rect class="tint" x="${x0}" y="${y0}" width="${w}" height="${h}" rx="12"/>
+    <foreignObject x="${x0 + 10}" y="${y - isz / 2}" width="${isz}" height="${isz}"><div xmlns="http://www.w3.org/1999/xhtml" class="ico grid place-items-center" style="width:${isz}px;height:${isz}px"><i data-lucide="${icon}" class="${isz < 30 ? 'w-5 h-5' : 'w-6 h-6'}"></i></div></foreignObject>
+    <text class="t1" x="${x0 + isz + 18}" y="${y - 2}">${esc(t1)}</text><text class="t2" x="${x0 + isz + 18}" y="${y + 14}">${esc(t2)}</text></g>`;
+}
+function tag(x, y, w, kind, txt) {
+  const K = { ok: ['rgba(52,211,153,.15)', '#34d399', '#6ee7b7'], bad: ['rgba(248,113,113,.15)', '#f87171', '#fca5a5'], info: ['rgba(96,165,250,.15)', '#60a5fa', '#93c5fd'], warn: ['rgba(251,191,36,.15)', '#fbbf24', '#fcd34d'] }[kind];
+  return `<g class="tag"><rect x="${x - w / 2}" y="${y - 11}" width="${w}" height="22" rx="11" fill="${K[0]}" stroke="${K[1]}"/><text x="${x}" y="${y + 4}" text-anchor="middle" fill="${K[2]}">${esc(txt)}</text></g>`;
+}
+function flow(d, c, live) { return `<path class="flow" style="--fc:${c}" d="${d}"/>` + (live ? `<circle class="pk" r="5" style="--fc:${c}"><animateMotion dur="1.6s" repeatCount="indefinite" path="${d}"/></circle>` : ''); }
+const xm = (x, y) => `<g class="xmark"><circle cx="${x}" cy="${y}" r="11"/><path d="M${x - 4} ${y - 4} L${x + 4} ${y + 4} M${x + 4} ${y - 4} L${x - 4} ${y + 4}"/></g>`;
+const itNode = (x, y, on) => `<g class="itn ${on ? 'on' : ''}"><circle cx="${x}" cy="${y}" r="19"/><text x="${x}" y="${y + 4}" text-anchor="middle">IT</text></g>`;
+const role = (x, y, r, c) => `<g class="tag"><rect x="${x - 13}" y="${y - 10}" width="26" height="20" rx="6" fill="rgb(${c} / .18)" stroke="rgb(${c})"/><text x="${x}" y="${y + 4}" text-anchor="middle" fill="rgb(${c})">${r}</text></g>`;
+const GRN = '52 211 153', AMB = '251 191 36', RED = '248 113 113', VIO = '167 139 250';
+
+/* ===================== 01 · REGIONAL ===================== */
+const REG = {
+  amer: { x0: 20, nm: L('美洲', 'Americas'), hubs: [{ id: 'H1', n: 1, u: 31 }, { id: 'H2', n: 2, u: 44 }] },
+  emea: { x0: 380, nm: L('歐洲', 'EMEA'), hubs: [{ id: 'H3', n: 3, u: 27 }, { id: 'H4', n: 4, u: 36 }] },
+  apac: { x0: 740, nm: L('亞太', 'APAC'), hubs: [{ id: 'H5', n: 5, u: 48 }, { id: 'H6', n: 6, u: 33 }] }
+};
+const ipOf = (n) => `10.${n}.${n}.1`;
+const hubPos = {}; Object.entries(REG).forEach(([k, r]) => r.hubs.forEach((h, i) => { hubPos[h.id] = { x: r.x0 + (i ? 250 : 95), y: 262, reg: k, n: h.n, u: h.u }; }));
+const dcX = (k) => REG[k].x0 + 190, DCY = 92;
+const SCEN = {
+  fo: { nm: L('Failover', 'Failover'), steps: [
+    { s: { user: 'apac', down: false, it: 'apac', ip: 'mem' }, t: L('正常連線', 'Normal'), d: L('Client 依地理位置連上亞太、使用率較低的 H6，拿到 10.6.6.1。亞太 IT 記下這個 IP，連入協助，路徑都在亞太。', 'By geolocation the Client joins H6, the less-utilized APAC Hub, and gets 10.6.6.1. APAC IT notes this IP and connects; the whole path stays in APAC.') },
+    { s: { user: 'apac', down: true, it: null, ip: 'mem' }, t: L('亞太兩台 Hub 故障', 'Both APAC Hubs fail'), d: L('Primary H6、Secondary H5 都離線，Client 改連較遠地點的 Tertiary H3（歐洲），從 H3 的 IP Pool 拿到新 IP 10.3.3.1。', 'Primary H6 and Secondary H5 are down, so the Client moves to the farther Tertiary H3 (EMEA) and gets a new IP, 10.3.3.1, from H3\'s pool.') },
+    { s: { user: 'apac', down: true, it: 'apac', ip: 'mem' }, t: L('IT 還用舊 IP', 'IT uses the old IP'), d: L('亞太 IT 拿之前記下的 10.6.6.1 去連，但這個 IP 屬於已離線的 H6，連線逾時。', 'APAC IT dials the noted 10.6.6.1, but that IP belongs to H6, which is down: timeout.') },
+    { s: { user: 'apac', down: true, it: 'apac', ip: 'cur' }, t: L('改用目前的 IP', 'Use the current IP'), d: L('亞太 IT 改連 10.3.3.1：先跨到歐洲 H3，再經 Tunnel 回到亞太的使用者，走了 2 段長距離。', 'APAC IT dials 10.3.3.1: across to H3 in EMEA, then back through the tunnel to the APAC user, two long-haul legs.') },
+    { s: { user: 'apac', down: true, it: 'emea', ip: 'cur' }, t: L('改由歐洲 IT 協助', 'EMEA IT helps instead'), d: L('10.3.3.1 屬於歐洲 H3 的 Pool，由歐洲 IT 連入只剩 Tunnel 這 1 段長距離。使用者人在亞太，這段換誰協助都省不掉。', '10.3.3.1 is in EMEA H3\'s pool, so EMEA IT has only the tunnel as a long-haul leg. The user is in APAC, so that leg stays whoever helps.') }
+  ] },
+  tv: { nm: L('出差', 'Travel'), steps: [
+    { s: { user: 'apac', down: false, it: 'apac', ip: 'mem' }, t: L('在亞太辦公', 'Working in APAC'), d: L('Client 連上亞太的 H6，拿到 10.6.6.1。亞太 IT 記下這個 IP。', 'The Client joins H6 in APAC and gets 10.6.6.1. APAC IT notes this IP.') },
+    { s: { user: 'emea', down: false, it: null, ip: 'mem' }, t: L('出差到歐洲', 'Travels to EMEA'), d: L('文件：Client 移動到不同地理位置時，會改連離新位置較近、並參考使用率的 Hub。Client 改連歐洲使用率較低的 H3，拿到 10.3.3.1。', 'Per the document, when the Client moves to a different location it connects to a Hub close to the new location, based on utilization. It joins H3, the less-utilized EMEA Hub, and gets 10.3.3.1.') },
+    { s: { user: 'emea', down: false, it: 'apac', ip: 'mem' }, t: L('IT 還用舊 IP', 'IT uses the old IP'), d: L('亞太 IT 拿 10.6.6.1 去連。H6 雖然正常，但這個 IP 已經不是這位使用者的，連不到他的電腦。', 'APAC IT dials 10.6.6.1. H6 is fine, but that IP no longer belongs to this user, so it does not reach their laptop.') },
+    { s: { user: 'emea', down: false, it: 'apac', ip: 'cur' }, t: L('改用目前的 IP', 'Use the current IP'), d: L('亞太 IT 改連 10.3.3.1，要跨區到歐洲 H3，有 1 段長距離。使用者和 H3 都在歐洲，Tunnel 這段很短。', 'APAC IT dials 10.3.3.1 and must cross to H3 in EMEA, one long-haul leg. The user and H3 are both in EMEA, so the tunnel is short.') },
+    { s: { user: 'emea', down: false, it: 'emea', ip: 'cur' }, t: L('改由歐洲 IT 協助', 'EMEA IT helps instead'), d: L('歐洲 IT 連入，整條路徑都在歐洲，沒有長距離。出差時 IP 網段剛好反映使用者人在哪一區。', 'EMEA IT connects and the whole path stays in EMEA, no long-haul legs. When travelling, the IP range happens to reflect where the user is.') }
+  ] }
+};
+let scen = 'fo', step = 0, A = Object.assign({}, SCEN.fo.steps[0].s);
+const STEPS = () => SCEN[scen].steps;
+const lowest = (hs) => hs.slice().sort((a, b) => a.u - b.u)[0];
+function pickHubs() {
+  const near = REG[A.user].hubs.slice().sort((a, b) => a.u - b.u);
+  const far = lowest(Object.entries(REG).filter(([k]) => k !== A.user).flatMap(([k, r]) => r.hubs));
+  return { P: near[0].id, S: near[1].id, T: far.id };
+}
+const isDown = (id) => A.down && (id === 'H5' || id === 'H6');
+function solveA() {
+  const pk = pickHubs(), order = [pk.P, pk.S, pk.T];
+  const tried = []; let conn = null;
+  for (const id of order) { tried.push(id); if (!isDown(id)) { conn = id; break; } }
+  const roles = { [pk.P]: 'P', [pk.S]: 'S', [pk.T]: 'T' };
+  const curIp = ipOf(hubPos[conn].n), memIp = ipOf(6);
+  const out = { conn, curIp, memIp, roles, tried, pk };
+  if (!A.it) return out;
+  const dial = A.ip === 'mem' ? memIp : curIp;
+  out.dial = dial;
+  if (dial !== curIp) { out.kind = 'stale'; out.h6down = isDown('H6'); return out; }
+  const hr = hubPos[conn].reg;
+  out.kind = 'ok'; out.crossIt = A.it !== hr; out.crossUser = hr !== A.user; out.legs = (out.crossIt ? 1 : 0) + (out.crossUser ? 1 : 0);
+  return out;
+}
+const ROLEC = { P: GRN, S: '56 189 248', T: VIO };
+const RN = { P: 'Primary', S: 'Secondary', T: 'Tertiary' };
+function svgA(S) {
+  let s = '';
+  Object.entries(REG).forEach(([k, r]) => { s += `<rect class="zone" x="${r.x0}" y="20" width="340" height="320" rx="16"/><text class="zone-t" x="${r.x0 + 18}" y="44">${tr(r.nm).toUpperCase()}</text>`; });
+  s += `<text class="gz-t" x="550" y="462" text-anchor="middle">HUB GROUP A · GEO IP ON</text>`;
+  s += `<path class="ghost" d="M${dcX('amer')} ${DCY + 26} V160 H${dcX('apac')} V${DCY + 26}"/><path class="ghost" d="M${dcX('emea')} ${DCY + 26} V160"/>`;
+  s += `<text class="lbl" x="${(dcX('amer') + dcX('emea')) / 2}" y="152" text-anchor="middle">${tr(L('區域間網路', 'Inter-region network'))}</text>`;
+  Object.entries(REG).forEach(([k, r]) => { r.hubs.forEach(h => { s += `<path class="ghost" d="M${dcX(k)} ${DCY + 26} V190 H${hubPos[h.id].x} V${hubPos[h.id].y - 26}"/>`; }); });
+  const cx = REG[A.user].x0 + 170, cy = 410, hp = hubPos[S.conn];
+  if (A.user !== 'apac') { const hx = REG.apac.x0 + 170; s += `<circle cx="${hx}" cy="${cy}" r="6" fill="none" stroke="rgba(96,165,250,.6)" stroke-width="2" stroke-dasharray="3 3"/><path class="ghost" d="M${hx - 8} ${cy} H${cx + 107}"/>` + tag((hx + cx + 107) / 2, cy - 16, 120, 'info', tr(L('出差移動', 'Travelled'))); }
+  const tunnel = `M${cx} ${cy - 31} C ${cx} 340, ${hp.x} 340, ${hp.x} ${hp.y + 26}`;
+  s += flow(tunnel, GRN, true);
+  if (hp.reg !== A.user) s += tag((cx + hp.x) / 2, 352, 150, 'warn', tr(L('長距離 · Tunnel', 'Long-haul · tunnel')));
+  if (A.it) {
+    const ix = REG[A.it].x0 + 44, dx = dcX(A.it);
+    s += flow(`M${ix + 19} ${DCY} H${dx - 100}`, S.kind === 'stale' ? RED : AMB, false);
+    const target = S.kind === 'stale' ? hubPos.H6 : hp, tx = target.x + 10;
+    const p = A.it === target.reg ? `M${dx + 10} ${DCY + 26} V200 H${tx} V${target.y - 26}` : `M${dx + 10} ${DCY + 26} V172 H${dcX(target.reg) + 10} V200 H${tx} V${target.y - 26}`;
+    if (S.kind === 'stale') { s += flow(p, RED, false) + xm(tx, target.y - 40); if (!S.h6down) s += tag(target.x, target.y + 44, 170, 'bad', tr(L('不是這位使用者', 'Not this user'))); }
+    else {
+      s += flow(p, AMB, true);
+      s += flow(`M${hp.x + 10} ${hp.y + 26} C ${hp.x + 10} 350, ${cx + 10} 350, ${cx + 10} ${cy - 31}`, AMB, true);
+      if (S.crossIt) s += tag((dx + dcX(hp.reg)) / 2, 184, 150, 'warn', tr(L('長距離 · 跨區', 'Long-haul · cross-region')));
+    }
+  }
+  Object.entries(REG).forEach(([k, r]) => {
+    s += node(dcX(k), DCY, 200, 52, A.it === k ? AMB : '148 163 184', 'server', `${tr(r.nm)} DC LAN`, tr(L('同一套應用', 'Same apps')), '');
+    s += itNode(r.x0 + 44, DCY, A.it === k);
+    r.hubs.forEach(h => {
+      const p = hubPos[h.id], dn = isDown(h.id), conn = S.conn === h.id, ro = S.roles[h.id];
+      const c = dn ? RED : ro ? ROLEC[ro] : '100 116 139';
+      s += node(p.x, p.y, 140, 52, c, dn ? 'power' : 'server', 'Hub-' + h.id, dn ? tr(L('離線', 'Down')) : `${tr(L('使用率', 'util.'))} ${h.u}%`, dn ? 'exp' : conn ? 'act' : ro ? '' : 'hid');
+      if (ro) s += role(p.x + 52, p.y, ro, c);
+    });
+  });
+  s += node(cx, cy, 214, 62, '96 165 250', 'laptop', tr(L(`使用者 · 人在${tr(REG[A.user].nm)}`, `User · in ${tr(REG[A.user].nm)}`)), `IP ${S.curIp} ← ${S.conn}`, '');
+  $('#svgA').innerHTML = s;
+}
+function manual() { step = -1; renderA(); lucide.createIcons(); }
+function renderA() {
+  const S = solveA(), hr = tr(REG[hubPos[S.conn].reg].nm), un = tr(REG[A.user].nm);
+  $('#segScen').innerHTML = Object.entries(SCEN).map(([k, v]) => `<button data-v="${k}" aria-pressed="${k === scen}" style="--bc:${AMB}">${tr(v.nm)}</button>`).join('');
+  $$('#segScen button').forEach(b => b.addEventListener('click', () => { scen = b.dataset.v; goStep(0); }));
+  $('#segStep').innerHTML = STEPS().map((x, i) => `<button data-v="${i}" aria-pressed="${i === step}" style="--bc:${AMB}">${i + 1}</button>`).join('');
+  $$('#segStep button').forEach(b => b.addEventListener('click', () => goStep(+b.dataset.v)));
+  $('#segUser').innerHTML = Object.entries(REG).map(([k, r]) => `<button data-v="${k}" aria-pressed="${k === A.user}" style="--bc:96 165 250"><i data-lucide="map-pin" class="w-3.5 h-3.5"></i>${tr(r.nm)}</button>`).join('');
+  $$('#segUser button').forEach(b => b.addEventListener('click', () => { A.user = b.dataset.v; manual(); }));
+  $('#tgDownWrap').innerHTML = `<button class="tg" id="tgDown" aria-pressed="${A.down}" style="--tc:${RED}"><span class="nm">${tr(L('亞太兩台 Hub 故障', 'Both APAC Hubs down'))}</span><span class="ds">H5 · H6</span><span class="sw"></span></button>`;
+  $('#tgDown').addEventListener('click', () => { A.down = !A.down; manual(); });
+  $('#segIt').innerHTML = [[null, L('不連入', 'None')], ...Object.entries(REG).map(([k, r]) => [k, r.nm])].map(([k, n]) => `<button data-v="${k || ''}" aria-pressed="${(k || null) === A.it}" style="--bc:${AMB}">${tr(n)}</button>`).join('');
+  $$('#segIt button').forEach(b => b.addEventListener('click', () => { A.it = b.dataset.v || null; manual(); }));
+  $('#segIp').innerHTML = [['mem', L('之前記下的 IP（10.6.6.1）', 'IP noted earlier (10.6.6.1)')], ['cur', L('目前的 IP', 'Current IP')]].map(([k, n]) => `<button data-v="${k}" aria-pressed="${k === A.ip}" style="--bc:${AMB}">${tr(n)}</button>`).join('');
+  $$('#segIp button').forEach(b => b.addEventListener('click', () => { A.ip = b.dataset.v; manual(); }));
+  $('#stepList').innerHTML = STEPS().map((x, i) => `<button class="stepi ${i === step ? 'on' : ''}" data-v="${i}"><span class="num">${i + 1}</span><span><span class="block font-semibold text-slate-100">${tr(x.t)}</span><span class="block mt-0.5 text-xs text-slate-400 leading-relaxed">${tr(x.d)}</span></span></button>`).join('');
+  $$('#stepList .stepi').forEach(b => b.addEventListener('click', () => goStep(+b.dataset.v)));
+  $('#btnPrev').disabled = step <= 0; $('#btnNext').disabled = step >= STEPS().length - 1;
+  svgA(S);
+  const v = $('#verdictA'), role0 = S.roles[S.conn], moved = A.user !== 'apac', changed = S.curIp !== S.memIp;
+  let cls, icon, t, d;
+  if (!A.it) {
+    cls = changed ? 'v-risk' : 'v-ok'; icon = changed ? 'shield-alert' : 'circle-check';
+    t = changed ? L(`Client 改連 ${S.conn}，IP 變成 ${S.curIp}`, `The Client moved to ${S.conn}; IP is now ${S.curIp}`) : L(`Client 連上 ${S.conn}，IP ${S.curIp}`, `The Client is on ${S.conn}, IP ${S.curIp}`);
+    if (!changed) d = L('選一個 IT 位置，看 IT 連入的路徑。', 'Pick an IT location to see the path IT takes.');
+    else if (role0 === 'T') d = L(`最近地點的 Hub 都離線，Client 改連較遠地點的 Tertiary ${S.conn}，拿到 ${S.conn} Pool 的 IP。IT 手上記的舊 IP 從這一刻起就不對了。`, `The nearest Hubs are down, so the Client joins the farther Tertiary ${S.conn} and takes an IP from its pool. Any IP IT noted earlier is now wrong.`);
+    else d = L(`使用者移動到${un}，Client 改連當地使用率較低的 ${S.conn}，拿到 ${S.conn} Pool 的 IP。IT 手上記的舊 IP 從這一刻起就不對了。`, `The user moved to ${un}, so the Client joins ${S.conn}, the less-utilized local Hub, and takes an IP from its pool. Any IP IT noted earlier is now wrong.`);
+  } else if (S.kind === 'stale') {
+    cls = 'v-red'; icon = 'triangle-alert';
+    t = L(`連錯：IT 記的是 ${S.memIp}，Client 已經換成 ${S.curIp}`, `Wrong IP: IT has ${S.memIp}, the Client now has ${S.curIp}`);
+    d = S.h6down ? L(`${S.memIp} 屬於已離線的 H6，連線逾時。要用 Client 目前的 IP。`, `${S.memIp} belongs to H6, which is down: timeout. Use the Client's current IP.`)
+      : L(`H6 還在線，但 ${S.memIp} 已經不是這位使用者的 IP，連不到他的電腦；H6 的 Pool 也可能已把這個 IP 派給其他 Client。要用 Client 目前的 IP。`, `H6 is up, but ${S.memIp} is no longer this user's IP, so it does not reach their laptop; H6's pool may even have leased it to another Client. Use the Client's current IP.`);
+  } else {
+    const itn = tr(REG[A.it].nm);
+    cls = S.legs ? 'v-risk' : 'v-ok'; icon = S.legs ? 'route' : 'circle-check';
+    t = L(`${itn} IT 連到 ${S.curIp}，長距離 ${S.legs} 段`, `${itn} IT reaches ${S.curIp}, ${S.legs} long-haul leg${S.legs === 1 ? '' : 's'}`);
+    let z = `路徑：${itn} IT → ${itn} LAN → ${S.crossIt ? `跨區到${hr} → ` : ''}${S.conn} → Tunnel → 使用者（${un}）。`, e = `Path: ${itn} IT → ${itn} LAN → ${S.crossIt ? `across to ${hr} → ` : ''}${S.conn} → tunnel → user (${un}).`;
+    if (S.crossIt) { z += `IP 屬於${hr} ${S.conn} 的 Pool，改由${hr} IT 協助可以少一段。`; e += ` The IP is in ${hr} ${S.conn}'s pool; ${hr} IT would save a leg.`; }
+    if (S.crossUser) { z += `使用者人在${un}、Tunnel 接在${hr}，這段換誰協助都省不掉。`; e += ` The user is in ${un} with the tunnel landing in ${hr}; that leg stays whoever helps.`; }
+    if (!S.legs) { z += moved ? '整條路徑都在同一區；出差時，IP 網段剛好反映使用者人在哪。' : '整條路徑都在同一區。'; e += moved ? ' The whole path stays in one region; when travelling, the IP range reflects where the user is.' : ' The whole path stays in one region.'; }
+    d = L(z, e);
+  }
+  v.className = `verdict rounded-2xl p-4 ${cls}`;
+  v.innerHTML = `<div class="flex items-center gap-2 text-lg font-bold"><i data-lucide="${icon}" class="w-5 h-5"></i>${esc(tr(t))}</div><p class="mt-1.5 text-sm text-slate-300">${esc(tr(d))}</p>`;
+  const lines = [['dim', tr(L(`依地理位置（${un}）→ Primary ${S.pk.P}、Secondary ${S.pk.S}、Tertiary ${S.pk.T}（較遠地點）`, `By geolocation (${un}) → Primary ${S.pk.P}, Secondary ${S.pk.S}, Tertiary ${S.pk.T} (farther)`))]];
+  S.tried.forEach(id => { const r = RN[S.roles[id]]; lines.push(isDown(id) ? ['hit', tr(L(`建立 Tunnel → ${id}（${r}）… 失敗，Hub 離線`, `Tunnel → ${id} (${r}) … failed, Hub down`))] : ['ok', tr(L(`建立 Tunnel → ${id}（${r}）… 成功`, `Tunnel → ${id} (${r}) … up`))]); });
+  lines.push(['ok', tr(L(`從 ${S.conn} 的 IP Pool 取得 IP ${S.curIp}`, `IP ${S.curIp} received from ${S.conn}'s IP pool`))]);
+  if (A.it) {
+    lines.push(['sel', tr(L(`${tr(REG[A.it].nm)} IT 遠端連入 ${S.dial}`, `${tr(REG[A.it].nm)} IT connects to ${S.dial}`))]);
+    if (S.kind === 'stale') lines.push(['hit', S.h6down ? tr(L(`${S.dial} 屬於離線的 H6，連線逾時`, `${S.dial} belongs to H6, which is down; timeout`)) : tr(L(`${S.dial} 已不是這位使用者的 IP`, `${S.dial} is no longer this user's IP`))]);
+    else lines.push(['ok', tr(L(`經 ${S.conn} → Tunnel → Client … 成功（長距離 ×${S.legs}）`, `Via ${S.conn} → tunnel → Client … ok (long-haul ×${S.legs})`))]);
+  }
+  $('#termA').innerHTML = lines.map(([k, t]) => `<div class="l ${k}">${esc(t)}</div>`).join('');
+}
+function goStep(i) { step = Math.max(0, Math.min(STEPS().length - 1, i)); A = Object.assign({}, STEPS()[step].s); renderA(); lucide.createIcons(); }
+$('#btnPrev').addEventListener('click', () => goStep(step - 1));
+$('#btnNext').addEventListener('click', () => goStep(step + 1));
+
+/* ===================== 02 · SUMMARY ===================== */
+function renderStatic() {
+  const C = [
+    { icon: 'route', c: AMB, t: L('IT 要用 Client 目前的 IP', 'IT must use the current IP'), d: L('文件：Primary 故障時，Client 切到 Secondary，並從 Secondary 的 Pool 拿到新 IP。所以 IT 記下的 IP 在 Failover 後就可能失效。', 'Per the document, when the Primary fails the Client moves to the Secondary and gets a new IP from its pool, so an IP IT noted earlier may no longer be valid.') },
+    { icon: 'map-pin', c: '96 165 250', t: L('出差也會換 IP', 'Travel changes the IP too'), d: L('文件：Client 移動到不同地理位置時，會改連離新位置較近的 Hub，並參考使用率。新 Hub 派發新 IP，舊 IP 就不再是這位使用者的。', 'Per the document, when the Client moves to a different location it connects to a Hub close to the new location, based on utilization. The new Hub leases a new IP, and the old one no longer belongs to this user.') },
+    { icon: 'map-pin', c: '56 189 248', t: L('Pool 所屬區域的 IT 路徑最短', 'The pool\'s region has the shortest path'), d: L('Client IP 屬於哪台 Hub 的 Pool，Tunnel 就接在那台 Hub。由那一區的 IT 連入路徑最短；這只在依地點分 Hub 的架構下成立。出差時網段也反映使用者人在哪；Failover 到其他區時則不一定。', 'The pool a Client IP belongs to marks the Hub where its tunnel lands, so that region\'s IT has the shortest path. This holds only when Hubs are organized by location. When travelling the range also shows where the user is; after a cross-region failover it does not.') },
+    { icon: 'network', c: GRN, t: L('IT 所在 LAN 要有 Pool 路由', 'IT\'s LAN needs pool routes'), d: L('文件：Hub 用 BGP 宣告 Pool 彙總，或在 LAN 交換器設靜態路由；雙 DC 時兩邊都要有全部 Pool 的路由。IT 能不能連到 Client，取決於這些路由。', 'Per the document, Hubs advertise pool summaries via BGP or the LAN switch carries static routes, and with two DCs both need every pool. Whether IT reaches a Client depends on these routes.') }
+  ];
+  $('#cards').innerHTML = C.map(c => `<div class="card rounded-2xl p-5"><div class="w-10 h-10 rounded-lg grid place-items-center" style="background:rgb(${c.c} / .14);color:rgb(${c.c})"><i data-lucide="${c.icon}" class="w-5 h-5"></i></div>
+    <div class="mt-3 font-semibold text-slate-100">${tr(c.t)}</div><p class="mt-1.5 text-sm text-slate-300 leading-relaxed">${tr(c.d)}</p></div>`).join('');
+  $('#gap').innerHTML = `<div class="flex items-center gap-2 font-semibold text-slate-100"><i data-lucide="info" class="w-4 h-4 text-amber-300"></i>${tr(L('文件沒有涵蓋、需依實際環境確認', 'Not covered by the document; confirm for your environment'))}</div>
+    <ul class="mt-2 text-sm text-slate-300 leading-relaxed" style="list-style:disc;padding-left:1.2rem">
+      <li>${tr(L('IT 如何查到某位使用者目前的 IP（例如 DNS、資產系統或 BWAN 管理介面）。', 'How IT finds a user\'s current IP (for example DNS, an asset system or the BWAN console).'))}</li>
+      <li>${tr(L('Hub 或 Client 端是否需要另外允許進來的連線。', 'Whether the Hub or the Client must explicitly allow inbound connections.'))}</li>
+      <li>${tr(L('使用哪種遠端工具，以及各區 IT 的分工與合規限制。', 'Which remote tool is used, and how regional IT teams split the work within compliance limits.'))}</li>
+    </ul>`;
+}
+
+/* ===================== LANG / THEME / PRINT ===================== */
+function applyLang(l) {
+  lang = l;
+  document.documentElement.setAttribute('lang', l === 'en' ? 'en' : 'zh-Hant');
+  document.title = l === 'en' ? 'IT Remote Access (extension)' : 'IT 遠端連入（延伸情境）';
+  $$('#segLang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
+  try { localStorage.setItem('nsk-poc-lang', l); } catch (e) {}
+  renderA(); renderStatic(); lucide.createIcons();
+}
+function applyTheme(t) {
+  document.documentElement.classList.toggle('light', t === 'light');
+  $$('#segTheme button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.theme === t)));
+  try { localStorage.setItem('nsk-poc-theme', t); } catch (e) {}
+}
+$$('#segLang button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+$$('#segTheme button').forEach(b => b.addEventListener('click', () => applyTheme(b.dataset.theme)));
+let themeBeforePrint = null;
+window.addEventListener('beforeprint', () => { themeBeforePrint = document.documentElement.classList.contains('light') ? 'light' : 'dark'; document.documentElement.classList.add('light'); });
+window.addEventListener('afterprint', () => { if (themeBeforePrint === 'dark') document.documentElement.classList.remove('light'); themeBeforePrint = null; });
+$('#btnPdf').addEventListener('click', () => window.print());
+
+applyTheme(document.documentElement.classList.contains('light') ? 'light' : 'dark');
+applyLang(lang);
+</script>
+</body>
+</html>
