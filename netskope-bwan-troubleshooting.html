@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BWAN 除錯手冊</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+  (function () {
+    try {
+      if (localStorage.getItem('bwan-notes-theme') === 'light') document.documentElement.classList.add('light');
+      if (localStorage.getItem('bwan-notes-lang') === 'en') document.documentElement.setAttribute('lang', 'en');
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root { --accent: 34 211 238; --ok: 52 211 153; --bad: 244 63 94; --warn: 251 191 36; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; font-family: Inter, 'Noto Sans TC', system-ui, sans-serif; -webkit-font-smoothing: antialiased;
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(56,189,248,.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(251,146,60,.08), transparent 60%),
+      #060a13;
+    color: #e2e8f0; min-height: 100vh; line-height: 1.5;
+  }
+  html[lang="en"] .zh { display: none !important; }
+  html:not([lang="en"]) .en { display: none !important; }
+  a { color: inherit; text-decoration: none; }
+  code, pre, .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  h1, h2, h3, p { margin: 0; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  .wrap { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem; }
+  .card { background: rgba(15,23,42,.65); border: 1px solid rgba(51,65,85,.6); backdrop-filter: blur(8px); border-radius: 1rem; }
+  .muted { color: #94a3b8; } .dim { color: #64748b; } .strong { color: #f1f5f9; }
+  .grid-bg {
+    background-image: linear-gradient(rgba(148,163,184,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .hero-grad { background-image: linear-gradient(90deg, #67e8f9, #bae6fd, #fdba74); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #67e8f9; }
+  .sec { padding: 3rem 0; border-top: 1px solid rgba(30,41,59,.7); scroll-margin-top: 4rem; }
+  .sec h2 { font-size: 1.75rem; font-weight: 700; margin-top: .25rem; letter-spacing: -.01em; }
+  .sec .lead { margin-top: .5rem; font-size: 14px; color: #94a3b8; max-width: 56rem; line-height: 1.7; }
+
+  /* nav */
+  nav { position: sticky; top: 0; z-index: 40; border-bottom: 1px solid rgba(30,41,59,.7); background: rgba(2,6,23,.75); backdrop-filter: blur(8px); }
+  nav .wrap { height: 3.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .brand { display: flex; align-items: center; gap: .5rem; font-weight: 600; font-size: 14px; }
+  .logo { width: 2rem; height: 2rem; border-radius: .5rem; background: linear-gradient(135deg, #22d3ee, #fb923c); display: grid; place-items: center; color: #020617; }
+  .navlinks { display: flex; gap: .25rem; font-size: 12px; color: #94a3b8; }
+  .navlinks a { padding: .375rem .75rem; border-radius: .375rem; }
+  .navlinks a:hover { background: #1e293b; color: #f1f5f9; }
+  @media (max-width: 860px) { .navlinks { display: none; } }
+
+  /* header */
+  header .wrap { padding-top: 3rem; padding-bottom: 3rem; }
+  header h1 { font-size: clamp(1.6rem, 4vw, 2.9rem); font-weight: 800; letter-spacing: -.025em; line-height: 1.15; margin-top: 1rem; }
+  .badges { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: .5rem; }
+  .badge { display: inline-flex; align-items: center; gap: .45rem; border-radius: 999px; padding: .25rem .75rem; font-size: 12px; font-weight: 500; border: 1px solid; }
+  .b-bad { border-color: rgba(244,63,94,.4); background: rgba(244,63,94,.1); color: #fda4af; }
+  .b-ok { border-color: rgba(16,185,129,.4); background: rgba(16,185,129,.1); color: #6ee7b7; }
+  .b-sky { border-color: rgba(14,165,233,.4); background: rgba(14,165,233,.1); color: #7dd3fc; }
+  .b-org { border-color: rgba(249,115,22,.4); background: rgba(249,115,22,.1); color: #fdba74; }
+  .dot { width: .5rem; height: .5rem; border-radius: 50%; background: currentColor; position: relative; }
+  .dot::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: inherit; animation: ping 1.8s infinite; }
+  @keyframes ping { 0% { opacity: .7; transform: scale(1); } 100% { opacity: 0; transform: scale(2.2); } }
+  .stats { margin-top: 2rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; }
+  @media (max-width: 860px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+  .stat { padding: 1rem; }
+  .stat .k { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: #64748b; }
+  .stat .v { margin-top: .25rem; font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 600; }
+  .stat .s { font-size: 12px; color: #94a3b8; }
+
+  /* segmented */
+  .seg { display: inline-flex; flex-wrap: wrap; border: 1px solid #334155; border-radius: .6rem; overflow: hidden; background: rgba(15,23,42,.8); }
+  .seg button { padding: .45rem .9rem; font-size: .8rem; color: #cbd5e1; transition: all .25s; white-space: nowrap; }
+  .seg button + button { border-left: 1px solid #334155; }
+  .seg button:hover { background: rgba(51,65,85,.5); }
+  .seg button[aria-pressed="true"] { background: rgb(var(--accent)); color: #020617; font-weight: 600; }
+  .ctl { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; align-items: center; }
+  .ctl .lab { font-size: 13px; color: #94a3b8; margin-right: .5rem; }
+  .btn { height: 34px; padding: 0 .75rem; display: inline-flex; align-items: center; gap: .4rem; border-radius: .55rem; border: 1px solid #334155; background: #0f172a; font-size: .8rem; }
+  .btn:hover { background: #1e293b; }
+
+  /* 01 chain */
+  .chain { display: flex; gap: .5rem; overflow-x: auto; padding: .25rem .1rem 1rem; }
+  .cnode { flex: 1 0 128px; min-width: 128px; text-align: left; padding: .8rem .85rem; border-radius: .8rem; border: 1px solid #334155; background: rgba(15,23,42,.7); transition: all .3s; position: relative; }
+  .cnode .n { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: #64748b; }
+  .cnode .t { margin-top: .3rem; font-size: 13px; font-weight: 600; line-height: 1.35; color: #cbd5e1; }
+  .cnode.done { border-color: rgba(244,63,94,.45); }
+  .cnode.done .n { color: #fb7185; }
+  .cnode.cur { border-color: rgb(var(--c)); background: rgb(var(--c) / .12); box-shadow: 0 0 0 1px rgb(var(--c)), 0 0 18px rgb(var(--c) / .35); }
+  .cnode.cur .n { color: rgb(var(--c)); } .cnode.cur .t { color: #f8fafc; }
+  .cnode.fix { --c: 52 211 153; }
+  .cnode.fix.done, .cnode.fix.cur { border-color: rgb(52 211 153); }
+  .chev { align-self: center; color: #475569; flex: 0 0 auto; }
+  .detail-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 1rem; margin-top: .5rem; }
+  @media (max-width: 960px) { .detail-grid { grid-template-columns: 1fr; } }
+  .pad { padding: 1.4rem 1.5rem; }
+  .kv { display: grid; grid-template-columns: auto 1fr; gap: .45rem 1rem; font-size: 14px; margin-top: 1rem; }
+  .kv dt { color: #64748b; white-space: nowrap; } .kv dd { margin: 0; color: #e2e8f0; }
+  .ev { margin-top: .9rem; border: 1px solid #1e293b; background: rgba(2,6,23,.7); border-radius: .6rem; padding: .75rem .9rem; font-size: 12px; line-height: 1.7; color: #cbd5e1; white-space: pre-wrap; word-break: break-all; }
+  .ev .hl { color: #fda4af; font-weight: 600; } .ev .hg { color: #6ee7b7; font-weight: 600; }
+  .ev .c { color: #64748b; }
+  .fade { animation: fade .45s ease both; } @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  /* 02 path svg */
+  .psvg text { font-family: Inter, 'Noto Sans TC', sans-serif; }
+  .psvg .nd rect { fill: rgba(15,23,42,.92); stroke: rgba(100,116,139,.6); stroke-width: 1.6; transition: all .35s; }
+  .psvg .nd .t { fill: #f1f5f9; font-size: 14px; font-weight: 600; }
+  .psvg .nd .s { fill: #94a3b8; font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+  .psvg .nd { transition: opacity .35s; } .psvg .nd.off { opacity: .3; }
+  .psvg .nd.on rect { fill: rgb(var(--c) / .12); stroke: rgb(var(--c) / .8); }
+  .psvg .eg { fill: none; stroke: rgba(100,116,139,.35); stroke-width: 2; stroke-dasharray: 3 6; stroke-linecap: round; }
+  .psvg .eg.on { stroke: rgb(var(--c)); stroke-width: 3.5; stroke-dasharray: 12 9; animation: dash 1.1s linear infinite; filter: drop-shadow(0 0 5px rgb(var(--c) / .5)); }
+  @keyframes dash { to { stroke-dashoffset: -21; } }
+  .psvg .el { fill: #64748b; font-size: 11px; font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+  .psvg .el.on { fill: #e2e8f0; }
+  .psvg .pk { fill: #fff; filter: drop-shadow(0 0 6px rgb(var(--c))); }
+  .psvg .zone { fill: rgba(15,23,42,.3); stroke: rgba(100,116,139,.45); stroke-dasharray: 6 6; }
+  .psvg .zt { fill: #64748b; font-size: 11px; letter-spacing: .14em; font-weight: 600; }
+  .psvg .gwtag rect { fill: rgba(244,63,94,.15); stroke: rgba(244,63,94,.7); }
+  .psvg .gwtag text { fill: #fda4af; font-size: 10.5px; font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+  .note { border-radius: .7rem; padding: .7rem .9rem; font-size: 13px; line-height: 1.65; display: flex; gap: .55rem; margin-top: 1rem; }
+  .note.warn { background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.45); color: #fde68a; }
+  .note.bad { background: rgba(248,113,113,.08); border: 1px solid rgba(248,113,113,.5); color: #fecaca; }
+  .note.ok { background: rgba(52,211,153,.08); border: 1px solid rgba(52,211,153,.45); color: #a7f3d0; }
+  .res { font-size: 1.35rem; font-weight: 700; margin-top: .2rem; }
+  .ftable { width: 100%; border-collapse: collapse; margin-top: .9rem; font-size: 12.5px; }
+  .ftable td { padding: .45rem .6rem; border-top: 1px solid #1e293b; vertical-align: top; }
+  .ftable td:first-child { font-family: 'JetBrains Mono', monospace; color: #94a3b8; white-space: nowrap; width: 1%; }
+  .ftable td.v { font-family: 'JetBrains Mono', monospace; }
+  .v-bad { color: #fda4af; } .v-ok { color: #6ee7b7; } .v-warn { color: #fde68a; }
+
+  /* decoder */
+  .flowline { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 2; padding: .9rem 1rem; border-radius: .6rem; border: 1px solid #1e293b; background: rgba(2,6,23,.7); color: #64748b; word-break: break-all; }
+  .tok { color: #cbd5e1; padding: .1rem .3rem; border-radius: .3rem; border: 1px dashed #475569; cursor: pointer; transition: all .2s; }
+  .tok:hover { border-color: #22d3ee; color: #f1f5f9; }
+  .tok.sel { background: rgba(34,211,238,.15); border: 1px solid #22d3ee; color: #a5f3fc; }
+  .tok.badv { color: #fda4af; } .tok.badv.sel { background: rgba(244,63,94,.15); border-color: #f43f5e; color: #fecdd3; }
+
+  /* 03 notes */
+  .nfilter { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem; align-items: center; }
+  .prog { display: flex; align-items: center; gap: .6rem; font-size: 12px; color: #94a3b8; font-family: 'JetBrains Mono', monospace; }
+  .bar { width: 160px; height: 6px; border-radius: 99px; background: #1e293b; overflow: hidden; }
+  .bar i { display: block; height: 100%; background: linear-gradient(90deg, #22d3ee, #34d399); transition: width .35s; }
+  .ngrid { margin-top: 1rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: .9rem; }
+  @media (max-width: 860px) { .ngrid { grid-template-columns: 1fr; } }
+  .ncard { padding: 1.05rem 1.15rem; border-left: 4px solid rgb(var(--c)); display: flex; gap: .85rem; transition: opacity .25s; }
+  .ncard.checked { opacity: .55; }
+  .ncard .head { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; }
+  .tag { font-size: 10.5px; font-family: 'JetBrains Mono', monospace; font-weight: 600; padding: .1rem .45rem; border-radius: .35rem; border: 1px solid; text-transform: uppercase; letter-spacing: .04em; }
+  .t-crit { color: #fda4af; border-color: rgba(244,63,94,.5); background: rgba(244,63,94,.1); }
+  .t-warn { color: #fde68a; border-color: rgba(251,191,36,.5); background: rgba(251,191,36,.08); }
+  .t-info { color: #7dd3fc; border-color: rgba(14,165,233,.5); background: rgba(14,165,233,.08); }
+  .t-cat { color: #94a3b8; border-color: #334155; background: rgba(15,23,42,.8); }
+  .ncard h3 { font-size: 15px; font-weight: 600; margin-top: .45rem; line-height: 1.45; color: #f1f5f9; }
+  .ncard p { font-size: 13.5px; color: #cbd5e1; margin-top: .35rem; line-height: 1.65; }
+  .ncard code, .lead code, .kv code, .note code { font-size: 12px; padding: .05rem .3rem; border-radius: .25rem; background: rgba(51,65,85,.5); color: #e2e8f0; }
+  .chk { appearance: none; -webkit-appearance: none; width: 20px; height: 20px; flex-shrink: 0; margin-top: .15rem; border-radius: .35rem; border: 1.5px solid #475569; cursor: pointer; display: grid; place-items: center; transition: all .2s; }
+  .chk:checked { background: #34d399; border-color: #34d399; }
+  .chk:checked::after { content: ''; width: 6px; height: 11px; border: solid #022c22; border-width: 0 2.5px 2.5px 0; transform: rotate(45deg) translate(-1px, -1px); }
+  .ncard.checked h3 { text-decoration: line-through; color: #94a3b8; }
+
+  /* 04 commands */
+  .cmdgrid { margin-top: 1rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: .9rem; }
+  @media (max-width: 960px) { .cmdgrid { grid-template-columns: 1fr; } }
+  .cmd { padding: 1rem 1.1rem; display: flex; flex-direction: column; }
+  .cmd .top { display: flex; justify-content: space-between; align-items: flex-start; gap: .75rem; }
+  .cmd h3 { font-size: 14.5px; font-weight: 600; color: #f1f5f9; }
+  .cmd pre { margin: .7rem 0 0; padding: .75rem .85rem; border-radius: .55rem; border: 1px solid #1e293b; background: rgba(2,6,23,.75); font-size: 12px; line-height: 1.6; color: #a5f3fc; overflow-x: auto; white-space: pre; }
+  .cmd .look { margin-top: .65rem; font-size: 12.5px; color: #94a3b8; line-height: 1.6; }
+  .cmd .look b { color: #e2e8f0; font-weight: 600; }
+  .copy { font-size: 11.5px; padding: .3rem .6rem; border-radius: .45rem; border: 1px solid #334155; background: #0f172a; color: #cbd5e1; white-space: nowrap; flex-shrink: 0; }
+  .copy:hover { background: #1e293b; } .copy.ok { border-color: #34d399; color: #6ee7b7; }
+
+  /* 05 wrap-up */
+  .wl { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: .5rem 1.5rem; }
+  @media (max-width: 860px) { .wl { grid-template-columns: 1fr; } }
+  .wl label { display: flex; gap: .7rem; align-items: flex-start; font-size: 14px; color: #cbd5e1; cursor: pointer; padding: .55rem .6rem; border-radius: .55rem; line-height: 1.55; }
+  .wl label:hover { background: rgba(30,41,59,.5); }
+  .wl input:checked ~ span { color: #64748b; text-decoration: line-through; }
+  .wl .grp { grid-column: 1 / -1; font-size: 11px; font-family: 'JetBrains Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: #67e8f9; margin-top: .75rem; }
+
+  footer { border-top: 1px solid rgba(30,41,59,.7); margin-top: 1rem; }
+  footer .wrap { padding-top: 2rem; padding-bottom: 7rem; font-size: 12px; color: #64748b; display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem; }
+
+  #toolbar { position: fixed; bottom: 1rem; right: 1rem; z-index: 50; padding: .5rem; display: flex; gap: .5rem; align-items: center; border-radius: .75rem; box-shadow: 0 25px 50px -12px rgba(0,0,0,.35); }
+  #toolbar .seg button { padding: .4rem .75rem; }
+  #toolbar .seg button[aria-pressed="true"] { background: #22d3ee; }
+  @media (max-width: 640px) { #toolbar { right: 50%; transform: translateX(50%); } }
+  svg.ico { width: 16px; height: 16px; display: inline-block; vertical-align: -3px; }
+  ::-webkit-scrollbar { height: 8px; width: 8px; } ::-webkit-scrollbar-thumb { background: #334155; border-radius: 8px; }
+
+  /* ============ LIGHT ============ */
+  html.light body {
+    background: radial-gradient(1200px 600px at 10% -10%, rgba(56,189,248,.12), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(251,146,60,.10), transparent 60%), #f1f5f9;
+    color: #0f172a;
+  }
+  html.light .grid-bg { background-image: linear-gradient(rgba(15,23,42,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,.05) 1px, transparent 1px); }
+  html.light .card { background: rgba(255,255,255,.9); border-color: #e2e8f0; box-shadow: 0 1px 2px rgba(15,23,42,.04); }
+  html.light .hero-grad { background-image: linear-gradient(90deg, #0891b2, #0284c7, #ea580c); }
+  html.light .eyebrow { color: #0e7490; }
+  html.light .muted, html.light .sec .lead, html.light .stat .s { color: #475569; }
+  html.light .strong, html.light .cnode.cur .t, html.light .ncard h3, html.light .cmd h3 { color: #0f172a; }
+  html.light nav { background: rgba(255,255,255,.82); border-color: #e2e8f0; }
+  html.light .navlinks a:hover { background: #e2e8f0; color: #0f172a; }
+  html.light .sec, html.light footer { border-color: #e2e8f0; }
+  html.light .seg, html.light .btn, html.light .copy { background: #fff; border-color: #cbd5e1; color: #334155; }
+  html.light .seg button { color: #334155; } html.light .seg button + button { border-color: #cbd5e1; }
+  html.light .seg button:hover { background: #f1f5f9; }
+  html.light .cnode { background: #fff; border-color: #cbd5e1; } html.light .cnode .t { color: #334155; }
+  html.light .kv dd, html.light .ncard p, html.light .wl label { color: #1e293b; }
+  html.light .ev, html.light .flowline, html.light .cmd pre { background: #f8fafc; border-color: #e2e8f0; color: #334155; }
+  html.light .cmd pre { color: #0e7490; }
+  html.light .ev .hl, html.light .v-bad, html.light .tok.badv { color: #be123c; } html.light .ev .hg, html.light .v-ok { color: #047857; } html.light .v-warn { color: #b45309; }
+  html.light .tok { color: #334155; } html.light .tok.sel { color: #0e7490; }
+  html.light .ftable td { border-color: #e2e8f0; }
+  html.light .psvg .nd rect { fill: #fff; stroke: #94a3b8; }
+  html.light .psvg .nd.on rect { fill: rgb(var(--c) / .1); stroke: rgb(var(--c)); }
+  html.light .psvg .nd .t { fill: #0f172a; } html.light .psvg .nd .s { fill: #475569; }
+  html.light .psvg .zone { fill: rgba(255,255,255,.6); stroke: #94a3b8; }
+  html.light .psvg .el.on { fill: #0f172a; }
+  html.light .psvg .pk { fill: rgb(var(--c)); stroke: #fff; stroke-width: 2; }
+  html.light .note.warn { background: #fffbeb; color: #92400e; } html.light .note.bad { background: #fef2f2; color: #991b1b; } html.light .note.ok { background: #ecfdf5; color: #065f46; }
+  html.light .ncard code, html.light .lead code, html.light .kv code, html.light .note code { background: #e2e8f0; color: #0f172a; }
+  html.light .b-bad { color: #be123c; } html.light .b-ok { color: #047857; } html.light .b-sky { color: #0369a1; } html.light .b-org { color: #c2410c; }
+  html.light .t-crit { color: #be123c; } html.light .t-warn { color: #b45309; } html.light .t-info { color: #0369a1; }
+  html.light .bar { background: #e2e8f0; }
+  html.light .wl label:hover { background: #f1f5f9; }
+  html.light ::-webkit-scrollbar-thumb { background: #cbd5e1; }
+</style>
+<style>
+  /* --- playbook additions --- */
+  .mstep { display: flex; gap: .5rem; overflow-x: auto; padding: .25rem .1rem 1rem; }
+  .mnode { flex: 1 0 120px; min-width: 120px; text-align: left; padding: .8rem .85rem; border-radius: .8rem; border: 1px solid #334155; background: rgba(15,23,42,.7); transition: all .3s; }
+  .mnode .n { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: #64748b; }
+  .mnode .t { margin-top: .3rem; font-size: 13px; font-weight: 600; line-height: 1.35; color: #cbd5e1; }
+  .mnode.done { border-color: rgba(34,211,238,.45); } .mnode.done .n { color: #67e8f9; }
+  .mnode.cur { border-color: #22d3ee; background: rgba(34,211,238,.12); box-shadow: 0 0 0 1px #22d3ee, 0 0 18px rgba(34,211,238,.35); }
+  .mnode.cur .n { color: #22d3ee; } .mnode.cur .t { color: #f8fafc; }
+  .cases { margin-top: 1.2rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: .9rem; }
+  @media (max-width: 960px) { .cases { grid-template-columns: 1fr; } }
+  .ccard { text-align: left; padding: 1rem 1.1rem; border-radius: 1rem; transition: all .25s; display: flex; flex-direction: column; gap: .45rem; }
+  .ccard:hover { border-color: #475569; }
+  .ccard.sel { border-color: #22d3ee; box-shadow: 0 0 0 1px #22d3ee, 0 0 22px rgba(34,211,238,.2); }
+  .ccard .id { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #64748b; display: flex; justify-content: space-between; gap: .5rem; }
+  .ccard h3 { font-size: 15px; font-weight: 600; line-height: 1.45; color: #f1f5f9; }
+  .ccard .rc { font-size: 12.5px; color: #94a3b8; line-height: 1.55; }
+  .ccard.new { border-style: dashed; align-items: flex-start; justify-content: center; }
+  .st-ok { color: #6ee7b7; } .st-open { color: #fde68a; }
+  .sumgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; margin-top: 1rem; }
+  @media (max-width: 960px) { .sumgrid { grid-template-columns: 1fr 1fr; } }
+  .sum { padding: .9rem 1rem; }
+  .sum .k { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: #64748b; }
+  .sum .v { margin-top: .3rem; font-size: 13.5px; line-height: 1.6; color: #e2e8f0; }
+  .chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
+  .subh { margin-top: 2rem; display: flex; align-items: center; gap: .6rem; font-weight: 700; font-size: 1.1rem; }
+  .subh .num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #67e8f9; border: 1px solid rgba(34,211,238,.4); border-radius: .4rem; padding: .05rem .4rem; }
+  .tpl pre { margin: .8rem 0 0; padding: .8rem .9rem; border-radius: .55rem; border: 1px solid #1e293b; background: rgba(2,6,23,.75); font-size: 12px; line-height: 1.6; color: #a5f3fc; overflow-x: auto; white-space: pre; }
+  .howto { list-style: none; padding: 0; margin: 1rem 0 0; counter-reset: h; }
+  .howto li { position: relative; padding-left: 2.2rem; font-size: 14px; color: #cbd5e1; line-height: 1.65; }
+  .howto li + li { margin-top: .7rem; }
+  .howto li::before { counter-increment: h; content: counter(h); position: absolute; left: 0; top: .05rem; width: 1.5rem; height: 1.5rem; border-radius: 50%; border: 1.5px solid #22d3ee; color: #67e8f9; font-family: 'JetBrains Mono', monospace; font-size: 11px; display: grid; place-items: center; }
+  .howto code { font-size: 12px; padding: .05rem .3rem; border-radius: .25rem; background: rgba(51,65,85,.5); color: #e2e8f0; }
+  html.light .mnode { background: #fff; border-color: #cbd5e1; } html.light .mnode .t { color: #334155; } html.light .mnode.cur .t { color: #0f172a; }
+  html.light .ccard h3 { color: #0f172a; } html.light .ccard .rc { color: #475569; }
+  html.light .sum .v, html.light .howto li { color: #1e293b; }
+  html.light .tpl pre { background: #f8fafc; border-color: #e2e8f0; color: #0e7490; }
+  html.light .howto code { background: #e2e8f0; color: #0f172a; }
+  html.light .st-ok { color: #047857; } html.light .st-open { color: #b45309; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="brand"><span class="logo" data-i="shield-check"></span><span>BWAN · Troubleshooting Playbook</span></a>
+    <div class="navlinks">
+      <a href="#method"><span class="zh">除錯方法</span><span class="en">Method</span></a>
+      <a href="#cases"><span class="zh">案例庫</span><span class="en">Cases</span></a>
+      <a href="#notes"><span class="zh">注意事項</span><span class="en">Lessons</span></a>
+      <a href="#cmds"><span class="zh">指令速查</span><span class="en">Commands</span></a>
+      <a href="#addcase"><span class="zh">新增案例</span><span class="en">Add a case</span></a>
+    </div>
+  </div>
+</nav>
+
+<header id="top" class="grid-bg" style="border-bottom:1px solid rgba(30,41,59,.7)">
+  <div class="wrap">
+    <div class="eyebrow">Netskope One · Endpoint SD-WAN · Borderless SD-WAN · NewEdge IPsec</div>
+    <h1><span class="hero-grad"><span class="zh">BWAN 除錯手冊：</span><span class="en">BWAN Troubleshooting Playbook:</span></span>
+      <span class="zh">Endpoint SD-WAN × Hub × NewEdge</span>
+      <span class="en">Endpoint SD-WAN × Hub × NewEdge</span></h1>
+    <p class="muted" style="margin-top:.8rem;max-width:58rem;font-size:15px;line-height:1.7">
+      <span class="zh">記錄每一次除錯怎麼定位、看了哪些證據、最後改了什麼。前半是通用的除錯方法與指令，後半是案例庫；之後遇到新問題，新增一筆案例即可，注意事項與指令會一起累積。</span>
+      <span class="en">A record of how each issue was isolated, what evidence was read and what was changed. The first half is a reusable method and command set; the second is a case log. Add a case for each new issue and the lessons and commands accumulate with it.</span>
+    </p>
+    <div class="stats">
+      <div class="card stat"><div class="k"><span class="zh">案例</span><span class="en">Cases</span></div><div class="v" id="stCases" style="color:#67e8f9"></div><div class="s"><span class="zh">已解決 / 總數</span><span class="en">resolved / total</span></div></div>
+      <div class="card stat"><div class="k"><span class="zh">注意事項</span><span class="en">Lessons</span></div><div class="v" id="stNotes" style="color:#fde68a"></div><div class="s"><span class="zh">來自所有案例</span><span class="en">across all cases</span></div></div>
+      <div class="card stat"><div class="k"><span class="zh">指令</span><span class="en">Commands</span></div><div class="v" id="stCmds" style="color:#fdba74"></div><div class="s"><span class="zh">用戶端 + Hub</span><span class="en">client + hub</span></div></div>
+      <div class="card stat"><div class="k"><span class="zh">最近更新</span><span class="en">Last updated</span></div><div class="v" id="stDate" style="color:#6ee7b7"></div><div class="s" id="stLast"></div></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 01 METHOD -->
+<section id="method" class="sec" style="border-top:0">
+  <div class="eyebrow">01 · Debug Method</div>
+  <h2><span class="zh">除錯方法：每次都照這個順序走</span><span class="en">Debug method: follow this order every time</span></h2>
+  <p class="lead"><span class="zh">七個步驟，每一步列出要做什麼、用什麼工具，並附上案例裡實際的例子（可在下方切換案例）。</span><span class="en">Seven steps, each with what to do, which tools to use and a real example from a case (switch cases below).</span></p>
+  <div class="card pad" style="margin-top:1.2rem">
+    <div class="mstep" id="mStep"></div>
+  </div>
+  <div class="detail-grid">
+    <div class="card pad" id="mDetail"></div>
+    <div class="card pad">
+      <div style="display:flex;align-items:center;gap:.5rem;font-weight:600"><span data-i="scroll-text" style="color:#67e8f9"></span><span id="mExTitle"></span></div>
+      <div class="ev mono" id="mEx"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 CASES -->
+<section id="cases" class="sec">
+  <div class="eyebrow">02 · Case Log</div>
+  <h2><span class="zh">案例庫</span><span class="en">Case log</span></h2>
+  <p class="lead"><span class="zh">點選案例查看摘要、除錯過程與路徑模擬。</span><span class="en">Pick a case to see its summary, the debugging path and the path simulator.</span></p>
+  <div class="cases" id="caseList"></div>
+
+  <div id="caseBody"></div>
+</section>
+
+<!-- 03 NOTES -->
+<section id="notes" class="sec">
+  <div class="eyebrow">03 · Lessons Learned</div>
+  <h2><span class="zh">注意事項：累積自所有案例</span><span class="en">Lessons learned from every case</span></h2>
+  <p class="lead"><span class="zh">依類別篩選；每條都標了來源案例。勾選會記在這個瀏覽器裡。</span><span class="en">Filter by area; each item names its source case. Ticks are remembered in this browser.</span></p>
+  <div class="nfilter" style="margin-top:1.2rem">
+    <span class="seg" id="nFilter"></span>
+    <div class="prog"><span id="nCount"></span><span class="bar"><i id="nBar" style="width:0"></i></span></div>
+  </div>
+  <div class="ngrid" id="nGrid"></div>
+</section>
+
+<!-- 04 COMMANDS -->
+<section id="cmds" class="sec">
+  <div class="eyebrow">04 · Command Cheat Sheet</div>
+  <h2><span class="zh">指令速查</span><span class="en">Command cheat sheet</span></h2>
+  <p class="lead"><span class="zh">每張卡片都附上「要看什麼」。用戶端是 Windows PowerShell，Hub 是 Linux shell（全部唯讀）。</span><span class="en">Each card says what to look for. The client is Windows PowerShell; the hub is a Linux shell (all read-only).</span></p>
+  <div class="ctl" style="margin-top:1.2rem"><span class="seg" id="cmdTab"></span></div>
+  <div class="cmdgrid" id="cmdGrid"></div>
+</section>
+
+<!-- 05 ADD CASE -->
+<section id="addcase" class="sec">
+  <div class="eyebrow">05 · Add a Case</div>
+  <h2><span class="zh">新增案例：下次遇到問題怎麼補進來</span><span class="en">Add a case: how to record the next issue</span></h2>
+  <div class="detail-grid" style="margin-top:1.2rem">
+    <div class="card pad">
+      <div style="font-weight:600"><span class="zh">兩種做法</span><span class="en">Two ways</span></div>
+      <ol class="howto">
+        <li><span class="zh"><b>交給 Claude：</b>把症狀、log、tcpdump、Orchestrator 截圖和最後的修正貼上，請 Claude「新增一筆案例到這個手冊」。它會補進案例、注意事項、指令與收尾清單，並更新這一頁。</span><span class="en"><b>Ask Claude:</b> paste the symptom, logs, tcpdump, Orchestrator screenshots and the final fix, and ask it to "add a case to this playbook". It adds the case, lessons, commands and wrap-up list and republishes this page.</span></li>
+        <li><span class="zh"><b>自己編輯：</b>在頁面原始碼的 <code>CASES</code> 陣列複製右邊的範本，填入內容；新的注意事項加到 <code>NOTES</code>（<code>cases</code> 填案例 id），新的指令加到 <code>CMDS</code>。</span><span class="en"><b>Edit it yourself:</b> copy the template on the right into the <code>CASES</code> array in the page source and fill it in; add lessons to <code>NOTES</code> (set <code>cases</code> to the case id) and commands to <code>CMDS</code>.</span></li>
+        <li><span class="zh">外部 IP 一律用示意位址（<code>203.0.113.0/24</code>、<code>198.51.100.0/24</code>、<code>192.0.2.0/24</code>），避免把客戶的真實位址放進共用文件。</span><span class="en">Use documentation addresses for external IPs (<code>203.0.113.0/24</code>, <code>198.51.100.0/24</code>, <code>192.0.2.0/24</code>) so real customer addresses stay out of shared docs.</span></li>
+      </ol>
+    </div>
+    <div class="card pad tpl">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:.75rem"><div style="font-weight:600"><span class="zh">案例範本</span><span class="en">Case template</span></div><button class="copy" id="tplCopy"></button></div>
+      <pre id="tplPre"></pre>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>BWAN × Endpoint SD-WAN · Troubleshooting Playbook</span>
+    <span><span class="zh">外部 IP 皆為示意位址（RFC 5737）；內部位址取自 POC 環境；選單名稱可能依 Orchestrator 版本不同。</span><span class="en">External IPs are documentation addresses (RFC 5737); internal addresses are from the PoC; menu names may differ by Orchestrator version.</span></span>
+  </div>
+</footer>
+
+<div id="toolbar" class="card">
+  <span class="seg" id="segLang"><button data-lang="zh" aria-pressed="true">中文</button><button data-lang="en" aria-pressed="false">EN</button></span>
+  <span class="seg" id="segTheme"><button data-theme="dark" aria-pressed="true"><span data-i="moon"></span></button><button data-theme="light" aria-pressed="false"><span data-i="sun"></span></button></span>
+</div>
+
+<script>
+/* ---------- icons (Lucide, ISC License) ---------- */
+const ICONS = {
+  'shield-check': ['M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z', 'm9 12 2 2 4-4'],
+  'skip-back': ['M17.971 4.285A2 2 0 0 1 21 6v12a2 2 0 0 1-3.029 1.715l-9.997-5.998a2 2 0 0 1-.003-3.432z', 'M3 20V4'],
+  'skip-forward': ['M21 4v16', 'M6.029 4.285A2 2 0 0 0 3 6v12a2 2 0 0 0 3.029 1.715l9.997-5.998a2 2 0 0 0 .003-3.432z'],
+  'pause': ['M15 3h3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z', 'M6 3h3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z'],
+  'play': ['M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z'],
+  'scroll-text': ['M15 12h-5', 'M15 8h-5', 'M19 17V5a2 2 0 0 0-2-2H4', 'M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3'],
+  'terminal': ['m4 17 6-6-6-6', 'M12 19h8'],
+  'search': ['m21 21-4.34-4.34', 'M3 11a8 8 0 1 0 16 0a8 8 0 1 0 -16 0'],
+  'chevron-right': ['m9 18 6-6-6-6'],
+  'plus': ['M5 12h14', 'M12 5v14'],
+  'moon': ['M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401'],
+  'sun': ['M8 12a4 4 0 1 0 8 0a4 4 0 1 0 -8 0', 'M12 2v2', 'M12 20v2', 'm4.93 4.93 1.41 1.41', 'm17.66 17.66 1.41 1.41', 'M2 12h2', 'M20 12h2', 'm6.34 17.66-1.41 1.41', 'm19.07 4.93-1.41 1.41']
+};
+function ico(name) {
+  const p = ICONS[name]; if (!p) return '';
+  return '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + p.map(d => '<path d="' + d + '"/>').join('') + '</svg>';
+}
+function paintIcons() { document.querySelectorAll('[data-i]').forEach(el => { if (!el.dataset.done) { el.innerHTML = ico(el.dataset.i); el.dataset.done = '1'; } }); }
+
+let lang = document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'zh';
+const L = (zh, en) => ({ zh, en });
+const tr = (x) => (x && typeof x === 'object' && 'zh' in x) ? x[lang] : x;
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => document.querySelectorAll(s);
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+
+/* ================================================================
+   DATA — 新增案例時只需要改這一段 / To add a case, edit only this block
+   ================================================================ */
+
+/* 除錯方法（通用）/ Debug method (generic). ex: case-specific examples keyed by case id */
+const METHOD = [
+  { t: L('定義症狀與範圍', 'Define symptom & scope'),
+    how: L('寫清楚「什麼不通、從哪裡到哪裡、哪些用戶端、從什麼時候開始」。先列出所有症狀，不急著猜原因。', 'Write down what fails, from where to where, which clients and since when. List every symptom before guessing at causes.'),
+    tools: L('用戶端 UI、Orchestrator Clients 頁、Netskope Client 設定視窗', 'Client UI, Orchestrator Clients page, Netskope Client configuration window') },
+  { t: L('A/B 隔離', 'A/B isolation'),
+    how: L('切換一個大開關（例如停用 Endpoint SD-WAN），看症狀會不會消失，先確定問題在哪一層。', 'Flip one big switch (e.g. disable Endpoint SD-WAN) and see whether the symptom disappears, to find the layer first.'),
+    tools: L('停用/啟用 SD-WAN、Test-NetConnection、Resolve-DnsName', 'Disable/enable SD-WAN, Test-NetConnection, Resolve-DnsName') },
+  { t: L('分段確認路徑', 'Check the path hop by hop'),
+    how: L('把路徑拆成「用戶端 → Hub → 出口 → 對點」，逐段確認流量有沒有到、往哪裡去。測試時用 curl --resolve 避開 DNS。', 'Split the path into client → hub → exit → peer and confirm each hop. Use curl --resolve to keep DNS out of the test.'),
+    tools: L('用戶端 nsbwandebuglog.log（policy / nh / rxbytes）', 'Client nsbwandebuglog.log (policy / nh / rxbytes)') },
+  { t: L('讀 Hub 的 flow 欄位', 'Read the hub flow fields'),
+    how: L('看資料平面的實際決策：命中哪條 policy、PBR 解析到哪個下一跳、從哪個介面送出、收送了幾個封包。', 'Read the data plane\'s actual decision: which policy matched, which next hop PBR resolved, which interface it left and the packet counts.'),
+    tools: L('infcli.py --flows：pbr_nhop、txif、ipsecgw、stat', 'infcli.py --flows: pbr_nhop, txif, ipsecgw, stat') },
+  { t: L('抓封包驗證', 'Confirm with a capture'),
+    how: L('用 tcpdump 確認介面、來源 IP（有沒有 NAT）、有沒有回應。抓 IPsec 時先從 flow 讀出實際的 ipsecgw，並只抓 ESP 資料封包。', 'Use tcpdump to confirm the interface, the source IP (NAT or not) and whether replies come back. For IPsec, take the real ipsecgw from the flow and capture ESP data only.'),
+    tools: L("tcpdump -ni any … ；udp[8:4]!=0 過濾 ESP", "tcpdump -ni any …; udp[8:4]!=0 for ESP") },
+  { t: L('對照設定找來源', 'Trace it back to config'),
+    how: L('從異常的路由或出口，回頭找是哪個設定產生的：介面、segment 路由、policy、tunnel 綁定。先排除假設，再鎖定來源。', 'From the bad route or exit, find the setting that produced it: interfaces, segment routes, policies, tunnel bindings. Rule out hypotheses before locking in.'),
+    tools: L('ip route / ip rule、Orchestrator Interfaces、Segments、AppX', 'ip route / ip rule, Orchestrator Interfaces, Segments, AppX') },
+  { t: L('一次改一處、驗證、記錄', 'Change one thing, verify, record'),
+    how: L('每次只改一個變因，改完用同一組觀察點驗證；確定後把案例、注意事項與收尾項目記到這份手冊。', 'Change one variable at a time and re-verify from the same vantage points; once confirmed, record the case, lessons and wrap-up items here.'),
+    tools: L('本手冊的案例範本', 'This playbook\'s case template') }
+];
+
+const CASES = [
+  {
+    id: 'case-001',
+    date: '2026-11-23',
+    status: 'resolved',
+    title: L('Endpoint 流量沒有送進 NewEdge IPsec Tunnel', 'Endpoint traffic never entered the NewEdge IPsec tunnel'),
+    env: 'Hub GCN_MSZ_Bwan01 · Endpoint SD-WAN 109.2.3.722 · Netskope Client 143.0.7',
+    symptom: L('從 Endpoint 送往 NewEdge 的測試流量逾時；Hub 往 NewEdge 的兩條 tunnel 狀態是綠燈，但 Tx 一直是 0 B。', 'Test traffic from the endpoint to NewEdge timed out; both hub tunnels to NewEdge were green but Tx stayed at 0 B.'),
+    root: L('GE2（Trusted LAN）設了 Default Gateway 172.26.0.126，成為 GLOBAL segment 唯一的預設出口。PBR 找不到 NewEdge 下一跳時，流量就被這條預設路由帶進內網，沒做 NAT 也沒有回程。', 'GE2 (trusted LAN) had default gateway 172.26.0.126, the GLOBAL segment\'s only default exit. When PBR found no NewEdge next hop, that route pulled traffic into the LAN with no NAT and no return path.'),
+    fix: L('移除 GE2 的 Default Gateway；內網網段改由 GLOBAL segment 的靜態路由（介面 GE2、next hop 172.26.0.126）處理。', 'Removed the GE2 default gateway; internal prefixes use GLOBAL segment static routes (interface GE2, next hop 172.26.0.126).'),
+    related: [
+      L('DNS 8.8.8.8 同樣掉進內網而逾時', 'DNS to 8.8.8.8 fell into the LAN and timed out'),
+      L('Netskope Client「Failed to check for updates」', 'Netskope Client "Failed to check for updates"'),
+      L('Orchestrator 顯示 Disconnected，client policy 推不下去', 'Orchestrator showed Disconnected; client policy never arrived')
+    ],
+    tags: ['IPsec', 'PBR', 'Default Gateway', 'Segment', 'DNS'],
+    /* 方法對應的實例 / examples for each METHOD step */
+    methodEx: [
+      '<span class="c"># 症狀</span>\ncurl --resolve notskope.com:443:192.0.2.116 → <span class="hl">Connection timed out</span>\nOverlays: controller_198.51.100.38  Tx <span class="hl">0 B</span>\n<span class="c"># 連帶</span>\nNetskope Client: Failed to check for updates\nOrchestrator: DESKTOP-P6O95SC <span class="hl">Disconnected</span>',
+      '<span class="c"># 停用 Endpoint SD-WAN 後</span>\nResolve-DnsName addon-&lt;tenant&gt;.goskope.com  <span class="hg">OK</span>\nTest-NetConnection ... -Port 443  <span class="hg">TcpTestSucceeded : True</span>\n<span class="c"># → 問題鎖定在 SD-WAN 路徑</span>',
+      '<span class="c"># 用戶端：規則有命中、有送到 Hub，但沒有回應</span>\n192.168.2.3:58461=>192.0.2.116:443\n<span class="hg">nh:169.254.0.4</span> <span class="hg">policy:Test</span> txbytes:52 <span class="hl">rxbytes:0</span>',
+      '<span class="c"># Hub：policy 命中，但 PBR 落空、從 LAN 送出</span>\npolicy=GW_to_NewEdge rt=Overlay rxif=enp2s0\n<span class="hl">txif=enp2s1</span> ipsecgw=198.51.100.38\n<span class="hl">pbr_nhop=none:none</span> stat&lt;0:0==&gt;4:208&gt;',
+      '<span class="c"># 第一次抓錯 IP（.39 / .40），什麼都沒抓到</span>\n<span class="c"># 改用 VIP 抓：</span>\n<span class="hl">enp2s1 Out</span> IP <span class="hl">172.19.8.4</span>.61713 &gt; 8.8.8.8.53\n<span class="c"># 40 packets, 0 replies</span>',
+      '<span class="c"># 先排除：GE1=WAN、GE2=Trusted LAN、tunnel 都綁 GE1</span>\n<span class="c"># 找到退路：</span>\n<span class="hl">default via 172.26.0.126 dev enp2s1 proto static</span>\n<span class="c"># Segments 只有 10/8、172.16/12 → 來源是 GE2 介面設定</span>\nGE2  Default Gateway: <span class="hl">172.26.0.126</span>',
+      '<span class="c"># 只改一處：移除 GE2 Default Gateway</span>\n<span class="hg">default via 203.0.113.30 dev enp2s0</span>  <span class="c"># 只剩這條</span>\n<span class="hg">pbr_nhop → NewEdge · GE1 雙向 ESP</span>'
+    ],
+    chain: [
+      { c: '56 189 248', t: L('症狀：測試流量沒有回應', 'Symptom: test traffic gets no reply'),
+        what: L('從 Endpoint 對 NewEdge 測試目的地發 curl，20 秒後逾時', 'curl from the endpoint to a NewEdge test destination times out after 20 s'),
+        why: L('用戶端這段沒問題：Test 規則有命中、流量送往 Hub（nh 169.254.0.4），SSE 也沒有攔截。但 rxbytes 是 0，問題在 Hub 之後。', 'The client side is fine: the Test rule matched, the flow went to the hub (nh 169.254.0.4) and SSE did not intercept. rxbytes is 0, so the problem is past the hub.'),
+        ev: '<span class="c"># client</span>\ncurl.exe -v --resolve notskope.com:443:192.0.2.116 https://notskope.com/\n<span class="hl">curl: (28) Connection timed out after 20006 ms</span>\n\n<span class="c"># nsbwandebuglog.log</span>\n192.168.2.3:58461=>192.0.2.116:443\nnh:169.254.0.4 policy:Test <span class="hl">rxbytes:0</span>',
+        src: 'curl.exe · nsbwandebuglog.log' },
+      { c: '56 189 248', t: L('Hub 有收到、policy 也命中', 'The hub receives it and the policy matches'),
+        what: L('Hub flow 顯示從 overlay 進來，命中 GW_to_NewEdge', 'The hub flow shows it arriving from the overlay and matching GW_to_NewEdge'),
+        why: L('到這裡為止都照設計走：Hub 想把它送進 NewEdge。接下來要看它實際有沒有被送進去。', 'So far so good: the hub intends to send it to NewEdge. Next: did it actually go there?'),
+        ev: '<span class="c"># infcli.py --flows</span>\n172.19.8.4:59503==>192.0.2.116:443\n<span class="hg">policy=GW_to_NewEdge</span> rt=Overlay rxif=enp2s0',
+        src: 'docker exec infiot_spoke /opt/infiot/bin/infcli.py --flows' },
+      { c: '251 191 36', t: L('PBR 落空，從 LAN 送出', 'PBR misses; it leaves via the LAN'),
+        what: L('pbr_nhop 是 none，txif 是 enp2s1（GE2）', 'pbr_nhop is none and txif is enp2s1 (GE2)'),
+        why: L('Policy 想送 NewEdge，但 PBR 找不到可用的下一跳，於是退回路由表，最後從 LAN 介面出去。送 4 個、收 0 個。', 'The policy wants NewEdge, but PBR finds no usable next hop, falls back to the routing table and leaves via the LAN interface. 4 sent, 0 received.'),
+        ev: '<span class="hl">txif=enp2s1</span>  ipsecgw=198.51.100.38\npbr_policy=GW_to_NewEdge <span class="hl">pbr_nhop=none:none</span>\n<span class="hl">stat&lt;0:0==&gt;4:208&gt;</span>',
+        src: 'infcli.py --flows' },
+      { c: '251 191 36', t: L('Tunnel 綠燈，但沒有資料', 'Tunnel green, but no data'),
+        what: L('Overlays 頁兩條 NewEdge tunnel 都是 Tx 0 B；IKE 有正常交換', 'Both NewEdge tunnels show Tx 0 B on the Overlays page; IKE exchanges are normal'),
+        why: L('控制面活著不代表資料面有流量。另外第一次 tcpdump 過濾的是 .39 / .40，但 flow 實際選的是 .38，所以什麼都沒抓到，差點誤判。', 'A live control plane does not mean data flows. The first capture also filtered .39 / .40 while the flow used .38, so it caught nothing and nearly misled us.'),
+        ev: '<span class="c"># Overlays</span>\ncontroller_198.51.100.38  GE1  0 ms  Tx <span class="hl">0 B</span>\ncontroller_198.51.100.39  GE1  0 ms  Tx <span class="hl">0 B</span>\n\n<span class="c"># tcpdump (IKE only)</span>\n203.0.113.18.4500 > 198.51.100.39.4500: isakmp: child_sa inf2[I]\n198.51.100.39.4500 > 203.0.113.18.4500: isakmp: child_sa inf2[R]',
+        src: 'Hub local UI > Overlays · tcpdump' },
+      { c: '251 146 60', t: L('排除假設：介面與 tunnel 綁定正確', 'Rule out: interfaces and tunnel bindings are fine'),
+        what: L('GE1 是 Untrusted WAN、GE2 是 Trusted LAN，兩條 tunnel 都綁在 GE1', 'GE1 is the untrusted WAN, GE2 the trusted LAN, and both tunnels are on GE1'),
+        why: L('原本懷疑 enp2s1 被設成 WAN、tunnel 綁錯介面，看過介面頁後排除。問題不在 tunnel 本身，而在流量為什麼沒被導進去。', 'The first hypothesis (enp2s1 set as WAN, tunnel on the wrong interface) was ruled out on the interfaces page. The tunnel is fine; the question is why traffic was not steered into it.'),
+        ev: '<span class="c"># Orchestrator > Interfaces</span>\nGE1  203.0.113.18/27  Untrusted  Wired  Public-Overlay\nGE2  172.26.0.118/25  Trusted    GLOBAL\n\n<span class="c"># ip a</span>\nenp2s0 = GE1   enp2s1 = GE2   overlay = 169.254.0.4',
+        src: 'Orchestrator · ip a' },
+      { c: '244 63 94', t: L('找到退路：GE2 的預設路由', 'Found the fallback: the GE2 default route'),
+        what: L('路由表有一條 default via 172.26.0.126 dev enp2s1，來源是 GE2 介面的 Default Gateway', 'The table has default via 172.26.0.126 dev enp2s1, which comes from the GE2 interface default gateway'),
+        why: L('Segments 底下只有 10/8 與 172.16/12 兩條靜態路由，沒有 0.0.0.0/0；往回找才發現是 GE2 介面設定裡填了 Default Gateway。GE1 不屬於任何 segment，所以這條就是 GLOBAL segment 唯一的預設出口。', 'Segments held only the 10/8 and 172.16/12 static routes, no 0.0.0.0/0. Tracing back showed the GE2 interface had a default gateway. GE1 belongs to no segment, so this was GLOBAL\'s only default exit.'),
+        ev: '<span class="c"># ip route</span>\ndefault via 203.0.113.30 dev enp2s0 metric 100\n<span class="hl">default via 172.26.0.126 dev enp2s1 proto static metric 429496729</span>\n\n<span class="c"># Orchestrator > GE2</span>\nDefault Gateway: <span class="hl">172.26.0.126</span>  ZONE: Trusted',
+        src: 'ip route show · Orchestrator > Interfaces > GE2' },
+      { c: '244 63 94', t: L('根因與連帶影響', 'Root cause and side effects'),
+        what: L('PBR 一落空，GLOBAL segment 的流量就被帶進內網', 'Whenever PBR misses, GLOBAL segment traffic is pulled into the LAN'),
+        why: L('同一個機制也解釋了其他症狀：DNS 8.8.8.8 同樣從 GE2 出去、沒有回應，所以 Netskope addon 與 Orchestrator 網域解析不到，造成 Check Again 失敗、Orchestrator 顯示 Disconnected。', 'The same mechanism explains the other symptoms: DNS to 8.8.8.8 also left GE2 with no reply, so the Netskope addon and Orchestrator domains did not resolve, causing the Check Again failure and the Disconnected status.'),
+        ev: '<span class="c"># tcpdump (hub)</span>\n<span class="hl">enp2s1 Out</span> IP <span class="hl">172.19.8.4</span>.56121 > 8.8.8.8.53: A? &lt;tenant&gt;.ap.infiot.net\n<span class="c"># 0 replies</span>\n\n<span class="c"># client nsdebuglog.log</span>\ncurl_easy_perform failed, <span class="hl">code 28</span>\nConfig failed to download config version',
+        src: 'tcpdump · nsdebuglog.log' },
+      { c: '52 211 153', fix: true, t: L('修正：移除 GE2 Default Gateway', 'Fix: remove the GE2 default gateway'),
+        what: L('LAN 介面不設預設閘道，內網改由 GLOBAL segment 靜態路由處理', 'No default gateway on the LAN interface; internal networks use GLOBAL segment static routes'),
+        why: L('內網網段本來就有指定 GE2 的靜態路由，所以不受影響。少了這條退路之後，往網際網路的流量就照 Hub policy 走 GE1 → NewEdge IPsec。', 'Internal prefixes already had static routes via GE2 and are unaffected. Without the fallback, internet-bound traffic follows the hub policy out GE1 into NewEdge IPsec.'),
+        ev: '<span class="c"># GLOBAL segment > Static</span>\nGE2  172.16.0.0/12 → 172.26.0.126\nGE2  10.0.0.0/8    → 172.26.0.126\n\n<span class="c"># after</span>\n<span class="hg">default via 203.0.113.30 dev enp2s0</span>\n<span class="hg">pbr_nhop → NewEdge · ESP both ways on GE1</span>',
+        src: 'Orchestrator > Gateways' }
+    ],
+    sim: 'ge2gw',
+    wrap: [
+      { g: L('移除測試用設定', 'Remove test settings') },
+      { id: 'w1', t: L('刪除 client policy 的 <code>Test</code> 規則（測試目的地 → Hub）', 'Delete the client policy rule <code>Test</code> (test destination → hub)') },
+      { id: 'w2', t: L('刪除 Hub policy 的 NewEdge 測試規則', 'Delete the hub policy NewEdge test rule') },
+      { id: 'w3', t: L('移除 SSE steering 裡測試目的地（<code>notskope.com</code> / <code>192.0.2.116</code>）的 exception', 'Remove the SSE steering exception for the test destination (<code>notskope.com</code> / <code>192.0.2.116</code>)') },
+      { g: L('還原排錯時改動的規則', 'Restore rules changed while troubleshooting') },
+      { id: 'w4', t: L('Hub policy 第 1、2、4 條依設計重新啟用或確認停用', 'Hub policy rules 1, 2, 4: re-enable or confirm disabled per design') },
+      { id: 'w5', t: L('Hub policy 第 3 條（All Internet catch-all）出口改回應有設定', 'Hub policy rule 3 (All Internet catch-all): restore the intended exit') },
+      { id: 'w6', t: L('Client policy 的 <code>aaaaa</code> 與第 2 條出口重新檢視', 'Review client policy <code>aaaaa</code> and rule 2\'s exit') },
+      { g: L('最終驗證', 'Final checks') },
+      { id: 'w7', t: L('Hub 上只剩 GE1 的 default route', 'Only the GE1 default route remains on the hub') },
+      { id: 'w8', t: L('內網 core / 防火牆有 <code>172.19.8.0/24 → 172.26.0.118</code> 回程路由', 'LAN core / firewall has a <code>172.19.8.0/24 → 172.26.0.118</code> return route') },
+      { id: 'w9', t: L('NewEdge tunnel 的 Overlays Tx / Rx 不為 0，SkopeIT Access Method = IPsec', 'NewEdge tunnel Overlays Tx / Rx non-zero; SkopeIT Access Method = IPsec') },
+      { id: 'w10', t: L('用戶端在 Orchestrator 顯示 Connected，Check Again 正常', 'Client shows Connected in the Orchestrator; Check Again works') },
+      { id: 'w11', t: L('其他用戶端上網正常', 'Other clients still have internet access') },
+      { id: 'w12', t: L('追蹤 User Login Status = Never 與 user cert 錯誤', 'Follow up User Login Status = Never and the user-cert errors') }
+    ]
+  }
+];
+
+const CATS = { all: L('全部', 'All'), hub: 'Hub / Gateway', client: 'Client / Endpoint SD-WAN', sse: L('SSE 共存', 'SSE coexistence'), verify: L('驗證方法', 'Verification') };
+const CATCOL = { hub: '251 146 60', client: '56 189 248', sse: '167 139 250', verify: '52 211 153' };
+const SEV = { crit: L('關鍵', 'Critical'), warn: L('注意', 'Caution'), info: L('提示', 'Tip') };
+const NOTES = [
+  { id: 'h1', cases: ['case-001'], cat: 'hub', sev: 'crit', t: L('LAN（Trusted）介面不要設 Default Gateway', 'No default gateway on the LAN (trusted) interface'),
+    b: L('內網網段用 GLOBAL segment 的 Static route（介面選 GE2）。LAN 上的預設閘道會成為 segment 唯一的預設出口，PBR 一落空，網際網路流量就掉進內網。', 'Use GLOBAL segment static routes for internal prefixes (interface GE2). A LAN default gateway becomes the segment\'s only default exit, so any PBR miss drops internet traffic into the LAN.') },
+  { id: 'h2', cases: ['case-001'], cat: 'hub', sev: 'crit', t: L('pbr_nhop=none 代表 PBR 落空，要找「退路」', 'pbr_nhop=none means PBR missed; find the fallback'),
+    b: L('Policy 命中不等於照規則出口走。看到 <code>pbr_nhop=none</code> 時，流量會退回路由表，要接著查 segment 裡有沒有預設路由、從哪個介面送出（<code>txif</code>）。', 'A policy match does not mean the rule\'s exit was used. With <code>pbr_nhop=none</code> the flow falls back to the routing table; check for a default route in the segment and which interface it left (<code>txif</code>).') },
+  { id: 'h3', cases: ['case-001'], cat: 'hub', sev: 'crit', t: L('內網要有 client VIP pool 的回程路由', 'The LAN needs a return route for the client VIP pool'),
+    b: L('core / 防火牆需要 <code>172.19.8.0/24 → 172.26.0.118</code>（靜態或 BGP）。靜態路由的 Advertise: Yes 是把內網網段宣告進 overlay，不是告訴內網 client pool 在哪。', 'The core / firewall needs <code>172.19.8.0/24 → 172.26.0.118</code> (static or BGP). Advertise: Yes announces internal prefixes into the overlay; it does not tell the LAN where the client pool is.') },
+  { id: 'h4', cases: ['case-001'], cat: 'hub', sev: 'warn', t: L('172.16.0.0/12 涵蓋了 client VIP pool', '172.16.0.0/12 covers the client VIP pool'),
+    b: L('<code>172.19.8.0/24</code> 落在 <code>172.16.0.0/12</code> 內。回程異常時先懷疑這條；必要時拆成不含 client pool 的網段。', '<code>172.19.8.0/24</code> sits inside <code>172.16.0.0/12</code>. Suspect it first if returns misbehave; split it to exclude the client pool if needed.') },
+  { id: 'h5', cases: ['case-001'], cat: 'hub', sev: 'warn', t: L('NewEdge tunnel 綠燈 ≠ 有資料在跑', 'A green NewEdge tunnel ≠ data flowing'),
+    b: L('IKE 的 <code>inf2</code> 交換只代表控制面活著。要看 Overlays 頁的 Tx / Rx，並用 <code>udp[8:4]!=0</code> 只抓 ESP 資料封包。', 'IKE <code>inf2</code> exchanges only prove the control plane is alive. Check Overlays Tx / Rx and capture ESP data only with <code>udp[8:4]!=0</code>.') },
+  { id: 'h6', cases: ['case-001'], cat: 'hub', sev: 'warn', t: L('先從 flow 讀出實際的 ipsecgw 再抓封包', 'Read the real ipsecgw from the flow before capturing'),
+    b: L('Hub 可能同時有多條 NewEdge tunnel。這次過濾條件寫錯 IP，什麼都沒抓到，差點誤判成「沒送出去」。', 'The hub may have several NewEdge tunnels. Here the filter used the wrong IP, caught nothing and nearly read as "never sent".') },
+  { id: 'h7', cases: ['case-001'], cat: 'hub', sev: 'info', t: L('資料平面在 infiot_spoke 容器裡，kernel 看不到', 'The data plane lives in the infiot_spoke container'),
+    b: L('iptables 沒有 client NAT 規則、沒有 xfrm / VTI 介面都屬正常。不要手動改 iptables，NAT 與路由一律在 Orchestrator 設定。', 'No client NAT in iptables and no xfrm / VTI interfaces is normal. Never hand-edit iptables; set NAT and routing in the Orchestrator.') },
+  { id: 'h8', cases: ['case-001'], cat: 'hub', sev: 'info', t: L('在 Hub 上 curl 不是 tunnel 測試', 'curl on the hub is not a tunnel test'),
+    b: L('Hub 本機發出的流量走 Linux main table 從 GE1 直接出去，不經資料平面，<code>infcli --flows</code> 也查不到。測 tunnel 要從 Endpoint 或 LAN 側打流量。', 'Hub-originated traffic uses the Linux main table out GE1, bypassing the data plane and <code>infcli --flows</code>. Test the tunnel from an endpoint or the LAN side.') },
+  { id: 'h9', cases: ['case-001'], cat: 'hub', sev: 'info', t: L('Hub 時鐘是 UTC', 'The hub clock is UTC'),
+    b: L('Hub 上的 tcpdump / log 時間要加 8 小時，才能跟台北時間的用戶端 log 對齊。', 'Add 8 hours to hub times to align them with Taipei-time client logs.') },
+  { id: 'c1', cases: ['case-001'], cat: 'client', sev: 'crit', t: L('SD-WAN 會把用戶端 DNS 改成 8.8.8.8', 'SD-WAN changes the client DNS to 8.8.8.8'),
+    b: L('DNS 路徑一斷，Netskope addon、Orchestrator（<code>*.infiot.net</code>）全部解析失敗。部署時先確認 8.8.8.8 經 Hub 能正常往返。', 'If the DNS path breaks, the Netskope addon and Orchestrator (<code>*.infiot.net</code>) fail to resolve. Confirm 8.8.8.8 round-trips through the hub at deployment.') },
+  { id: 'c2', cases: ['case-001'], cat: 'client', sev: 'crit', t: L('別讓 Netskope 自己的流量被導進黑洞', 'Keep Netskope\'s own traffic out of black holes'),
+    b: L('<code>*.goskope.com</code>、NewEdge IP 段與 Orchestrator 網域，不能被 policy 導到走不通的路徑；要嘛排除在 tunnel 外，要嘛確保出口可用。', '<code>*.goskope.com</code>, NewEdge ranges and Orchestrator domains must never be steered onto a dead path: exclude them or make sure their exit works.') },
+  { id: 'c3', cases: ['case-001'], cat: 'client', sev: 'crit', t: L('Orchestrator 顯示 Disconnected＝新 policy 推不下去', 'Disconnected in the Orchestrator = new policy never arrives'),
+    b: L('改 client policy 前先看 <code>policy.json</code> 的 LastWriteTime。用戶端收不到設定時，要從 Hub 端修正來打破死結。', 'Before changing client policy, check <code>policy.json</code> LastWriteTime. If the client gets no config, fix from the hub side to break the deadlock.') },
+  { id: 'c4', cases: ['case-001'], cat: 'client', sev: 'warn', t: L('Client policy 的 auto ≠ 本地直出', 'auto in a client policy ≠ local breakout'),
+    b: L('依 topology，auto 可能仍送往 Hub。要直出請明確設定出口，或使用 exclusions。', 'Depending on topology, auto may still go to the hub. Set the exit explicitly or use exclusions.') },
+  { id: 'c5', cases: ['case-001'], cat: 'client', sev: 'warn', t: L('Client policy 的來源不要寫 VIP /32', 'Do not match the VIP /32 as source in client policy'),
+    b: L('用戶端比對時可能用 NAT 前的 IP，VIP 重連後也會變（.2 → .4）。Client 端用 Any；Hub 端用 <code>172.19.8.0/24</code>。', 'The client may match the pre-NAT IP, and the VIP changes on reconnect (.2 → .4). Use Any on the client and <code>172.19.8.0/24</code> on the hub.') },
+  { id: 'c6', cases: ['case-001'], cat: 'client', sev: 'info', t: L('規則名稱不代表實際出口', 'Rule names do not reflect the real exit'),
+    b: L('以 Preferred Exit 與 log 裡的 <code>nh</code> 為準，不要看名稱判斷（這次名為「…_to_OSA1」的規則實際出口是 Hub）。', 'Trust Preferred Exit and the <code>nh</code> in logs, not the name (a rule called "…_to_OSA1" actually exited to the hub).') },
+  { id: 's1', cases: ['case-001'], cat: 'sse', sev: 'crit', t: L('All Traffic 模式下，SD-WAN 只收得到 SSE bypass 的流量', 'In All Traffic mode, SD-WAN only gets what SSE bypasses'),
+    b: L('沒加 steering exception 的流量會被 SSE client 直接送去 NewEdge，根本到不了 SD-WAN。測試目的地也要加 exception。', 'Without a steering exception, the SSE client sends traffic straight to NewEdge and SD-WAN never sees it. Add exceptions for test destinations too.') },
+  { id: 's2', cases: ['case-001'], cat: 'sse', sev: 'warn', t: L('Steering 要 bypass Endpoint SD-WAN 程序', 'Bypass the Endpoint SD-WAN processes in steering'),
+    b: L('否則 SD-WAN 自己的管理流量會被 SSE client 攔截。', 'Otherwise the SSE client intercepts SD-WAN\'s own management traffic.') },
+  { id: 's3', cases: ['case-001'], cat: 'sse', sev: 'info', t: L('「Failed to check for updates」看的是 DNS 與 addon', '"Failed to check for updates" is about DNS and the addon'),
+    b: L('Check Again 觸發 <code>IS_CONFIG_UPDATE_AVAILABLE</code>，連往 <code>addon-&lt;tenant&gt;.goskope.com</code> 檢查設定版本。先確認這個名稱能不能解析、TCP 443 能不能連。', 'Check Again triggers <code>IS_CONFIG_UPDATE_AVAILABLE</code> against <code>addon-&lt;tenant&gt;.goskope.com</code>. First confirm the name resolves and TCP 443 connects.') },
+  { id: 's4', cases: ['case-001'], cat: 'sse', sev: 'info', t: L('addon 主機名稱不要自己加 region', 'Do not append the region to the addon hostname'),
+    b: L('<code>addon-&lt;tenant&gt;.goskope.com</code> 會 CNAME 到 <code>addon.&lt;region&gt;.goskope.com</code>；自己加 region 的名稱不存在。', '<code>addon-&lt;tenant&gt;.goskope.com</code> CNAMEs to <code>addon.&lt;region&gt;.goskope.com</code>; a name with the region added by hand does not exist.') },
+  { id: 's5', cases: ['case-001'], cat: 'sse', sev: 'info', t: L('curl code 6 與 28 的差別', 'curl code 6 vs 28'),
+    b: L('6 是名稱解析失敗；28 是逾時。DNS 送出後一直沒回應時常表現為 28，容易誤判成連線問題。', '6 is a resolution failure; 28 a timeout. An unanswered DNS query often shows as 28 and looks like a connectivity issue.') },
+  { id: 'v1', cases: ['case-001'], cat: 'verify', sev: 'crit', t: L('先做 A/B：停用 SD-WAN 看問題會不會消失', 'Start with A/B: disable SD-WAN and see if it goes away'),
+    b: L('一次就能把範圍縮到 SD-WAN 路徑。之後每次只改一個變因。', 'It narrows the scope to the SD-WAN path at once. Then change one variable at a time.') },
+  { id: 'v2', cases: ['case-001'], cat: 'verify', sev: 'warn', t: L('三個觀察點同時看', 'Watch three vantage points at once'),
+    b: L('用戶端 bwan log（policy / nh / rxbytes）、Hub <code>infcli --flows</code>（pbr_nhop / txif / ipsecgw / stat）、Hub tcpdump（介面、來源 IP、回應）。', 'Client bwan log (policy / nh / rxbytes), hub <code>infcli --flows</code> (pbr_nhop / txif / ipsecgw / stat), hub tcpdump (interface, source IP, replies).') },
+  { id: 'v3', cases: ['case-001'], cat: 'verify', sev: 'info', t: L('用 curl --resolve 繞過 DNS', 'Bypass DNS with curl --resolve'),
+    b: L('DNS 還沒修好時，用 <code>--resolve host:443:IP</code> 直接測特定 IP 的路徑，把 DNS 與轉送問題分開。', 'While DNS is broken, test a specific IP with <code>--resolve host:443:IP</code> to separate DNS from forwarding.') },
+  { id: 'v4', cases: ['case-001'], cat: 'verify', sev: 'info', t: L('IPsec 路徑成功的判定標準', 'What a working IPsec path looks like'),
+    b: L('用戶端 <code>rxbytes</code> &gt; 0；<code>pbr_nhop</code> 指向 NewEdge；GE1 上有雙向 ESP；Overlays Tx / Rx 不為 0；SkopeIT Access Method = IPsec。', 'Client <code>rxbytes</code> &gt; 0; <code>pbr_nhop</code> points to NewEdge; ESP both ways on GE1; Overlays Tx / Rx non-zero; SkopeIT Access Method = IPsec.') }
+];
+
+const CMDS = {
+  client: [
+    { t: L('看 SD-WAN 怎麼處理某個目的地', 'See how SD-WAN handles a destination'),
+      c: 'Get-Content "C:\\ProgramData\\netskope\\stagent\\logs\\nsbwandebuglog.log" -Tail 300 |\n  Select-String "<dest IP>" | Select -Last 5',
+      l: L('<b>policy:</b> 命中哪條 client 規則；<b>nh:</b> 169.254.0.4 代表送往 Hub；<b>rxbytes:0</b> 代表沒有回應。', '<b>policy:</b> which client rule matched; <b>nh:</b> 169.254.0.4 means sent to the hub; <b>rxbytes:0</b> means no reply.') },
+    { t: L('確認新 policy 有沒有推下來', 'Check whether new policy arrived'),
+      c: '$d = "C:\\ProgramData\\netskope\\bwan\\<id>"\nGet-ChildItem "$d\\policy.json" | Select LastWriteTime\nSelect-String "$d\\policy.json" -Pattern "<rule or IP>" -Context 6,10',
+      l: L('<b>LastWriteTime</b> 要晚於 Orchestrator 存檔時間；找不到新規則代表用戶端收不到設定。', '<b>LastWriteTime</b> must be later than the Orchestrator save; a missing rule means the client gets no config.') },
+    { t: L('抓「按 Check Again 那一刻」', 'Capture the moment of Check Again'),
+      c: 'Get-Content "C:\\ProgramData\\Netskope\\STAgent\\Logs\\nsdebuglog.log" -Tail 0 -Wait\n# then click Check Again',
+      l: L('找 <b>IS_CONFIG_UPDATE_AVAILABLE</b> 之後的 <b>Config host</b>、<b>curl code</b> 與 <b>failed to download config version</b>。', 'After <b>IS_CONFIG_UPDATE_AVAILABLE</b>, look for <b>Config host</b>, the <b>curl code</b> and <b>failed to download config version</b>.') },
+    { t: L('DNS 與 addon 連線測試', 'DNS and addon reachability'),
+      c: 'Resolve-DnsName addon-<tenant>.goskope.com\nResolve-DnsName google.com -Server 8.8.8.8\ncurl.exe -s -o NUL -w "%{http_code}`n" --max-time 15 https://addon-<tenant>.goskope.com/',
+      l: L('addon 應該 CNAME 到 <b>addon.&lt;region&gt;.goskope.com</b>；curl 有回 HTTP 狀態碼就代表通了，<b>000</b> 代表沒連上。', 'The addon should CNAME to <b>addon.&lt;region&gt;.goskope.com</b>; any HTTP code means reachable, <b>000</b> means not.') },
+    { t: L('繞過 DNS 測特定 IP 的路徑', 'Test a specific IP path without DNS'),
+      c: 'curl.exe -v --max-time 20 --resolve notskope.com:443:<dest IP> https://notskope.com/',
+      l: L('同時在 Hub 看 <b>infcli --flows</b> 與 tcpdump；目的地要先加 SSE steering exception。', 'Watch <b>infcli --flows</b> and tcpdump on the hub at the same time; add an SSE steering exception first.') },
+    { t: L('流量從哪張網卡出去', 'Which NIC a destination uses'),
+      c: 'Find-NetRoute -RemoteIPAddress <dest IP> | Select InterfaceAlias, NextHop',
+      l: L('Netskope 自己的流量應該走實體網卡（例如 <b>Ethernet0</b>），不是 SD-WAN 的虛擬網卡。', 'Netskope\'s own traffic should use the physical NIC (e.g. <b>Ethernet0</b>), not the SD-WAN adapter.') }
+  ],
+  hub: [
+    { t: L('看資料平面怎麼處理一筆 flow', 'See how the data plane handles a flow'),
+      c: "for i in $(seq 1 15); do\n  docker exec infiot_spoke /opt/infiot/bin/infcli.py --flows | grep -F '<dest IP>'\n  sleep 1\ndone",
+      l: L('重點看 <b>pbr_nhop</b>（none＝PBR 落空）、<b>txif</b>、<b>ipsecgw</b> 與 <b>stat</b>（收 / 送封包數）。', 'Key fields: <b>pbr_nhop</b> (none = PBR miss), <b>txif</b>, <b>ipsecgw</b> and <b>stat</b> (rx / tx counts).') },
+    { t: L('用 client VIP 抓封包', 'Capture by client VIP'),
+      c: "tcpdump -ni any 'host 172.19.8.4' -c 40",
+      l: L('看<b>介面</b>（enp2s0 / enp2s1）、<b>來源 IP</b>（VIP 還是 GE1 公網 IP）、以及<b>有沒有 In 方向的回應</b>。', 'Check the <b>interface</b> (enp2s0 / enp2s1), the <b>source IP</b> (VIP or GE1 public IP) and any <b>In</b> replies.') },
+    { t: L('只抓 NewEdge 的 ESP 資料封包', 'Capture NewEdge ESP data only'),
+      c: "tcpdump -ni enp2s0 'host <ipsecgw> and udp port 4500 and udp[8:4]!=0' -c 30",
+      l: L('<b>&lt;ipsecgw&gt;</b> 從 flow 讀出來；<b>udp[8:4]!=0</b> 排除 IKE。兩個方向都有 <b>UDP-encap: ESP</b> 才算資料面通了。', 'Take <b>&lt;ipsecgw&gt;</b> from the flow; <b>udp[8:4]!=0</b> excludes IKE. You need <b>UDP-encap: ESP</b> both ways.') },
+    { t: L('檢查預設路由與 policy routing', 'Check default routes and policy routing'),
+      c: 'ip route show | grep default\nip rule show\nip route show table all | grep ^default',
+      l: L('出現 <b>dev enp2s1</b>（LAN）的 default，就要回頭查 GE2 有沒有設 Default Gateway。', 'A default on <b>dev enp2s1</b> (LAN) means checking whether GE2 has a default gateway.') },
+    { t: L('介面與位址對照', 'Interfaces and addresses'),
+      c: 'ip -br addr\n# enp2s0 = GE1 (WAN)\n# enp2s1 = GE2 (LAN 172.26.0.118)\n# overlay = 169.254.0.4',
+      l: L('Orchestrator 的 GE1 / GE2 對應 Linux 的 <b>enp2s0 / enp2s1</b>，讀 flow 的 rxif / txif 前先對好。', 'Orchestrator GE1 / GE2 map to <b>enp2s0 / enp2s1</b>; map them before reading rxif / txif.') },
+    { t: L('Hub 自己能不能上網（不經資料平面）', 'Can the hub itself reach out (not via the data plane)'),
+      c: 'ip route get 8.8.8.8\nping -c 3 8.8.8.8\ncurl -s -m 5 "https://dns.google/resolve?name=google.com&type=A"',
+      l: L('只驗證 Hub 本機。通了也不代表用戶端流量會通。', 'Proves only the hub itself; client traffic still needs the flow and tcpdump checks.') }
+  ]
+};
+/* ======================= END OF DATA ======================= */
+
+/* ---------- method ---------- */
+let mIdx = 0;
+let curCase = CASES[0].id;
+const getCase = () => CASES.find(c => c.id === curCase) || CASES[0];
+function renderMethod() {
+  $('#mStep').innerHTML = METHOD.map((m, i) => '<button class="mnode ' + (i === mIdx ? 'cur' : i < mIdx ? 'done' : '') + '" data-i="' + i + '"><div class="n">STEP ' + String(i + 1).padStart(2, '0') + '</div><div class="t">' + tr(m.t) + '</div></button>' + (i < METHOD.length - 1 ? '<span class="chev">' + ico('chevron-right') + '</span>' : '')).join('');
+  $$('#mStep .mnode').forEach(b => b.addEventListener('click', () => { mIdx = +b.dataset.i; renderMethod(); }));
+  const m = METHOD[mIdx];
+  $('#mDetail').innerHTML = '<div class="fade"><div class="mono" style="font-size:12px;letter-spacing:.1em;color:#67e8f9">STEP ' + (mIdx + 1) + ' / ' + METHOD.length + '</div><div style="font-size:1.35rem;font-weight:700;margin-top:.3rem">' + tr(m.t) + '</div>' +
+    '<dl class="kv"><dt>' + tr(L('怎麼做', 'How')) + '</dt><dd>' + tr(m.how) + '</dd><dt>' + tr(L('工具', 'Tools')) + '</dt><dd class="mono" style="font-size:13px">' + tr(m.tools) + '</dd></dl></div>';
+  const c = getCase();
+  $('#mExTitle').textContent = tr(L('案例實例：', 'Case example: ')) + c.id;
+  $('#mEx').innerHTML = (c.methodEx && c.methodEx[mIdx]) || tr(L('此案例沒有這一步的紀錄。', 'No record for this step in this case.'));
+}
+
+/* ---------- case list & body ---------- */
+function renderCaseList() {
+  $('#caseList').innerHTML = CASES.map(c => '<button class="card ccard ' + (c.id === curCase ? 'sel' : '') + '" data-id="' + c.id + '"><div class="id"><span>' + c.id + ' · ' + c.date + '</span><span class="' + (c.status === 'resolved' ? 'st-ok' : 'st-open') + '">● ' + (c.status === 'resolved' ? tr(L('已解決', 'Resolved')) : tr(L('處理中', 'Open'))) + '</span></div><h3>' + tr(c.title) + '</h3><div class="rc">' + tr(c.root).split(/。|\. /)[0] + '</div><div class="chips">' + c.tags.map(t => '<span class="tag t-cat">' + t + '</span>').join('') + '</div></button>').join('') +
+    '<a href="#addcase" class="card ccard new"><div class="id"><span>case-' + String(CASES.length + 1).padStart(3, '0') + '</span></div><h3 style="display:flex;align-items:center;gap:.4rem">' + ico('plus') + tr(L('新增下一筆案例', 'Add the next case')) + '</h3><div class="rc">' + tr(L('見第 05 段的範本與做法', 'See the template and steps in section 05')) + '</div></a>';
+  $$('#caseList .ccard[data-id]').forEach(b => b.addEventListener('click', () => { curCase = b.dataset.id; cIdx = 0; renderCaseList(); renderCaseBody(); renderMethod(); }));
+}
+let cIdx = 0, cPlaying = false, cTimer = null;
+function renderCaseBody() {
+  const c = getCase();
+  let h = '<div class="subh"><span class="num">A</span>' + tr(L('案例摘要', 'Summary')) + ' · <span class="mono" style="font-size:13px;color:#94a3b8">' + c.id + '</span></div>' +
+    '<div class="sumgrid">' +
+    '<div class="card sum"><div class="k">' + tr(L('症狀', 'Symptom')) + '</div><div class="v">' + tr(c.symptom) + '</div></div>' +
+    '<div class="card sum"><div class="k">' + tr(L('根因', 'Root cause')) + '</div><div class="v">' + tr(c.root) + '</div></div>' +
+    '<div class="card sum"><div class="k">' + tr(L('修正', 'Fix')) + '</div><div class="v">' + tr(c.fix) + '</div></div>' +
+    '<div class="card sum"><div class="k">' + tr(L('連帶症狀', 'Related symptoms')) + '</div><div class="v"><ul style="margin:0;padding-left:1.1rem">' + c.related.map(r => '<li>' + tr(r) + '</li>').join('') + '</ul></div></div>' +
+    '</div><p class="dim mono" style="font-size:12px;margin-top:.6rem">' + c.env + '</p>';
+  h += '<div class="subh"><span class="num">B</span>' + tr(L('除錯過程：當時怎麼一步步找到的', 'Debug path: how it was found, step by step')) + '</div>' +
+    '<div class="card pad" style="margin-top:1rem"><div class="ctl" style="justify-content:flex-end"><button class="btn" id="cPrev">' + ico('skip-back') + '</button><button class="btn" id="cPlay"></button><button class="btn" id="cNext">' + ico('skip-forward') + '</button></div><div class="chain" id="chain" style="margin-top:1rem"></div></div>' +
+    '<div class="detail-grid"><div class="card pad" id="cDetail"></div><div class="card pad"><div style="display:flex;align-items:center;gap:.5rem;font-weight:600">' + ico('scroll-text') + tr(L('當時的證據', 'Evidence captured')) + '</div><div class="ev mono" id="cEv"></div><p class="dim" style="font-size:12px;margin-top:.6rem" id="cSrc"></p></div></div>';
+  if (c.sim === 'ge2gw') {
+    h += '<div class="subh"><span class="num">C</span>' + tr(L('路徑模擬：GE2 有沒有 Default Gateway', 'Path simulator: with and without a GE2 default gateway')) + '</div>' +
+      '<div class="card pad" style="margin-top:1rem"><div class="ctl"><div><span class="lab">' + tr(L('流量類型', 'Traffic')) + '</span><span class="seg" id="pTraffic"></span></div><div><span class="lab">' + tr(L('GE2 Default Gateway', 'GE2 default gateway')) + '</span><span class="seg" id="pGw"></span></div></div>' +
+      '<div style="overflow-x:auto;margin-top:1rem"><svg id="pSvg" class="psvg" viewBox="0 30 1100 380" style="min-width:820px;width:100%" role="img" aria-label="Path simulator"></svg></div></div>' +
+      '<div class="detail-grid"><div class="card pad" id="pDetail"></div><div class="card pad"><div style="display:flex;align-items:center;gap:.5rem;font-weight:600">' + ico('terminal') + tr(L('預期的 flow 欄位', 'Expected flow fields')) + '</div><table class="ftable" id="pFields"></table></div></div>' +
+      '<div class="card pad" style="margin-top:1rem"><div style="display:flex;align-items:center;gap:.5rem;font-weight:600">' + ico('search') + tr(L('Flow 欄位解讀器：點選欄位看意義（本案例實際抓到的那一筆）', 'Flow-field decoder: click a field (the flow captured in this case)')) + '</div><div class="flowline" id="flowline" style="margin-top:.9rem"></div><div id="tokInfo" style="margin-top:.9rem"></div></div>';
+  }
+  h += '<div class="subh"><span class="num">' + (c.sim ? 'D' : 'C') + '</span>' + tr(L('收尾清單', 'Wrap-up checklist')) + '</div><div class="card pad" style="margin-top:1rem"><ul class="wl" id="wl"></ul></div>';
+  $('#caseBody').innerHTML = h;
+  $('#cPlay').addEventListener('click', () => setCPlay(!cPlaying));
+  $('#cNext').addEventListener('click', () => { setCPlay(false); cIdx = Math.min(cIdx + 1, getCase().chain.length - 1); renderChain(); });
+  $('#cPrev').addEventListener('click', () => { setCPlay(false); cIdx = Math.max(cIdx - 1, 0); renderChain(); });
+  renderChain();
+  if (c.sim === 'ge2gw') { renderPath(); renderFlow(); }
+  renderWrap();
+}
+function renderChain() {
+  const C = getCase().chain;
+  $('#chain').innerHTML = C.map((n, i) => {
+    const st = i === cIdx ? 'cur' : (i < cIdx ? 'done' : '');
+    return '<button class="cnode ' + st + (n.fix ? ' fix' : '') + '" style="--c:' + n.c + '" data-i="' + i + '"><div class="n">' + (n.fix ? 'FIX' : String(i + 1).padStart(2, '0')) + '</div><div class="t">' + tr(n.t) + '</div></button>' + (i < C.length - 1 ? '<span class="chev">' + ico('chevron-right') + '</span>' : '');
+  }).join('');
+  $$('#chain .cnode').forEach(b => b.addEventListener('click', () => { setCPlay(false); cIdx = +b.dataset.i; renderChain(); }));
+  const n = C[cIdx];
+  $('#cDetail').innerHTML = '<div class="fade"><div class="mono" style="font-size:12px;letter-spacing:.1em;color:rgb(' + n.c + ')">' + (n.fix ? 'FIX' : (tr(L('步驟', 'STEP')) + ' ' + (cIdx + 1) + ' / ' + (C.length - 1))) + '</div>' +
+    '<div style="font-size:1.35rem;font-weight:700;margin-top:.3rem">' + tr(n.t) + '</div>' +
+    '<dl class="kv"><dt>' + tr(L('觀察到', 'Observed')) + '</dt><dd><b>' + tr(n.what) + '</b></dd><dt>' + tr(L('解讀', 'Reading')) + '</dt><dd>' + tr(n.why) + '</dd></dl>' +
+    (n.fix ? '<div class="note ok"><span>✓</span><span>' + tr(L('原則：<b>LAN 介面只負責內網，網際網路出口交給 WAN 或 NewEdge。</b>LAN 上的預設閘道會成為 segment 的退路，PBR 一落空就把流量帶進內網。', 'Rule of thumb: <b>the LAN interface serves internal networks only; the internet exit belongs to the WAN or NewEdge.</b> A LAN default gateway becomes the segment\'s fallback and catches every PBR miss.')) + '</span></div>' : '') + '</div>';
+  $('#cEv').innerHTML = n.ev;
+  $('#cSrc').textContent = tr(L('來源：', 'Source: ')) + n.src;
+  $('#cPlay').innerHTML = ico(cPlaying ? 'pause' : 'play') + '<span>' + tr(cPlaying ? L('暫停', 'Pause') : L('播放', 'Play')) + '</span>';
+}
+function setCPlay(v) {
+  cPlaying = v; clearInterval(cTimer);
+  if (v) cTimer = setInterval(() => { cIdx = (cIdx + 1) % getCase().chain.length; renderChain(); }, 4200);
+  renderChain();
+}
+
+/* ---------- path simulator (case-001) ---------- */
+const NODES = {
+  ep:   { x: 110, y: 210, t: 'Endpoint', s: 'VIP 172.19.8.x' },
+  hub:  { x: 380, y: 210, t: 'BWAN Hub', s: 'GCN_MSZ_Bwan01' },
+  ne:   { x: 650, y: 110, t: 'NewEdge IPsec', s: '198.51.100.38 (GE1)' },
+  brk:  { x: 650, y: 210, t: L('GE1 本地出口', 'GE1 local breakout'), s: '203.0.113.18 · NAT' },
+  core: { x: 650, y: 330, t: 'Core / FW', s: 'GE2 → 172.26.0.126' },
+  net:  { x: 930, y: 110, t: 'Internet', s: L('目的地', 'destination') },
+  dead: { x: 930, y: 250, t: L('網際網路（經內網）', 'Internet (via LAN)'), s: L('無 NAT · 無回程', 'no NAT · no return') },
+  int:  { x: 930, y: 350, t: L('內網服務', 'Internal services'), s: '10/8 · 172.16/12' }
+};
+const EDGES = {
+  'ep-hub':   { d: 'M190 210 H300', lab: 'overlay', lx: 222, ly: 200 },
+  'hub-ne':   { d: 'M460 195 C520 195 515 110 570 110', lab: 'IPsec · GE1', lx: 478, ly: 132 },
+  'ne-net':   { d: 'M730 110 H850' },
+  'hub-brk':  { d: 'M460 210 H570', lab: 'GE1', lx: 500, ly: 202 },
+  'brk-net':  { d: 'M730 210 C790 210 790 125 850 122' },
+  'hub-core': { d: 'M460 225 C520 225 515 330 570 330', lab: 'GE2', lx: 492, ly: 300 },
+  'core-dead':{ d: 'M730 320 C790 320 790 255 850 252' },
+  'core-int': { d: 'M730 340 C790 340 790 350 850 350' }
+};
+const PK = {
+  internal: 'M110 210 H380 C520 210 515 330 650 330 C790 330 790 350 930 350',
+  lan:      'M110 210 H380 C520 210 515 330 650 330 C790 330 790 252 930 252',
+  ne:       'M110 210 H380 C520 210 515 110 650 110 H930',
+  brk:      'M110 210 H650 C790 210 790 122 930 118'
+};
+const TRAFFIC = {
+  web: L('網際網路 → NewEdge IPsec', 'Internet → NewEdge IPsec'),
+  dns: L('DNS 8.8.8.8', 'DNS 8.8.8.8'),
+  internal: L('內網服務（10.x / 172.16.x）', 'Internal (10.x / 172.16.x)')
+};
+const SCEN = {
+  'web-on': { kind: 'bad', edges: ['ep-hub', 'hub-core', 'core-dead'], nodes: ['ep', 'hub', 'core', 'dead'], pk: 'lan',
+    res: L('失敗：送進內網，沒有回應', 'Fails: sent into the LAN, no reply'),
+    desc: L('Hub policy 命中 GW_to_NewEdge，但 PBR 找不到 NewEdge 下一跳，退回路由表後被 GE2 的預設路由帶走。這就是本案例實際抓到的狀況。', 'The hub policy matches GW_to_NewEdge, but PBR finds no NewEdge next hop; the GE2 default route takes it. This is what the case captured.'),
+    fields: [['policy', 'GW_to_NewEdge', ''], ['pbr_nhop', 'none:none', 'bad'], ['txif', 'enp2s1 (GE2)', 'bad'], ['ipsecgw', '198.51.100.38', ''], ['stat', '<0:0==>4:208>', 'bad'], ['Overlays Tx', '0 B', 'bad']] },
+  'web-off': { kind: 'ok', edges: ['ep-hub', 'hub-ne', 'ne-net'], nodes: ['ep', 'hub', 'ne', 'net'], pk: 'ne',
+    res: L('成功：經 GE1 進 NewEdge IPsec', 'Works: GE1 into NewEdge IPsec'),
+    desc: L('GLOBAL segment 沒有預設的退路，流量照 Hub policy 送進 NewEdge tunnel，從 GE1 以 ESP 封裝送出。', 'With no default fallback in GLOBAL, traffic follows the hub policy into the NewEdge tunnel and leaves GE1 as ESP.'),
+    fields: [['policy', 'GW_to_NewEdge', ''], ['pbr_nhop', 'NewEdge tunnel', 'ok'], ['txif', 'enp2s0 (GE1) · ESP', 'ok'], ['tcpdump', 'udp[8:4]!=0 · both ways', 'ok'], ['stat', 'rx > 0', 'ok'], ['SkopeIT', 'Access Method = IPsec', 'ok']] },
+  'dns-on': { kind: 'bad', edges: ['ep-hub', 'hub-core', 'core-dead'], nodes: ['ep', 'hub', 'core', 'dead'], pk: 'lan',
+    res: L('失敗：DNS 被送進內網', 'Fails: DNS sent into the LAN'),
+    desc: L('同一個機制造成的連帶症狀：Hub 照 GLOBAL segment 的預設路由從 GE2 送出，來源仍是 172.19.8.x，等不到回應，於是 addon 與 Orchestrator 都解析不到。', 'The same mechanism caused the side effects: the hub sends DNS out GE2 with source 172.19.8.x, no reply arrives, and the addon and Orchestrator fail to resolve.'),
+    fields: [['nh (client)', '169.254.0.4 (hub)', ''], ['txif', 'enp2s1 (GE2)', 'bad'], ['src on wire', '172.19.8.4 (no NAT)', 'bad'], ['client rxbytes', '0', 'bad'], ['curl', 'code 28', 'bad']] },
+  'dns-off': { kind: 'warn', edges: ['ep-hub', 'hub-brk', 'brk-net'], nodes: ['ep', 'hub', 'brk', 'net'], pk: 'brk',
+    res: L('依 Hub policy 決定：本地出口或 NewEdge', 'Depends on hub policy: local breakout or NewEdge'),
+    desc: L('移除 GE2 預設閘道後，DNS 不會再掉進內網，出口取決於 Hub policy。走 GE1 本地出口時，要確認 GE1 有對 172.19.8.0/24 做 NAT；也可以把 DNS 一併導入 NewEdge。', 'With the GE2 gateway gone, DNS no longer falls into the LAN and its exit depends on the hub policy. For GE1 local breakout, confirm GE1 NATs 172.19.8.0/24; DNS can also go into NewEdge.'),
+    fields: [['txif', 'enp2s0 (GE1)', 'ok'], ['src on wire', '203.0.113.18 (NAT)', 'warn'], ['client rxbytes', '> 0', 'ok'], ['verify', 'tcpdump host 8.8.8.8', 'warn']] },
+  'internal-on': { kind: 'ok', edges: ['ep-hub', 'hub-core', 'core-int'], nodes: ['ep', 'hub', 'core', 'int'], pk: 'internal',
+    res: L('可用：走 segment 靜態路由', 'Works: segment static routes'),
+    desc: L('內網網段命中 GLOBAL segment 的靜態路由（GE2 → 172.26.0.126），跟有沒有預設閘道無關。', 'Internal prefixes match the GLOBAL static routes (GE2 → 172.26.0.126) regardless of the default gateway.'),
+    fields: [['route', '10/8, 172.16/12 → 172.26.0.126', 'ok'], ['txif', 'enp2s1 (GE2)', 'ok'], ['return', '172.19.8.0/24 → 172.26.0.118', 'warn']] },
+  'internal-off': { kind: 'ok', edges: ['ep-hub', 'hub-core', 'core-int'], nodes: ['ep', 'hub', 'core', 'int'], pk: 'internal',
+    res: L('可用：走 segment 靜態路由', 'Works: segment static routes'),
+    desc: L('移除預設閘道不影響內網：內網網段本來就由靜態路由明確指定 GE2 與 next hop。要注意的是內網的回程路由。', 'Removing the default gateway does not affect internal access; what matters is the LAN-side return route.'),
+    fields: [['route', '10/8, 172.16/12 → 172.26.0.126', 'ok'], ['txif', 'enp2s1 (GE2)', 'ok'], ['return', '172.19.8.0/24 → 172.26.0.118', 'warn']] }
+};
+const KCOL = { ok: '52 211 153', bad: '244 63 94', warn: '251 191 36' };
+let pTraffic = 'web', pGw = 'on';
+function nodeSvg(id, state, col) {
+  const n = NODES[id], w = 160, h = 60;
+  return '<g class="nd ' + state + '" style="--c:' + col + '"><rect x="' + (n.x - w / 2) + '" y="' + (n.y - h / 2) + '" width="' + w + '" height="' + h + '" rx="12"/>' +
+    '<text class="t" x="' + n.x + '" y="' + (n.y - 3) + '" text-anchor="middle">' + tr(n.t) + '</text>' +
+    '<text class="s" x="' + n.x + '" y="' + (n.y + 15) + '" text-anchor="middle">' + tr(n.s) + '</text></g>';
+}
+function renderPath() {
+  const sc = SCEN[pTraffic + '-' + pGw], col = KCOL[sc.kind];
+  let svg = '<rect class="zone" x="300" y="48" width="460" height="340" rx="16"/><text class="zt" x="318" y="70">' + tr(L('HUB 出口決策', 'HUB EXIT DECISION')) + '</text>';
+  Object.entries(EDGES).forEach(([k, e]) => {
+    const on = sc.edges.includes(k);
+    svg += '<path class="eg ' + (on ? 'on' : '') + '" style="--c:' + col + '" d="' + e.d + '"/>';
+    if (e.lab) svg += '<text class="el ' + (on ? 'on' : '') + '" x="' + e.lx + '" y="' + e.ly + '">' + e.lab + '</text>';
+  });
+  if (pGw === 'on') svg += '<g class="gwtag"><rect x="306" y="252" width="178" height="24" rx="6"/><text x="395" y="268" text-anchor="middle">default via 172.26.0.126</text></g>';
+  Object.keys(NODES).forEach(id => { svg += nodeSvg(id, sc.nodes.includes(id) ? 'on' : 'off', col); });
+  if (sc.kind === 'bad') svg += '<g><circle cx="1010" cy="226" r="12" fill="#f43f5e"/><text x="1010" y="231" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">✕</text></g>';
+  else { const cy = sc.pk === 'internal' ? 326 : 86; svg += '<g><circle cx="1010" cy="' + cy + '" r="12" fill="' + (sc.kind === 'ok' ? '#10b981' : '#f59e0b') + '"/><text x="1010" y="' + (cy + 5) + '" text-anchor="middle" fill="#022c22" font-size="14" font-weight="800">' + (sc.kind === 'ok' ? '✓' : '!') + '</text></g>'; }
+  svg += '<circle class="pk" style="--c:' + col + '" r="6"><animateMotion dur="2.8s" repeatCount="indefinite" path="' + PK[sc.pk] + '"/></circle>';
+  $('#pSvg').innerHTML = svg;
+  const icon = sc.kind === 'ok' ? '✓' : sc.kind === 'bad' ? '✕' : '!';
+  $('#pDetail').innerHTML = '<div class="fade"><div class="mono" style="font-size:12px;letter-spacing:.1em;color:rgb(' + col + ')">' + tr(TRAFFIC[pTraffic]) + ' · GE2 GW ' + (pGw === 'on' ? tr(L('有', 'SET')) : tr(L('無', 'REMOVED'))) + '</div>' +
+    '<div class="res" style="color:rgb(' + col + ')">' + icon + ' ' + tr(sc.res) + '</div>' +
+    '<p style="margin-top:.7rem;font-size:14px;line-height:1.7" class="muted">' + tr(sc.desc) + '</p>' +
+    (pTraffic === 'internal' ? '<div class="note warn"><span>⚠</span><span>' + tr(L('內網的 core / 防火牆必須有 <code>172.19.8.0/24 → 172.26.0.118</code> 的回程路由。另外 <code>172.16.0.0/12</code> 涵蓋了 client VIP pool，回程異常時先查這裡。', 'The LAN core / firewall needs <code>172.19.8.0/24 → 172.26.0.118</code>. Also, <code>172.16.0.0/12</code> covers the client VIP pool; check it first if returns misbehave.')) + '</span></div>' : '') +
+    (pTraffic === 'web' && pGw === 'on' ? '<div class="note bad"><span>✕</span><span>' + tr(L('注意 <code>ipsecgw=198.51.100.38</code>：當時 tcpdump 過濾的是另外兩個 NewEdge IP，所以什麼都沒抓到。抓封包前先從 flow 確認實際的 IPsec gateway。', 'Note <code>ipsecgw=198.51.100.38</code>: the capture filtered the other two NewEdge IPs and caught nothing. Read the actual gateway from the flow first.')) + '</span></div>' : '') + '</div>';
+  $('#pFields').innerHTML = sc.fields.map(f => '<tr><td>' + f[0] + '</td><td class="v ' + (f[2] ? 'v-' + f[2] : '') + '">' + esc(f[1]) + '</td></tr>').join('');
+  $('#pTraffic').innerHTML = Object.keys(TRAFFIC).map(k => '<button data-v="' + k + '" aria-pressed="' + (k === pTraffic) + '">' + tr(TRAFFIC[k]) + '</button>').join('');
+  $('#pGw').innerHTML = '<button data-v="on" aria-pressed="' + (pGw === 'on') + '">' + tr(L('有（修正前）', 'Set (before)')) + '</button><button data-v="off" aria-pressed="' + (pGw === 'off') + '">' + tr(L('無（修正後）', 'Removed (after)')) + '</button>';
+  $$('#pTraffic button').forEach(b => b.addEventListener('click', () => { pTraffic = b.dataset.v; renderPath(); }));
+  $$('#pGw button').forEach(b => b.addEventListener('click', () => { pGw = b.dataset.v; renderPath(); }));
+}
+const FLOW = [
+  ['172.19.8.4:59503==>192.0.2.116:443', null],
+  ['policy=GW_to_NewEdge', { k: 'policy', bad: false, d: L('Hub policy 比對到的 AppX 規則。代表 policy 有命中，但不代表流量真的照規則的出口走。', 'The hub AppX rule that matched; a hit, not proof the rule\'s exit was used.') }],
+  ['rt=Overlay', { k: 'rt', bad: false, d: L('流量來源類型：從 Endpoint overlay 進來的。', 'Source type: arrived via the endpoint overlay.') }],
+  ['rxif=enp2s0', { k: 'rxif', bad: false, d: L('收到流量的介面。Overlay 封包經 GE1（enp2s0）進來，屬正常。', 'Ingress interface. Overlay packets enter via GE1 (enp2s0); normal.') }],
+  ['txif=enp2s1', { k: 'txif', bad: true, d: L('<b>關鍵欄位。</b>流量實際送出的介面。enp2s1 是 GE2（LAN），要進 NewEdge 的流量不該從這裡出去。', '<b>Key field.</b> The egress interface. enp2s1 is GE2 (LAN); NewEdge-bound traffic should never leave here.') }],
+  ['ipsecgw=198.51.100.38', { k: 'ipsecgw', bad: false, d: L('資料平面選定的 NewEdge IPsec gateway。抓 ESP 封包時要用這個 IP 過濾。', 'The NewEdge IPsec gateway the data plane picked; filter ESP captures on it.') }],
+  ['overlay=169.254.0.4', { k: 'overlay', bad: false, d: L('Hub 在 overlay 上的位址，也就是用戶端 log 裡的 nh。', 'The hub\'s overlay address, i.e. nh in client logs.') }],
+  ['pbr_policy=GW_to_NewEdge', { k: 'pbr_policy', bad: false, d: L('套用的 PBR 規則。', 'The PBR rule applied.') }],
+  ['pbr_nhop=none:none', { k: 'pbr_nhop', bad: true, d: L('<b>關鍵欄位。</b>PBR 解析出的下一跳。none 代表找不到可用的 NewEdge 出口，流量退回一般路由表；segment 裡有預設路由就會照它走。', '<b>Key field.</b> The next hop PBR resolved. none means no usable NewEdge exit; the flow falls back to the routing table and any segment default route.') }],
+  ['stat<0:0==>4:208>', { k: 'stat', bad: true, d: L('封包統計：收 0 個、送 4 個（208 bytes）。只有 SYN 與重送，沒有回應。', 'Counters: 0 received, 4 sent (208 bytes): SYNs and retries with no reply.') }]
+];
+let tokSel = 8;
+function renderFlow() {
+  $('#flowline').innerHTML = FLOW.map((f, i) => f[1] ? '<span class="tok ' + (f[1].bad ? 'badv ' : '') + (i === tokSel ? 'sel' : '') + '" data-i="' + i + '">' + esc(f[0]) + '</span>' : '<span>' + esc(f[0]) + '</span>').join(' ');
+  $$('#flowline .tok').forEach(t => t.addEventListener('click', () => { tokSel = +t.dataset.i; renderFlow(); }));
+  const f = FLOW[tokSel][1];
+  $('#tokInfo').innerHTML = '<div class="note ' + (f.bad ? 'bad' : 'ok') + ' fade" style="margin-top:0"><span class="mono" style="font-weight:700">' + f.k + '</span><span>' + tr(f.d) + '</span></div>';
+}
+
+/* ---------- wrap-up ---------- */
+let wchecks = store.get('bwan-pb-wrap', {});
+function renderWrap() {
+  const c = getCase();
+  $('#wl').innerHTML = c.wrap.map(w => w.g ? '<li class="grp">' + tr(w.g) + '</li>' :
+    '<li><label><input type="checkbox" class="chk" data-id="' + c.id + ':' + w.id + '" ' + (wchecks[c.id + ':' + w.id] ? 'checked' : '') + '><span>' + tr(w.t) + '</span></label></li>').join('');
+  $$('#wl .chk').forEach(x => x.addEventListener('change', () => { wchecks[x.dataset.id] = x.checked; store.set('bwan-pb-wrap', wchecks); }));
+}
+
+/* ---------- notes ---------- */
+let nCat = 'all';
+let checks = store.get('bwan-pb-notes', {});
+function renderNotes() {
+  $('#nFilter').innerHTML = Object.keys(CATS).map(k => '<button data-v="' + k + '" aria-pressed="' + (k === nCat) + '">' + tr(CATS[k]) + '</button>').join('');
+  $$('#nFilter button').forEach(b => b.addEventListener('click', () => { nCat = b.dataset.v; renderNotes(); }));
+  const list = NOTES.filter(n => nCat === 'all' || n.cat === nCat);
+  $('#nGrid').innerHTML = list.map(n => '<div class="card ncard fade ' + (checks[n.id] ? 'checked' : '') + '" style="--c:' + CATCOL[n.cat] + '">' +
+    '<input type="checkbox" class="chk" data-id="' + n.id + '" ' + (checks[n.id] ? 'checked' : '') + ' aria-label="done">' +
+    '<div><div class="head"><span class="tag t-' + n.sev + '">' + tr(SEV[n.sev]) + '</span><span class="tag t-cat">' + tr(CATS[n.cat]) + '</span>' + n.cases.map(id => '<span class="tag t-cat">' + id + '</span>').join('') + '</div>' +
+    '<h3>' + tr(n.t) + '</h3><p>' + tr(n.b) + '</p></div></div>').join('');
+  $$('#nGrid .chk').forEach(c => c.addEventListener('change', () => { checks[c.dataset.id] = c.checked; store.set('bwan-pb-notes', checks); renderNotes(); }));
+  const done = list.filter(n => checks[n.id]).length;
+  $('#nCount').textContent = done + ' / ' + list.length;
+  $('#nBar').style.width = (list.length ? done / list.length * 100 : 0) + '%';
+}
+
+/* ---------- commands ---------- */
+let cmdTab = 'client';
+function copyBtn(b, text) {
+  const done = () => { b.textContent = tr(L('已複製', 'Copied')); b.classList.add('ok'); setTimeout(() => { b.textContent = tr(L('複製', 'Copy')); b.classList.remove('ok'); }, 1500); };
+  try { navigator.clipboard.writeText(text).then(done).catch(() => { b.textContent = tr(L('請手動選取', 'Select manually')); }); }
+  catch (e) { b.textContent = tr(L('請手動選取', 'Select manually')); }
+}
+function renderCmds() {
+  $('#cmdTab').innerHTML = '<button data-v="client" aria-pressed="' + (cmdTab === 'client') + '">' + tr(L('Windows 用戶端', 'Windows client')) + '</button><button data-v="hub" aria-pressed="' + (cmdTab === 'hub') + '">' + tr(L('BWAN Hub（Linux）', 'BWAN hub (Linux)')) + '</button>';
+  $$('#cmdTab button').forEach(b => b.addEventListener('click', () => { cmdTab = b.dataset.v; renderCmds(); }));
+  $('#cmdGrid').innerHTML = CMDS[cmdTab].map((c, i) => '<div class="card cmd fade"><div class="top"><h3>' + tr(c.t) + '</h3><button class="copy" data-i="' + i + '">' + tr(L('複製', 'Copy')) + '</button></div><pre>' + esc(c.c) + '</pre><div class="look">' + tr(L('要看什麼：', 'What to look for: ')) + tr(c.l) + '</div></div>').join('');
+  $$('#cmdGrid .copy').forEach(b => b.addEventListener('click', () => copyBtn(b, CMDS[cmdTab][+b.dataset.i].c)));
+}
+
+/* ---------- template ---------- */
+const TEMPLATE = `{
+  id: 'case-002',
+  date: 'YYYY-MM-DD',
+  status: 'open',            // 'open' | 'resolved'
+  title: L('一句話描述問題', 'One-line problem statement'),
+  env: 'Hub … · Endpoint SD-WAN … · Netskope Client …',
+  symptom: L('看到什麼現象', 'What was observed'),
+  root: L('根因', 'Root cause'),
+  fix: L('改了什麼', 'What was changed'),
+  related: [ L('連帶症狀', 'Side effect') ],
+  tags: ['IPsec', 'DNS'],
+  methodEx: [ /* 7 entries, one per METHOD step (HTML ok) */ ],
+  chain: [
+    { c: '56 189 248', t: L('步驟標題', 'Step title'),
+      what: L('觀察到', 'Observed'), why: L('解讀', 'Reading'),
+      ev: '<span class="c"># source</span>\\nlog lines…', src: 'where it came from' },
+    { c: '52 211 153', fix: true, t: L('修正：…', 'Fix: …'),
+      what: L('', ''), why: L('', ''), ev: '', src: '' }
+  ],
+  sim: null,                 // case-specific simulator, if any
+  wrap: [
+    { g: L('分組標題', 'Group title') },
+    { id: 'w1', t: L('收尾項目', 'Wrap-up item') }
+  ]
+},`;
+function renderTpl() {
+  $('#tplPre').textContent = TEMPLATE;
+  const b = $('#tplCopy'); b.textContent = tr(L('複製範本', 'Copy template'));
+  b.onclick = () => copyBtn(b, TEMPLATE);
+}
+
+/* ---------- header stats ---------- */
+function renderStats() {
+  $('#stCases').textContent = CASES.filter(c => c.status === 'resolved').length + ' / ' + CASES.length;
+  $('#stNotes').textContent = NOTES.length;
+  $('#stCmds').textContent = CMDS.client.length + CMDS.hub.length;
+  const last = CASES.slice().sort((a, b) => b.date.localeCompare(a.date))[0];
+  $('#stDate').textContent = last.date;
+  $('#stLast').textContent = last.id + ' · ' + tr(last.title);
+}
+
+/* ---------- toolbar ---------- */
+function renderAll() { renderStats(); renderMethod(); renderCaseList(); renderCaseBody(); renderNotes(); renderCmds(); renderTpl(); }
+function applyLang(l) {
+  lang = l;
+  document.documentElement.setAttribute('lang', l === 'en' ? 'en' : 'zh-Hant');
+  document.title = l === 'en' ? 'BWAN Troubleshooting Playbook' : 'BWAN 除錯手冊';
+  $$('#segLang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
+  try { localStorage.setItem('bwan-notes-lang', l); } catch (e) {}
+  renderAll();
+}
+function applyTheme(t) {
+  document.documentElement.classList.toggle('light', t === 'light');
+  $$('#segTheme button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.theme === t)));
+  try { localStorage.setItem('bwan-notes-theme', t); } catch (e) {}
+}
+$$('#segLang button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+$$('#segTheme button').forEach(b => b.addEventListener('click', () => applyTheme(b.dataset.theme)));
+
+paintIcons();
+applyTheme(document.documentElement.classList.contains('light') ? 'light' : 'dark');
+applyLang(lang);
+</script>
+</body>
+</html>
